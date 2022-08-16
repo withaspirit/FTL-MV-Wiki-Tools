@@ -1,0 +1,2730 @@
+<FTL>
+<!-- wikiStart -->
+
+<!--
+
+    Introduction:
+    https://ftlmultiverse.fandom.com/wiki/
+    This file contains blueprintLists matching objects to their corresponding FTL: Multiverse Wiki page.
+    This files' blueprintLists contain <name> elements which contain the "name" element of each object's blueprint.
+
+    There's no reliable pattern in the game files to identify what page in the FTL: Multiverse Wiki each object corresponds to.
+    This file associates object blueprints with their corresponding wikiPage.
+    The result should be that the following elements are added to
+    the blueprint of each included object: <wikiName>, <wikiHeading>,  <wikiPage>, and <wikiRedirect>
+
+
+    Information:
+    Almost all objects in this file belong to blueprints.xml.
+    Some belong to dlcBlueprints.xml or autoBlueprints.xml. They are identified accordingly.
+
+    _ENEMY variants of most blueprints are not included because they are not on the Wiki.
+    _ENEMY variants usually have their <desc> element text as "YOU SHOULD NEVER SEE THIS"
+
+    For <name> elements in these blueprintLists, if wikiName, wikiHeading, or both are omitted,
+    they are obtained from the blueprint's existing elements. If the blueprint is a shipBlueprint,
+    the <class> element is used. Otherwise, <title> element is used.
+
+    Legend:
+    <wikiPage>: the Wiki page a list of objects belongs to
+    <wikiName>: the name of the object as displayed on the Wiki
+    <wikiHeading>: the heading as displayed on the wiki. Also used for redirects
+    <wikiRedirect>: the full redirect to be used in the format: https://ftlmultiverse.fandom.com/wiki/<wikiRedirect>
+
+    <blueprint>: contains object information. Used here to refer to <crewBlueprint>, <weaponBlueprint>, <droneBlueprint>, <augBlueprint>, and <shipBlueprint>
+    <blueprintList>: typically contains the "name" attributes of one or more blueprints
+    <name>: in blueprintLists, the value of a blueprint's "name" atttribute. In shipBlueprints, the object's in-game name
+    <blueprintListName>: the value of a blueprint's "name" atttribute. Used here to refer to autoBlueprint.xml exclusively.
+    <title>: the <title> element containing the object's in-game name. Overridden when "wikiName" present. Found on <crewBlueprint>, <weaponBlueprint>, <droneBlueprint>, <augBlueprint>.
+    <class>: the <class> element found on <shipBlueprint>. Layouts A, B, and C of a type of ship will usually belong to the same class.
+
+    wikiPage guide:
+    wikiPage="Page Name" -> indicates that the wikiRedirect should be {title/name}, {wikiName}, or {wikiHeading}
+        ex: https://ftlmultiverse.fandom.com/wiki/Breach_Sealant
+    wikiPage="Page Name#" -> indicates wikiRedirect is {Page Name#} followed by {title/name}, or {wikiHeading}
+        ex: https://ftlmultiverse.fandom.com/wiki/Crew#Standard_Human
+    wikiPage="Page Name#Redirect" -> indicates that the wikiRedirect should be {Page Name#Redirect}
+        ex: https://ftlmultiverse.fandom.com/wiki/Drones_Types#Defender_Drones
+
+-->
+
+<!-- Regex -->
+    <!--
+        Used for creating lists of <name> elements from https://ftlmultiverse.fandom.com/wiki/List_of_IDs
+
+        keep only first word in line:
+        replace:
+        (^.+?)\s.*$
+        with:
+        $1
+
+        wrap with <name>
+        replace:
+        \w+
+        with with:
+        <name>$0</name>
+    -->
+
+<!-- Crew -->
+    <!--
+        <crewBlueprint>
+        Crew contained in both hyperspace.xml and blueprint.xml.
+        Named crew are usually contained in hyperspace.xml
+        pattern:
+        https://ftlmultiverse.fandom.com/wiki/<crewPage>#<crewBlueprint>.<title>
+    -->
+
+    <!--
+        Standard Crew
+        https://ftlmultiverse.fandom.com/wiki/Crew
+    -->
+        <blueprintList wikiPage="Crew#" name="LIST_CREW_STANDARD_WIKI">
+            <!-- Humans -->
+                <name wikiHeading="Standard Human">human</name>
+                <name>human_medic</name>
+                <name>human_engineer</name>
+                <name>human_soldier</name>
+                <name>human_mfk</name>
+            <!-- Engi -->
+                <name wikiHeading="Standard Engi">engi</name>
+                <name>engi_separatist</name>
+                <name>engi_separatist_nano</name>
+                <name>engi_defender</name>
+            <!-- Zoltan -->
+                <name wikiHeading="Standard Zoltan">zoltan</name>
+                <name>zoltan_monk</name>
+                <name>zoltan_peacekeeper</name>
+                <name>zoltan_devotee</name>
+                <name>zoltan_martyr</name>
+            <!-- Orchid -->
+                <name wikiHeading="Standard Orchid">orchid</name>
+                <name wikiName="Orchid Chieftain" wikiHeading="Orchid Chieftain" >orchid_chieftain</name>
+                <name wikiName="Orchid Cultivator" wikiHeading="Orchid Cultivator">orchid_cultivator</name>
+                <name>orchid_vampweed</name>
+            <!-- Mantis -->
+                <name wikiHeading="Standard Mantis">mantis</name>
+                <name>mantis_suzerain</name>
+                <name>mantis_free</name>
+                <name>mantis_warlord</name>
+            <!-- Rockman -->
+                <name wikiHeading="Standard Rockman">rock</name>
+                <name>rock_outcast</name>
+                <name>rock_commando</name>
+                <name>rock_crusader</name>
+            <!-- Crystal -->
+                <name wikiHeading="Standard Crystal">crystal</name>
+                <name>crystal_sentinel</name>
+                <name>crystal_liberator</name>
+            <!-- Slug -->
+                <name wikiHeading="Standard Slug">slug</name>
+                <name>slug_saboteur</name>
+                <name>slug_clansman</name>
+                <name>slug_ranger</name>
+            <!-- Shell -->
+                <name wikiHeading="Standard Shell">shell</name>
+                <name>shell_scientist</name>
+                <name>shell_mechanic</name>
+                <name>shell_guardian</name>
+                <name>shell_radiant</name>
+            <!-- Lanius -->
+                <name wikiHeading="Standard Lanius">lanius</name>
+                <name>lanius_welder</name>
+            <!-- Ghosts -->
+                <name>phantom</name>
+                <name>phantom_alpha</name>
+                <name>phantom_goul</name>
+                <name>phantom_goul_alpha</name>
+                <name>phantom_mare</name>
+                <name>phantom_mare_alpha</name>
+                <name>phantom_wraith</name>
+                <name>phantom_wraith_alpha</name>
+            <!-- Leeches -->
+                <name wikiHeading="Standard Leech">leech</name>
+                <name wikiName="Leech Ampere" wikiHeading="Leech Ampere">leech_ampere</name>
+        </blueprintList>
+
+    <!--
+        Secret Crew
+        https://ftlmultiverse.fandom.com/wiki/Secret_Crew
+    -->
+        <blueprintList wikiPage="Secret Crew#" name="LIST_CREW_SECRET_WIKI">
+            <!-- Humans -->
+                <name>human_angel</name>
+                <name>human_legion</name>
+                <name>human_legion_pyro</name>
+                <name>human_technician</name>
+                <name wikiHeading="Wentworth Combat Drone">human_technician_drone</name>
+            <!-- Zoltan -->
+                <name>zoltan_osmian</name>
+                <name wikiHeading="Osmian Hologram">zoltan_osmian_hologram</name>
+                <name wikiHeading="Terrorist (Enemy Osmian)">zoltan_osmian_enemy</name>
+            <!-- Mantis -->
+                <name>mantis_bishop</name>
+            <!-- Rockman -->
+                <name wikiHeading="Rockman Cultist">rock_cultist</name>
+                <name>rock_paladin</name>
+                <name>rock_paladin_enemy</name>
+            <!-- Slug -->
+                <name>slug_hektar</name>
+                <name>slug_hektar_box</name>
+                <name wikiHeading="Knight of Nights">slug_knight</name>
+            <!-- Lanius -->
+                <name wikiHeading="Augmented Lanius">lanius_augmented</name>
+            <!-- Lizards -->
+                <name wikiHeading="Worker Lizard">lizard</name>
+            <!-- Insects -->
+                <name wikiName="Tiny Bug" wikiHeading="Tiny Bug">tinybug</name>
+                <!-- giant_alien_spiders (found on Giant_Alien_Spiders page) -->
+            <!-- Equinoid -->
+                <name wikiName="Equinoid" wikiHeading="Equinoid">pony</name>
+                <name wikiName="Tamed Equinoid" wikiHeading="Tamed Equinoid">pony_tamed</name>
+                <name wikiHeading="Crystal Equinoid">ponyc</name> <!-- also in LIST_CREW_UNIQUE, but lacks event and a ship -->
+            <!-- Siren -->
+                <name wikiHeading="Sirens">siren</name>
+            <!-- Obelisk -->
+                <name>obelisk</name>
+                <name wikiHeading="Royal Obelisk">obelisk_royal</name>
+            <!-- Cognitive -->
+                <name>cognitive</name>
+                <name>cognitive_automated</name>
+                <name>cognitive_advanced</name>
+                <name>cognitive_advanced_automated</name>
+            <!-- Morph Forms -->
+            	<name wikiName="Morph" wikiHeading="Morph">blob</name>
+                <name wikiName="Morph (Crystal)" wikiHeading="Morph">blobcrystal</name>
+                <name wikiName="Morph (Free Mantis)" wikiHeading="Morph">blobfreemantis</name>
+                <name wikiName="Morph (Human)" wikiHeading="Morph">blobhuman</name>
+                <name wikiName="Morph (Lizard)" wikiHeading="Morph">bloblizard</name>
+                <name wikiName="Morph (Mantis)" wikiHeading="Morph">blobmantis</name>
+                <name wikiName="Morph (Equinoid)" wikiHeading="Morph">blobpony</name>
+                <name wikiName="Morph (Rockman)" wikiHeading="Morph">blobrock</name>
+                <name wikiName="Morph (Saltman)" wikiHeading="Morph">blobsalt</name>
+                <name wikiName="Morph (Shell)" wikiHeading="Morph">blobshell</name>
+                <name wikiName="Morph (Slug)" wikiHeading="Morph">blobslug</name>
+                <name wikiName="Morph (Hatchling)" wikiHeading="Morph">blobhatch</name>
+                <name wikiName="Morph (Giant Alien Spider)" wikiHeading="Morph">blobspider</name>
+                <name wikiName="Morph (Weaver)" wikiHeading="Morph">blobweaver</name>
+                <name wikiName="Morph (Zoltan)" wikiHeading="Morph">blobzoltan</name>
+                <name wikiName="Morph (Orchid Children)" wikiHeading="Morph">blobswarm</name>
+                <name wikiName="Technopath" wikiHeading="Technopath">techno</name>
+                <name wikiName="Technopath (Obelisk)" wikiHeading="Technopath">technoancient</name>
+                <name wikiName="Technopath (Engi)" wikiHeading="Technopath">technoengi</name>
+                <name wikiName="Technopath (Cognitive)" wikiHeading="Technopath">technoavatar</name>
+                <name wikiName="Technopath (Lanius)" wikiHeading="Technopath">technolanius</name>
+                <name wikiName="Technopath (Battle Drone)" wikiHeading="Technopath">technobattle</name>
+                <name wikiName="Technopath (Battle Drone MK II)" wikiHeading="Technopath">technobattle2</name>
+                <name wikiName="Technopath (Ion Intruder)" wikiHeading="Technopath">technoboarderion</name>
+                <name wikiName="Technopath (Repair Drone)" wikiHeading="Technopath">technorepair</name>
+                <name wikiName="Technopath (Doctor Drone)" wikiHeading="Technopath">technodoctor</name>
+                <name wikiName="Technopath (Manager Drone)" wikiHeading="Technopath">technomanning</name>
+                <name wikiName="Technopath (Recon Drone)" wikiHeading="Technopath">technorecon</name>
+                <name wikiName="Technopath (Atomizer)"  wikiHeading="Technopath">technoatom</name>
+                <name wikiName="Technopath (Director)" wikiHeading="Technopath">technodirector</name>
+                <name wikiName="Technopath (Mender)" wikiHeading="Technopath">technomender</name>
+                <name wikiName="Technopath (A5540L3)" wikiHeading="Technopath">technoa55</name>
+                <name wikiName="Technopath (Gana)" wikiHeading="Technopath">technogana</name>
+                <name wikiName="Technopath (Roomba)" wikiHeading="Technopath">technoroomba</name>
+                <name wikiName="Malform" wikiHeading="Malform">gold</name>
+                <name wikiName="Malform (Spider Queen)" wikiHeading="Malform">goldqueen</name>
+                <name wikiName="Malform (Leech Ampere)" wikiHeading="Malform">goldampere</name>
+                <name wikiName="Malform (Orchid Chieftain)" wikiHeading="Malform">goldchieftain</name>
+                <name wikiName="Malform (Rockman Crusader)" wikiHeading="Malform">goldcrusader</name>
+                <name wikiName="Malform (Engi Defender)" wikiHeading="Malform">golddefend</name>
+                <name wikiName="Malform (Obelisk Royal)" wikiHeading="Malform">goldroyal</name>
+                <name wikiName="Malform (Slug Saboteur)"  wikiHeading="Malform">goldsabo</name>
+                <name wikiName="Malform (Human Soldier)" wikiHeading="Malform">goldsoldier</name>
+                <name wikiName="Malform (Mantis Suzerain)" wikiHeading="Malform">goldsuzerain</name>
+                <name wikiName="Malform (Shell Radiant)" wikiHeading="Malform">goldtoxic</name>
+                <name wikiName="Malform (Mantis Warlord)" wikiHeading="Malform">goldwarlord</name>
+                <name wikiName="Malform (Lanius Welder)" wikiHeading="Malform">goldwelder</name>
+        </blueprintList>
+
+    <!--
+        Giant Alien Spiders
+        https://ftlmultiverse.fandom.com/wiki/Giant_Alien_Spiders
+        this exists because existing redirects on the wiki (except for unique_queen) go to the Giant_Alien_Spiders page
+    -->
+        <blueprintList wikiPage="Giant Alien Spiders#" name="LIST_CREW_SPIDERS_WIKI">
+            <name>spider</name>
+            <name>spider_weaver</name>
+            <name>spider_hatch</name>
+        </blueprintList>
+
+    <!--
+        Unique Crew
+        https://ftlmultiverse.fandom.com/wiki/Unique_Crew
+        like name="LIST_CREW_UNIQUE" except doesn't contain ponyc
+    -->
+        <blueprintList wikiPage="Unique Crew#" name="LIST_CREW_UNIQUE_WIKI">
+            <name wikiName="Tully" wikiHeading="Tully">unique_tully</name>
+            <name wikiName="Haynes" wikiHeading="Haynes">unique_haynes</name>
+            <name>unique_jerry</name>
+            <name wikiName="Jerry" wikiHeading="Jerry (Gatling)">unique_jerry_gun</name>
+            <name wikiName="Jerry" wikiHeading="Jerry (Gatling &amp; Pony)">unique_jerry_pony</name>
+            <name wikiName="Jerry" wikiHeading="Jerry (Gatling &amp; Pony)">unique_jerry_pony_crystal</name>
+            <name wikiName="Devorak" wikiHeading="Devorak">unique_devorak</name>
+            <name wikiName="Vance" wikiHeading="Vance (Enemy Only)">unique_vance</name>
+            <name wikiName="Cyra" wikiHeading="Cyra Black (Enemy Only)">unique_cyra</name>
+            <name wikiName="Leah" wikiHeading="Leah (Enemy Only)">unique_leah</name>
+            <name wikiName="MFK Leah" wikiHeading="MFK Leah (Enemy Only)">unique_leah_mfk</name>
+            <name wikiName="Turzil" wikiHeading="Turzil">unique_turzil</name>
+            <name wikiName="'Gardener'" wikiHeading="'Gardener'">gardener</name>
+            <name wikiName="Alkali" wikiHeading="Alkali">unique_alkali</name>
+            <name>unique_ooj</name>
+            <name wikiName="Nights" wikiHeading="Captain Nights">unique_nights</name>
+            <name wikiName="Slocknog" wikiHeading="Slocknog">unique_slocknog</name>
+            <name wikiName="Irwin" wikiHeading="Irwin">unique_irwin</name>
+            <name wikiName="Alkram" wikiHeading="Alkram">unique_alkram</name>
+            <name wikiName="Tyrdeo" wikiHeading="Tyrdeo">unique_tyrdeo</name>
+            <name wikiName="Wealsey" wikiHeading="Wealsey">unique_tyrdeo_bird</name>
+            <name>unique_freddy</name>
+            <name wikiName="Kazaaakplethkilik" wikiHeading="Kazaaakplethkilik">unique_kaz</name>
+            <name wikiName="Dianesh" wikiHeading="Dianesh">unique_dianesh</name>
+            <name wikiName="Ariadne" wikiHeading="Ariadne">unique_ariadne</name>
+            <name wikiName="Ruwen" wikiHeading="Ruwen">unique_ruwen</name>
+            <name wikiName="Tuco" wikiHeading="Tuco">unique_tuco</name>
+            <name wikiName="Rock Elder" wikiHeading="Elder (Enemy Only)">rock_elder</name>
+            <name wikiName="The Beacon Eater" wikiHeading="The Beacon Eater">unique_eater</name>
+            <name>unique_anointed</name>
+            <name wikiName="Dessius" wikiHeading="Dessius">unique_dessius</name>
+            <name wikiName="Lord Vortigon" wikiHeading="Lord Vortigon">unique_vortigon</name>
+            <name>unique_queen</name>
+            <name wikiName="Sylvan" wikiHeading="Sylvan">unique_sylvan</name>
+            <name wikiName="Obyn" wikiHeading="Obyn">salt</name>
+            <name wikiName="Billy" wikiHeading="Billy">unique_billy</name>
+            <name wikiName="Billy (Box)" wikiHeading="Billy (Box)">unique_billy_box</name>
+            <name wikiName="Guntput" wikiHeading="Guntput">unique_guntput</name>
+            <name wikiName="Metyunt" wikiHeading="Metyunt">traitor</name>
+            <name wikiName="Tintan and Rig" wikiHeading="Symbiote">symbiote</name>
+            <name wikiName="Tony Sr" wikiHeading="Tony Sr">unique_tonysr</name>
+            <name wikiName="Aenwithe" wikiHeading="Aenwithe">unique_wither</name>
+            <!-- <name>ponyc</name> -->
+            <!-- <name>a55</name> -->
+            <name wikiName="Gozer" wikiHeading="Gozer">gbgozer</name>
+            <name wikiName="Eleanor" wikiHeading="Eleanor">gbeleanor</name>
+            <name wikiName="Psych" wikiHeading="Psych">gbpsych</name>
+            <name wikiName="Scoleri" wikiHeading="Scoleri">gbscoleri</name>
+            <name wikiName="Slimer" wikiHeading="Slimer">gbslimer</name>
+            <name wikiName="Vinz" wikiHeading="Vinz">gbvinz</name>
+            <name wikiName="Zuul" wikiHeading="Zuul">gbzuul</name>
+            <!-- Easter Egg Crew FIXME: not on Wiki yet -->
+            <name wikiName="Brick">easter_brick</name>
+            <name wikiName="Coomer">easter_coomer</name>
+            <name wikiName="Tommy">easter_tommy</name>
+            <name wikiName="Bubby">easter_bubby</name>
+            <name wikiName="Sunkist">easter_sunkist</name>
+            <name wikiName="Angel">easter_angel</name>
+        </blueprintList>
+
+    <!--
+        Sylvan Crew
+        https://ftlmultiverse.fandom.com/wiki/Unique_Crew
+        FIXME: not on Wiki yet
+    -->
+        <blueprintList wikiPage="Unique Crew#" name="LIST_CREW_SYLVAN_WIKI">
+            <name wikiName="Sylvan Prime" wikiHeading="Sylvan Prime">prime</name>
+            <name wikiName="Dylan" wikiHeading="Dylan">dylan</name>
+            <name wikiName="Sylvan Clan" wikiHeading="Sylvan Clan">sylvanclan</name>
+            <name wikiName="Sylvan 1D" wikiHeading="Sylvan 1D">sylvan1d</name>
+            <name wikiName="Sylvan Rebel" wikiHeading="Sylvan Rebel">sylvanrebel</name>
+            <name wikiName="Sylvan Sans" wikiHeading="Sylvan Sans">sylvansans</name>
+            <name wikiName="Sylvan Maid" wikiHeading="Sylvan Maid">sylvanmaid</name>
+            <name wikiName="Sylrick" wikiHeading="Sylrick">sylvanrick</name>
+            <name wikiName="Syleah" wikiHeading="Syleah">sylvanleah</name>
+            <name wikiName="Beans" wikiHeading="Beans">beans</name>
+            <name wikiName="Obyn" wikiHeading="Salt Papyrus">saltpapy</name>
+        </blueprintList>
+
+    <!--
+        Judges
+        https://ftlmultiverse.fandom.com/wiki/Judges
+        FIXME: not on Wiki yet
+    -->
+        <blueprintList wikiPage="Judges#" name="LIST_CREW_JUDGE_WIKI">
+            <name wikiName="Thest" wikiHeading="Thest">unique_judge_thest</name>
+            <name wikiName="Corby" wikiHeading="Corby">unique_judge_corby</name>
+            <name wikiName="Wakeson" wikiHeading="Wakeson">unique_judge_wakeson</name>
+        </blueprintList>
+
+<!-- Weapons -->
+    <!--
+        <weaponBlueprint>
+        https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
+        https://ftlmultiverse.fandom.com/wiki/Weapon_Types
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/<weaponType>#<weaponBlueprint>.<title>
+
+        All weapons follow the provided redirect pattern
+    -->
+
+    <!-- Vanilla Weapon Types -->
+
+        <!--
+            Laser Weapons
+            https://ftlmultiverse.fandom.com/wiki/Laser_Weapons
+        -->
+            <blueprintList wikiPage="Laser Weapons#" name="LIST_WEAPONS_LASER_WIKI">
+                <name>LASER_BURST_1</name>
+                <name>LASER_BURST_2</name>
+                <name>LASER_BURST_3</name>
+                <name>LASER_BURST_5</name>
+                <name>LASER_BURST_8</name>
+                <name>LASER_HEAVY_1</name>
+                <name>LASER_HEAVY_2</name>
+                <name>LASER_HEAVY_3</name>
+                <name>LASER_HEAVY_CHAINGUN</name>
+                <name>LASER_HEAVY_PIERCE</name>
+                <name>LASER_HULL_1</name>
+                <name>LASER_HULL_2</name>
+                <name>LASER_HULL_3</name>
+                <name>LASER_HULL_CHAINGUN</name>
+                <name>LASER_LIGHT</name>
+                <name>LASER_LIGHT_2</name>
+                <name>LASER_PIERCE</name>
+                <name>LASER_PIERCE_2</name>
+                <name>LASER_CHAINGUN</name>
+                <name>LASER_CHAINGUN_2</name>
+                <name>LASER_CHARGEGUN</name>
+                <name>LASER_CHARGEGUN_PLAYER</name> <!-- dlcBlueprints -->
+                <name>LASER_CHARGEGUN_2</name>
+                <name>LASER_CHARGEGUN_3</name>
+                <name>LASER_CHARGE_CHAIN</name>
+                <name>LASER_CHAINGUN_DAMAGE</name>
+                <name>LASER_FIRE</name>
+                <name>LASER_STUN</name>
+                <name>LASER_FROST_1</name>
+                <name>LASER_FROST_2</name>
+                <name>LASER_FROST_2_PLAYER</name>
+                <name>LASER_BIO</name>
+            </blueprintList>
+
+        <!--
+            Missile Weapons
+            https://ftlmultiverse.fandom.com/wiki/Missile_Weapons
+            like name="BLUELIST_MISSILES_ALL" but excludes weapons from other pages
+        -->
+            <blueprintList wikiPage="Missile Weapons#" name="LIST_WEAPONS_MISSILE_WIKI">
+                <name>MISSILES_1</name>
+                <name>MISSILES_2</name>
+                <name>MISSILES_3</name>
+                <name>MISSILES_4</name>
+                <name>MISSILES_4_PLAYER</name>
+                <name>MISSILES_BURST</name>
+                <name>MISSILES_BURST_2</name>
+                <name>MISSILES_BURST_2_PLAYER</name>
+                <name>MISSILES_CLOAK</name>
+                <name>MISSILES_FIRE</name>
+                <name>MISSILES_FIRE_PLAYER</name>
+                <name>MISSILES_FREE</name>
+                <name>MISSILES_BIO</name>
+                <name>MISSILES_STUN</name>
+            </blueprintList>
+
+        <!--
+            Ion Weapons
+            https://ftlmultiverse.fandom.com/wiki/Ion_Weapons
+            like name="BLUELIST_ION" but excludes weapons from other pages
+        -->
+            <blueprintList wikiPage="Ion Weapons#" name="LIST_WEAPONS_ION_WIKI">
+                <name>ION_1</name>
+                <name>ION_2</name>
+                <name>ION_3</name>
+                <name>ION_4</name>
+                <name>ION_HEAVY</name>
+                <name>ION_TRI</name>
+                <name>ION_CHAINGUN</name>
+                <name>ION_CHARGEGUN</name>
+                <name>ION_CHARGEGUN_2</name>
+                <name>ION_STUN</name>
+                <name>ION_STUN_2</name>
+                <name>ION_STUN_HEAVY</name>
+                <name>ION_STUN_CHARGEGUN</name>
+                <name>ION_STUN_CHARGEGUN_PLAYER</name>
+                <name>ION_PIERCE_DISCO</name>
+                <name>ION_PIERCE_1</name>
+                <name>ION_PIERCE_2</name>
+                <name>ION_FIRE</name>
+                <name>ION_BIO</name>
+            </blueprintList>
+
+        <!--
+            Beam Weapons
+            https://ftlmultiverse.fandom.com/wiki/Beam_Weapons
+            like name="BLUELIST_BEAMS_ALL" but excludes weapons from other pages
+        -->
+            <blueprintList wikiPage="Beam Weapons#" name="LIST_WEAPONS_BEAM_WIKI">
+                <name>BEAM_1</name>
+                <name>BEAM_2</name>
+                <name>BEAM_2_PLAYER</name>
+                <name>BEAM_3</name>
+                <name>BEAM_4</name>
+                <name>BEAM_LONG</name>
+                <name>BEAM_LONG_2</name>
+                <name>BEAM_SCYTHE</name>
+                <name>BEAM_CHAIN</name>
+                <name>BEAM_PIERCE</name>
+                <name>BEAM_FIRE</name>
+                <name>BEAM_FIRE_PLAYER</name>
+                <name>BEAM_FIRE_PIERCE</name>
+                <name>BEAM_BREACH</name>
+                <name>BEAM_HULL</name>
+                <name>BEAM_HULL_2</name>
+                <name>BEAM_MINING</name>
+                <name>BEAM_ADAPT</name>
+                <name>BEAM_ADAPT_2</name>
+                <name>BEAM_REPAIR</name>
+                <name>BEAM_BIO</name>
+                <name>BEAM_BIO_CHAIN</name>
+                <name>BEAM_STUN</name>
+                <name>BEAM_GUILLOTINE</name>
+                <name>BEAM_GUILLOTINE_PLAYER</name>
+            </blueprintList>
+
+        <!--
+            Bomb Launchers
+            https://ftlmultiverse.fandom.com/wiki/Bomb_Launchers
+        -->
+            <blueprintList wikiPage="Bomb Launchers#" name="LIST_WEAPONS_BOMB_WIKI">
+                <name>BOMB_1</name>
+                <name>BOMB_BREACH_1</name>
+                <name>BOMB_FIRE</name>
+                <name>BOMB_FREE</name>
+                <name>BOMB_ION</name>
+                <name>BOMB_BIO</name>
+                <name>BOMB_LOCK</name>
+                <name>BOMB_HEAL</name>
+                <name>BOMB_BUFF</name>
+                <name>BOMB_STUN</name>
+                <name>BOMB_HEAL_SYSTEM</name>
+                <name>BOMB_HEAL_SYSTEM_STRONG</name>
+            </blueprintList>
+
+        <!--
+            Flak Weapons
+            https://ftlmultiverse.fandom.com/wiki/Flak_Weapons
+        -->
+            <blueprintList wikiPage="Flak Weapons#" name="LIST_WEAPONS_FLAK_WIKI">
+                <name>SHOTGUN_1</name>
+                <name>SHOTGUN_2</name>
+                <name wikiName="Flak Gun MK II🗲" wikiHeading="Flak Gun MK II🗲">SHOTGUN_PLAYER</name> <!-- dlcBlueprints -->
+                <name>SHOTGUN_3</name>
+                <name>SHOTGUN_4</name>
+                <name>SHOTGUN_CHARGE</name>
+                <name>SHOTGUN_CHAIN</name>
+                <name>SHOTGUN_FIRE</name>
+                <name>SHOTGUN_ION</name>
+                <name>SHOTGUN_TOXIC</name>
+                <name>SHOTGUN_TOXIC_PLAYER</name>
+            </blueprintList>
+
+        <!--
+            Crystal Weapons
+            https://ftlmultiverse.fandom.com/wiki/Crystal_Weapons
+            like name="BLUELIST_WEAPONS_CRYSTAL" without BOMB_LOCK, CRYSTAL_BURST_FIRE, and MINELAUNCHER_CRYSTAL
+        -->
+            <blueprintList wikiPage="Crystal Weapons#" name="LIST_WEAPONS_CRYSTAL_WIKI">
+                <name>CRYSTAL_BURST_1</name>
+                <name>CRYSTAL_BURST_1_RED</name>
+                <name>CRYSTAL_BURST_2</name>
+                <name>CRYSTAL_BURST_2_RED</name>
+                <name>CRYSTAL_HEAVY_1</name>
+                <name>CRYSTAL_HEAVY_1_RED</name>
+                <name>CRYSTAL_HEAVY_2</name>
+                <name>CRYSTAL_HEAVY_2_RED</name>
+                <name>CRYSTAL_STUN</name>
+                <name>CRYSTAL_STUN_RED</name>
+                <name>CRYSTAL_SHOTGUN</name>
+                <name>CRYSTAL_SHOTGUN_RED</name>
+                <name>CRYSTAL_CHARGEGUN</name>
+                <name>CRYSTAL_CHARGEGUN_RED</name>
+            </blueprintList>
+
+    <!-- New Weapon Types -->
+
+        <!--
+            Mine Launchers
+            https://ftlmultiverse.fandom.com/wiki/Mine_Launchers
+            like blueprintList name="BLUELIST_MINELAUNCHERS_ALL" but excludes weapons from other pages
+        -->
+            <blueprintList wikiPage="Mine Launchers#" name="LIST_WEAPONS_MINELAUNCHERS_WIKI">
+                <name>MINELAUNCHER_1</name>
+                <name>MINELAUNCHER_2</name>
+                <name>MINELAUNCHER_3</name>
+                <name>MINELAUNCHER_FREE</name>
+                <name>MINELAUNCHER_FIRE</name>
+                <name>MINELAUNCHER_BREACH</name>
+                <name>MINELAUNCHER_STUN</name>
+                <name>MINELAUNCHER_CRYSTAL</name>
+                <name>MINELAUNCHER_KERNEL</name>
+            </blueprintList>
+
+        <!--
+            Energy Weapons
+            https://ftlmultiverse.fandom.com/wiki/Energy_Weapons
+            like blueprintList name="BLUELIST_ENERGY" without LOOT_DUSKBRINGER_1 and ENERGY_CONSERVATIVE
+        -->
+            <blueprintList wikiPage="Energy Weapons#" name="LIST_WEAPONS_ENERGY_WIKI">
+                <name>ENERGY_1</name>
+                <name>ENERGY_2</name>
+                <name>ENERGY_2_PLAYER</name>
+                <name>ENERGY_3</name>
+                <name>ENERGY_HULL</name>
+                <name>ENERGY_STUN</name>
+                <name>ENERGY_STUN_PLAYER</name>
+                <name>ENERGY_CHAINGUN</name>
+                <name>ENERGY_CHARGEGUN</name>
+                <name>ENERGY_CHARGEGUN_PLAYER</name>
+            </blueprintList>
+
+        <!--
+            Pinpoint Weapons
+            https://ftlmultiverse.fandom.com/wiki/Pinpoint_Weapons
+            like blueprintList name="BLUELIST_FOCUS_ALL" without weapons belonging to other pages
+        -->
+            <blueprintList wikiPage="Pinpoint Weapons#" name="LIST_WEAPONS_FOCUS_WIKI">
+                <name>FOCUS_1</name>
+                <name>FOCUS_2</name>
+                <name>FOCUS_3</name>
+                <name>FOCUS_CHAIN</name>
+                <name>FOCUS_BIO</name>
+                <name>FOCUS_BIO_PLAYER</name>
+            </blueprintList>
+
+        <!--
+            Kernel Weapons
+            https://ftlmultiverse.fandom.com/wiki/Kernel_Weapons
+        -->
+            <mod:findName name="GIFTLIST_KERNEL" type="blueprintList">
+                <mod:setAttributes wikiPage="Kernel Weapons#"/>
+            </mod:findName>
+            <mod:findName name="GIFTLIST_KERNEL_ELITE" type="blueprintList">
+                <mod:setAttributes wikiPage="Kernel Weapons#"/>
+            </mod:findName>
+
+        <!--
+            Particle Weapons
+            https://ftlmultiverse.fandom.com/wiki/Particle_Weapons
+            like blueprintList name="BLUELIST_PARTICLE" without drones
+        -->
+            <blueprintList wikiPage="Particle Weapons#" name="LIST_WEAPONS_FOCUS_WIKI">
+                <name>LASER_PARTICLE</name>
+                <name>LASER_PARTICLE_2</name>
+                <name>BEAM_PARTICLE</name>
+                <name wikiName="Particle Missiles" wikiHeading="Particle Missiles">MISSILES_PARTICLE</name>
+                <name wikiName="Particle Missiles🗲" wikiHeading="Particle Missiles🗲">MISSILES_PARTICLE_PLAYER</name>
+            </blueprintList>
+
+        <!--
+            Old Weapons
+            https://ftlmultiverse.fandom.com/wiki/Old_Weapons
+        -->
+            <mod:findName name="GIFTLIST_RUSTY" type="blueprintList">
+                <mod:setAttributes wikiPage="Old Weapons#"/>
+            </mod:findName>
+
+        <!--
+            Conservative Weapons
+            https://ftlmultiverse.fandom.com/wiki/Conservative_Weapons
+        -->
+            <mod:findName name="SHOP_ITEM_SYLVAN_CONSERVATIVE" type="blueprintList">
+                <mod:setAttributes wikiPage="Conservative Weapons#"/>
+            </mod:findName>
+
+        <!--
+            Recycler Weapons
+            https://ftlmultiverse.fandom.com/wiki/Recycler_Weapons
+            name contains "_FREE"
+        -->
+            <mod:findName name="BLUELIST_WEAPONS_RECYCLER" type="blueprintList">
+                <mod:setAttributes wikiPage="Recycler Weapons#"/>
+            </mod:findName>
+
+        <!--
+            Preemptive Weapons
+            https://ftlmultiverse.fandom.com/wiki/Preemptive_Weapons
+        -->
+            <blueprintList wikiPage="Preemptive Weapons#" name="LIST_WEAPONS_INSTANT_WIKI">
+                <name wikiName="Pre-emptive Ion" wikiHeading="Pre-emptive Ion">ION_INSTANT</name>
+                <name>BEAM_FIRE_INSTANT</name>
+                <name>SHOTGUN_INSTANT</name>
+            </blueprintList>
+
+        <!--
+            Modular Weapons
+            https://ftlmultiverse.fandom.com/wiki/Modular_Weapons
+        -->
+
+            <!--
+                Modular Weapons#Table_of_Modules
+                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Modules
+                same as name="SHOP_ITEM_HEKTAR_MODULES" except MODULE_COOLDOWN isn't commented out
+            -->
+                <blueprintList wikiPage="Modular Weapons#Table of Modules" name="LIST_WEAPONS_MODULAR_MODULES_WIKI">
+                    <name>MODULE_BIO</name>
+                    <name>MODULE_COOLDOWN</name>
+                    <name>MODULE_LOCKDOWN</name>
+                    <name>MODULE_PIERCE</name>
+                    <name>MODULE_STUN</name>
+                    <name>MODULE_ACCURACY</name>
+                    <name>MODULE_FIRE</name>
+                    <name>MODULE_HULL</name>
+                    <name>MODULE_POWER</name>
+                </blueprintList>
+
+            <!--
+                Modular Weapons#Table_Of_Lasers
+                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Lasers
+            -->
+                <mod:findName name="HEKTAR_MODULAR_LASERS" type="blueprintList">
+                    <mod:setAttributes wikiPage="Modular Weapons#Table of Lasers"/>
+                </mod:findName>
+
+            <!--
+                Modular Weapons#Table_Of_Beams
+                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Beams
+            -->
+                <mod:findName name="HEKTAR_MODULAR_BEAMS" type="blueprintList">
+                    <mod:setAttributes wikiPage="Modular Weapons#Table of Beams"/>
+                </mod:findName>
+
+            <!--
+                Modular Weapons#Table_Of_Missiles
+                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Missiles
+            -->
+                <mod:findName name="HEKTAR_MODULAR_MISSILES" type="blueprintList">
+                    <mod:setAttributes wikiPage="Modular Weapons#Table of Missiles"/>
+                </mod:findName>
+
+            <!--
+                Modular Weapons#Table_Of_Ions
+                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Ions
+            -->
+                <mod:findName name="HEKTAR_MODULAR_IONS" type="blueprintList">
+                    <mod:setAttributes wikiPage="Modular Weapons#Table of Ions"/>
+                </mod:findName>
+
+        <!--
+            Spore Weapons
+            https://ftlmultiverse.fandom.com/wiki/Spore_Weapons
+        -->
+            <mod:findName name="GIFTLIST_SPORE" type="blueprintList">
+                <mod:setAttributes wikiPage="Spore Weapons#"/>
+            </mod:findName>
+
+        <!--
+            New Gen Weapons
+            https://ftlmultiverse.fandom.com/wiki/New_Gen_Weapons
+        -->
+            <mod:findName name="LIST_WEAPONS_NEWGEN" type="blueprintList">
+                <mod:setAttributes wikiPage="New Gen Weapons#"/>
+            </mod:findName>
+
+        <!--
+            Aether Weapons
+            https://ftlmultiverse.fandom.com/wiki/Aether_Weapons
+            like name="BLUELIST_OBELISK" without drones
+        -->
+            <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_WIKI">
+                <name>ANCIENT_LASER</name>
+                <name>ANCIENT_LASER_2</name>
+                <name>ANCIENT_LASER_3</name>
+                <name>ROYAL_LASER_3</name>
+                <name>ANCIENT_MISSILES</name>
+                <name>ROYAL_MISSILES</name>
+                <name>ANCIENT_BOMB</name>
+                <name>ROYAL_BOMB</name>
+                <name>ANCIENT_MINELAUNCHER</name>
+                <name>ANCIENT_STUN</name>
+                <name>ANCIENT_BEAM</name>
+                <name>ANCIENT_BEAM_2</name>
+                <name>ANCIENT_BEAM_3</name>
+                <name>ROYAL_BEAM_3</name>
+                <name>ANCIENT_HAVOC</name>
+                <name>ROYAL_HAVOC</name>
+                <name>ANCIENT_FOCUS</name>
+                <name>ANCIENT_FOCUS_2</name>
+                <name>ROYAL_FOCUS</name>
+                <name>ANCIENT_ION_1</name>
+                <name>ANCIENT_ION_2</name>
+                <name>ROYAL_ION_2</name>
+            </blueprintList>
+
+    <!-- Special Weapons -->
+
+        <!--
+            Event Weapons
+            https://ftlmultiverse.fandom.com/wiki/Event_Weapons
+        -->
+            <blueprintList wikiPage="Event Weapons#" name="LIST_WEAPONS_EVENT_LOOT_WIKI">
+                <name>HORSE_GUN</name>
+                <name>MISSILES_ROCK</name>
+                <name>LASER_BISHOP</name>
+                <name>ION_PIERCE_CHAIN</name>
+                <name>LASER_FIRE_SPECIAL</name>
+                <name>BOMB_CHERRI</name>
+                <name>GATLING_SYLVAN</name>
+                <name>GATLING_SYLVAN_HONOR</name>
+                <name>LASER_CHAINGUN_GOLD</name>
+                <name>LASER_CHAINGUN_GOLD_PLAYER</name>
+                <name>SALT_LAUNCHER</name>
+                <name>SHOTGUN_GOLD</name>
+                <name>BEAM_SHELL</name>
+                <name>ZOLTAN_DELETER</name>
+                <name wikiName="'The Debugger'" wikiHeading="Gatling Gun">GATLING_VERSION8</name>
+                <name wikiName="Energy Missile" wikiHeading="Energy Missiles">MISSILES_ENERGY</name>
+                <!--
+                    Clone Cannon
+                    The same as LIST_CLONE_CANNON found in blueprints.xml
+                -->
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BABYORCHID</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BIRD</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ANCIENT</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AVATAR</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BISHOP</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CHIEF</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CLAN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_COMMANDO</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CRUSADER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CRYSTAL</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CULTIST</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DEFEND</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DUSK</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGINEER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGI</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_FREEMANTIS</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WARLORD</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM_ALPHA</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL_ALPHA</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE_ALPHA</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH_ALPHA</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HATCH</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HUMAN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_LANIUS</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MANTIS</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MEDIC</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MONK</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ORCHID</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_OUTCAST</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PONY</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PONYC</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PEACE</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_QUEEN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RADIANT</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RADICAL</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DEVORAK</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ROCK</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SABO</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RANGER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SENTINEL</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SEPARATIST</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_GUARDIAN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MECH</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MEDIC</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SSLG</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SLUG</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HEKTAR</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SOLDIER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SPIDER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SUZERAIN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SYMBIOTE</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WEAVER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WELDER</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AUGMENTED</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_VAMPWEED</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ZOLTAN</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_LEECH</name>
+                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AMPERE</name>
+            </blueprintList>
+
+        <!--
+            Transport Loot
+            https://ftlmultiverse.fandom.com/wiki/Transport_Loot
+            like name="JUDGELIST_ROCK_TRANSPORT_LOOT" without drones and HORSE_GUN
+        -->
+            <blueprintList wikiPage="Transport Loot#" name="LIST_WEAPONS_TRANSPORT_LOOT_WIKI">
+                <name>LOOT_CIVILIAN_1</name>
+                <name>LOOT_MILITIA_1</name>
+                <name>LOOT_FEDERATION_1</name>
+                <name>LOOT_COALITION_1</name>
+                <name>LOOT_DUSKBRINGER_1</name>
+                <name>LOOT_FREEMANTIS_1</name>
+                <name>LOOT_LOSTSUN_1</name>
+                <name>LOOT_LOSTSUN_2</name>
+                <name>LOOT_MANTIS_1</name>
+                <name>LOOT_MANTIS_2</name>
+                <name>LOOT_REBEL_1</name>
+                <name>LOOT_ROCK_1</name>
+                <name>LOOT_ZOLTAN_1</name>
+                <name>LOOT_ZOLTAN_2</name>
+                <name>LOOT_SLUG_1</name>
+                <name>LOOT_CLAN_1</name>
+                <name>LOOT_KNIGHT_1</name>
+                <name>LOOT_SHELL_1</name>
+                <name wikiName="Flak Gun MK II" wikiHeading="Flak Gun MK II (L)">LOOT_LEECH_1</name>
+                <name>LOOT_CULTIST_1</name>
+                <name>LOOT_DYNASTY_1</name>
+                <name wikiName="Flak Gun MK II" wikiHeading="Flak Gun MK II (A)">LOOT_AUG_1</name>
+            </blueprintList>
+
+        <!--
+            Math Loot
+            https://ftlmultiverse.fandom.com/wiki/Math_Loot
+        -->
+            <mod:findName name="JUDGELIST_ROCK_MATH_LOOT" type="blueprintList">
+                <mod:setAttributes wikiPage="Math Loot#"/>
+            </mod:findName>
+
+        <!--
+            Renegade Loot
+            https://ftlmultiverse.fandom.com/wiki/Renegade_Loot
+            like as name="JUDGELIST_ROCK_RENEGADE_LOOT" without drones
+        -->
+            <blueprintList wikiPage="Renegade Loot#" name="LIST_WEAPONS_RENEGADE_LOOT_WIKI">
+                <name>BEAM_BATTERY</name>
+                <name>BEAM_ADAPT_3</name>
+                <name>BIG_ION</name>
+                <name>BOMB_CONSERVRECYCLER</name>
+                <name>BOMB_DRAIN</name>
+                <name>FROST_CHARGEGUN</name>
+                <name>ION_CHAIN_CHARGEGUN</name>
+                <name>MISSILES_OBSIDIAN</name>
+                <name>SHOTGUN_STEEL</name>
+                <name>SHOTGUN_TOGGLE_FIRE</name>
+                <name>SHOTGUN_TOGGLE_ION</name>
+                <name>SHOTGUN_TOGGLE_TOXIC</name>
+                <name>SHELL_LAUNCHER</name>
+                <name>SLOTGUN</name>
+                <name>UNSPOOLER</name>
+                <name>SNIPER</name>
+                <name>MINELAUNCHER_GIANT</name>
+                <name>LASER_LIGHT_CHARGEGUN</name>
+                <name>CRYSTAL_BURST_FIRE</name>
+                <name>STRAWBERRY</name>
+                <name>BOMB_ELITE</name>
+                <name>GASTER_BLASTER</name>
+            </blueprintList>
+
+        <!--
+            C.U.R.A Loot
+            https://ftlmultiverse.fandom.com/wiki/C.U.R.A_Loot
+            like name="JUDGELIST_ROCK_CURA_LOOT" without drones
+        -->
+            <blueprintList wikiPage="C.U.R.A Loot#" name="LIST_WEAPONS_CURA_LOOT_WIKI">
+                <name>SCANNER_RECON</name>
+                <name>SCANNER_BAIT</name>
+                <name>HARPOON_LAUNCHER</name>
+                <name>POWER_CORE</name>
+            </blueprintList>
+
+        <!--
+            Nexus Loot
+            https://ftlmultiverse.fandom.com/wiki/Nexus_Loot
+            like name="JUDGELIST_ROCK_NEXUS_LOOT" with SHOTGUN_GOLD_3 added
+        -->
+            <blueprintList wikiPage="Nexus Loot#" name="LIST_WEAPONS_NEXUS_LOOT_WIKI">
+                <name>BEAM_4_SYLVAN</name>
+                <name>BEAM_HARDSCIFI</name>
+                <name>CRASH_LASER</name>
+                <name>LASER_BURST_SYLVAN</name>
+                <name>LASER_BURST_5_SYLVAN</name>
+                <name>SHOTGUN_GOLD_3</name> <!-- FIXME: should this be here? -->
+                <name>GATLING_ANCIENT</name>
+            </blueprintList>
+
+<!-- Drones -->
+    <!--
+        <droneBlueprint>
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/<wikiPage>#<droneList>
+
+        Most Drones are not linked in the pattern <droneBlueprint>.<title>.
+        Instead, it's by list.
+
+        Transport Loot, C.U.R.A._Loot, and Renegade_Loot could be formatted like
+        Renegade Loot#<droneBlueprint>.<title>, but Wiki information is incomplete
+    -->
+    <!-- Drone Types -->
+
+        <!-- Defense_Drones -->
+            <!--
+                Defender Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Defender_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Defender Drones" name="LIST_DRONES_DEFENDER_WIKI">
+                    <name>DEFENSE_1</name>
+                    <name>DEFENSE_2</name>
+                    <name>DEFENSE_3</name>
+                    <name>DEFENSE_3_PLAYER_PLAYER</name>
+                </blueprintList>
+
+            <!--
+                Guardian Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Guardian_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Guardian Drones" name="LIST_DRONES_GUARDIAN_WIKI">
+                    <name>GUARDIAN_1_MISSILE</name>
+                    <name>GUARDIAN_1_DRONE</name>
+                    <name>GUARDIAN_2_MISSILE</name>
+                    <name>GUARDIAN_2_DRONE</name>
+                </blueprintList>
+
+        <!-- Combat Drones -->
+            <!--
+                Regular Combat Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Regular_Combat_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Regular Combat Drones" name="LIST_DRONES_REGULAR_COMBAT_WIKI">
+                    <name>COMBAT_1_LASER</name>
+                    <name>COMBAT_1_BEAM</name>
+                    <name>COMBAT_2_LASER</name>
+                    <name>COMBAT_2_BEAM</name>
+                    <name>ASSAULT_PARTICLE</name>
+                    <name>ASSAULT_PIERCE</name>
+                    <name>HELLRAISER_FIRE</name>
+                    <name>HELLRAISER_HULL</name>
+                    <name>HELLRAISER_FIRE_PLAYER</name>
+                    <name>HELLRAISER_HULL_PLAYER</name>
+                    <name>PEST_RAD</name>
+                    <name>PEST_DEBUFF</name>
+                    <name>COMBAT_CONSERVATIVE_LASER</name>
+                    <name>COMBAT_CONSERVATIVE_BEAM</name>
+                    <name>COMBAT_BIO_BEAM</name>
+                    <!-- Special Drones -->
+                    <name>COMBAT_RANDOM_LASER</name>
+                    <name>COMBAT_RANDOM_MISSILE</name>
+                    <name>COMBAT_RANDOM_ION</name>
+                    <name>COMBAT_RANDOM_BEAM</name>
+                </blueprintList>
+
+            <!--
+                AMP Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#AMP_Drones
+                like name="SHOP_ITEM_SYLVAN_DRONES_COMBAT_AMP"
+            -->
+                <blueprintList wikiPage="Drone Types#AMP Drones" name="LIST_DRONES_AMP_WIKI">
+                    <name>ION_1_AMP2</name>
+                    <name>ION_1_AMP3</name>
+                    <name>ION_1_AMP4</name>
+                    <name>ENERGY_1_AMP2</name>
+                    <name>ENERGY_1_AMP3</name>
+                    <name>ENERGY_1_AMP4</name>
+                    <name>FOCUS_1_AMP2</name>
+                    <name>FOCUS_1_AMP3</name>
+                    <name>FOCUS_1_AMP4</name>
+                    <name>FLAK_1_AMP2</name>
+                    <name>FLAK_1_AMP3</name>
+                    <name>FLAK_1_AMP4</name>
+                </blueprintList>
+
+        <!-- Miscellaneous Drones -->
+            <!--
+                Amphi-Drone
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Amphi-Drone
+            -->
+                <blueprintList wikiPage="Drone Types#Amphi-Drone" name="LIST_DRONES_AMPHI_WIKI">
+                    <name>AMPHI_COMBAT</name>
+                    <name>AMPHI_DEFENSE</name>
+                </blueprintList>
+
+            <!--
+                Hull Repair Drone
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Hull_Repair_Drone
+            -->
+                <blueprintList wikiPage="Drone Types#Hull Repair Drone" name="LIST_DRONES_HULL_REPAIR_WIKI">
+                    <name>SHIP_REPAIR</name>
+                </blueprintList>
+
+            <!--
+                Shield Overcharger Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Shield_Overcharger_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Shield Overcharger Drones" name="LIST_DRONES_SHIELD_WIKI">
+                    <name wikiName="Shield Overcharger">DRONE_SHIELD</name>
+                    <name wikiName="Shield Overconserver">DRONE_SHIELD_POWERLESS</name>
+                </blueprintList>
+
+        <!-- Interior Drones -->
+            <!--
+                Interior Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Interior_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Interior Drones" name="LIST_DRONES_INTERIOR_WIKI">
+                    <name>REPAIR</name>
+                    <name>BATTLETOG_DEFEND</name>
+                    <name>BATTLETOG_BOARDER</name>
+                    <name>BATTLETOG2_DEFEND</name>
+                    <name>BATTLETOG2_BOARDER</name>
+                    <name>BOARDER_ION</name>  <!-- dlcBlueprints -->
+                    <name>RECON_DEFENSE</name>
+                    <name>RECON_BOARDER</name>
+                    <name>DOCTOR_DEFENSE</name>
+                    <name>DOCTOR_BOARDER</name>
+                    <name>MANNING</name>
+                    <name>BUTLER_DEFENSE</name>
+                    <name>BUTLER_BOARDER</name>
+                    <name>DIVREPAIR</name>
+                </blueprintList>
+
+            <!--
+                Unique Interior Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Unique_Interior_Drones
+            -->
+                <mod:findName name="JUDGELIST_ZOLTAN_UNIQUEMECH" type="blueprintList">
+                    <mod:setAttributes wikiPage="Drone Types#Unique Interior Drones"/>
+                </mod:findName>
+
+        <!-- Aether Drones -->
+            <!--
+                Obelisk Combat Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Obelisk_Combat_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Obelisk Combat Drones" name="LIST_DRONES_OBELISK_COMBAT_WIKI">
+                    <name>ANCIENT_COMBAT_LASER</name>
+                    <name>ANCIENT_COMBAT_LASER_2</name>
+                    <name>ANCIENT_COMBAT_ION</name>
+                    <name>ANCIENT_COMBAT_MISSILE</name>
+                    <name>ROYAL_COMBAT_LASER_2</name>
+                    <name>ROYAL_COMBAT_MISSILE</name>
+                    <name>ROYAL_COMBAT_ION</name>
+                </blueprintList>
+
+            <!--
+                Obelisk Defense Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Obelisk_Defense_Drones
+                -->
+                <blueprintList wikiPage="Drone Types#Obelisk Defense Drones" name="LIST_DRONES_OBELISK_DEFENSE_WIKI">
+                    <name>ANCIENT_DEFENSE_1</name>
+                    <name>ROYAL_DEFENSE_1</name>
+                </blueprintList>
+
+            <!--
+                Obelisk Interior Drones
+                https://ftlmultiverse.fandom.com/wiki/Drone_Types#Obelisk_Interior_Drones
+            -->
+                <blueprintList wikiPage="Drone Types#Obelisk Interior Drones" name="LIST_DRONES_OBELISK_INTERIOR_WIKI">
+                    <name>MENDER</name>
+                    <name>MENDERR</name>
+                    <name>DIRECTOR</name>
+                    <name>ATOM_DEFEND</name>
+                    <name>ATOM_BOARDER</name>
+                    <name>ATOMR_DEFEND</name>
+                    <name>ATOMR_BOARDER</name>
+                    <name>ROOMBA_DEFEND</name>
+                    <name>ROOMBA_BOARDER</name>
+                </blueprintList>
+
+    <!-- Event Weapons -->
+        <!--
+            Uplifted Drone
+            https://ftlmultiverse.fandom.com/wiki/Event_Weapons#Uplifted_Drone
+            FIXME: not included on wiki
+        -->
+            <blueprintList wikiPage="Event Weapons#" name="LIST_DRONES_EVENT_WEAPONS_WIKI">
+                <name>COMBAT_ENGINEER</name>
+            </blueprintList>
+
+    <!-- Renegade Loot -->
+        <!--
+            Trinity Defense Drone
+            https://ftlmultiverse.fandom.com/wiki/Renegade_Loot#Trinity_Defense_Drone
+        -->
+            <blueprintList wikiPage="Renegade Loot#Trinity Defense Drone" name="LIST_DRONES_RENEGADE_TRINITY_DEFENSE_WIKI">
+                <name>DEFENSE_TRINITY_MISSILE</name>
+                <name>DEFENSE_TRINITY_DRONE</name>
+                <name>DEFENSE_TRINITY_PROJECTILE</name>
+            </blueprintList>
+
+        <!--
+            Mining Drone
+            https://ftlmultiverse.fandom.com/wiki/Renegade_Loot#Mining_Drone
+        -->
+            <blueprintList wikiPage="Renegade Loot#Mining Drone" name="LIST_DRONES_RENEGADE_MINING_WIKI">
+                <name>SALT_MINER</name>
+            </blueprintList>
+
+        <!--
+            Interior Drones
+            https://ftlmultiverse.fandom.com/wiki/Renegade_Loot#Interior_Drones
+        -->
+            <blueprintList wikiPage="Renegade Loot#Interior Drones" name="LIST_DRONES_RENEGADE_INTERIOR_WIKI">
+                <name>YINYANG_BATTLE</name>
+                <name>YINYANG_BOARDER</name>
+                <name>SURGEON_BATTLE</name>
+                <name>SURGEON_BOARDER</name>
+            </blueprintList>
+
+    <!-- Transport Loot -->
+
+        <!--
+            Combat Drones
+            https://ftlmultiverse.fandom.com/wiki/Transport_Loot#Combat_Drones
+        -->
+            <blueprintList wikiPage="Transport Loot#Combat Drones" name="LIST_DRONES_TRANSPORT_LOOT_COMBAT_WIKI">
+                <name>LOOT_AUTO_1</name>
+                <name>LOOT_AUTO_2</name>
+                <name>LOOT_LANIUS_1</name>
+                <name>LOOT_LANIUS_2</name>
+                <name>LOOT_ENGI_2</name>
+                <name>LOOT_ESTATE_1_COMBAT</name>
+            </blueprintList>
+
+        <!--
+            Defense Drones
+            https://ftlmultiverse.fandom.com/wiki/Transport_Loot#Defense_Drones
+        -->
+            <blueprintList wikiPage="Transport Loot#Defense Drones" name="LIST_DRONES_TRANSPORT_LOOT_DEFENSE_WIKI">
+                <name>LOOT_ENGI_1</name>
+                <name>LOOT_ESTATE_1_DEFENSE</name>
+            </blueprintList>
+
+        <!--
+            Interior Drones
+            https://ftlmultiverse.fandom.com/wiki/Transport_Loot#Interior_Drones
+        -->
+            <blueprintList wikiPage="Transport Loot#Interior Drones" name="LIST_DRONES_TRANSPORT_LOOT_INTERIOR_WIKI">
+                <name>LOOT_SEPARATIST_1_DEFEND</name>
+                <name>LOOT_SEPARATIST_1_BOARDER</name>
+            </blueprintList>
+
+    <!-- C.U.R.A. Loot -->
+        <!--
+            Omni-Drone
+            https://ftlmultiverse.fandom.com/wiki/C.U.R.A._Loot#Omni-Drone
+        -->
+            <blueprintList wikiPage="C.U.R.A._Loot#Omni-Drone" name="LIST_DRONES_CURA_WIKI">
+                <name>OMNI_DRONE</name>
+            </blueprintList>
+
+<!-- Augments -->
+    <!--
+        <augBlueprint>
+        https://ftlmultiverse.fandom.com/wiki/Augments
+
+
+        Augment redirect patterns vary. Some are grouped on the same page,
+        while others have their own page.
+    -->
+
+    <!--
+        Standard Augments
+        https://ftlmultiverse.fandom.com/wiki/Augments
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/<augBlueprint>.<title>
+        lacks C.U.R.A Loot, Obsidian Armor, Crystalline Armor, Pheremones, Repair Gel, Shell Gas, etc.
+
+        Anything commented out with "No blueprints" is included because it was found on
+        https://ftlmultiverse.fandom.com/wiki/List_of_IDs#Augments
+    -->
+        <blueprintList wikiPage="Augments" name="LIST_AUGMENTS_SHIP_WIKI">
+            <!-- Standard Augments -->
+                <name>ANCIENT_PREIGNITE</name>
+                <name>ANCIENT_REPLICATOR</name>
+                <name>ANCIENT_PROTECTANT</name>
+                <name>ANCIENT_SHIELD</name>
+                <name>LOCKED_ANCIENT_SHIELD</name>
+                <name>ROYAL_SHIELD</name>
+                <name>LOCKED_ROYAL_SHIELD</name>
+                <name>ANCIENT_DNA</name>
+                <name>ANCIENT_ACTIVATOR</name>
+                <name>ADV_SCANNERS</name>
+                <name wikiName="Weapon Pre-Igniter" wikiHeading="Weapon Pre-Igniter">WEAPON_PREIGNITE</name>
+                <name>SUPER_ARMOR</name>
+                <name>SPEED_SUITS</name>
+                <name wikiName="Advanced Navigator" wikiHeading="Advanced Navigator">FTL_JUMPER_SCANNER</name>
+                <name>CRATE_FUEL</name>
+                <name>CRATE_MISSILES</name>
+                <name>CRATE_DRONES</name>
+                <name>RECYCLER</name>
+                <name>RECYCLER_REVERSE</name>
+                <name>DISTRACTION_BUOY</name>
+                <name>PRE_SCANNER</name>
+                <name>FUEL_CONSERVER</name>
+                <name>FLEET_SKIP</name>
+                <name>SIREN_ENEMY_MC</name>
+                <name>CREW_FIREARMS</name>
+                <name>CREW_OXYGEN</name>
+                <name>INFO_MACHINE</name>
+                <name>REBEL_ID</name>
+                <name>NO_GHOST</name>
+                <name>CHUNGUS_MAKER</name>
+                <name>SYLVAN_SHIELD_GUARD</name>
+                <name>SYLVAN_SHIELD_PRIME</name>
+                <name>FLAGSHIP_SHIELD</name>
+                <name>FLAGSHIP_SHIELD_FULL</name> <!-- hiddenAug -->
+                <name wikiName="No Weapon Option At Equipment Grab" wikiHeading="No Weapons">NO_WEAPON</name>
+                <name>MYSTERIOUS_BEACON</name>
+                <name>MYSTERIOUS_BEACON_ACTIVE</name>
+
+            <!-- Combat Augments -->
+                <name>PDS_DISABLE</name>
+                <name>ANTI_VIRUS</name>
+                <!--
+                    No blueprint
+                    <name>RADIO</name>
+                -->
+                <name>EXTRA_PREP</name>
+                <name>ANCIENT_COMBAT_EQUALIZER</name>
+                <name>ANCIENT_COMBAT_ASB</name>
+                <name>COMBAT_PANIC_BUTTON</name>
+                <name>COMBAT_WEAPON_JAMMER</name>
+                <name>COMBAT_SHIELDS_JAMMER</name>
+                <name wikiName="Shield Jammer MK 2" wikiHeading="Shield Jammer MK 2">COMBAT_SHIELDS_JAMMER_2</name> <!-- list with COMBAT_SHIELDS_JAMMER ? -->
+                <name>COMBAT_ENGINE_JAMMER</name>
+                <name>COMBAT_PILOT_JAMMER</name>
+                <name>COMBAT_CLOAKING_JAMMER</name>
+                <name>COMBAT_WARP_JAMMER</name>
+                <name>COMBAT_REACTOR_JAMMER</name>
+                <name>LOCKED_COMBAT_REACTOR_JAMMER</name>
+                <name>COMBAT_OXYGEN_JAMMER</name>
+                <name>COMBAT_REPAIR</name>
+                <name>COMBAT_HAZARD</name>
+                <name>COMBAT_IONSTORM</name>
+                <name>COMBAT_OXYGEN_UNSTABLE</name>
+                <name>COMBAT_POWER</name>
+                <name>COMBAT_EXPLOSIVE</name>
+                <name>COMBAT_WARP_JAMMER</name>
+
+            <!-- Event Augments -->
+                <name>TRINKET_WAR</name>
+                <name>TRINKET_SPEED</name>
+                <name>TRINKET_SHIELD</name>
+                <!--
+                    No blueprint
+                <name>SUPER_SHIELD_RECHARGE</name
+                <name>SUPER_AUTO_COOLDOWN</name>
+                <name>ENGINE_PREIGNITER</name>
+                <name>SUPER_MEDBAY</name>
+                -->
+                <name>PANDORA_BOX</name>
+                <name>PANDORA_BOX_ANCIENT</name>
+                <name>ZOLTAN_STATUE</name>
+                <name>SMUGGLER_RAID_CARGO</name>
+                <name>NEBULA_GASSES</name>
+                <name>TULLY_PRESENT</name>
+                <name>BEACON_PARTS</name>
+                <name>ORCHID_KIDS</name>
+                <name>SLUG_NARCOTICS</name>
+                <name wikiName="Lost Sun Blessing" wikiHeading="Lost Sun Blessing">LOSTSUN_BLESSING</name>
+                <name>GAMBLING_MACHINE</name>
+                <name>GHOST_DUPLICATOR</name>
+                <name>PROTON_PACK</name>
+                <name>LOCKED_PROTON_PACK</name>
+                <name>GHOST_SPAWNER</name>
+                <name>MVBOSS_SPAWNER</name>
+                <name>PART_GATLING_AUGMENT</name>
+                <name>LOOT_COMPASS</name>
+                <name>FLEET_LURE</name>
+            <!-- Starting Ship Augments -->
+                <name>ROCK_ARMOR</name>
+                <name>LOCKED_ROCK_ARMOR</name>
+                <name>PALADIN_ARMOR</name>
+                <name>PALADIN_ARMOR_PLAYER</name>
+                <name>SALT_ARMOR</name>
+                <name>REGEN_ARMOR</name>
+                <name>LOCKED_REGEN_ARMOR</name>
+                <!--
+                    No blueprint
+                <name>CRYSTAL_PHASE</name>
+                -->
+                <name>ENERGY_SHIELD</name>
+                <name>LOCKED_ENERGY_SHIELD</name>
+                <name>OSMIAN_BATTERIES</name>
+                <!--
+                    No blueprint
+                    <name>SLUG_GEL_SCANNER</name>
+                -->
+                <name>CREW_STIMS_ULTRA</name>
+                <name>KERNAL_REPLICATOR</name>
+                <name>LOCKED_KERNAL_REPLICATOR</name>
+                <name>SPORE_AIR</name>
+                <name>LOCKED_SPORE_AIR</name>
+                <name>MORPH_DATABASE</name>
+                <name>REPAIR_HULL</name>
+                <name>NANOBOT_DEFENSE_SYSTEM</name>
+                <name>LOCKED_NANOBOT_DEFENSE_SYSTEM</name>
+                <!--
+                    No blueprint
+                    <name>NANOBOT_DEFENSE_SYSTEM_2</name>
+                -->
+                <name>MEDBAY_DEFENSE</name>
+                <!--
+                    No blueprint
+                    <name>ADV_HACKING</name>
+                -->
+                <name>LOCKED_COAL_AUG</name>
+                <name>COAL_AUG_1</name>
+                <name>COAL_AUG_2</name>
+                <name>SYSTEM_CASING</name>
+                <name>SYSTEM_CASING_NEW</name>
+                <!--
+                    No blueprint
+                    <name>SYSTEM_CASING_ENEMY</name>
+                -->
+                <name>LOCKED_SYSTEM_CASING</name>
+                <name>MODULAR_STORE</name>
+                <name>GOLD_ARMOR</name>
+                <name>SOLAR_PANELS</name>
+                <name>MULTIVERSE_DRIVE</name>
+                <name>MULTIVERSE_DRIVE_GOOD</name>
+                <name>EX_PAYLOAD_CREATOR</name>
+                <name>PAYLOAD_CREATOR</name>
+                <name>ATM_MACHINE</name>
+                <name>INFINITE_BEANS</name>
+                <name>EXTRA_LIFE</name>
+                <name>SUICIDE_BUTTON</name>
+                <name>EMERGENCY_DRIVE</name>
+                <name>STORE_BEACON</name>
+                <name>SLUG_DUPLICATOR</name>
+                <name>SLUG_DUPLICATOR_GHOST</name>
+                <name>SCRAP_HULL</name>
+                <name>EQUINOID_DUPLICATOR</name>
+                <name>STORY_TELLER</name>
+                <name>ZOLTAN_SPAWNER</name>
+                <name>LOCKED_XENOPHOBIA</name>
+                <name>SYLVAN_SHIELD</name>
+                <name>SYLVAN_SHIELD_CONTINUITY</name>
+        </blueprintList>
+
+    <!--
+        Crew Lab
+        https://ftlmultiverse.fandom.com/wiki/Crew_Lab
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/Crew_Lab#<title>
+    -->
+        <blueprintList wikiPage="Crew Lab#" name="LIST_AUGMENTS_CREW_WIKI">
+            <name>LAB_HUMAN_DIVERSE</name>
+            <name>LAB_HUMAN_TEAMWORK</name>
+            <name>LAB_HUMAN_INTUITION</name>
+            <name>LAB_MEDIC_OATH</name>
+            <name>LAB_ENGINEER_DRONES</name>
+            <name>LAB_ENGI_COMBAT</name>
+            <name>LAB_ENGI_EFFICIENCY</name>
+            <name>LAB_ENGI_ADAPT</name>
+            <name>EX_LAB_ENGI_ADAPT</name>
+            <name>LAB_SEPARATIST_HEAL</name>
+            <name>LAB_DEFENDER_REPAIRS</name>
+            <name>LAB_ZOLTAN_OVERCLOCK</name>
+            <name>EX_LAB_ZOLTAN_OVERCLOCK</name>
+            <name>LAB_ZOLTAN_SHIELD</name>
+            <name>LAB_ZOLTAN_EMITTER</name>
+            <name>LAB_MONK_COMBAT</name>
+            <name>LAB_ORCHID_THORNS</name>
+            <name wikiName="Petrified Wood" wikiHeading="Petrified Wood">LAB_ORCHID_PETRIFIED</name>
+            <name>LAB_ORCHID_TOTIPOTENCY</name>
+            <name>LAB_MANTIS_MELEE</name>
+            <name>LAB_MANTIS_FIRE</name>
+            <name>LAB_MANTIS_SPEED</name>
+            <name>LAB_SUZERAIN_SLAVES</name>
+            <name>LAB_HIVE_SLASH</name>
+            <name>EX_LAB_MANTIS_FIRE</name>
+            <name>EX_LAB_SUZERAIN_SLAVES</name>
+            <name>LAB_ROCK_METABOLISM</name>
+            <name>LAB_ROCK_SKIN</name>
+            <name>EX_LAB_ROCK_SKIN</name>
+            <name>LAB_ROCK_SPEED</name>
+            <name>LAB_CULTIST_MIND</name>
+            <name>EX_LAB_CULTIST_MIND</name>
+            <name>LAB_CRYSTAL_SUFFOCATION</name>
+            <name>LAB_CRYSTAL_SABOTAGE</name>
+            <name>LAB_CRYSTAL_FIRE</name>
+            <name>EX_LAB_CRYSTAL_SUFFOCATION</name>
+            <name>LAB_SLUG_STUN</name>
+            <name>LAB_SLUG_BUFF</name>
+            <name>LAB_SLUG_MIND</name>
+            <name>LAB_SHELL_SUFFOCATION</name>
+            <name>LAB_SHELL_TELEPATHY</name>
+            <name>LAB_SHELL_SPEED</name>
+            <name>LAB_SCIENTIST_DOT</name>
+            <name>LAB_MECH_REPAIR</name>
+            <name>LAB_GUARDIAN_DEFEND</name>
+            <name>LAB_LEECH_DOOR</name>
+            <name>LAB_LEECH_POWER</name>
+            <name>LAB_LEECH_PARASITE</name>
+            <name>LAB_LANIUS_RUST</name>
+            <name>LAB_LANIUS_METAL</name>
+            <name>LAB_LANIUS_HEALTH</name>
+            <name>EX_LAB_LANIUS_HEALTH</name>
+            <name>LAB_GHOST_HEALTH</name>
+            <name>LAB_GHOST_FIRE</name>
+            <name>EX_LAB_GHOST_FIRE</name>
+            <name>LAB_GHOST_RESIST</name>
+            <name>EX_LAB_GHOST_RESIST</name>
+            <name wikiName="Vagabond Stabilizer" wikiHeading="Vagabond Stabilizer">LAB_VAGABOND_STABLE</name>
+            <name>LAB_MORPH_FIRE</name>
+            <name>LAB_MORPH_DOOR</name>
+            <name>EX_LAB_MORPH_DOOR</name>
+            <name>LAB_MORPH_HEALTH</name>
+            <name>EX_LAB_MORPH_HEALTH</name>
+            <name wikiName="Robotic Mimicry" wikiHeading="Robotic Mimicry">LAB_TECHNO_BAY</name>
+            <name>LAB_SPIDER_WEBS</name>
+            <name>LAB_SPIDER_SILK</name>
+            <name>LAB_SPIDER_PREDATOR</name>
+            <name>EX_LAB_SPIDER_SILK</name>
+            <name>EX_LAB_SPIDER_WEBS</name>
+            <name>LAB_LIZARD_STRENGTH</name>
+            <name>LAB_LIZARD_TECH</name>
+            <name>EX_LAB_LIZARD_TECH</name>
+            <name>LAB_LIZARD_FIRE</name>
+            <name>LAB_ANCIENT_MORTAL</name>
+            <name>LAB_ANCIENT_NEURAL</name>
+            <name>LAB_ANCIENT_ONEPUNCH</name>
+            <name>EX_LAB_ANCIENT_ONEPUNCH</name>
+            <name>LAB_COGNITIVE_RAGE</name>
+            <name>EX_LAB_COGNITIVE_RAGE</name>
+            <name wikiName="Hazard-Proof Systems" wikiHeading="Hazard-Proof Systems">LAB_COGNITIVE_FIRE</name>
+            <name>LAB_COGNITIVE_POWER</name>
+        </blueprintList>
+
+    <!--
+        Internal Upgrades
+        https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades#<title>
+    -->
+        <blueprintList wikiPage="Internal Upgrades#" name="LIST_AUGMENTS_INTERNAL_WIKI">
+            <name wikiName="Breach Sealant" wikiHeading="Breach Sealant">UPG_TECH_SEALANT</name>
+            <name wikiName="Breach Sealant" wikiHeading="Breach Sealant">EX_BREACH_SEALANT</name>
+            <name>UPG_TECH_EXTINGUISHERS</name>
+            <name>EX_FIRE_EXTINGUISHERS</name>
+            <name wikiName="Energy Shield Bypass" wikiHeading="Energy Shield Bypass">UPG_TECH_BYPASS</name>
+            <name wikiName="Energy Shield Bypass" wikiHeading="Energy Shield Bypass">EX_ZOLTAN_BYPASS</name>
+            <name>UPG_TECH_LIFEFORM</name>
+            <name wikiName="Lifeform Scanner" wikiHeading="Lifeform Scanner">EX_LIFE_SCANNER</name>
+            <name>UPG_TECH_SCRAMBLER</name>
+            <name>UPG_TECH_SCRAMBLER_ENEMY</name>
+            <name wikiName="Defense Scrambler" wikiHeading="Defense Scrambler">EX_DEFENSE_SCRAMBLER</name>
+            <name wikiName="Respirators" wikiHeading="Respirators">UPG_TECH_RESPIRATOR</name>
+            <name>EX_O2_MASKS</name>
+            <name>UPG_TECH_NOPHASE</name>
+            <name>UPG_AETHER_ENGINES</name>
+            <name>UPG_AETHER_SCANNERS</name>
+            <name>UPG_AETHER_TRANSLATOR</name>
+            <name>UPG_AETHER_PREIGNITER</name>
+            <name>UPG_AETHER_SHIELDS</name>
+            <name wikiName="Long Ranged Jump" wikiHeading="Long Ranged Jump">UPG_ENGINES_JUMPER</name>
+            <name wikiName="Long Ranged Jump" wikiHeading="Long Ranged Jump">EX_FTL_JUMPER</name>
+            <name wikiName="Engine Performance Upgrade" wikiHeading="Engine Performance Upgrade">UPG_ENGINES_PERFORMANCE</name>
+            <name wikiName="Engine Performance Upgrade" wikiHeading="Engine Performance Upgrade">EX_FTL_BOOSTER</name>
+            <name>UPG_SHIELD_ION</name>
+            <name>EX_ION_ARMOR</name>
+            <name wikiName="Shield Performance Upgrade" wikiHeading="Shield Performance Upgrade">UPG_SHIELDS_PERFORMANCE</name>
+            <name wikiName="Shield Performance Upgrade" wikiHeading="Shield Performance Upgrade">EX_SHIELD_RECHARGE</name>
+            <name wikiName="Electrical Insulation" wikiHeading="Electrical Insulation">UPG_SHIELDS_STUN</name>
+            <name wikiName="Weapon Performance Upgrade" wikiHeading="Weapon Performance Upgrade">UPG_WEAPONS_PERFORMANCE</name>
+            <name wikiName="Weapon Performance Upgrade" wikiHeading="Weapon Performance Upgrade">EX_AUTO_COOLDOWN</name>
+            <name wikiName="Explosive Replicator" wikiHeading="Explosive Replicator">UPG_WEAPONS_REPLICATOR</name>
+            <name>EX_EXPLOSIVE_REPLICATOR</name>
+            <name>UPG_CLOAK_FIRE</name>
+            <name wikiName="Shadow Weaponry" wikiHeading="Shadow Weaponry">EX_CLOAK_FIRE</name>
+            <name wikiName="Reconstructive Teleporter" wikiHeading="Reconstructive Teleporter">UPG_TELEPORTER_HEAL</name>
+            <name wikiName="Reconstructive Teleporter" wikiHeading="Reconstructive Teleporter">EX_TELEPORT_HEAL</name>
+            <name wikiName="Med-Bot Dispersal" wikiHeading="Med-Bot Dispersal">UPG_MEDBAY_NANO</name>
+            <name wikiName="Med-Bot Dispersal" wikiHeading="Med-Bot Dispersal">EX_MEDBAY_NANO</name>
+            <name>UPG_MEDBAY_SPEED</name>
+            <name>EX_MEDBAY_SPEED</name>
+            <name>UPG_MEDBAY_RESISTANCE</name>
+            <name wikiName="Backup DNA Bank" wikiHeading="Backup DNA Bank">UPG_CLONEBAY_DNA</name>
+            <name wikiName="Backup DNA Bank" wikiHeading="Backup DNA Bank">EX_BACKUP_DNA</name>
+            <name wikiName="Drone Booster" wikiHeading="Drone Booster">UPG_DRONE_SPEED</name>
+            <name>EX_DRONE_SPEED</name>
+            <name>UPG_MIND_IMMUNITY</name>
+            <name>EX_MIND_IMMUNITY</name>
+            <name>UPG_MIND_BUFF</name>
+            <name>EX_MIND_BUFF</name>
+            <name>UPG_HACK_JAMMER</name>
+            <name>EX_FTL_JAMMER</name>
+            <name>UPG_HACK_STUN</name>
+            <name wikiName="Neural Disruptor" wikiHeading="Neural Disruptor">EX_HACKING_STUN</name>
+            <name wikiName="Battery Performance Upgrade" wikiHeading="Battery Performance Upgrade">UPG_BATTERY_BOOSTER</name>
+            <name wikiName="Battery Performance Upgrade" wikiHeading="Battery Performance Upgrade">EX_BATTERY_BOOSTER</name>
+        </blueprintList>
+
+    <!--
+        Modular Arms
+        https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades#<title>
+
+        found in: blueprintList name="LIST_UPG_ARMS" and name="BLUELIST_ARM"
+    -->
+        <blueprintList wikiPage="Internal Upgrades#" name="LIST_AUGMENTS_ARMS_WIKI">
+            <name>UPG_ARM_SCRAP</name>
+            <name>SCRAP_COLLECTOR</name>
+            <name>UPG_ARM_MAGNETIC</name>
+            <name>MAGNET_ARM</name>
+            <name wikiName="Drone Arm" wikiHeading="Drone Arm">UPG_ARM_DRONES</name>
+            <name>DRONE_RECOVERY</name>
+            <name wikiName="Repair Arm" wikiHeading="Repair Arm">UPG_ARM_REPAIR</name>
+            <name>REPAIR_ARM</name>
+        </blueprintList>
+
+    <!--
+        Miscellaneous Augments
+        Augments that share a wikiPage
+    -->
+
+        <!--
+            C.U.R.A. Loot
+            https://ftlmultiverse.fandom.com/wiki/C.U.R.A._Loot#<augBlueprint>.<title>
+        -->
+            <blueprintList wikiPage="C.U.R.A. Loot#" name="LIST_AUGMENTS_CURA_WIKI">
+                <name>NO_GHOST_PLAYER</name>
+                <name>DEATH_VESTS</name>
+            </blueprintList>
+
+        <!--
+            Crystalline Armor
+            https://ftlmultiverse.fandom.com/wiki/Crystalline_Armor#<augBlueprint>.<title>
+        -->
+            <blueprintList wikiPage="Crystalline Armor#" name="LIST_AUGMENTS_CRYSTAL_ARMOR_WIKI">
+                <name>CRYSTAL_ARMOR</name>
+                <name>LOCKED_CRYSTAL_ARMOR</name>
+                <name>CRYSTAL_ARMOR_100</name>
+                <name>CRYSTAL_ARMOR_ENEMY</name>
+            </blueprintList>
+
+        <!--
+            Obsidian Armor
+            https://ftlmultiverse.fandom.com/wiki/Obsidian_Armor
+            redirect: https://ftlmultiverse.fandom.com/wiki/Obsidian_Armor
+        -->
+            <mod:findName name="BLUELIST_OBSIDIAN" type="blueprintList">
+                <mod:setAttributes wikiPage="Obsidian Armor"/>
+            </mod:findName>
+
+        <!--
+            Pheromones
+            https://ftlmultiverse.fandom.com/wiki/Pheromones#<augBlueprint>.<title>
+        -->
+            <mod:findName name="BLUELIST_PHEROMONES" type="blueprintList">
+                <mod:setAttributes wikiPage="Pheromones#"/>
+            </mod:findName>
+
+        <!--
+            Repair Gel
+            https://ftlmultiverse.fandom.com/wiki/Repair_Gel#<augBlueprint>.<title>
+        -->
+            <blueprintList wikiPage="Repair Gel#" name="LIST_AUGMENTS_REPAIR_GEL_WIKI">
+                <name>LOCKED_SLUG_GEL</name>
+                <name>SLUG_GEL</name>
+                <name wikiHeading="Hektar Ultra-Stick Gel (tm)">HEKTAR_GEL</name>
+                <name>PLEASURE_GEL</name>
+            </blueprintList>
+
+        <!--
+            Shell Gas
+            https://ftlmultiverse.fandom.com/wiki/Shell_Gas#<augBlueprint>.<title>
+        -->
+            <blueprintList wikiPage="Shell Gas#" name="LIST_AUGMENTS_SHELL_GAS_WIKI">
+                <name>TOXIC_GAS</name>
+                <name>LOCKED_TOXIC_GAS</name>
+                <name>RADIANT_GAS</name>
+                <name>NANITE_GAS</name>
+                <name>LOCKED_NANITE_GAS</name>
+                <name>REGEN_GAS</name>
+                <name>LOCKED_REGEN_GAS</name>
+            </blueprintList>
+
+    <!--
+        Hidden Augments
+    -->
+        <!--
+            found in hyperspace.xml on <customShip> elements.
+            <customShip> elements have the same "name" attribute as their corresponding <shipBlueprint>
+            All <customShips> have at least 2 <hiddenAug>.
+            the first determines Tully's response to the player's ship when arriving in Sector 8. Used in events_boss.xml
+            the second indicates the ship was made for FTL: Multiverse
+            Any following <hiddenAug> is noteworthy
+
+            Current : NO_WEAPON, BLESSING_MONK, STAGE_2, STAGE 3
+        -->
+        <!--
+            Multiverse Flagship (player)
+            https://ftlmultiverse.fandom.com/wiki/Multiverse_Flagship_(player)
+        -->
+            <blueprintList wikiPage="Multiverse Flagship (player)#" wikiName="LIST_AUGMENTS_HIDDEN_FLAGSHIP_WIKI">
+                <name wikiName="Stage 2 Power Surge" wikiHeading="Stage 2 Power Surge">STAGE_2</name>
+                <name wikiName="Stage 3 Power Surge" wikiHeading="Stage 3 Power Surge">STAGE_3</name>
+            </blueprintList>
+
+        <!--
+            Illesctrian Cruisers
+            https://ftlmultiverse.fandom.com/wiki/Illesctrian_Cruisers
+
+        -->
+            <blueprintList wikiPage="Illesctrian_Cruisers#" wikiName="LIST_AUGMENTS_HIDDEN_MONK_WIKI">
+                <name wikiName="Monk Blessing" wikiHeading="Monk Blessing">ZOLTAN_BLESSING</name>
+            </blueprintList>
+
+<!-- Artilleries -->
+    <!--
+        <weaponBlueprint>
+        https://ftlmultiverse.fandom.com/wiki/Artilleries
+        redirect:
+        https://ftlmultiverse.fandom.com/wiki/Artilleries#<weaponBlueprint>.<title>
+
+        Note that Artilleries, despite being a system, are each considered a "weaponBlueprint"
+        They are found exclusively on the <systemList> of ships as the <artillery>.
+        Identified in the <artillery> element by the "weapon" attribute
+    -->
+        <blueprintList wikiPage="Artilleries#" name="LIST_WEAPONS_ARTILLERY_WIKI">
+            <name>ANCIENT_ARTILLERY</name>
+            <name>ARTILLERY_ANCIENT_A</name>
+            <name>ARTILLERY_ANCIENT_B</name>
+            <name>ARTILLERY_ANCIENT_C</name>
+            <name>ARTILLERY_WITHER</name>
+            <name>ARTILLERY_LASER</name>
+            <name>ARTILLERY_BEAM</name>
+            <name>ARTILLERY_BEAM_ELITE</name>
+            <name>ARTILLERY_FLAK</name>
+            <name>ARTILLERY_MINELAUNCHER</name>
+            <name>ARTILLERY_MINELAUNCHER_ENEMY</name>
+            <name>ARTILLERY_FIRE</name>
+            <name>ARTILLERY_REBEL_LASER</name>
+            <name>ARTILLERY_REBEL_BEAM</name>
+            <name>ARTILLERY_REBEL_ION</name>
+            <name>ARTILLERY_REBEL_MISSILE</name>
+            <name>ARTILLERY_JERRY</name>
+            <name wikiName="MV Boss Laser Artillery">ARTILLERY_BOSSMV_LASER</name>
+            <name wikiName="MV Boss Missile Artillery">ARTILLERY_BOSSMV_MISSILE</name>
+            <name wikiName="MV Boss Beam Artillery">ARTILLERY_BOSSMV_BEAM</name>
+            <name wikiName="MV Boss Ion Artillery">ARTILLERY_BOSSMV_PHASE</name>
+        <!-- No blueprint but on ships -->
+            <name>ARTILLERY_FED</name>
+            <name>ARTILLERY_MILITIA_A</name>
+            <name>ARTILLERY_FREEMANTIS_A</name>
+            <name>ARTILLERY_FED_ENEMY</name>
+        <!-- Enemy Only -->
+            <name>ARTILLERY_MFK_1</name>
+            <name>ARTILLERY_MFK_2</name>
+            <name>ARTILLERY_MFK_3</name>
+            <name>ARTILLERY_MFK_4</name>
+            <name>ARTILLERY_BOSS_2</name>
+            <name>ARTILLERY_BOSS_4_ALT</name>
+            <name>ARTILLERY_BOSS_AUTO</name>
+            <name>ARTILLERY_AUTO_MINELAUNCHER</name>
+            <name>ARTILLERY_COALITION_CEALAFORMER</name>
+            <name>ANCIENT_DREAD</name>
+            <name wikiName="Dreadnought Artillery (R)" wikiHeading="Dreadnought Artillery (R)">ROYAL_DREAD</name>
+            <name>ARTILLERY_ROCK_MINIBOSS</name>
+            <name>ARTILLERY_FED_C</name>  <!-- dlcBlueprints -->
+            <!-- 
+            Vanilla blueprints (!!!)
+            only include if documenting enemy ships 
+            <name>ARTILLERY_BOSS_1</name>
+            <name>ARTILLERY_BOSS_2</name>
+            <name>ARTILLERY_BOSS_3</name>
+            <name>ARTILLERY_BOSS_4</name>
+            -->
+        </blueprintList>
+
+<!-- Ships -->
+    <!--
+        <shipBlueprint>
+        Player ships
+        https://ftlmultiverse.fandom.com/wiki/Player_ships
+        Each ship contains an additional "teleporterLimit" attribute which was calculated by "createShipBlueprintLists.py"
+    -->
+
+    <!--
+        Multiverse Ships (page 1)
+    -->
+        <!--
+            Multiverse Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Multiverse_Cruisers#
+        -->
+            <blueprintList wikiPage="Multiverse Cruisers#" name="LIST_SHIPS_MV_WIKI">
+                <name wikiName="MV Kestrel Cruiser" wikiHeading="Kestrel Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVKESTREL</name>
+                <name wikiName="MV Federation Cruiser" wikiHeading="Federation Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVFED</name>
+                <name wikiName="MV Stealth Cruiser" wikiHeading="Stealth Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVSTEALTH</name>
+            </blueprintList>
+
+        <!--
+            Multiverse Cruisers (2)#
+            https://ftlmultiverse.fandom.com/wiki/Multiverse_Cruisers_(2)#
+        -->
+            <blueprintList wikiPage="Multiverse Cruisers (2)#" name="LIST_SHIPS_MV_2_WIKI">
+                <name wikiName="MV Harmony Cruiser" wikiHeading="Harmony Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVENGI</name>
+                <name wikiName="MV Union Cruiser" wikiHeading="Union Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVCIVILIAN</name>
+                <name wikiName="MV Imperial Cruiser" wikiHeading="Imperial Multiverse Cruiser" teleporterLimit="3">PLAYER_SHIP_MVCRYSTAL</name>
+            </blueprintList>
+
+        <!--
+            Multiverse Cruisers (3)#
+            https://ftlmultiverse.fandom.com/wiki/Multiverse_Cruisers_(3)#
+        -->
+            <blueprintList wikiPage="Multiverse Cruisers (3)#" name="LIST_SHIPS_MV_3_WIKI">
+                <name wikiName="MV Spectral Cruiser" wikiHeading="Spectral Multiverse Cruiser" teleporterLimit="4">PLAYER_SHIP_MVDYNASTY</name>
+                <name wikiName="MV Augmented Cruiser" wikiHeading="Augmented Multiverse Cruiser" teleporterLimit="2">PLAYER_SHIP_MVLANIUS</name>
+            </blueprintList>
+
+        <!--
+            Prototype-Multiverse Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Prototype-Multiverse_Cruisers#
+        -->
+            <blueprintList wikiPage="Prototype-Multiverse Cruisers#" name="LIST_SHIPS_PROTOMV_WIKI">
+                <name wikiName="Proto-MV Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_PROTOMV</name>
+                <name wikiName="Proto-MV Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_PROTOMV_2</name>
+                <name wikiName="Proto-MV Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_PROTOMV_3</name>
+            </blueprintList>
+
+        <!--
+            Multiverse Flagship (player)#
+            https://ftlmultiverse.fandom.com/wiki/Multiverse_Flagship_(player)#
+        -->
+            <blueprintList wikiPage="Multiverse Flagship (player)#" name="LIST_SHIPS_FLAGSHIP_WIKI">
+                <name wikiName="Multiverse Flagship A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_FLAGSHIP</name>
+                <name wikiName="Multiverse Flagship B" wikiHeading="Layout B" teleporterLimit="0">PLAYER_SHIP_FLAGSHIP_2</name>
+                <name wikiName="Multiverse Flagship C" wikiHeading="Layout C" teleporterLimit="0">PLAYER_SHIP_FLAGSHIP_3</name>
+            </blueprintList>
+
+    <!--
+        Federation Ships (page 2)
+    -->
+        <!--
+            Union Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Union_Cruisers#
+        -->
+            <blueprintList wikiPage="Union Cruisers#" name="LIST_SHIPS_CIVILIAN_WIKI">
+                <name wikiName="Union Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CIVILIAN</name>
+                <name wikiName="Union Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_CIVILIAN_2</name>
+                <name wikiName="Union Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CIVILIAN_3</name>
+            </blueprintList>
+
+        <!--
+            Militia Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Militia_Cruisers#
+        -->
+            <blueprintList wikiPage="Militia Cruisers#" name="LIST_SHIPS_MILITIA_WIKI">
+                <name wikiName="Militia Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MILITIA</name>
+                <name wikiName="Militia Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MILITIA_2</name>
+                <name wikiName="Militia Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MILITIA_3</name>
+            </blueprintList>
+
+        <!--
+            Kestrel Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Kestrel_Cruisers#
+        -->
+            <blueprintList wikiPage="Kestrel Cruisers#" name="LIST_SHIPS_KESTREL_WIKI">
+                <name wikiName="Kestrel Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_KESTREL</name>
+                <name wikiName="Kestrel Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_KESTREL_2</name>
+                <name wikiName="Kestrel Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_KESTREL_3</name>
+            </blueprintList>
+
+        <!--
+            Federation Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Federation_Cruisers#
+        -->
+            <blueprintList wikiPage="Federation Cruisers#" name="LIST_SHIPS_FEDERATION_WIKI">
+                <name wikiName="Federation Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_FEDERATION</name>
+                <name wikiName="Federation Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_FEDERATION_2</name>
+                <name wikiName="Federation Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_FEDERATION_3</name>
+            </blueprintList>
+
+        <!--
+            Stealth Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Stealth_Cruisers#
+        -->
+            <blueprintList wikiPage="Stealth Cruisers#" name="LIST_SHIPS_CLOAK_WIKI">
+                <name wikiName="Stealth Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CLOAK</name>
+                <name wikiName="Stealth Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_CLOAK_2</name>
+                <name wikiName="Stealth Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CLOAK_3</name>
+            </blueprintList>
+
+    <!--
+        Rebel Ships (page 3)
+    -->
+        <!--
+            Rebel Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Rebel_Cruisers#
+        -->
+            <blueprintList wikiPage="Rebel Cruisers#" name="LIST_SHIPS_REBEL_WIKI">
+                <name wikiName="Rebel Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_REBEL</name>
+                <name wikiName="Rebel Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_REBEL_2</name>
+                <name wikiName="Rebel Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_REBEL_3</name>
+            </blueprintList>
+
+        <!--
+            Engineer Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Engineer_Cruisers#
+        -->
+            <blueprintList wikiPage="Engineer Cruisers#" name="LIST_SHIPS_ENGINEER_WIKI">
+                <name wikiName="Engineer Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ENGINEER</name>
+                <name wikiName="Engineer Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ENGINEER_2</name>
+                <name wikiName="Engineer Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_ENGINEER_3</name>
+            </blueprintList>
+
+        <!--
+            MV Rebel Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/MV_Rebel_Cruisers#
+        -->
+            <blueprintList wikiPage="MV Rebel Cruisers#" name="LIST_SHIPS_MVREBEL_WIKI">
+                <name wikiName="MV Rebel Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MVREBEL</name>
+                <name wikiName="MV Rebel Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MVREBEL_2</name>
+                <name wikiName="MV Rebel Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MVREBEL_3</name>
+            </blueprintList>
+
+        <!--
+            MFK Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/MFK_Cruisers#
+        -->
+            <blueprintList wikiPage="MFK Cruisers#" name="LIST_SHIPS_MFK_WIKI">
+                <name wikiName="MFK Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MFK</name>
+                <name wikiName="MFK Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MFK_2</name>
+                <name wikiName="MFK Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_MFK_3</name>
+            </blueprintList>
+
+        <!--
+            Innovation Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Innovation_Cruisers#
+        -->
+            <blueprintList wikiPage="Innovation Cruisers#" name="LIST_SHIPS_CURA_WIKI">
+                <name wikiName="Innovation Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CURA</name>
+                <name wikiName="Innovation Cruiser B" wikiHeading="Layout B" teleporterLimit="0">PLAYER_SHIP_CURA_2</name>
+                <name wikiName="Innovation Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CURA_3</name>
+            </blueprintList>
+
+    <!--
+        Pirate Ships (page 4)
+    -->
+        <!--
+            Prototype Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Prototype_Cruisers#
+        -->
+            <blueprintList wikiPage="Prototype Cruisers#" name="LIST_SHIPS_PROTOTYPE_WIKI">
+                <name wikiName="Prototype Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_PROTOTYPE</name>
+                <name wikiName="Prototype Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_PROTOTYPE_2</name>
+                <name wikiName="Prototype Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_PROTOTYPE_3</name>
+            </blueprintList>
+
+        <!--
+            Tuco's Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Tuco's_Cruisers#
+        -->
+            <blueprintList wikiPage="Tuco's Cruisers#" name="LIST_SHIPS_TUCO_WIKI">
+                <name wikiName="Tuco's Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_TUCO</name>
+                <name wikiName="Tuco's Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_TUCO_2</name>
+                <name wikiName="Tuco's Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_TUCO_3</name>
+            </blueprintList>
+
+        <!--
+            Angel Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Angel_Cruisers#
+        -->
+            <blueprintList wikiPage="Angel Cruisers#" name="LIST_SHIPS_ANGEL_WIKI">
+                <name wikiName="Angel Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_ANGEL</name>
+                <name wikiName="Angel Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ANGEL_2</name>
+                <name wikiName="Angel Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_ANGEL_3</name>
+            </blueprintList>
+
+        <!--
+            Brood Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Brood_Cruisers#
+        -->
+            <blueprintList wikiPage="Brood Cruisers#" name="LIST_SHIPS_BROOD_WIKI">
+                <name wikiName="Brood Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_BROOD</name>
+                <name wikiName="Brood Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_BROOD_2</name>
+                <name wikiName="Brood Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_BROOD_3</name>
+            </blueprintList>
+
+        <!--
+            Spider Hunter Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Spider_Hunter_Cruisers#
+        -->
+            <blueprintList wikiPage="Spider Hunter Cruisers#" name="LIST_SHIPS_SPIDER_WIKI">
+                <name wikiName="Spider Hunter Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_SPIDER</name>
+                <name wikiName="Spider Hunter Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_SPIDER_2</name>
+                <name wikiName="Spider Hunter Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SPIDER_3</name>
+            </blueprintList>
+
+    <!--
+        Engi Ships (page 5)
+    -->
+        <!--
+            Engi Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Engi_Cruisers#
+        -->
+            <blueprintList wikiPage="Engi Cruisers#" name="LIST_SHIPS_ENGI_WIKI">
+                <name wikiName="Engi Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ENGI</name>
+                <name wikiName="Engi Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ENGI_2</name>
+                <name wikiName="Engi Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_ENGI_3</name>
+            </blueprintList>
+
+        <!--
+            Separatist Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Separatist_Cruisers#
+        -->
+            <blueprintList wikiPage="Separatist Cruisers#" name="LIST_SHIPS_SEPARATIST_WIKI">
+                <name wikiName="Separatist Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SEPARATIST</name>
+                <name wikiName="Separatist Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SEPARATIST_2</name>
+                <name wikiName="Separatist Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SEPARATIST_3</name>
+            </blueprintList>
+
+    <!--
+        Zoltan Ships (page 6)
+    -->
+        <!--
+            Ministry Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Ministry_Cruisers#
+        -->
+            <blueprintList wikiPage="Ministry Cruisers#" name="LIST_SHIPS_ZOLTAN_WIKI">
+                <name wikiName="Ministry Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ZOLTAN</name>
+                <name wikiName="Ministry Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ZOLTAN_2</name>
+                <name wikiName="Ministry Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_ZOLTAN_3</name>
+            </blueprintList>
+
+        <!--
+            Duskbringer Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Duskbringer_Cruisers#
+        -->
+            <blueprintList wikiPage="Duskbringer Cruisers#" name="LIST_SHIPS_DUSKBRINGER_WIKI">
+                <name wikiName="Duskbringer Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_DUSKBRINGER</name>
+                <name wikiName="Duskbringer Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_DUSKBRINGER_2</name>
+                <name wikiName="Duskbringer Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_DUSKBRINGER_3</name>
+            </blueprintList>
+
+        <!--
+            Illesctrian Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Illesctrian_Cruisers#
+        -->
+            <blueprintList wikiPage="Illesctrian Cruisers#" name="LIST_SHIPS_MONK_WIKI">
+                <name wikiName="Illesctrian Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MONK</name>
+                <name wikiName="Illesctrian Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MONK_2</name>
+                <name wikiName="Illesctrian Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MONK_3</name>
+            </blueprintList>
+
+        <!--
+            Osmian Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Osmian_Cruisers#
+        -->
+            <blueprintList wikiPage="Osmian Cruisers#" name="LIST_SHIPS_OSMIA_WIKI">
+                <name wikiName="Osmian Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_OSMIA</name>
+                <name wikiName="Osmian Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_OSMIA_2</name>
+                <name wikiName="Osmian Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_OSMIA_3</name>
+            </blueprintList>
+
+    <!--
+        Mantis Ships (page 7)
+    -->
+        <!--
+            Hive Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Hive_Cruisers#
+        -->
+            <blueprintList wikiPage="Hive Cruisers#" name="LIST_SHIPS_HIVE_WIKI">
+                <name wikiName="Hive Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_HIVE</name>
+                <name wikiName="Hive Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_HIVE_2</name>
+                <name wikiName="Hive Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_HIVE_3</name>
+            </blueprintList>
+
+        <!--
+            Free Mantis Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Free_Mantis_Cruisers#
+        -->
+            <blueprintList wikiPage="Free Mantis Cruisers#" name="LIST_SHIPS_FREEMANTIS_WIKI">
+                <name wikiName="Free Mantis Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_FREEMANTIS</name>
+                <name wikiName="Free Mantis Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_FREEMANTIS_2</name>
+                <name wikiName="Free Mantis Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_FREEMANTIS_3</name>
+            </blueprintList>
+
+        <!--
+            Suzerain Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Suzerain_Cruisers#
+        -->
+            <blueprintList wikiPage="Suzerain Cruisers#" name="LIST_SHIPS_SUZERAIN_WIKI">
+                <name wikiName="Suzerain Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_SUZERAIN</name>
+                <name wikiName="Suzerain Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SUZERAIN_2</name>
+                <name wikiName="Suzerain Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_SUZERAIN_3</name>
+            </blueprintList>
+
+        <!--
+            Bishop Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Bishop_Cruisers#
+        -->
+            <blueprintList wikiPage="Bishop Cruisers#" name="LIST_SHIPS_BISHOP_WIKI">
+                <name wikiName="Bishop Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_BISHOP</name>
+                <name wikiName="Bishop Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_BISHOP_2</name>
+                <name wikiName="Bishop Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_BISHOP_3</name>
+            </blueprintList>
+
+    <!--
+        Rock Ships (page 8)
+    -->
+        <!--
+            Theocracy Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Theocracy_Cruisers#
+        -->
+            <blueprintList wikiPage="Theocracy Cruisers#" name="LIST_SHIPS_ROCKMAN_WIKI">
+                <name wikiName="Theocracy Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ROCKMAN</name>
+                <name wikiName="Theocracy Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ROCKMAN_2</name>
+                <name wikiName="Theocracy Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_ROCKMAN_3</name>
+            </blueprintList>
+
+        <!--
+            Outcast Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Outcast_Cruisers#
+        -->
+            <blueprintList wikiPage="Outcast Cruisers#" name="LIST_SHIPS_OUTCAST_WIKI">
+                <name wikiName="Outcast Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_OUTCAST</name>
+                <name wikiName="Outcast Cruiser B" wikiHeading="Layout B" teleporterLimit="6">PLAYER_SHIP_OUTCAST_2</name>
+                <name wikiName="Outcast Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_OUTCAST_3</name>
+            </blueprintList>
+
+        <!--
+            Lost Sun Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Lost_Sun_Cruisers#
+        -->
+            <blueprintList wikiPage="Lost Sun Cruisers#" name="LIST_SHIPS_LOSTSUN_WIKI">
+                <name wikiName="Lost Sun Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_LOSTSUN</name>
+                <name wikiName="Lost Sun Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_LOSTSUN_2</name>
+                <name wikiName="Lost Sun Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_LOSTSUN_3</name>
+            </blueprintList>
+
+        <!--
+            Paladin Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Paladin_Cruisers#
+        -->
+            <blueprintList wikiPage="Paladin Cruisers#" name="LIST_SHIPS_PALADIN_WIKI">
+                <name wikiName="Paladin Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_PALADIN</name>
+                <name wikiName="Paladin Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_PALADIN_2</name>
+                <name wikiName="Paladin Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_PALADIN_3</name>
+            </blueprintList>
+
+        <!--
+            Sodium Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Sodium_Cruisers#
+        -->
+            <blueprintList wikiPage="Sodium Cruisers#" name="LIST_SHIPS_SALT_WIKI">
+                <name wikiName="Sodium Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_SALT</name>
+                <name wikiName="Sodium Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_SALT_2</name>
+                <name wikiName="Sodium Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_SALT_3</name>
+            </blueprintList>
+
+        <!--
+            Imperial Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Imperial_Cruisers#
+        -->
+            <blueprintList wikiPage="Imperial Cruisers#" name="LIST_SHIPS_CRYSTALLINE_WIKI">
+                <name wikiName="Imperial Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CRYSTALLINE</name>
+                <name wikiName="Imperial Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_CRYSTALLINE_2</name>
+                <name wikiName="Imperial Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CRYSTALLINE_3</name>
+            </blueprintList>
+
+        <!--
+            SSLG Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/SSLG_Cruisers#
+        -->
+            <blueprintList wikiPage="SSLG Cruisers#" name="LIST_SHIPS_SSLG_WIKI">
+                <name wikiName="SSLG Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SSLG</name>
+                <name wikiName="SSLG Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_SSLG_2</name>
+                <name wikiName="SSLG Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SSLG_3</name>
+            </blueprintList>
+
+        <!--
+            Ember Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Ember_Cruisers#
+        -->
+            <blueprintList wikiPage="Ember Cruisers#" name="LIST_SHIPS_CULTIST_WIKI">
+                <name wikiName="Ember Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CULTIST</name>
+                <name wikiName="Ember Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_CULTIST_2</name>
+                <name wikiName="Ember Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CULTIST_3</name>
+            </blueprintList>
+
+    <!--
+        Slug Ships (page 9)
+    -->
+        <!--
+            Kleptocracy Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Kleptocracy_Cruisers#
+        -->
+            <blueprintList wikiPage="Kleptocracy Cruisers#" name="LIST_SHIPS_SLUG_WIKI">
+                <name wikiName="Kleptocracy Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SLUG</name>
+                <name wikiName="Kleptocracy Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SLUG_2</name>
+                <name wikiName="Kleptocracy Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SLUG_3</name>
+            </blueprintList>
+
+        <!--
+            Guild Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Guild_Cruisers#
+        -->
+            <blueprintList wikiPage="Guild Cruisers#" name="LIST_SHIPS_CLAN_WIKI">
+                <name wikiName="Guild Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CLAN</name>
+                <name wikiName="Guild Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_CLAN_2</name>
+                <name wikiName="Guild Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CLAN_3</name>
+            </blueprintList>
+
+        <!--
+            Hektar Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Hektar_Cruisers#
+        -->
+            <blueprintList wikiPage="Hektar Cruisers#" name="LIST_SHIPS_HEKTAR_WIKI">
+                <name wikiName="Hektar Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_HEKTAR</name>
+                <name wikiName="Hektar Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_HEKTAR_2</name>
+                <name wikiName="Hektar Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_HEKTAR_3</name>
+            </blueprintList>
+
+        <!--
+            Slug Pleasure Barges#
+            https://ftlmultiverse.fandom.com/wiki/Slug_Pleasure_Barges#
+        -->
+            <blueprintList wikiPage="Slug Pleasure Barges#" name="LIST_SHIPS_PLEASURE_WIKI">
+                <name wikiName="Slug Pleasure Barge A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_PLEASURE</name>
+                <name wikiName="Slug Pleasure Barge B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_PLEASURE_2</name>
+                <name wikiName="Slug Pleasure Barge C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_PLEASURE_3</name>
+            </blueprintList>
+
+        <!--
+            Knighted Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Knighted_Cruisers#
+        -->
+            <blueprintList wikiPage="Knighted Cruisers#" name="LIST_SHIPS_KNIGHT_WIKI">
+                <name wikiName="Knighted Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_KNIGHT</name>
+                <name wikiName="Knighted Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_KNIGHT_2</name>
+                <name wikiName="Knighted Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_KNIGHT_3</name>
+            </blueprintList>
+
+        <!--
+            Hacker Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Hacker_Cruisers#
+        -->
+            <blueprintList wikiPage="Hacker Cruisers#" name="LIST_SHIPS_HACKER_WIKI">
+                <name wikiName="Hacker Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_HACKER</name>
+                <name wikiName="Hacker Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_HACKER_2</name>
+                <name wikiName="Hacker Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_HACKER_3</name>
+            </blueprintList>
+
+        <!--
+            Sylvan Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Sylvan_Cruisers#
+        -->
+            <blueprintList wikiPage="Sylvan Cruisers#" name="LIST_SHIPS_SYLVAN_WIKI">
+                <name wikiName="Sylvan Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_SYLVAN</name>
+                <name wikiName="Sylvan Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVAN_2</name>
+                <name wikiName="Sylvan Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SYLVAN_3</name>
+            </blueprintList>
+
+    <!--
+        Shell Ships (page 10)
+    -->
+        <!--
+            Geniocracy Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Geniocracy_Cruisers#
+        -->
+            <blueprintList wikiPage="Geniocracy Cruisers#" name="LIST_SHIPS_SHELL_WIKI">
+                <name wikiName="Geniocracy Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SHELL</name>
+                <name wikiName="Geniocracy Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SHELL_2</name>
+                <name wikiName="Geniocracy Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SHELL_3</name>
+            </blueprintList>
+
+        <!--
+            Geniocracy Science Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Geniocracy_Science_Cruisers#
+        -->
+            <blueprintList wikiPage="Geniocracy Science Cruisers#" name="LIST_SHIPS_SCIENTIST_WIKI">
+                <name wikiName="Geniocracy Science Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SCIENTIST</name>
+                <name wikiName="Geniocracy Science Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_SCIENTIST_2</name>
+                <name wikiName="Geniocracy Science Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SCIENTIST_3</name>
+            </blueprintList>
+
+        <!--
+            Geniocracy Management Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Geniocracy_Management_Cruisers#
+        -->
+            <blueprintList wikiPage="Geniocracy Management Cruisers#" name="LIST_SHIPS_MECHANIC_WIKI">
+                <name wikiName="Geniocracy Management Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MECHANIC</name>
+                <name wikiName="Geniocracy Management Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_MECHANIC_2</name>
+                <name wikiName="Geniocracy Management Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MECHANIC_3</name>
+            </blueprintList>
+
+        <!--
+            Morph Spurgle Yurgle#
+            https://ftlmultiverse.fandom.com/wiki/Morph_Spurgle_Yurgle#
+        -->
+            <blueprintList wikiPage="Morph Spurgle Yurgle#" name="LIST_SHIPS_MORPH_WIKI">
+                <name wikiName="Morph Spurgle Yurgle A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_MORPH</name>
+                <name wikiName="Morph Spurgle Yurgle B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MORPH_2</name>
+                <name wikiName="Morph Spurgle Yurgle C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MORPH_3</name>
+            </blueprintList>
+
+    <!--
+        Misc Ships (page 11)
+    -->
+        <!--
+            Eargen Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Eargen_Cruisers#
+        -->
+            <blueprintList wikiPage="Eargen Cruisers#" name="LIST_SHIPS_LEECH_WIKI">
+                <name wikiName="Eargen Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_LEECH</name>
+                <name wikiName="Eargen Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_LEECH_2</name>
+                <name wikiName="Eargen Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_LEECH_3</name>
+            </blueprintList>
+
+        <!--
+            Revolutionary Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Revolutionary_Cruisers#
+        -->
+            <blueprintList wikiPage="Revolutionary Cruisers#" name="LIST_SHIPS_ALKRAM_WIKI">
+                <name wikiName="Revolutionary Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_ALKRAM</name>
+                <name wikiName="Revolutionary Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_ALKRAM_2</name>
+                <name wikiName="Revolutionary Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_ALKRAM_3</name>
+            </blueprintList>
+
+        <!--
+            Retail Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Retail_Cruisers#
+        -->
+            <blueprintList wikiPage="Retail Cruisers#" name="LIST_SHIPS_TONY_WIKI">
+                <name wikiName="Retail Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_TONY</name>
+                <name wikiName="Retail Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_TONY_2</name>
+                <name wikiName="Retail Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_TONY_3</name>
+            </blueprintList>
+
+        <!--
+            Coalition Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Coalition_Cruisers#
+        -->
+            <blueprintList wikiPage="Coalition Cruisers#" name="LIST_SHIPS_COALITION_WIKI">
+                <name wikiName="Coalition Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_COALITION</name>
+                <name wikiName="Coalition Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_COALITION_2</name>
+                <name wikiName="Coalition Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_COALITION_3</name>
+            </blueprintList>
+
+    <!--
+        Orchid Ships (page 12)
+    -->
+        <!--
+            Gathering Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Gathering_Cruisers#
+        -->
+            <blueprintList wikiPage="Gathering Cruisers#" name="LIST_SHIPS_ORCHID_WIKI">
+                <name wikiName="Gathering Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ORCHID</name>
+                <name wikiName="Gathering Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ORCHID_2</name>
+                <name wikiName="Gathering Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_ORCHID_3</name>
+            </blueprintList>
+
+        <!--
+            Confederate Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Confederate_Cruisers#
+        -->
+            <blueprintList wikiPage="Confederate Cruisers#" name="LIST_SHIPS_VAMPWEED_WIKI">
+                <name wikiName="Confederate Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_VAMPWEED</name>
+                <name wikiName="Confederate Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_VAMPWEED_2</name>
+            </blueprintList>
+
+    <!--
+        Anaerobic Ships (page 13)
+    -->
+        <!--
+            Lanius Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Lanius_Cruisers#
+        -->
+            <blueprintList wikiPage="Lanius Cruisers#" name="LIST_SHIPS_LANIUS_WIKI">
+                <name wikiName="Lanius Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_LANIUS</name>
+                <name wikiName="Lanius Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_LANIUS_2</name>
+                <name wikiName="Lanius Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_LANIUS_3</name>
+            </blueprintList>
+
+        <!--
+            Augmented Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Augmented_Cruisers#
+        -->
+            <blueprintList wikiPage="Augmented Cruisers#" name="LIST_SHIPS_AUGMENTED_WIKI">
+                <name wikiName="Augmented Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_AUGMENTED</name>
+                <name wikiName="Augmented Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_AUGMENTED_2</name>
+                <name wikiName="Augmented Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_AUGMENTED_3</name>
+            </blueprintList>
+
+        <!--
+            Spectral Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Spectral_Cruisers#
+        -->
+            <blueprintList wikiPage="Spectral Cruisers#" name="LIST_SHIPS_DYNASTY_WIKI">
+                <name wikiName="Spectral Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_DYNASTY</name>
+                <name wikiName="Spectral Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_DYNASTY_2</name>
+                <name wikiName="Spectral Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_DYNASTY_3</name>
+            </blueprintList>
+
+        <!--
+            Spook Chaser Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Spook_Chaser_Cruisers#
+        -->
+            <blueprintList wikiPage="Spook Chaser Cruisers#" name="LIST_SHIPS_GHOST_WIKI">
+                <name wikiName="Spook Chaser Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_GHOST</name>
+                <name wikiName="Spook Chaser Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_GHOST_2</name>
+                <name wikiName="Spook Chaser Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_GHOST_3</name>
+            </blueprintList>
+
+        <!--
+            Guardian Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Guardian_Cruisers#
+        -->
+            <blueprintList wikiPage="Guardian Cruisers#" name="LIST_SHIPS_GUARD_WIKI">
+                <name wikiName="Guardian Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_GUARD</name>
+                <name wikiName="Guardian Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_GUARD_2</name>
+                <name wikiName="Guardian Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_GUARD_3</name>
+            </blueprintList>
+
+        <!--
+            Obelisk Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Obelisk_Cruisers#
+        -->
+            <blueprintList wikiPage="Obelisk Cruisers#" name="LIST_SHIPS_ANCIENT_WIKI">
+                <name wikiName="Obelisk Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_ANCIENT</name>
+                <name wikiName="Obelisk Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_ANCIENT_2</name>
+                <name wikiName="Obelisk Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_ANCIENT_3</name>
+            </blueprintList>
+
+    <!--
+        Unique Crew Cruisers (page 14)
+    -->
+        <!--
+            Slot 1 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_1_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 1 Crewsers#" name="LIST_SHIPS_CREW_SLOT1_WIKI">
+                <name wikiName="Haynes' Cruiser" wikiHeading="Haynes' Cruiser" teleporterLimit="2">CREW_SHIP_SLOT1</name>
+                <name wikiName="Tully's Cruiser" wikiHeading="Tully's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT1_2</name>
+                <name wikiName="A5540L3's Cruiser" wikiHeading="A5540L3's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT1_3</name>
+            </blueprintList>
+
+        <!--
+            Slot 2 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_2_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 2 Crewsers#" name="LIST_SHIPS_CREW_SLOT2_WIKI">
+                <name wikiName="Jerry's Cruiser" wikiHeading="Jerry's Cruiser" teleporterLimit="1">CREW_SHIP_SLOT2</name>
+                <name wikiName="Devorak's Cruiser" wikiHeading="Devorak's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT2_2</name>
+                <name wikiName="Turzil's Cruiser" wikiHeading="Turzil's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT2_3</name>
+            </blueprintList>
+
+        <!--
+            Slot 3 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_3_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 3 Crewsers#" name="LIST_SHIPS_CREW_SLOT3_WIKI">
+                <name wikiName="Alkali's Cruiser" wikiHeading="Alkali's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT3</name>
+                <name wikiName="OOJ MAJOO's Spurgle Yurgle" wikiHeading="OOJ MAJOO's Spurgle Yurgle" teleporterLimit="3">CREW_SHIP_SLOT3_2</name>
+            </blueprintList>
+
+        <!--
+            Slot 4 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_4_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 4 Crewsers#" name="LIST_SHIPS_CREW_SLOT4_WIKI">
+                <name wikiName="Nights' Cruiser" wikiHeading="Nights' Cruiser" teleporterLimit="2">CREW_SHIP_SLOT4</name>
+                <name wikiName="Slocknog's Cruiser" wikiHeading="Slocknog's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT4_2</name>
+                <name wikiName="Irwin's Cruiser" wikiHeading="Irwin's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT4_3</name>
+            </blueprintList>
+
+        <!--
+            Slot 5 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_5_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 5 Crewsers#" name="LIST_SHIPS_CREW_SLOT5_WIKI">
+                <name wikiName="Alkram's Cruiser" wikiHeading="Alkram's Cruiser" teleporterLimit="6">CREW_SHIP_SLOT5</name>
+                <name wikiName="Tyrdeo's Cruiser" wikiHeading="Tyrdeo's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT5_2</name>
+            </blueprintList>
+
+        <!--
+            Slot 6 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_6_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 6 Crewsers#" name="LIST_SHIPS_CREW_SLOT6_WIKI">
+                <name wikiName="Freddy's Cruiser" wikiHeading="Freddy's Cruiser" teleporterLimit="4">CREW_SHIP_SLOT6</name>
+                <name wikiName="Kazaaakplethkilik's Cruiser" wikiHeading="Kazaaakplethkilik's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT6_2</name>
+                <name wikiName="Dianesh's Cruiser" wikiHeading="Dianesh's Cruiser" teleporterLimit="4">CREW_SHIP_SLOT6_3</name>
+            </blueprintList>
+
+        <!--
+            Slot 7 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_7_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 7 Crewsers#" name="LIST_SHIPS_CREW_SLOT7_WIKI">
+                <name wikiName="Ariadne's Cruiser" wikiHeading="Ariadne's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT7</name>
+                <name wikiName="Ruwen's Cruiser" wikiHeading="Ruwen's Cruiser" teleporterLimit="4">CREW_SHIP_SLOT7_2</name>
+                <name wikiName="Tuco's Cruiser" wikiHeading="Tuco's Cruiser" teleporterLimit="4">CREW_SHIP_SLOT7_3</name>
+            </blueprintList>
+
+        <!--
+            Slot 8 Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_8_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot 8 Crewsers#" name="LIST_SHIPS_CREW_SLOT8_WIKI">
+                <name wikiName="The Beacon Eater's Cruiser" wikiHeading="The Beacon Eater's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT8</name>
+                <name wikiName="The Anointed's Cruiser" wikiHeading="The Anointed's Cruiser" teleporterLimit="4">CREW_SHIP_SLOT8_2</name>
+                <name wikiName="Dessius' Cruiser" wikiHeading="Dessius' Cruiser" teleporterLimit="4">CREW_SHIP_SLOT8_3</name>
+            </blueprintList>
+
+        <!--
+            Slot A Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_A_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot A Crewsers#" name="LIST_SHIPS_CREW_SLOTA_WIKI">
+                <name wikiName="Vortigon's Cruiser" wikiHeading="Vortigon's Cruiser" teleporterLimit="2">CREW_SHIP_SLOTA</name>
+                <name wikiName="Billy's Cruiser" wikiHeading="Billy's Cruiser" teleporterLimit="4">CREW_SHIP_SLOTA_2</name>
+                <name wikiName="Lizard Cruiser" wikiHeading="Lizard Cruiser" teleporterLimit="4">CREW_SHIP_SLOTA_3</name>
+            </blueprintList>
+
+        <!--
+            Slot B Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Slot_B_Crewsers#
+        -->
+            <blueprintList wikiPage="Slot B Crewsers#" name="LIST_SHIPS_CREW_SLOTB_WIKI">
+                <name wikiName="G.A.S. Nest" wikiHeading="G.A.S. Nest" teleporterLimit="4">CREW_SHIP_SLOTB</name>
+                <name wikiName="Obyn's Cruiser" wikiHeading="Obyn's Cruiser" teleporterLimit="4">CREW_SHIP_SLOTB_2</name>
+                <name wikiName="Symbiote's Cruiser" wikiHeading="Symbiote's Cruiser" teleporterLimit="2">CREW_SHIP_SLOTB_3</name>
+            </blueprintList>
+
+    <!--
+        Vanilla Cruisers (page 15)
+    -->
+        <!--
+            Vanilla Kestrel Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Kestrel_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Kestrel Cruisers#" name="LIST_SHIPS_VANILLA_KESTREL_WIKI">
+                <name wikiName="Vanilla Kestrel Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_KESTREL</name>
+                <name wikiName="Vanilla Kestrel Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_KESTREL_2</name>
+                <name wikiName="Vanilla Kestrel Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_KESTREL_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Engi Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Engi_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Engi Cruisers#" name="LIST_SHIPS_VANILLA_ENGI_WIKI">
+                <name wikiName="Vanilla Engi Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_ENGI</name>
+                <name wikiName="Vanilla Engi Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_ENGI_2</name>
+                <name wikiName="Vanilla Engi Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_ENGI_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Federation Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Federation_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Federation Cruisers#" name="LIST_SHIPS_VANILLA_FED_WIKI">
+                <name wikiName="Vanilla Federation Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_FED</name>
+                <name wikiName="Vanilla Federation Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_FED_2</name>
+                <name wikiName="Vanilla Federation Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_FED_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Zoltan Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Zoltan_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Zoltan Cruisers#" name="LIST_SHIPS_VANILLA_ZOLTAN_WIKI">
+                <name wikiName="Vanilla Zoltan Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_ZOLTAN</name>
+                <name wikiName="Vanilla Zoltan Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_ZOLTAN_2</name>
+                <name wikiName="Vanilla Zoltan Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_ZOLTAN_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Mantis Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Mantis_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Mantis Cruisers#" name="LIST_SHIPS_VANILLA_MANTIS_WIKI">
+                <name wikiName="Vanilla Mantis Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_MANTIS</name>
+                <name wikiName="Vanilla Mantis Cruiser B" wikiHeading="Layout B" teleporterLimit="4">VANILLA_SHIP_MANTIS_2</name>
+                <name wikiName="Vanilla Mantis Cruiser C" wikiHeading="Layout C" teleporterLimit="4">VANILLA_SHIP_MANTIS_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Slug Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Slug_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Slug Cruisers#" name="LIST_SHIPS_VANILLA_SLUG_WIKI">
+                <name wikiName="Vanilla Slug Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_SLUG</name>
+                <name wikiName="Vanilla Slug Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_SLUG_2</name>
+                <name wikiName="Vanilla Slug Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_SLUG_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Rock Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Rock_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Rock Cruisers#" name="LIST_SHIPS_VANILLA_ROCK_WIKI">
+                <name wikiName="Vanilla Rock Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_ROCK</name>
+                <name wikiName="Vanilla Rock Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_ROCK_2</name>
+                <name wikiName="Vanilla Rock Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_ROCK_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Stealth Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Stealth_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Stealth Cruisers#" name="LIST_SHIPS_VANILLA_STEALTH_WIKI">
+                <name wikiName="Vanilla Stealth Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_STEALTH</name>
+                <name wikiName="Vanilla Stealth Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_STEALTH_2</name>
+                <name wikiName="Vanilla Stealth Cruiser C" wikiHeading="Layout C" teleporterLimit="2">VANILLA_SHIP_STEALTH_3</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Lanius Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Lanius_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Lanius Cruisers#" name="LIST_SHIPS_VANILLA_LANIUS_WIKI">
+                <name wikiName="Vanilla Lanius Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_LANIUS</name>
+                <name wikiName="Vanilla Lanius Cruiser B" wikiHeading="Layout B" teleporterLimit="2">VANILLA_SHIP_LANIUS_2</name>
+            </blueprintList>
+
+        <!--
+            Vanilla Crystal Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Vanilla_Crystal_Cruisers#
+        -->
+            <blueprintList wikiPage="Vanilla Crystal Cruisers#" name="LIST_SHIPS_VANILLA_CRYSTAL_WIKI">
+                <name wikiName="Vanilla Crystal Cruiser A" wikiHeading="Layout A" teleporterLimit="2">VANILLA_SHIP_CRYSTAL</name>
+                <name wikiName="Vanilla Crystal Cruiser B" wikiHeading="Layout B" teleporterLimit="4">VANILLA_SHIP_CRYSTAL_2</name>
+            </blueprintList>
+
+    <!--
+        Special Cruisers (page 16)
+    -->
+        <!--
+            Alpha Kestrel Cruiser
+            https://ftlmultiverse.fandom.com/wiki/Alpha_Kestrel_Cruiser
+        -->
+            <blueprintList wikiPage="Alpha Kestrel Cruiser" name="LIST_SHIPS_VANILLA_WIKI">
+                <name wikiName="Alpha Kestrel Cruiser" wikiHeading="Alpha Kestrel Cruiser" teleporterLimit="2">PLAYER_SHIP_VANILLA</name>
+            </blueprintList>
+
+        <!--
+            Pleasure Flagship
+            https://ftlmultiverse.fandom.com/wiki/Pleasure_Flagship
+        -->
+            <blueprintList wikiPage="Pleasure Flagship" name="LIST_SHIPS_PLEASUREFLAG_WIKI">
+                <name wikiName="The Pleasure Flagship" wikiHeading="The Pleasure Flagship" teleporterLimit="4">PLAYER_SHIP_PLEASUREFLAG</name>
+            </blueprintList>
+
+        <!--
+            Unoptimized Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Unoptimized_Cruisers#
+        -->
+            <blueprintList wikiPage="Unoptimized Cruisers#" name="LIST_SHIPS_LIMIT_WIKI">
+                <name wikiName="Unoptimized Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_LIMIT</name>
+                <name wikiName="Unoptimized Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_LIMIT_2</name>
+                <name wikiName="Unoptimized Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_LIMIT_3</name>
+            </blueprintList>
+
+        <!--
+            Wrecked Bombers#
+            https://ftlmultiverse.fandom.com/wiki/Wrecked_Bombers#
+        -->
+            <blueprintList wikiPage="Wrecked Bombers#" name="LIST_SHIPS_STUPIDGHOST_WIKI">
+                <name wikiName="Wrecked Bomber A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_STUPIDGHOST</name>
+                <name wikiName="Wrecked Bomber B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_STUPIDGHOST_2</name>
+                <name wikiName="Wrecked Bomber C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_STUPIDGHOST_3</name>
+            </blueprintList>
+
+        <!--
+            Pimped Out Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Pimped_Out_Cruisers#
+        -->
+            <blueprintList wikiPage="Pimped Out Cruisers#" name="LIST_SHIPS_GOLD_WIKI">
+                <name wikiName="Pimped Out Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_GOLD</name>
+                <name wikiName="Pimped Out Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_GOLD_2</name>
+            </blueprintList>
+
+        <!--
+            Equinoid Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Equinoid_Cruisers#
+        -->
+            <blueprintList wikiPage="Equinoid Cruisers#" name="LIST_SHIPS_PONY_WIKI">
+                <name wikiName="Equinoid Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_PONY</name>
+                <name wikiName="Equinoid Cruiser B" wikiHeading="Layout B" teleporterLimit="6">PLAYER_SHIP_PONY_2</name>
+                <name wikiName="Equinoid Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_PONY_3</name>
+            </blueprintList>
+
+        <!--
+            Aenwithe's Crewser
+            https://ftlmultiverse.fandom.com/wiki/Aenwithe's_Crewser
+        -->
+            <blueprintList wikiPage="Aenwithe's Crewser" name="LIST_SHIPS_CREW_WITHER_WIKI">
+                <name wikiName="Aenwithe's Crewser" wikiHeading="Aenwithe's Crewser" teleporterLimit="4">CREW_SHIP_WITHER</name>
+            </blueprintList>
+
+        <!--
+            Orchid Children Crewser
+            https://ftlmultiverse.fandom.com/wiki/Orchid_Children_Crewser
+        -->
+            <blueprintList wikiPage="Orchid Children Crewser" name="LIST_SHIPS_CREW_WITHER_2_WIKI">
+                <name wikiName="Child Crewser" wikiHeading="Child Crewser" teleporterLimit="2">CREW_SHIP_WITHER_2</name>
+            </blueprintList>
+
+        <!--
+            Sylvan's Transport#
+            https://ftlmultiverse.fandom.com/wiki/Sylvan's_Transport#
+        -->
+            <blueprintList wikiPage="Sylvan's Transport#" name="LIST_SHIPS_SYLVANTRANS_WIKI">
+                <name wikiName="Sylvan's Transport A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS</name>
+                <name wikiName="Sylvan's Transport B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS_2</name>
+                <name wikiName="Sylvan's Transport C" wikiHeading="Layout C" teleporterLimit="8">PLAYER_SHIP_SYLVANTRANS_3</name>
+            </blueprintList>
+
+       <!--
+            Unoptimized Cruiser MK IV
+            https://ftlmultiverse.fandom.com/wiki/Unoptimized_Cruiser_MK_IV
+        -->
+            <blueprintList wikiPage="Unoptimized Cruiser MK IV" name="LIST_SHIPS_LIMIT_4_WIKI">
+                <name wikiName="Unoptimized Cruiser MK IV" wikiHeading="Unoptimized Cruiser MK IV" teleporterLimit="4">PLAYER_SHIP_LIMIT_4</name>
+            </blueprintList>
+
+    <!--
+        Elite Cruisers#
+        https://ftlmultiverse.fandom.com/wiki/Elite_Cruisers#
+
+    -->
+        <blueprintList wikiPage="Elite Cruisers#" name="LIST_SHIPS_ELITE_WIKI">
+            <name wikiName="CDEG Cruiser" wikiHeading="CDEG Cruiser" teleporterLimit="4">ELITE_SHIP_MILITIA</name>
+            <name wikiName="Elite Federation Cruiser" wikiHeading="Elite Federation Cruiser" teleporterLimit="2">ELITE_SHIP_FED</name>
+            <name wikiName="Elite Rebel Cruiser" wikiHeading="Elite Rebel Cruiser" teleporterLimit="4">ELITE_SHIP_REBEL</name>
+            <name wikiName="Alt-MFK Cruiser" wikiHeading="Alt-MFK Cruiser" teleporterLimit="4">ELITE_SHIP_REBEL_2</name>
+            <name wikiName="Harmony Cruiser" wikiHeading="Harmony Cruiser" teleporterLimit="2">ELITE_SHIP_ENGI</name>
+            <name wikiName="Peace-Keeping Cruiser" wikiHeading="Peace-Keeping Cruiser" teleporterLimit="2">ELITE_SHIP_ZOLTAN</name>
+            <name wikiName="Extremist Cruiser" wikiHeading="Extremist Cruiser" teleporterLimit="3">ELITE_SHIP_DUSK</name>
+            <name wikiName="Alt-Suzerain Cruiser" wikiHeading="Alt-Suzerain Cruiser" teleporterLimit="4">ELITE_SHIP_MANTIS</name>
+            <name wikiName="Alt-Bishop Cruiser" wikiHeading="Alt-Bishop Cruiser" teleporterLimit="4">ELITE_SHIP_MANTIS_2</name>
+            <name wikiName="Warlord Cruiser" wikiHeading="Warlord Cruiser" teleporterLimit="3">ELITE_SHIP_FREEMANTIS</name>
+            <name wikiName="Inquisition Cruiser" wikiHeading="Inquisition Cruiser" teleporterLimit="2">ELITE_SHIP_ROCK</name>
+            <name wikiName="Alt-Paladin Cruiser" wikiHeading="Alt-Paladin Cruiser" teleporterLimit="3">ELITE_SHIP_ROCK_2</name>
+            <name wikiName="Sentinel Cruiser" wikiHeading="Sentinel Cruiser" teleporterLimit="4">ELITE_SHIP_CRYSTAL</name>
+            <name wikiName="Clairvoyant Cruiser" wikiHeading="Clairvoyant Cruiser" teleporterLimit="2">ELITE_SHIP_SLUG</name>
+            <name wikiName="Alt-Knight Cruiser" wikiHeading="Alt-Knight Cruiser" teleporterLimit="4">ELITE_SHIP_SLUG_2</name>
+            <name wikiName="Radiant Cruiser" wikiHeading="Radiant Cruiser" teleporterLimit="2">ELITE_SHIP_SHELL</name>
+            <name wikiName="Ampere Cruiser" wikiHeading="Ampere Cruiser" teleporterLimit="4">ELITE_SHIP_LEECH</name>
+            <name wikiName="R.U.E.S. Cruiser" wikiHeading="R.U.E.S. Cruiser" teleporterLimit="4">ELITE_SHIP_COALITION</name>
+            <name wikiName="Chieftain Cruiser" wikiHeading="Chieftain Cruiser" teleporterLimit="4">ELITE_SHIP_ORCHID</name>
+            <name wikiName="Swarm Cruiser" wikiHeading="Swarm Cruiser" teleporterLimit="2">ELITE_SHIP_LANIUS</name>
+            <name wikiName="Cruising Reaper" wikiHeading="Cruising Reaper" teleporterLimit="4">ELITE_SHIP_GHOST</name>
+            <name wikiName="Vagabond Cruiser" wikiHeading="Vagabond Cruiser" teleporterLimit="4">ELITE_SHIP_GHOST_2</name>
+        </blueprintList>
+
+<!-- Lists -->
+    <!--
+        List of Lists
+        Not found on Wiki
+        Some ships use a blueprintList to determine their crew, drones, or weapons
+        All of the following are found in autoBlueprints.xml
+
+        LIST_CREW_PIRATE_RANDOM is used on both Prototype Cruisers and Brood Cruisers
+        In code, replace PLACEHOLDER with Prototype Cruisers or Brood_Cruisers depending on page type
+    -->
+        <blueprintList name="LIST_LISTS_WIKI">
+            <!-- Crew Lists -->
+                <blueprintListName wikiRedirect="Militia Cruisers#Militia Crew" wikiName="Milita Crew" wikiHeading="Militia Crew" wikiPage="Militia Cruisers#">LIST_CREW_MILITIA_RANDOM</blueprintListName>
+                <blueprintListName wikiRedirect="Militia Cruisers#Militia Crew" wikiName="Soldier/Peacekeeper" wikiHeading="Militia Crew" wikiPage="Militia Cruisers#">LIST_CREW_MILITIA_ELITE_RANDOM_PLAYER</blueprintListName>
+                <blueprintListName wikiRedirect="PLACEHOLDER#Pirate Crew" wikiName="Pirate Crew" wikiHeading="Pirate Crew" wikiPage="PLACEHOLDER#">LIST_CREW_PIRATE_RANDOM</blueprintListName>
+                <blueprintListName wikiRedirect="Wrecked Bombers#Unique Crew" wikiName="Random Unique Crew" wikiHeading="Unique Crew" wikiPage="Wrecked Bombers#">LIST_CREW_UNIQUE_CRAPBUCKET</blueprintListName>
+                <blueprintListName wikiRedirect="Wrecked Bombers#Regular Crew" wikiName="Random Crew" wikiHeading="Regular Crew" wikiPage="Wrecked Bombers#">LIST_CREW_ALL_CRAPBUCKET</blueprintListName>
+            <!-- Weapon Lists -->
+                <blueprintListName wikiRedirect="Wrecked Bombers#Weapon List" wikiName="Random Weapon" wikiHeading="Weapon List" wikiPage="Wrecked Bombers#">LIST_WEAPONS_ALL_CRAPBUCKET</blueprintListName>
+            <!-- Drone Lists -->
+                <blueprintListName wikiRedirect="Wrecked Bombers#Drone List" wikiName="Random Drone" wikiHeading="Drone List" wikiPage="Wrecked Bombers#">LIST_DRONES_ALL_CRAPBUCKET</blueprintListName>
+        </blueprintList>
+<!-- wikiEnd -->
+
+</FTL>
