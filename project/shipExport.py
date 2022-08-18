@@ -1,14 +1,14 @@
 import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
 
-pathToData = blueprintUtils.pathToData
-    # files used
+#     files used
 #     blueprints.xml (all)
 #     dlcBlueprints.xml (some)
 #     autoblueprints.xml (some)
 #     hyperspace.xml (all)
 #     text_blueprints.xml (all)
 #     events_boss.xml (all)
+pathToData = blueprintUtils.pathToData
 class Ship:
 
     # defaultStartPower, defaultMaxPower
@@ -25,6 +25,7 @@ class Ship:
         'artillery': (1, 4),
         'mind': (1, 3),
         'hacking': (1, 3),
+        'temporal': (1, 3),
         'pilot': (1, 3),
         'sensors': (1, 3),
         'doors': (1, 3),
@@ -50,6 +51,7 @@ class Ship:
         text += self.getStartingReactor()
         text += self.getMaxHull()
         text += self.getCrewCapacity()
+        text += self.getSystemLimit()
         text += self.getStartingSystems()
         text += self.getInvalidSystems()
         text += self.getStartingWeapons()
@@ -182,6 +184,14 @@ class Ship:
 
         return f'\n* Crew Capacity: {crewLimit}'
 
+    def getSystemLimit(self) -> str:
+        systemLimitElement = self.customShip.find('systemLimit')
+        if systemLimitElement is None:
+            return ''
+
+        systemLimit = systemLimitElement.text
+        return f"\n* System Limit: '''{systemLimit}'''"
+
     def getStartingSystems(self) -> str:
         systemsList = self.getSystemsList()
         # len(systemList) never 0
@@ -266,13 +276,28 @@ class Ship:
         elif (systemStart == 'false') and (differentMax is False):
             return 'continue'
 
-        # Resistant room
+        # Resistant room: System or Ion
         # assume ships start with all resistant rooms they'll have
         roomId = systemElement.get('room')
         sysDamageResistChancePath = f'.//rooms/room[@id="{roomId}"]/sysDamageResistChance'
-        roomResist = self.customShip.find(sysDamageResistChancePath)
-        if roomResist is not None:
-            systemAppend += " ('''[[Resistant]]''')"
+        sysResist = self.customShip.find(sysDamageResistChancePath)
+        ionDamageResistChancePath = f'.//rooms/room[@id="{roomId}"]/ionDamageResistChance'
+        ionResist = self.customShip.find(ionDamageResistChancePath)
+
+        ionResistBool = ionResist is not None
+        sysResistBool = sysResist is not None
+
+        if not ionResistBool and not sysResistBool:
+            return systemAppend
+        
+        resistText = 'Resists '
+        resistList = []
+        if sysResistBool:
+            resistList.append('System')
+        if ionResistBool:
+            resistList.append('Ion')
+        resistText += ', '.join(resistList) + ' Damage'
+        systemAppend += f" ('''{resistText}''')"
         return systemAppend
 
     def getSystemName(self, name: str) -> str:
@@ -295,7 +320,6 @@ class Ship:
         invalidSystems = self.getInvalidSystemsList()
         if len(invalidSystems) == 0:
             return ''
-
         invalidSystemsText = '\n* The following systems cannot be installed:\n** '
         invalidSystemsText += '\n** '.join(invalidSystems)
         return invalidSystemsText
@@ -305,7 +329,11 @@ class Ship:
 
         invalidSystems = []
         for systemName in self.systems:
+            # SKIP TEMPORAL
+            if systemName == 'temporal':
+                continue
             systemElements = systemList.findall(systemName)
+            # SKIP ARTILLERY
             if len(systemElements) == 0 and systemName != 'artillery':
                 displayName = self.getSystemName(systemName)
                 invalidSystems.append(displayName)
@@ -415,7 +443,7 @@ class Ship:
         choiceElement = eventsBoss.find(choicePath)
 
         lastStandTextPath = f'.//event/choice[@req="{shipType}"]/event/text'
-        lastStandElement = choiceElement.find(lastStandTextPath) # if this is an error it's b/c the ship doesn't have last stand text
+        lastStandElement = choiceElement.find(lastStandTextPath)
         return lastStandElement.text
 
     def getUnlock(self) -> str:

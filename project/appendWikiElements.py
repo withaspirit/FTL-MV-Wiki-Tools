@@ -56,7 +56,7 @@ def appendWikiElements(blueprint: ET.Element, nameElem: ET.Element) -> str:
 
     appendText += f"""
         <mod-append:fullURL>https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(" ", "_")}</mod-append:fullURL>
-        </mod:findName>"""
+    </mod:findName>"""
     return appendText
 
 def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
