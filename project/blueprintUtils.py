@@ -21,9 +21,9 @@ dlcItems = {
     'SHOTGUN_PLAYER'
 }
 
-def getBlueprints() -> ET.Element:
+def getBlueprints(path: str = pathToData) -> ET.Element:
     blueprintsXML = ''
-    with open(pathToData + 'blueprints.xml', encoding='utf-8') as blueprintsFile:
+    with open(path + 'blueprints.xml', encoding='utf-8') as blueprintsFile:
         blueprintsWithVanilla = blueprintsFile.read()
         blueprintsWithoutVanilla = purgeVanillaBlueprints(blueprintsWithVanilla)
         blueprintsXML = ET.fromstring(blueprintsWithoutVanilla)
@@ -31,9 +31,9 @@ def getBlueprints() -> ET.Element:
     blueprints = ET.ElementTree(blueprintsXML).getroot()
     return blueprints
 
-def getDLCBlueprints() -> ET.Element:
+def getDLCBlueprints(path: str = pathToData) -> ET.Element:
     blueprintsXML = ''
-    with open(pathToData + 'dlcBlueprints.xml', encoding='utf-8') as blueprintsFile:
+    with open(path + 'dlcBlueprints.xml', encoding='utf-8') as blueprintsFile:
         blueprintsWithVanilla = blueprintsFile.read()
         blueprintsWithoutVanilla = purgeDLCBlueprints(blueprintsWithVanilla)
         blueprintsXML = ET.fromstring(blueprintsWithoutVanilla)
