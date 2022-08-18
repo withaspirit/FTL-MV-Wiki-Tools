@@ -154,12 +154,14 @@
                 <name>human_legion_pyro</name>
                 <name>human_technician</name>
                 <name wikiHeading="Wentworth Combat Drone">human_technician_drone</name>
+                <name>human_humanoid</name>
             <!-- Zoltan -->
                 <name>zoltan_osmian</name>
                 <name wikiHeading="Osmian Hologram">zoltan_osmian_hologram</name>
                 <name wikiHeading="Terrorist (Enemy Osmian)">zoltan_osmian_enemy</name>
             <!-- Mantis -->
                 <name>mantis_bishop</name>
+                <name wikiName="Free Mantis (Chaos)" wikiHeading="Free Mantis (Chaos)">mantis_free_chaos</name>
             <!-- Rockman -->
                 <name wikiHeading="Rockman Cultist">rock_cultist</name>
                 <name>rock_paladin</name>
@@ -179,17 +181,28 @@
                 <name wikiName="Equinoid" wikiHeading="Equinoid">pony</name>
                 <name wikiName="Tamed Equinoid" wikiHeading="Tamed Equinoid">pony_tamed</name>
                 <name wikiHeading="Crystal Equinoid">ponyc</name> <!-- also in LIST_CREW_UNIQUE, but lacks event and a ship -->
+                <name>pony_engi</name>
+                <name wikiName="Cyberpony (Chaos)" wikiHeading="Cyberpony (Chaos)">pony_engi_chaos</name>
+                <name>pony_engi_nano</name>
+                <name wikiName="Cyberpony (Chaos)" wikiHeading="Cyberpony (Chaos)">pony_engi_nano_chaos</name>
             <!-- Siren -->
-                <name wikiHeading="Sirens">siren</name>
+                <name>siren</name>
+                <name wikiName="Siren Harpy" wikiHeading="Siren Harpy">siren_harpy</name>                
             <!-- Obelisk -->
                 <name>obelisk</name>
-                <name wikiHeading="Royal Obelisk">obelisk_royal</name>
+                <name wikiHeading="Royal Obelisk">obelisk_royal</name> <!-- FIXME: change on wiki -->
             <!-- Cognitive -->
                 <name>cognitive</name>
                 <name>cognitive_automated</name>
                 <name>cognitive_advanced</name>
                 <name>cognitive_advanced_automated</name>
-            <!-- Morph Forms -->
+            <!-- Rhyme -->
+                <name>eldritch_cat</name>
+                <name>eldritch_spawn</name>
+                <name>eldritch_thing</name>
+                <name>eldritch_thing_weak</name>
+                <name>gnome</name>
+            <!-- Morphs -->
             	<name wikiName="Morph" wikiHeading="Morph">blob</name>
                 <name wikiName="Morph (Crystal)" wikiHeading="Morph">blobcrystal</name>
                 <name wikiName="Morph (Free Mantis)" wikiHeading="Morph">blobfreemantis</name>
@@ -203,7 +216,7 @@
                 <name wikiName="Morph (Slug)" wikiHeading="Morph">blobslug</name>
                 <name wikiName="Morph (Hatchling)" wikiHeading="Morph">blobhatch</name>
                 <name wikiName="Morph (Giant Alien Spider)" wikiHeading="Morph">blobspider</name>
-                <name wikiName="Morph (Weaver)" wikiHeading="Morph">blobweaver</name>
+                <name wikiName="Morph (Spider Weaver)" wikiHeading="Morph">blobweaver</name>
                 <name wikiName="Morph (Zoltan)" wikiHeading="Morph">blobzoltan</name>
                 <name wikiName="Morph (Orchid Children)" wikiHeading="Morph">blobswarm</name>
                 <name wikiName="Technopath" wikiHeading="Technopath">techno</name>
@@ -232,6 +245,7 @@
                 <name wikiName="Malform (Engi Defender)" wikiHeading="Malform">golddefend</name>
                 <name wikiName="Malform (Obelisk Royal)" wikiHeading="Malform">goldroyal</name>
                 <name wikiName="Malform (Slug Saboteur)"  wikiHeading="Malform">goldsabo</name>
+                <name wikiName="Malform (Crystal Sentinel)"  wikiHeading="Malform">goldsentinel</name>
                 <name wikiName="Malform (Human Soldier)" wikiHeading="Malform">goldsoldier</name>
                 <name wikiName="Malform (Mantis Suzerain)" wikiHeading="Malform">goldsuzerain</name>
                 <name wikiName="Malform (Shell Radiant)" wikiHeading="Malform">goldtoxic</name>
@@ -245,24 +259,33 @@
         this exists because existing redirects on the wiki (except for unique_queen) go to the Giant_Alien_Spiders page
     -->
         <blueprintList wikiPage="Giant Alien Spiders#" name="LIST_CREW_SPIDERS_WIKI">
-            <name>spider</name>
-            <name>spider_weaver</name>
+            <name wikiName="Giant Alien Spider" wikiHeading="Giant Alien Spider">spider</name>
+            <name wikiName="Spider Weaver" wikiHeading="Spider Weaver">spider_weaver</name>
             <name>spider_hatch</name>
         </blueprintList>
 
     <!--
         Unique Crew
         https://ftlmultiverse.fandom.com/wiki/Unique_Crew
-        like name="LIST_CREW_UNIQUE" except doesn't contain ponyc
+        like blueprintList name="LIST_CREW_UNIQUE" without ponyc
     -->
         <blueprintList wikiPage="Unique Crew#" name="LIST_CREW_UNIQUE_WIKI">
             <name wikiName="Tully" wikiHeading="Tully">unique_tully</name>
             <name wikiName="Haynes" wikiHeading="Haynes">unique_haynes</name>
-            <name>unique_jerry</name>
+            <name wikiName="Jerry" wikiHeading="Jerry">unique_jerry</name>
             <name wikiName="Jerry" wikiHeading="Jerry (Gatling)">unique_jerry_gun</name>
             <name wikiName="Jerry" wikiHeading="Jerry (Gatling &amp; Pony)">unique_jerry_pony</name>
             <name wikiName="Jerry" wikiHeading="Jerry (Gatling &amp; Pony)">unique_jerry_pony_crystal</name>
+            <name wikiName="Ellie" wikiHeading="Ellie">unique_ellie</name>
+            <name wikiName="Ellie (Lvl 1)" wikiHeading="Ellie">unique_ellie_lvl1</name>
+            <name wikiName="Ellie (Lvl 2)" wikiHeading="Ellie">unique_ellie_lvl2</name>
+            <name wikiName="Ellie (Lvl 3)" wikiHeading="Ellie">unique_ellie_lvl3</name>
+            <name wikiName="Ellie (Lvl 4)" wikiHeading="Ellie">unique_ellie_lvl4</name>
+            <name wikiName="Ellie (Lvl 5)" wikiHeading="Ellie">unique_ellie_lvl5</name>
+            <name wikiName="Ellie (Lvl 6)" wikiHeading="Ellie">unique_ellie_lvl6</name>
+            <name wikiName="Stephan" wikiHeading="Stephan">unique_ellie_stephan</name> 
             <name wikiName="Devorak" wikiHeading="Devorak">unique_devorak</name>
+            <name wikiName="Anurak" wikiHeading="Anurak">unique_anurak</name>
             <name wikiName="Vance" wikiHeading="Vance (Enemy Only)">unique_vance</name>
             <name wikiName="Cyra" wikiHeading="Cyra Black (Enemy Only)">unique_cyra</name>
             <name wikiName="Leah" wikiHeading="Leah (Enemy Only)">unique_leah</name>
@@ -270,32 +293,41 @@
             <name wikiName="Turzil" wikiHeading="Turzil">unique_turzil</name>
             <name wikiName="'Gardener'" wikiHeading="'Gardener'">gardener</name>
             <name wikiName="Alkali" wikiHeading="Alkali">unique_alkali</name>
-            <name>unique_ooj</name>
+            <name wikiName="OOJ MAJOO" wikiHeading="OOJ MAJOO">unique_ooj</name>
+            <name wikiName="OOJ MAJOO (Love)" wikiHeading="OOJ MAJOO">unique_ooj_love</name>
             <name wikiName="Nights" wikiHeading="Captain Nights">unique_nights</name>
             <name wikiName="Slocknog" wikiHeading="Slocknog">unique_slocknog</name>
             <name wikiName="Irwin" wikiHeading="Irwin">unique_irwin</name>
+            <name wikiName="Irwin (Demon)" wikiHeading="Irwin">unique_irwin_demon</name> <!-- FIXME: name + heading -->
             <name wikiName="Alkram" wikiHeading="Alkram">unique_alkram</name>
             <name wikiName="Tyrdeo" wikiHeading="Tyrdeo">unique_tyrdeo</name>
             <name wikiName="Wealsey" wikiHeading="Wealsey">unique_tyrdeo_bird</name>
-            <name>unique_freddy</name>
+            <name wikiName="Freddy" wikiHeading="Freddy">unique_freddy</name>
+            <name wikiName="Freddy (Fedora)" wikiHeading="Freddy">unique_freddy_fedora</name> 
+            <name wikiName="Freddy (Jester)" wikiHeading="Freddy">unique_freddy_jester</name>
+            <name wikiName="Freddy (Sombrero)" wikiHeading="Freddy">unique_freddy_sombrero</name>
+            <name wikiName="Freddy (Two Hats)" wikiHeading="Freddy">unique_freddy_twohats</name> <!-- FIXME: name+heading -->
             <name wikiName="Kazaaakplethkilik" wikiHeading="Kazaaakplethkilik">unique_kaz</name>
             <name wikiName="Dianesh" wikiHeading="Dianesh">unique_dianesh</name>
             <name wikiName="Ariadne" wikiHeading="Ariadne">unique_ariadne</name>
             <name wikiName="Ruwen" wikiHeading="Ruwen">unique_ruwen</name>
             <name wikiName="Tuco" wikiHeading="Tuco">unique_tuco</name>
             <name wikiName="Rock Elder" wikiHeading="Elder (Enemy Only)">rock_elder</name>
-            <name wikiName="The Beacon Eater" wikiHeading="The Beacon Eater">unique_eater</name>
-            <name>unique_anointed</name>
+            <name wikiName="Beacon Eater" wikiHeading="The Beacon Eater">unique_eater</name>
+            <name wikiName="Anointed" wikiHeading="The Anointed">unique_anointed</name>
             <name wikiName="Dessius" wikiHeading="Dessius">unique_dessius</name>
             <name wikiName="Lord Vortigon" wikiHeading="Lord Vortigon">unique_vortigon</name>
-            <name>unique_queen</name>
+            <name wikiName="Spider Queen" wikiHeading="Spider Queen">unique_queen</name>
+            <name>spider_venom</name>
+            <name wikiName="Venomous Queen (Chaos)" wikiHeading="Venomous Queen (Chaos)">spider_venom_chaos</name>
             <name wikiName="Sylvan" wikiHeading="Sylvan">unique_sylvan</name>
-            <name wikiName="Obyn" wikiHeading="Obyn">salt</name>
+            <name wikiName="Obyn" wikiHeading="Obyn">unique_obyn</name>
+            <name wikiName="Obyn" wikiHeading="Obyn">unique_obyn_temp</name>
             <name wikiName="Billy" wikiHeading="Billy">unique_billy</name>
             <name wikiName="Billy (Box)" wikiHeading="Billy (Box)">unique_billy_box</name>
             <name wikiName="Guntput" wikiHeading="Guntput">unique_guntput</name>
-            <name wikiName="Metyunt" wikiHeading="Metyunt">traitor</name>
-            <name wikiName="Tintan and Rig" wikiHeading="Symbiote">symbiote</name>
+            <name wikiName="Metyunt" wikiHeading="Metyunt">unique_metyunt</name>
+            <name wikiName="Tintan and Rig" wikiHeading="Symbiote">unique_symbiote</name>
             <name wikiName="Tony Sr" wikiHeading="Tony Sr">unique_tonysr</name>
             <name wikiName="Aenwithe" wikiHeading="Aenwithe">unique_wither</name>
             <!-- <name>ponyc</name> -->
@@ -308,12 +340,14 @@
             <name wikiName="Vinz" wikiHeading="Vinz">gbvinz</name>
             <name wikiName="Zuul" wikiHeading="Zuul">gbzuul</name>
             <!-- Easter Egg Crew FIXME: not on Wiki yet -->
-            <name wikiName="Brick">easter_brick</name>
-            <name wikiName="Coomer">easter_coomer</name>
-            <name wikiName="Tommy">easter_tommy</name>
-            <name wikiName="Bubby">easter_bubby</name>
-            <name wikiName="Sunkist">easter_sunkist</name>
-            <name wikiName="Angel">easter_angel</name>
+            <name wikiName="Brick" wikiHeading="Brick">easter_brick</name>
+            <name wikiName="Coomer" wikiHeading="Coomer">easter_coomer</name>
+            <name wikiName="Tommy" wikiHeading="Tommy">easter_tommy</name>
+            <name wikiName="Bubby" wikiHeading="Bubby">easter_bubby</name>
+            <name wikiName="Sunkist" wikiHeading="Sunkist">easter_sunkist</name>
+            <name wikiName="Angel" wikiHeading="Angel">easter_angel</name>
+            <name>snowman</name>
+            <name wikiName="Snowman (Chaos)" wikiHeading="Snowman (Chaos)">snowman_chaos</name>
         </blueprintList>
 
     <!--
@@ -332,7 +366,12 @@
             <name wikiName="Sylrick" wikiHeading="Sylrick">sylvanrick</name>
             <name wikiName="Syleah" wikiHeading="Syleah">sylvanleah</name>
             <name wikiName="Beans" wikiHeading="Beans">beans</name>
-            <name wikiName="Obyn" wikiHeading="Salt Papyrus">saltpapy</name>
+            <name wikiName="Salt Papyrus" wikiHeading="Salt Papyrus">saltpapy</name>
+            <name>nexus_pants</name>
+            <name wikiName="C.E.L. Enforcer (Sylvan)" wikiHeading="C.E.L. Enforcer (Sylvan)">nexus_sylvan_cel</name>
+            <name wikiName="C.E.L. Enforcer (Obyn)" wikiHeading="C.E.L. Enforcer (Obyn)">nexus_obyn_cel</name>
+            <name>nexus_sylvan_gman</name>
+            <name>bucket</name>
         </blueprintList>
 
     <!--
@@ -401,7 +440,7 @@
         <!--
             Missile Weapons
             https://ftlmultiverse.fandom.com/wiki/Missile_Weapons
-            like name="BLUELIST_MISSILES_ALL" but excludes weapons from other pages
+            like blueprintList name="BLUELIST_MISSILES_ALL" but excludes weapons from other pages
         -->
             <blueprintList wikiPage="Missile Weapons#" name="LIST_WEAPONS_MISSILE_WIKI">
                 <name>MISSILES_1</name>
@@ -413,6 +452,7 @@
                 <name>MISSILES_BURST_2</name>
                 <name>MISSILES_BURST_2_PLAYER</name>
                 <name>MISSILES_CLOAK</name>
+                <name>MISSILES_CLOAK_PLAYER</name>
                 <name>MISSILES_FIRE</name>
                 <name>MISSILES_FIRE_PLAYER</name>
                 <name>MISSILES_FREE</name>
@@ -423,7 +463,7 @@
         <!--
             Ion Weapons
             https://ftlmultiverse.fandom.com/wiki/Ion_Weapons
-            like name="BLUELIST_ION" but excludes weapons from other pages
+            like blueprintList name="BLUELIST_ION" but excludes weapons from other pages
         -->
             <blueprintList wikiPage="Ion Weapons#" name="LIST_WEAPONS_ION_WIKI">
                 <name>ION_1</name>
@@ -450,7 +490,7 @@
         <!--
             Beam Weapons
             https://ftlmultiverse.fandom.com/wiki/Beam_Weapons
-            like name="BLUELIST_BEAMS_ALL" but excludes weapons from other pages
+            like blueprintList name="BLUELIST_BEAMS_ALL" but excludes weapons from other pages
         -->
             <blueprintList wikiPage="Beam Weapons#" name="LIST_WEAPONS_BEAM_WIKI">
                 <name>BEAM_1</name>
@@ -520,7 +560,7 @@
         <!--
             Crystal Weapons
             https://ftlmultiverse.fandom.com/wiki/Crystal_Weapons
-            like name="BLUELIST_WEAPONS_CRYSTAL" without BOMB_LOCK, CRYSTAL_BURST_FIRE, and MINELAUNCHER_CRYSTAL
+            like blueprintList name="BLUELIST_WEAPONS_CRYSTAL" without BOMB_LOCK, CRYSTAL_BURST_FIRE, and MINELAUNCHER_CRYSTAL
         -->
             <blueprintList wikiPage="Crystal Weapons#" name="LIST_WEAPONS_CRYSTAL_WIKI">
                 <name>CRYSTAL_BURST_1</name>
@@ -657,7 +697,7 @@
             <!--
                 Modular Weapons#Table_of_Modules
                 https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Modules
-                same as name="SHOP_ITEM_HEKTAR_MODULES" except MODULE_COOLDOWN isn't commented out
+                like blueprintList name="SHOP_ITEM_HEKTAR_MODULES" except MODULE_COOLDOWN isn't commented out
             -->
                 <blueprintList wikiPage="Modular Weapons#Table of Modules" name="LIST_WEAPONS_MODULAR_MODULES_WIKI">
                     <name>MODULE_BIO</name>
@@ -704,6 +744,19 @@
                 </mod:findName>
 
         <!--
+            Sentry Weapons
+            https://ftlmultiverse.fandom.com/wiki/Sentry_Weapons
+            same as blueprintList name="GIFTLIST_ESTATE"
+        -->
+            <blueprintList wikiPage="Sentry Weapons#" name="LIST_WEAPONS_SENTRY_WIKI">
+                <name>SENTRY_NORMAL</name>
+                <name>SENTRY_MIND</name>
+                <name>SENTRY_HEAL</name>
+                <name>SENTRY_FROST</name>
+                <name>SENTRY_VAMP</name>
+            </blueprintList>
+
+        <!--
             Spore Weapons
             https://ftlmultiverse.fandom.com/wiki/Spore_Weapons
         -->
@@ -722,7 +775,7 @@
         <!--
             Aether Weapons
             https://ftlmultiverse.fandom.com/wiki/Aether_Weapons
-            like name="BLUELIST_OBELISK" without drones
+            like blueprintList name="BLUELIST_OBELISK" without drones
         -->
             <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_WIKI">
                 <name>ANCIENT_LASER</name>
@@ -756,7 +809,11 @@
             https://ftlmultiverse.fandom.com/wiki/Event_Weapons
         -->
             <blueprintList wikiPage="Event Weapons#" name="LIST_WEAPONS_EVENT_LOOT_WIKI">
-                <name>HORSE_GUN</name>
+                <name>BA_LASER_ARTILLERY_2</name>
+                <name>BEAM_MADNESS</name>
+                <name>BEAM_MADNESS_ELITE</name>
+                <name>BEAM_MADNESS_VISION</name>
+                <name wikiName="Plushie Gun" wikiHeading="Plushie Gun">HORSE_GUN</name>
                 <name>MISSILES_ROCK</name>
                 <name>LASER_BISHOP</name>
                 <name>ION_PIERCE_CHAIN</name>
@@ -771,6 +828,7 @@
                 <name>BEAM_SHELL</name>
                 <name>ZOLTAN_DELETER</name>
                 <name wikiName="'The Debugger'" wikiHeading="Gatling Gun">GATLING_VERSION8</name>
+                <name>GATLING_VERSIONF</name>
                 <name wikiName="Energy Missile" wikiHeading="Energy Missiles">MISSILES_ENERGY</name>
                 <!--
                     Clone Cannon
@@ -845,7 +903,7 @@
         <!--
             Transport Loot
             https://ftlmultiverse.fandom.com/wiki/Transport_Loot
-            like name="JUDGELIST_ROCK_TRANSPORT_LOOT" without drones and HORSE_GUN
+            like blueprintList name="JUDGELIST_ROCK_TRANSPORT_LOOT" without drones and HORSE_GUN
         -->
             <blueprintList wikiPage="Transport Loot#" name="LIST_WEAPONS_TRANSPORT_LOOT_WIKI">
                 <name>LOOT_CIVILIAN_1</name>
@@ -869,7 +927,11 @@
                 <name wikiName="Flak Gun MK II" wikiHeading="Flak Gun MK II (L)">LOOT_LEECH_1</name>
                 <name>LOOT_CULTIST_1</name>
                 <name>LOOT_DYNASTY_1</name>
+                <name>LOOT_LANIUS_1</name>
+                <!--
+                removed in 5.3
                 <name wikiName="Flak Gun MK II" wikiHeading="Flak Gun MK II (A)">LOOT_AUG_1</name>
+                -->
             </blueprintList>
 
         <!--
@@ -887,33 +949,59 @@
         -->
             <blueprintList wikiPage="Renegade Loot#" name="LIST_WEAPONS_RENEGADE_LOOT_WIKI">
                 <name>BEAM_BATTERY</name>
+                <name>BEAM_BATTERY_CHAOS</name>
                 <name>BEAM_ADAPT_3</name>
+                <name>BEAM_ADAPT_3_CHAOS</name>
                 <name>BIG_ION</name>
+                <name>BIG_ION_CHAOS</name>
                 <name>BOMB_CONSERVRECYCLER</name>
+                <name>BOMB_CONSERVRECYCLER_CHAOS</name>
                 <name>BOMB_DRAIN</name>
+                <name>BOMB_DRAIN_CHAOS</name>
                 <name>FROST_CHARGEGUN</name>
+                <name>FROST_CHARGEGUN_CHAOS</name>
                 <name>ION_CHAIN_CHARGEGUN</name>
+                <name>ION_CHAIN_CHARGEGUN_CHAOS</name>
                 <name>MISSILES_OBSIDIAN</name>
+                <name wikiName="Obsidian Missiles (Enemy)" wikiHeading="Obsidian Missiles (Enemy)">MISSILES_OBSIDIAN_ENEMY</name>
+                <name>MISSILES_OBSIDIAN_CHAOS</name>
                 <name>SHOTGUN_STEEL</name>
+                <name>SHOTGUN_STEEL_CHAOS</name>
                 <name>SHOTGUN_TOGGLE_FIRE</name>
                 <name>SHOTGUN_TOGGLE_ION</name>
                 <name>SHOTGUN_TOGGLE_TOXIC</name>
+                <name>SHOTGUN_TOGGLE_CHAOS</name>
+                <name>CHAOS_TOGGLE_FIRE</name>
+                <name>CHAOS_TOGGLE_ION</name>
+                <name>CHAOS_TOGGLE_TOXIC</name>
                 <name>SHELL_LAUNCHER</name>
+                <name>SHELL_LAUNCHER_CHAOS</name>
                 <name>SLOTGUN</name>
+                <name>SLOTGUN_CHAOS</name>
                 <name>UNSPOOLER</name>
+                <name>UNSPOOLER_CHAOS</name>
                 <name>SNIPER</name>
+                <name wikiName="'Nevermiss' (Enemy)" wikiHeading="'Nevermiss' (Enemy)">SNIPER_ENEMY</name>
+                <name>SNIPER_CHAOS</name>
                 <name>MINELAUNCHER_GIANT</name>
+                <name wikiName="'Pharaoh' Mine Launcher (Enemy)" wikiHeading="'Pharaoh' Mine Launcher (Enemy)">MINELAUNCHER_GIANT_ENEMY</name>
+                <name>MINELAUNCHER_GIANT_CHAOS</name>
                 <name>LASER_LIGHT_CHARGEGUN</name>
+                <name>LASER_LIGHT_CHARGEGUN_CHAOS</name>
                 <name>CRYSTAL_BURST_FIRE</name>
+                <name>CRYSTAL_BURST_FIRE_CHAOS</name>
                 <name>STRAWBERRY</name>
+                <name>STRAWBERRY_CHAOS</name>
                 <name>BOMB_ELITE</name>
+                <name>BOMB_ELITE_CHAOS</name>
                 <name>GASTER_BLASTER</name>
+                <name>GASTER_BLASTER_CHAOS</name>
             </blueprintList>
 
         <!--
             C.U.R.A Loot
             https://ftlmultiverse.fandom.com/wiki/C.U.R.A_Loot
-            like name="JUDGELIST_ROCK_CURA_LOOT" without drones
+            like blueprintList name="JUDGELIST_ROCK_CURA_LOOT" without drones
         -->
             <blueprintList wikiPage="C.U.R.A Loot#" name="LIST_WEAPONS_CURA_LOOT_WIKI">
                 <name>SCANNER_RECON</name>
@@ -925,16 +1013,25 @@
         <!--
             Nexus Loot
             https://ftlmultiverse.fandom.com/wiki/Nexus_Loot
-            like name="JUDGELIST_ROCK_NEXUS_LOOT" with SHOTGUN_GOLD_3 added
+            similar to blueprintList name="JUDGELIST_ROCK_NEXUS_LOOT", also contains SHOTGUN_GOLD_3 and 5.3 items
         -->
             <blueprintList wikiPage="Nexus Loot#" name="LIST_WEAPONS_NEXUS_LOOT_WIKI">
                 <name>BEAM_4_SYLVAN</name>
                 <name>BEAM_HARDSCIFI</name>
                 <name>CRASH_LASER</name>
                 <name>LASER_BURST_SYLVAN</name>
+                <name>LASER_BURST_SYLVAN_DELAY</name>
                 <name>LASER_BURST_5_SYLVAN</name>
-                <name>SHOTGUN_GOLD_3</name> <!-- FIXME: should this be here? -->
+                <name>SHOTGUN_GOLD_3</name>
                 <name>GATLING_ANCIENT</name>
+                <name>PRIME_LASER</name>
+                <name>PRIME_LASER_DESYNC</name>
+                <name>AWESOME_LASER_RED</name>
+                <name>AWESOME_LASER_BLUE</name>
+                <name>AWESOME_LASER_GREEN</name>
+                <name>AWESOME_LASER_YELLOW</name>
+                <name>AWESOME_LASER_PINK</name>
+                <name>AWESOME_LASER_BLACK</name>
             </blueprintList>
 
 <!-- Drones -->
@@ -946,7 +1043,7 @@
         Most Drones are not linked in the pattern <droneBlueprint>.<title>.
         Instead, it's by list.
 
-        Transport Loot, C.U.R.A._Loot, and Renegade_Loot could be formatted like
+        Transport Loot, C.U.R.A. Loot, Event Weapons, and Renegade Loot could be formatted like
         Renegade Loot#<droneBlueprint>.<title>, but Wiki information is incomplete
     -->
     <!-- Drone Types -->
@@ -1005,7 +1102,7 @@
             <!--
                 AMP Drones
                 https://ftlmultiverse.fandom.com/wiki/Drone_Types#AMP_Drones
-                like name="SHOP_ITEM_SYLVAN_DRONES_COMBAT_AMP"
+                like blueprintList name="SHOP_ITEM_SYLVAN_DRONES_COMBAT_AMP"
             -->
                 <blueprintList wikiPage="Drone Types#AMP Drones" name="LIST_DRONES_AMP_WIKI">
                     <name>ION_1_AMP2</name>
@@ -1023,6 +1120,14 @@
                 </blueprintList>
 
         <!-- Miscellaneous Drones -->
+            <!--
+                FIXME drones: find location
+            -->
+                <blueprintList wikiPage="FIXME" name="LIST_DRONES_FIXME_WIKI">
+                    <name>SPAWN_BATTLE</name>
+                    <name>SPAWN_BOARDER</name>
+                </blueprintList>
+
             <!--
                 Amphi-Drone
                 https://ftlmultiverse.fandom.com/wiki/Drone_Types#Amphi-Drone
@@ -1138,6 +1243,7 @@
                 <name>DEFENSE_TRINITY_MISSILE</name>
                 <name>DEFENSE_TRINITY_DRONE</name>
                 <name>DEFENSE_TRINITY_PROJECTILE</name>
+                <name>DEFENSE_TRINITY_CHAOS</name>
             </blueprintList>
 
         <!--
@@ -1146,6 +1252,7 @@
         -->
             <blueprintList wikiPage="Renegade Loot#Mining Drone" name="LIST_DRONES_RENEGADE_MINING_WIKI">
                 <name>SALT_MINER</name>
+                <name>SALT_MINER_CHAOS</name>
             </blueprintList>
 
         <!--
@@ -1157,6 +1264,14 @@
                 <name>YINYANG_BOARDER</name>
                 <name>SURGEON_BATTLE</name>
                 <name>SURGEON_BOARDER</name>
+                <name>HOLODRONE_BATTLE</name>
+                <name>HOLODRONE_BOARDER</name>
+                <name>YINYANG_BATTLE_CHAOS</name>
+                <name>YINYANG_BOARDER_CHAOS</name>
+                <name>SURGEON_BATTLE_CHAOS</name>
+                <name>SURGEON_BOARDER_CHAOS</name>
+                <name>HOLODRONE_BATTLE_CHAOS</name>
+                <name>HOLODRONE_BOARDER_CHAOS</name>
             </blueprintList>
 
     <!-- Transport Loot -->
@@ -1165,13 +1280,21 @@
             Combat Drones
             https://ftlmultiverse.fandom.com/wiki/Transport_Loot#Combat_Drones
         -->
-            <blueprintList wikiPage="Transport Loot#Combat Drones" name="LIST_DRONES_TRANSPORT_LOOT_COMBAT_WIKI">
-                <name>LOOT_AUTO_1</name>
-                <name>LOOT_AUTO_2</name>
-                <name>LOOT_LANIUS_1</name>
-                <name>LOOT_LANIUS_2</name>
+            <blueprintList wikiPage="Transport Loot#Combat Drones" name="LIST_DRONES_TRANSPORT_LOOT_COMBAT_WIKI">  
+                <name>LOOT_AUTO_1_LASER</name>
+                <name>LOOT_AUTO_1_BEAM</name>
                 <name>LOOT_ENGI_2</name>
                 <name>LOOT_ESTATE_1_COMBAT</name>
+                <name>LOOT_AUG_1_AMP2</name>
+                <name>LOOT_AUG_1_AMP3</name>
+                <name>LOOT_AUG_1_AMP4</name>
+                <!-- 
+                removed in 5.3 
+                <name wikiName="Combat Drone Mark I">LOOT_AUTO_1</name>
+                <name wikiName="Anti-Ship Beam Drone I">LOOT_AUTO_2</name>
+                <name wikiName="Heavy Combat Drone">LOOT_LANIUS_2</name> 
+                <name wikiName="Anti-Ship Beam Drone I">LOOT_LANIUS_1</name>
+                -->
             </blueprintList>
 
         <!--
@@ -1201,11 +1324,20 @@
                 <name>OMNI_DRONE</name>
             </blueprintList>
 
+    <!-- Nexus Loot -->
+        <!--
+            FIXME
+            https://ftlmultiverse.fandom.com/wiki/Nexus_Loot
+        -->
+            <blueprintList wikiPage="Nexus Loot#Drones" name="LIST_DRONES_NEXUS_WIKI">
+                <name>DEFENSE_PRIME</name>
+                <name>COMBAT_PRIME</name>
+            </blueprintList>
+
 <!-- Augments -->
     <!--
         <augBlueprint>
         https://ftlmultiverse.fandom.com/wiki/Augments
-
 
         Augment redirect patterns vary. Some are grouped on the same page,
         while others have their own page.
@@ -1216,7 +1348,6 @@
         https://ftlmultiverse.fandom.com/wiki/Augments
         redirect:
         https://ftlmultiverse.fandom.com/wiki/<augBlueprint>.<title>
-        lacks C.U.R.A Loot, Obsidian Armor, Crystalline Armor, Pheremones, Repair Gel, Shell Gas, etc.
 
         Anything commented out with "No blueprints" is included because it was found on
         https://ftlmultiverse.fandom.com/wiki/List_of_IDs#Augments
@@ -1236,10 +1367,13 @@
                 <name wikiName="Weapon Pre-Igniter" wikiHeading="Weapon Pre-Igniter">WEAPON_PREIGNITE</name>
                 <name>SUPER_ARMOR</name>
                 <name>SPEED_SUITS</name>
-                <name wikiName="Advanced Navigator" wikiHeading="Advanced Navigator">FTL_JUMPER_SCANNER</name>
+                <name>FTL_JUMPER_SCANNER</name>
+                <name>FTL_JUMPER_GOOD</name>
                 <name>CRATE_FUEL</name>
                 <name>CRATE_MISSILES</name>
                 <name>CRATE_DRONES</name>
+                <name>CRATE_SCRAP</name>
+                <name>CRATE_SCRAP_HUGE</name>
                 <name>RECYCLER</name>
                 <name>RECYCLER_REVERSE</name>
                 <name>DISTRACTION_BUOY</name>
@@ -1274,19 +1408,25 @@
                 <name>COMBAT_PANIC_BUTTON</name>
                 <name>COMBAT_WEAPON_JAMMER</name>
                 <name>COMBAT_SHIELDS_JAMMER</name>
-                <name wikiName="Shield Jammer MK 2" wikiHeading="Shield Jammer MK 2">COMBAT_SHIELDS_JAMMER_2</name> <!-- list with COMBAT_SHIELDS_JAMMER ? -->
                 <name>COMBAT_ENGINE_JAMMER</name>
                 <name>COMBAT_PILOT_JAMMER</name>
                 <name>COMBAT_CLOAKING_JAMMER</name>
                 <name>COMBAT_WARP_JAMMER</name>
                 <name>COMBAT_REACTOR_JAMMER</name>
+                <!-- 
+                removed in 5.3
                 <name>LOCKED_COMBAT_REACTOR_JAMMER</name>
+                <name wikiName="Shield Jammer MK 2" wikiHeading="Shield Jammer MK 2">COMBAT_SHIELDS_JAMMER_2</name>
+                -->
                 <name>COMBAT_OXYGEN_JAMMER</name>
                 <name>COMBAT_REPAIR</name>
                 <name>COMBAT_HAZARD</name>
                 <name>COMBAT_IONSTORM</name>
                 <name>COMBAT_OXYGEN_UNSTABLE</name>
-                <name>COMBAT_POWER</name>
+                <!--
+                renamed to UPG_BATTERY_GENERATOR in 5.3
+                <name wikiName="Emergency Generator" wikiHeading="Emergency Generator">COMBAT_POWER</name>
+                -->
                 <name>COMBAT_EXPLOSIVE</name>
                 <name>COMBAT_WARP_JAMMER</name>
 
@@ -1304,6 +1444,7 @@
                 <name>PANDORA_BOX</name>
                 <name>PANDORA_BOX_ANCIENT</name>
                 <name>ZOLTAN_STATUE</name>
+                <name>QUARP_JUICE</name>
                 <name>SMUGGLER_RAID_CARGO</name>
                 <name>NEBULA_GASSES</name>
                 <name>TULLY_PRESENT</name>
@@ -1385,10 +1526,30 @@
                 <name>SCRAP_HULL</name>
                 <name>EQUINOID_DUPLICATOR</name>
                 <name>STORY_TELLER</name>
+                <name>LOCKED_GLOBAL_TELEPORT</name>
+                <name>LOCKED_SHIP_TELEPORT</name>
+                <name>LOCKED_NEWORDER</name>
+                <name wikiName="Surge Controller (Drones)" wikiHeading="Surge Controller">CURA_SURGES_DRONES</name>
+                <name wikiName="Surge Controller (Fire)" wikiHeading="Surge Controller">CURA_SURGES_FIRE</name>
+                <name wikiName="Surge Controller (Damage)" wikiHeading="Surge Controller">CURA_SURGES_DAMAGE</name>
+                <name>STORE_BEACON_SYLVAN</name>
+                <name>GATLING_MAKER</name>
+                <name>STORE_BEACON_SUPER</name>
+                <name>SYLVAN_SHIELD_REWARD</name>
+                <name>SYLVAN_SHIELD_CONTINUITY_PROBE</name>
+                <name>SYLVAN_SHIELD</name>
+                <name wikiName="Merchant's Shield" wikiHeading="Merchant's Shield">SYLVAN_SHIELD_CONTINUITY</name>
+                <name>NO_SUFFOCATE</name>
                 <name>ZOLTAN_SPAWNER</name>
                 <name>LOCKED_XENOPHOBIA</name>
-                <name>SYLVAN_SHIELD</name>
-                <name>SYLVAN_SHIELD_CONTINUITY</name>
+                <name>LOCKED_GLOBAL_TELEPORT</name>
+                <name wikiName="Eldritch Shield A" wikiHeading="Eldritch Shield">RHYME_SHIELDS</name>
+                <name wikiName="Eldritch Shield B" wikiHeading="Eldritch Shield">RHYME_SHIELDS_B</name>
+                <name wikiName="Eldritch Shield C" wikiHeading="Eldritch Shield">RHYME_SHIELDS_C</name>
+                <name>ANURAK_PRAYER</name> <!-- FIXME: location -->
+                <name>HAT_RANGER</name>
+                <name>HAT_MASK</name>
+                <name>HAT_FEDORA</name> <!-- FIXME: location -->
         </blueprintList>
 
     <!--
@@ -1406,7 +1567,7 @@
             <name>LAB_ENGI_COMBAT</name>
             <name>LAB_ENGI_EFFICIENCY</name>
             <name>LAB_ENGI_ADAPT</name>
-            <name>EX_LAB_ENGI_ADAPT</name>
+            <name wikiName="Environmental Adaptation" wikiHeading="Environmental Adaptation">EX_LAB_ENGI_ADAPT</name>
             <name>LAB_SEPARATIST_HEAL</name>
             <name>LAB_DEFENDER_REPAIRS</name>
             <name>LAB_ZOLTAN_OVERCLOCK</name>
@@ -1415,7 +1576,7 @@
             <name>LAB_ZOLTAN_EMITTER</name>
             <name>LAB_MONK_COMBAT</name>
             <name>LAB_ORCHID_THORNS</name>
-            <name wikiName="Petrified Wood" wikiHeading="Petrified Wood">LAB_ORCHID_PETRIFIED</name>
+            <name>LAB_ORCHID_PETRIFIED</name>
             <name>LAB_ORCHID_TOTIPOTENCY</name>
             <name>LAB_MANTIS_MELEE</name>
             <name>LAB_MANTIS_FIRE</name>
@@ -1424,7 +1585,11 @@
             <name>LAB_HIVE_SLASH</name>
             <name>EX_LAB_MANTIS_FIRE</name>
             <name>EX_LAB_SUZERAIN_SLAVES</name>
-            <name>LAB_ROCK_METABOLISM</name>
+            <!--
+            removed 5.3
+            <name wikiName="Slowed Metabolism" wikiHeading="Slowed Metabolism">LAB_ROCK_METABOLISM</name>
+             -->
+            <name>LAB_ROCK_DOORS</name>
             <name>LAB_ROCK_SKIN</name>
             <name>EX_LAB_ROCK_SKIN</name>
             <name>LAB_ROCK_SPEED</name>
@@ -1506,7 +1671,7 @@
             <name>UPG_AETHER_SCANNERS</name>
             <name>UPG_AETHER_TRANSLATOR</name>
             <name>UPG_AETHER_PREIGNITER</name>
-            <name>UPG_AETHER_SHIELDS</name>
+            <name wikiName="Aether Overclocker" wikiHeading="Aether Overclocker">UPG_AETHER_SHIELDS</name>
             <name wikiName="Long Ranged Jump" wikiHeading="Long Ranged Jump">UPG_ENGINES_JUMPER</name>
             <name wikiName="Long Ranged Jump" wikiHeading="Long Ranged Jump">EX_FTL_JUMPER</name>
             <name wikiName="Engine Performance Upgrade" wikiHeading="Engine Performance Upgrade">UPG_ENGINES_PERFORMANCE</name>
@@ -1543,6 +1708,8 @@
             <name wikiName="Neural Disruptor" wikiHeading="Neural Disruptor">EX_HACKING_STUN</name>
             <name wikiName="Battery Performance Upgrade" wikiHeading="Battery Performance Upgrade">UPG_BATTERY_BOOSTER</name>
             <name wikiName="Battery Performance Upgrade" wikiHeading="Battery Performance Upgrade">EX_BATTERY_BOOSTER</name>
+            <name>UPG_BATTERY_GENERATOR</name>
+            <name>EX_BATTERY_GENERATOR</name>
         </blueprintList>
 
     <!--
@@ -1615,6 +1782,7 @@
                 <name>SLUG_GEL</name>
                 <name wikiHeading="Hektar Ultra-Stick Gel (tm)">HEKTAR_GEL</name>
                 <name>PLEASURE_GEL</name>
+                <name>SYLVAN_GEL</name>
             </blueprintList>
 
         <!--
@@ -1629,26 +1797,36 @@
                 <name>LOCKED_NANITE_GAS</name>
                 <name>REGEN_GAS</name>
                 <name>LOCKED_REGEN_GAS</name>
+                <name>PECULIAR_GAS</name>
             </blueprintList>
 
     <!--
         Hidden Augments
     -->
         <!--
-            found in hyperspace.xml on <customShip> elements.
+            Found in hyperspace.xml on <customShip> elements.
             <customShip> elements have the same "name" attribute as their corresponding <shipBlueprint>
             All <customShips> have at least 2 <hiddenAug>.
-            the first determines Tully's response to the player's ship when arriving in Sector 8. Used in events_boss.xml
-            the second indicates the ship was made for FTL: Multiverse
-            Any following <hiddenAug> is noteworthy
-
-            Current : NO_WEAPON, BLESSING_MONK, STAGE_2, STAGE 3
+            The first <hiddenAug> determines Tully's response to the player's ship when arriving in Sector 8. Used in events_boss.xml
+            The second <hiddenAug> indicates the ship was made for FTL: Multiverse
+            
+            Any <hiddenAug> after the first two are noteworthy
         -->
+
+        <!--
+            Rhyme Cruisers
+            FIXME: location
+            https://ftlmultiverse.fandom.com/wiki/Rhyme_Cruisers
+        -->
+            <blueprintList wikiPage="Rhyme Cruisers#" name="LIST_AUGMENTS_HIDDEN_CHAOS_WIKI">
+                <name>CHAOS</name>
+            </blueprintList>
+
         <!--
             Multiverse Flagship (player)
             https://ftlmultiverse.fandom.com/wiki/Multiverse_Flagship_(player)
         -->
-            <blueprintList wikiPage="Multiverse Flagship (player)#" wikiName="LIST_AUGMENTS_HIDDEN_FLAGSHIP_WIKI">
+            <blueprintList wikiPage="Multiverse Flagship (player)#" name="LIST_AUGMENTS_HIDDEN_FLAGSHIP_WIKI">
                 <name wikiName="Stage 2 Power Surge" wikiHeading="Stage 2 Power Surge">STAGE_2</name>
                 <name wikiName="Stage 3 Power Surge" wikiHeading="Stage 3 Power Surge">STAGE_3</name>
             </blueprintList>
@@ -1658,7 +1836,7 @@
             https://ftlmultiverse.fandom.com/wiki/Illesctrian_Cruisers
 
         -->
-            <blueprintList wikiPage="Illesctrian_Cruisers#" wikiName="LIST_AUGMENTS_HIDDEN_MONK_WIKI">
+            <blueprintList wikiPage="Illesctrian Cruisers#" name="LIST_AUGMENTS_HIDDEN_MONK_WIKI">
                 <name wikiName="Monk Blessing" wikiHeading="Monk Blessing">ZOLTAN_BLESSING</name>
             </blueprintList>
 
@@ -1722,6 +1900,11 @@
             <name>ARTILLERY_BOSS_3</name>
             <name>ARTILLERY_BOSS_4</name>
             -->
+            <name>ARBITER</name>
+            <name>ARTILLERY_MADNESS</name>
+            <name>ARTILLERY_MADNESS_ELITE</name>
+            <name>ARTILLERY_MADNESS_VISION</name>
+            <name>ARTILLERY_MFK_DYLAN</name>
         </blueprintList>
 
 <!-- Ships -->
@@ -1861,6 +2044,16 @@
             </blueprintList>
 
         <!--
+            Auto-Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Auto-Cruisers#
+        -->
+            <blueprintList wikiPage="Auto-Cruisers#" name="LIST_SHIPS_AUTO_WIKI">
+                <name wikiName="Auto-Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_AUTO</name>
+                <name wikiName="Auto-Cruiser B" wikiHeading="Layout B" teleporterLimit="0">PLAYER_SHIP_AUTO_2</name>
+                <name wikiName="Auto-Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_AUTO_3</name>
+            </blueprintList>
+
+        <!--
             MV Rebel Cruisers#
             https://ftlmultiverse.fandom.com/wiki/MV_Rebel_Cruisers#
         -->
@@ -1878,6 +2071,16 @@
                 <name wikiName="MFK Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MFK</name>
                 <name wikiName="MFK Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MFK_2</name>
                 <name wikiName="MFK Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_MFK_3</name>
+            </blueprintList>
+
+        <!--
+            Technician Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Technician_Cruisers#
+        -->
+            <blueprintList wikiPage="Technician Cruisers#" name="LIST_SHIPS_TECHNICIAN_WIKI">
+                <name wikiName="Technician Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_TECHNICIAN</name>
+                <name wikiName="Technician Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_TECHNICIAN_2</name>
+                <name wikiName="Technician Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_TECHNICIAN_3</name>
             </blueprintList>
 
         <!--
@@ -1997,6 +2200,16 @@
                 <name wikiName="Illesctrian Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_MONK</name>
                 <name wikiName="Illesctrian Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_MONK_2</name>
                 <name wikiName="Illesctrian Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_MONK_3</name>
+            </blueprintList>
+
+        <!--
+            Peacekeeping Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Peacekeeping_Cruisers#
+        -->
+            <blueprintList wikiPage="Peacekeeping Cruisers#" name="LIST_SHIPS_PEACEKEEPER_WIKI">
+                <name wikiName="Peacekeeping Cruiser A" wikiHeading="Layout A" teleporterLimit="0">PLAYER_SHIP_PEACEKEEPER</name>
+                <name wikiName="Peacekeeping Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_PEACEKEEPER_2</name>
+                <name wikiName="Peacekeeping Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_PEACEKEEPER_3</name>
             </blueprintList>
 
         <!--
@@ -2208,6 +2421,16 @@
                 <name wikiName="Sylvan Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_SYLVAN_3</name>
             </blueprintList>
 
+        <!--
+            C.E.L. Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/C.E.L._Cruisers#
+        -->
+            <blueprintList wikiPage="C.E.L. Cruisers#" name="LIST_SHIPS_CEL_WIKI">
+                <name wikiName="C.E.L. Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_CEL</name>
+                <name wikiName="C.E.L. Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_CEL_2</name>
+                <name wikiName="C.E.L. Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_CEL_3</name>
+            </blueprintList>
+
     <!--
         Shell Ships (page 10)
     -->
@@ -2370,6 +2593,16 @@
             </blueprintList>
 
         <!--
+            Rhyme Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Rhyme_Cruisers#
+        -->
+            <blueprintList wikiPage="Rhyme Cruisers#" name="LIST_SHIPS_RHYME_WIKI">
+                <name wikiName="Rhyme Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_RHYME</name>
+                <name wikiName="Rhyme Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_RHYME_2</name>
+                <name wikiName="Rhyme Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_RHYME_3</name>
+            </blueprintList>
+
+        <!--
             Obelisk Cruisers#
             https://ftlmultiverse.fandom.com/wiki/Obelisk_Cruisers#
         -->
@@ -2398,7 +2631,7 @@
         -->
             <blueprintList wikiPage="Slot 2 Crewsers#" name="LIST_SHIPS_CREW_SLOT2_WIKI">
                 <name wikiName="Jerry's Cruiser" wikiHeading="Jerry's Cruiser" teleporterLimit="1">CREW_SHIP_SLOT2</name>
-                <name wikiName="Devorak's Cruiser" wikiHeading="Devorak's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT2_2</name>
+                <name wikiName="Ex-Duskbringer Cruiser" wikiHeading="Ex-Duskbringer Cruiser" teleporterLimit="2">CREW_SHIP_SLOT2_2</name>
                 <name wikiName="Turzil's Cruiser" wikiHeading="Turzil's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT2_3</name>
             </blueprintList>
 
@@ -2409,6 +2642,7 @@
             <blueprintList wikiPage="Slot 3 Crewsers#" name="LIST_SHIPS_CREW_SLOT3_WIKI">
                 <name wikiName="Alkali's Cruiser" wikiHeading="Alkali's Cruiser" teleporterLimit="3">CREW_SHIP_SLOT3</name>
                 <name wikiName="OOJ MAJOO's Spurgle Yurgle" wikiHeading="OOJ MAJOO's Spurgle Yurgle" teleporterLimit="3">CREW_SHIP_SLOT3_2</name>
+                <name wikiName="Ellie's Cruiser" wikiHeading="Ellie's Cruiser" teleporterLimit="2">CREW_SHIP_SLOT3_3</name>
             </blueprintList>
 
         <!--
@@ -2633,10 +2867,10 @@
             Equinoid Cruisers#
             https://ftlmultiverse.fandom.com/wiki/Equinoid_Cruisers#
         -->
-            <blueprintList wikiPage="Equinoid Cruisers#" name="LIST_SHIPS_PONY_WIKI">
-                <name wikiName="Equinoid Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_PONY</name>
-                <name wikiName="Equinoid Cruiser B" wikiHeading="Layout B" teleporterLimit="6">PLAYER_SHIP_PONY_2</name>
-                <name wikiName="Equinoid Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_PONY_3</name>
+            <blueprintList wikiPage="Equinoid Cruisers#" name="LIST_SHIPS_HORSE_WIKI">
+                <name wikiName="Equinoid Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_HORSE</name>
+                <name wikiName="Equinoid Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_HORSE_2</name>
+                <name wikiName="Equinoid Cruiser C" wikiHeading="Layout C" teleporterLimit="6">PLAYER_SHIP_HORSE_3</name>
             </blueprintList>
 
         <!--
@@ -2656,13 +2890,13 @@
             </blueprintList>
 
         <!--
-            Sylvan's Transport#
-            https://ftlmultiverse.fandom.com/wiki/Sylvan's_Transport#
+            Merchant Transport#
+            https://ftlmultiverse.fandom.com/wiki/Merchant_Transport#
         -->
-            <blueprintList wikiPage="Sylvan's Transport#" name="LIST_SHIPS_SYLVANTRANS_WIKI">
-                <name wikiName="Sylvan's Transport A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS</name>
-                <name wikiName="Sylvan's Transport B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS_2</name>
-                <name wikiName="Sylvan's Transport C" wikiHeading="Layout C" teleporterLimit="8">PLAYER_SHIP_SYLVANTRANS_3</name>
+            <blueprintList wikiPage="Merchant Transport#" name="LIST_SHIPS_SYLVANTRANS_WIKI">
+                <name wikiName="Merchant Transport A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS</name>
+                <name wikiName="Merchant Transport B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS_2</name>
+                <name wikiName="Merchant Transport C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_SYLVANTRANS_3</name>
             </blueprintList>
 
        <!--
@@ -2678,14 +2912,14 @@
         https://ftlmultiverse.fandom.com/wiki/Elite_Cruisers#
 
     -->
-        <blueprintList wikiPage="Elite Cruisers#" name="LIST_SHIPS_ELITE_WIKI">
-            <name wikiName="CDEG Cruiser" wikiHeading="CDEG Cruiser" teleporterLimit="4">ELITE_SHIP_MILITIA</name>
+        <blueprintList wikiPage="EliteCruisers#" name="LIST_SHIPS_ELITE_WIKI">
+            <name wikiName="EDC Cruiser" wikiHeading="EDC Cruiser" teleporterLimit="4">ELITE_SHIP_MILITIA</name>
             <name wikiName="Elite Federation Cruiser" wikiHeading="Elite Federation Cruiser" teleporterLimit="2">ELITE_SHIP_FED</name>
             <name wikiName="Elite Rebel Cruiser" wikiHeading="Elite Rebel Cruiser" teleporterLimit="4">ELITE_SHIP_REBEL</name>
             <name wikiName="Alt-MFK Cruiser" wikiHeading="Alt-MFK Cruiser" teleporterLimit="4">ELITE_SHIP_REBEL_2</name>
             <name wikiName="Harmony Cruiser" wikiHeading="Harmony Cruiser" teleporterLimit="2">ELITE_SHIP_ENGI</name>
-            <name wikiName="Peace-Keeping Cruiser" wikiHeading="Peace-Keeping Cruiser" teleporterLimit="2">ELITE_SHIP_ZOLTAN</name>
-            <name wikiName="Extremist Cruiser" wikiHeading="Extremist Cruiser" teleporterLimit="3">ELITE_SHIP_DUSK</name>
+            <name wikiName="Alt-Peacekeeping Cruiser" wikiHeading="Alt-Peacekeeping Cruiser" teleporterLimit="2">ELITE_SHIP_ZOLTAN</name>
+            <name wikiName="New Order Cruiser" wikiHeading="New Order Cruiser" teleporterLimit="3">ELITE_SHIP_DUSK</name>
             <name wikiName="Alt-Suzerain Cruiser" wikiHeading="Alt-Suzerain Cruiser" teleporterLimit="4">ELITE_SHIP_MANTIS</name>
             <name wikiName="Alt-Bishop Cruiser" wikiHeading="Alt-Bishop Cruiser" teleporterLimit="4">ELITE_SHIP_MANTIS_2</name>
             <name wikiName="Warlord Cruiser" wikiHeading="Warlord Cruiser" teleporterLimit="3">ELITE_SHIP_FREEMANTIS</name>
@@ -2724,6 +2958,9 @@
                 <blueprintListName wikiRedirect="Wrecked Bombers#Weapon List" wikiName="Random Weapon" wikiHeading="Weapon List" wikiPage="Wrecked Bombers#">LIST_WEAPONS_ALL_CRAPBUCKET</blueprintListName>
             <!-- Drone Lists -->
                 <blueprintListName wikiRedirect="Wrecked Bombers#Drone List" wikiName="Random Drone" wikiHeading="Drone List" wikiPage="Wrecked Bombers#">LIST_DRONES_ALL_CRAPBUCKET</blueprintListName>
+                <blueprintListName wikiRedirect="Merchant Transport#Sylvan List" wikiName="Random Sylvan" wikiHeading="Sylvan List" wikiPage="Slot 3 Crewsers#">LIST_CREW_SYLVAN_START</blueprintListName>
+                <blueprintListName wikiRedirect="Slot 3 Crewsers#Morph List" wikiName="Random Morph" wikiHeading="Morph List" wikiPage="Slot 3 Crewsers#">LIST_CREW_MORPH_RANDOM_ONLY</blueprintListName>
+                <blueprintListName wikiRedirect="Slot 3 Crewsers#Technopath List" wikiName="Random Technopath" wikiHeading="Technopath List" wikiPage="Slot 3 Crewsers#">LIST_CREW_TECHNO_RANDOM_ONLY</blueprintListName>
         </blueprintList>
 <!-- wikiEnd -->
 
