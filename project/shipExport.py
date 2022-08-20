@@ -2,12 +2,12 @@ import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
 
 #     files used
-#     blueprints.xml (all)
+#     blueprints.xml (always)
 #     dlcBlueprints.xml (some)
 #     autoblueprints.xml (some)
-#     hyperspace.xml (all)
-#     text_blueprints.xml (all)
-#     events_boss.xml (all)
+#     hyperspace.xml (always)
+#     text_blueprints.xml (always)
+#     events_boss.xml (always)
 pathToData = blueprintUtils.pathToData
 class Ship:
 
@@ -247,10 +247,10 @@ class Ship:
                 systemsList.append(systemString)
         return systemsList
 
-    # the following can be appended after a system's power is given:
-    # Max level of system
-    # System starting at non-default value on purchase
-    # Room that is resistant
+    # The following information can be appended after for each system:
+    # Whether the 'max' attribute of a system differs from the default value
+    # Whether a system's 'power' attribute starts at a non-default value on purchase
+    # Whether the system's room is resistant
     def getSystemAppend(self, systemElement: ET.Element, systemSettings: list[str]):
         defaultStartPower = systemSettings[0]
         defaultMaxPower = systemSettings[1]
@@ -276,7 +276,7 @@ class Ship:
         elif (systemStart == 'false') and (differentMax is False):
             return 'continue'
 
-        # Resistant room: System or Ion
+        # Resistant room: System, Ion, or both
         # assume ships start with all resistant rooms they'll have
         roomId = systemElement.get('room')
         sysDamageResistChancePath = f'.//rooms/room[@id="{roomId}"]/sysDamageResistChance'
@@ -384,7 +384,6 @@ class Ship:
 
         return hiddenAugments
 
-
     def getStartingResources(self) -> str:
         missiles = self.getElementAttribute('weaponList', 'missiles')
         drones = self.getElementAttribute('droneList', 'drones')
@@ -461,6 +460,8 @@ class Ship:
         unlock += f'\n* {unlockText}'
         return unlock
 
+    # Helper methods
+
     def getElement(self, elementName: str):
         return self.blueprint.find(elementName)
 
@@ -493,7 +494,7 @@ class Ship:
             blueprintList.append(blueprintLink)
         return blueprintList
 
-    # customName is names given
+    # customName is names given to Regular Crew or Secret Crew members (N/A for Unique Crew)
     def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
         wikiRedirect = blueprintUtils.getWikiRedirectWithPlaceholder(blueprint, self.getElement('wikiPage').text)
@@ -505,6 +506,7 @@ class Ship:
         else:
             blueprintLink = blueprintUtils.formatCrewBlueprintLink(wikiRedirect, wikiName, crewName)
 
+        # this is done after blueprintLink() function because it shouldn't be part of the link
         if tag == 'augBlueprint':
                 blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
         return blueprintLink
