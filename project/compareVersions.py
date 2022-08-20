@@ -6,7 +6,6 @@ import time
 # New version must be in 'FTL Data/data/'
 # Old version must be specified in 'oldVersionPath' variable
 
-
 # Get names of blueprints added, removed and changed between updates
 # Also get blueprints whose title/class were changed after update
 
@@ -74,6 +73,7 @@ if __name__ == '__main__':
     newBlueprintNames += getBlueprintNames(newBlueprints)
     newBlueprintNames += getBlueprintNames(newDLCBlueprints)
 
+    # Get difference in between new/old version
     oldBlueprintsRemoved = orderedDifference(oldBlueprintNames, newBlueprintNames)
     newBlueprintsAdded = orderedDifference(newBlueprintNames, oldBlueprintNames)
     # oldBlueprintsRemoved = sorted(set(oldBlueprintNames) - set(newBlueprintNames), key=oldBlueprintNames.index)
@@ -84,6 +84,7 @@ if __name__ == '__main__':
     compareText += '\n\nNew blueprints added\n\n'
     compareText += '\n'.join(newBlueprintsAdded)
 
+    # Get blueprints whose titles have been changed
     newBlueprintNameTitle = getBlueprintNameAndTitle(newBlueprints)
     oldBlueprintNameTitle = getBlueprintNameAndTitle(oldBlueprints)
 
