@@ -3,14 +3,16 @@
 # \ to preserve space character
 /project/FTL\ Data/*
 !/project/FTL\ Data/placeholder.txt
-/project/old\ data/
 
 # environment
 /project/__pycache__
 # data
-/project/Old\ version
+/project/old\ version
+/project/old\ data/
 # unreleased stuff
 /project/utils
+/project/wikiShips.txt
+/project/compareVersions.txt
 
 /project/Append\ wikiElements
 

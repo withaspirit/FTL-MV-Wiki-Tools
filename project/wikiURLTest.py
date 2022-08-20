@@ -4,7 +4,7 @@ import re
 import time
 
 # verifies that the wikiHeading of each blueprint is found on its corresponding page
-# may take ~ 5-7 minutes
+# takes ~ 5-7 minutes
 
 filePath = blueprintUtils.wikiElementsPath
 files = {
