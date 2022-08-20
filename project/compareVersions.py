@@ -2,11 +2,13 @@ import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
 import time
 
-# compare 2 files
-# new version must be in 'FTL Data/data/'
-# old version must be specified
-# get blueprintNames removed/changed after update
-# get blueprints whose title/class changed after update
+# Compare 2 files
+# New version must be in 'FTL Data/data/'
+# Old version must be specified in 'oldVersionPath' variable
+
+
+# Get names of blueprints added, removed and changed between updates
+# Also get blueprints whose title/class were changed after update
 
 # TODO: look at hyperspace.xml for crew
 oldVersionPath = blueprintUtils.cwd + '/old data/data/'
@@ -19,6 +21,7 @@ paths = [
     './shipBlueprint[@name]'
 ]
 
+# Get 'name' attributes of blueprints in a file
 def getBlueprintNames(root: ET.Element) -> list[str]:
     blueprintNameList = []
     for path in paths:
@@ -29,6 +32,7 @@ def getBlueprintNames(root: ET.Element) -> list[str]:
 
     return blueprintNameList
 
+# Get map of blueprints [name, title/class]
 def getBlueprintNameAndTitle(root: ET.Element) -> dict[str, str]:
     blueprintNameTitleDict = {}
     for path in paths:
@@ -44,6 +48,7 @@ def getBlueprintNameAndTitle(root: ET.Element) -> dict[str, str]:
 
     return blueprintNameTitleDict
 
+# Get the difference between two lists while maintaining insertion order
 def orderedDifference(list1: list, list2: list) -> list:
     set2 = set(list2)
     differentElements = []
@@ -52,6 +57,7 @@ def orderedDifference(list1: list, list2: list) -> list:
             differentElements.append(elem)
     return differentElements
 
+# Currently limited to comparing blueprints.xml and dlcBlueprints.xml
 if __name__ == '__main__':
     start_time = time.time()
     newBlueprints = blueprintUtils.getBlueprints()
@@ -75,7 +81,7 @@ if __name__ == '__main__':
 
     compareText = '\nOld blueprints removed\n\n'
     compareText += '\n'.join(oldBlueprintsRemoved)
-    compareText += '\n\nnew blueprints added\n\n'
+    compareText += '\n\nNew blueprints added\n\n'
     compareText += '\n'.join(newBlueprintsAdded)
 
     newBlueprintNameTitle = getBlueprintNameAndTitle(newBlueprints)
@@ -89,7 +95,7 @@ if __name__ == '__main__':
         if newTitle != oldTitle:
             differentTitles.update({name : [oldTitle, newTitle]})
 
-    compareText += '\n\ndifferent titles:\n\n'
+    compareText += '\n\nDifferent titles:\n\n'
 
     for key, value in differentTitles.items():
         compareText += f'\n {key}: {value}'
