@@ -29,25 +29,23 @@ def step1():
     init.__init__()
     fileName = init.wikiBlueprintListsName
     directory = config[init.zipPaths][init.wikiBlueprintList]
-    slipstreamUtils.zipPatchExtract(fileName, directory)
+    slipstreamUtils.zipValidatePatchExtract(fileName, directory)
     print('Finished step 1.')
 
 # Run appendWikiElements.py, Zip, patch, extract Append wikiElements
 def step2():
     print('Starting step 2.')
-    args = ['python', f'./project/{init.appendWikiElements}']
-    slipstreamUtils.subprocess.check_call(args, shell=True)
+    slipstreamUtils.executePythonFile('./project/', init.appendWikiElements)
 
     fileName = init.wikiElementsName
     directory = config[init.zipPaths][init.wikiElements]
-    slipstreamUtils.zipPatchExtract(fileName, directory)
+    slipstreamUtils.zipValidatePatchExtract(fileName, directory)
     print('Finished step 2.')
 
 # Run wikiShipExport.py, Zip, patch, extract Append wikiElements
 def step3():
     print('Starting step 3.')
-    args = ['python', f'./project/{init.wikiShipExport}']
-    subprocess.check_call(args, shell=True)
+    slipstreamUtils.executePythonFile('./project/', init.wikiShipExport)
     print('Finished step 3.')  
 
 # Executing section

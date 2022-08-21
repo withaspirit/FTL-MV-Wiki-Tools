@@ -11,7 +11,7 @@ config = configparser.ConfigParser()
 config.read(init.configFileName)
 
 # zipMove and patchExtract steps together
-def zipPatchExtract(fileName: str, directory: str):
+def zipValidatePatchExtract(fileName: str, directory: str):
     zipMove(config[init.projectPaths][init.project], fileName, directory)
     zipName = f'{fileName}.zip'
     validate([zipName])
@@ -20,9 +20,8 @@ def zipPatchExtract(fileName: str, directory: str):
 
 # Zip a mod folder and move it to SlipstreamModManager/mods
 # folder assumed to be in cwd
-def zipMove(zipLocation: str, zipFolder: str, targetDirectory: str):
-    zipPath = shutil.make_archive(zipFolder, 'zip', targetDirectory)
-    # FIXME: is the mods config main path necessary?
+def zipMove(originalPath: str, zipFolder: str, targetPath: str):
+    zipPath = shutil.make_archive(f'{originalPath}{zipFolder}', 'zip', targetPath)
     newPath = f'{config[init.mainPaths][init.slipstream]}/mods/{zipFolder}.zip'
     shutil.move(zipPath, newPath)
 
@@ -43,6 +42,9 @@ def extractDats(filePath: str):
 # Execute command line argument with SlipstreamModManager
 def executeSlipstream(args: list[str]):
     slipstreamPath = config[init.mainPaths][init.slipstream]
-    
     args = ['java', '-jar', init.modman] + args
     subprocess.check_call(args, cwd=slipstreamPath, shell=True)
+
+def executePythonFile(path: str, fileName: str):
+    args = ['python', fileName]
+    subprocess.check_call(args, cwd=path, shell=True)    
