@@ -1,9 +1,8 @@
 import configparser
-import subprocess
-
-import slipstreamUtils
 import init
 import sys
+
+import slipstreamUtils
 
 ## FIXME: this might not work if config.ini isn't already set up
 
@@ -24,8 +23,8 @@ helpMessage = """
 
 
 # Zip, patch, extract Append Wiki blueprintLists
-def step1():
-    print('Starting step 1.')
+def wikiBlueprintLists():
+    print('Step: Patching and extract FTL: Multiverse with {wikiBlueprintList}')
     init.__init__()
     fileName = init.wikiBlueprintListsName
     directory = config[init.zipPaths][init.wikiBlueprintList]
@@ -33,7 +32,7 @@ def step1():
     print('Finished step 1.')
 
 # Run appendWikiElements.py, Zip, patch, extract Append wikiElements
-def step2():
+def appendWikiElements():
     print('Starting step 2.')
     slipstreamUtils.executePythonFile('./project/', init.appendWikiElements)
 
@@ -43,7 +42,7 @@ def step2():
     print('Finished step 2.')
 
 # Run wikiShipExport.py, Zip, patch, extract Append wikiElements
-def step3():
+def wikiShipExport():
     print('Starting step 3.')
     slipstreamUtils.executePythonFile('./project/', init.wikiShipExport)
     print('Finished step 3.')  
@@ -52,25 +51,25 @@ def step3():
 if __name__ == '__main__':
     numArgs = len(sys.argv)
     if numArgs == 1:
-        step1()
-        step2()
-        step3()
+        wikiBlueprintLists()
+        appendWikiElements()
+        wikiShipExport()
     else:
         if numArgs > 2:
             print('More than one argument detected. Arguments ignored.')
         if sys.argv[1] == '--elements':
-            step1()
-            step2()
+            wikiBlueprintLists()
+            appendWikiElements()
         elif sys.argv[1] == '--fullShipExport':
-            step1()
-            step2()
-            step3()
+            wikiBlueprintLists()
+            appendWikiElements()
+            wikiShipExport()
         elif sys.argv[1] == '--appendBlueprintLists':
-            step1()
+            wikiBlueprintLists()
         elif sys.argv[1] == '--appendElements':
-            step2()
+            appendWikiElements()
         elif sys.argv[1] == '--shipExport':
-            step3()
+            wikiShipExport()
         elif sys.argv[1] == '--help':
             print(helpMessage)
         else:

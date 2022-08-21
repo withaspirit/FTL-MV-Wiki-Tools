@@ -77,7 +77,7 @@ def __init__():
 
     print('Finished initializing after %s seconds.' % (time.time() - start_time))
 
-# Ensure that modman.cfg is initialized and change allow_zip=false to =true
+# Ensure that modman.cfg is initialized and change allow_zip=false to allow_zip=true
 def slipstreamSettingsCheck(config: configparser.ConfigParser):
     modmanCfg = 'modman.cfg'
     modmanCfgPath = f'{config[mainPaths][slipstream]}{modmanCfg}'
@@ -93,14 +93,6 @@ def slipstreamSettingsCheck(config: configparser.ConfigParser):
             fileText = fileText.replace(allowZipFalse, 'allow_zip=true')
             file.write(fileText)
             file.truncate()
-
-    # try:
-    #     f = open(modmanCfgPath, '')
-    #     fileText = f.read()
-    # # Do something with the file
-    # except IOError:
-    #     errorMessage =
-    #     f.close()
 
 def getFilePath(fileName: str) -> str:
     print(f'Finding location of {fileName}. Please wait.')
