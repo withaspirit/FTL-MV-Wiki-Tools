@@ -1,7 +1,7 @@
 import configparser
-import init
 import sys
 
+import init
 import slipstreamUtils
 
 # This file accepts command-line arguments to execute various scripts and
@@ -60,31 +60,29 @@ if __name__ == '__main__':
     #   instead of calling --init in windowsScript.bat
     # init.__init__()
 
-    if numArgs == 1:
+    if numArgs > 2:
+        print('More than one argument detected. Arguments ignored.')
+    elif numArgs == 1:
+        #default
         wikiBlueprintLists()
         appendWikiElements()
         wikiShipExport()
-
-        if numArgs > 2:
-            print('More than one argument detected. Arguments ignored.')
-
-        # python does not have switch case in 3.9... sorry
-        if sys.argv[1] == '--init':
-            init.__init__()
-        elif sys.argv[1] == '--wikiInfo':
-            wikiBlueprintLists()
-            appendWikiElements()
-        elif sys.argv[1] == '--wikiShips':
-            wikiBlueprintLists()
-            appendWikiElements()
-            wikiShipExport()
-        elif sys.argv[1] == '--wikiLists':
-            wikiBlueprintLists()
-        elif sys.argv[1] == '--wikiElements':
-            appendWikiElements()
-        elif sys.argv[1] == '--wikiShipExport':
-            wikiShipExport()
-        elif sys.argv[1] == '--help' or sys.argv[1] == '--h':
-            print(helpMessage)
-        else:
-            print('Error: please enter a valid argument')
+    elif sys.argv[1] == '--init':
+        init.__init__()
+    elif sys.argv[1] == '--wikiInfo':
+        wikiBlueprintLists()
+        appendWikiElements()
+    elif sys.argv[1] == '--wikiShips':
+        wikiBlueprintLists()
+        appendWikiElements()
+        wikiShipExport()
+    elif sys.argv[1] == '--wikiLists':
+        wikiBlueprintLists()
+    elif sys.argv[1] == '--wikiElements':
+        appendWikiElements()
+    elif sys.argv[1] == '--wikiShipExport':
+        wikiShipExport()
+    elif sys.argv[1] == '--help' or sys.argv[1] == '--h':
+        print(helpMessage)
+    else:
+        print('Error: please enter a valid argument')
