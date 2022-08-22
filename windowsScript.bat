@@ -4,5 +4,5 @@ SET PROJECT_PATH=%~dp0
 cd %PROJECT_PATH%
 
 python auto.py --init
-python auto.py --fullShipExport
+python auto.py --wikiShips
 PAUSE

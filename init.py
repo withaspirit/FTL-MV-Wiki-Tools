@@ -4,8 +4,8 @@ import time
 import configparser
 
 # The project and SlipstreamModManager must be located on the same hard drive
-# for this to work
-# There must be only one copy of SlipstreamModManager on your system
+# For this to work, there must be only one copy of SlipstreamModManager on 
+# your system
 
 # Running this script for the first time may take ~2-3 minutes.
 # Please report if it takes longer
@@ -20,6 +20,7 @@ drive  = pathlib.Path.home().drive
 multiverseName = "Multiverse 5.3 - Data.zip"
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
+wikiShipsFile = 'wikiShips.txt'
 
 
 #files / folders
@@ -27,6 +28,8 @@ modman = 'modman.jar'
 configFileName = 'config.ini'
 wikiBlueprintListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
+ftlDataPath = './project/FTL Data/'
+
 
 # section names
 mainPaths = 'mainPaths'
