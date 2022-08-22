@@ -26,7 +26,7 @@ wikiShipsFile = 'wikiShips.txt'
 #files / folders
 modman = 'modman.jar'
 configFileName = 'config.ini'
-wikiBlueprintListsName = 'Append Wiki blueprintLists'
+wikiListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
 ftlDataPath = './project/FTL Data/'
 
@@ -148,12 +148,12 @@ def initConfig(config: configparser.ConfigParser):
     projectPath = os.path.join(cwdPath,'project\\')
     config[projectPaths][project] = projectPath
     config[projectPaths][ftlData] = os.path.join(projectPath, 'FTL Data\\data\\')
-    config[projectPaths][wikiBlueprintListsData] = os.path.join(projectPath, f'{wikiBlueprintListsName}\\data\\')
+    config[projectPaths][wikiBlueprintListsData] = os.path.join(projectPath, f'{wikiListsName}\\data\\')
     config[projectPaths][wikiElementsData] = os.path.join(projectPath, f'{wikiElementsName}\\data\\')
 
     if config.has_section(zipPaths) == False:
         config.add_section(zipPaths)
-    config[zipPaths][wikiBlueprintList] = os.path.join(projectPath, f'{wikiBlueprintListsName}\\')
+    config[zipPaths][wikiBlueprintList] = os.path.join(projectPath, f'{wikiListsName}\\')
     config[zipPaths][wikiElements] = os.path.join(projectPath, f'{wikiElementsName}\\')
     config[zipPaths][ftl] = os.path.join(projectPath, 'FTL Data')
 

@@ -1,25 +1,26 @@
 import configparser
 import sys
 
-import init
-import slipstreamUtils
+import wikiToolsInit
+import wikiToolsUtils
 
 # This file accepts command-line arguments to execute various scripts and
 # sequences
 
 config = configparser.ConfigParser()
-config.read(init.configFileName)
+config.read(wikiToolsInit.configFileName)
 
 helpMessage = f"""
 --init                      execute wikiToolsInit.py - initialize config.ini
                             and location of modman.jar
---wikiElements              execute {init.appendWikiElements}, patch the
-                            resulting files to the game, and extract-dats to
-                            {init.ftlDataPath}
---wikiLists                 zip {init.wikiBlueprintListsName}, patch it to the
-                            game's files, and extract-dats to  FTL Data
+--wikiElements              execute {wikiToolsInit.appendWikiElements}, patch 
+                            the resulting files to the game, and extract-dats
+                            to {wikiToolsInit.ftlDataPath}
+--wikiLists                 zip {wikiToolsInit.wikiBlueprintListsName}, patch
+                            it to the game's files, and extract-dats to 
+                            .project/FTL Data
 --wikiShipExport            execute wikiShipExport.py - export ship data to
-                            {init.wikiShipsFile}
+                            {wikiToolsInit.wikiShipsFile}
 --wikiInfo                  do --wikiLists and --wikiElements
 --wikiShips                 do --wikiLists, --wikiElements, and
                             --wikiShipExport
@@ -30,26 +31,26 @@ helpMessage = f"""
 def wikiBlueprintLists():
     print('Starting step 1.')
     # FIXME: is bottom statement necessary
-    config.read(init.configFileName)
-    fileName = init.wikiBlueprintListsName
-    directory = config[init.zipPaths][init.wikiBlueprintList]
-    slipstreamUtils.zipValidatePatchExtract(fileName, directory)
+    config.read(wikiToolsInit.configFileName)
+    fileName = wikiToolsInit.wikiBlueprintListsName
+    directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiBlueprintList]
+    wikiToolsUtils.zipValidatePatchExtract(fileName, directory)
     print('Finished step 1.')
 
 # Run appendWikiElements.py, zip, patch, extract Append wikiElements
 def appendWikiElements():
     print('Starting step 2.')
-    slipstreamUtils.executePythonFile('./project/', init.appendWikiElements)
+    wikiToolsUtils.executePythonFile('./project/', wikiToolsInit.appendWikiElements)
 
-    fileName = init.wikiElementsName
-    directory = config[init.zipPaths][init.wikiElements]
-    slipstreamUtils.zipValidatePatchExtract(fileName, directory)
+    fileName = wikiToolsInit.wikiElementsName
+    directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiElements]
+    wikiToolsUtils.zipValidatePatchExtract(fileName, directory)
     print('Finished step 2.')
 
 # Run wikiShipExport.py
 def wikiShipExport():
     print('Starting step 3.')
-    slipstreamUtils.executePythonFile('./project/', init.wikiShipExport)
+    wikiToolsUtils.executePythonFile('./project/', wikiToolsInit.wikiShipExport)
     print('Finished step 3.')
 
 # Executing section
@@ -68,7 +69,7 @@ if __name__ == '__main__':
         appendWikiElements()
         wikiShipExport()
     elif sys.argv[1] == '--init':
-        init.__init__()
+        wikiToolsInit.__init__()
     elif sys.argv[1] == '--wikiInfo':
         wikiBlueprintLists()
         appendWikiElements()
