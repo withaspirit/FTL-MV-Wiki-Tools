@@ -3,6 +3,9 @@ import pathlib
 import time
 import configparser
 
+# Finds the location of SlipstreamModManager's modman.jar and creates
+# config.ini to store its location.
+
 # The project and SlipstreamModManager must be located on the same hard drive
 # For this to work, there must be only one copy of SlipstreamModManager on 
 # your system
@@ -57,8 +60,7 @@ locationChanged = 'locationChanged'
 
 
 # process:
-# run init.py -> creates config.ini (sets up automation script)
-# automation script -> try to build config.ini.
+# run wikiToolsInit.py -> fnd creates config.ini (sets up automation script)
 def __init__():
     start_time = time.time()
 
