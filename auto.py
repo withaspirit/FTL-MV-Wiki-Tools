@@ -13,6 +13,7 @@ config.read(init.configFileName)
 
 # TODO: finish help message
 helpMessage = """
+--init
 --appendElements        
 --fullShipExport
 --appendBlueprintLists  
@@ -24,8 +25,9 @@ helpMessage = """
 
 # Zip, patch, extract Append Wiki blueprintLists
 def wikiBlueprintLists():
-    print('Step: Patching and extract FTL: Multiverse with {wikiBlueprintList}')
-    init.__init__()
+    print('Starting step 1.')
+    # init.__init__()
+    config.read(init.configFileName)
     fileName = init.wikiBlueprintListsName
     directory = config[init.zipPaths][init.wikiBlueprintList]
     slipstreamUtils.zipValidatePatchExtract(fileName, directory)
@@ -57,7 +59,9 @@ if __name__ == '__main__':
     else:
         if numArgs > 2:
             print('More than one argument detected. Arguments ignored.')
-        if sys.argv[1] == '--elements':
+        if sys.argv[1] == '--init':
+            init.__init__()
+        elif sys.argv[1] == '--elements':
             wikiBlueprintLists()
             appendWikiElements()
         elif sys.argv[1] == '--fullShipExport':

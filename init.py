@@ -14,9 +14,10 @@ import configparser
 
 drive  = pathlib.Path.home().drive
 
-# FIXME: CHANGE THIS TO CURRENT MULTIVERSE DATA FOLDER (ASSETS NOT REQUIRED)
 # IDEA: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
-mvDataName = "Multiverse 5.3 - Data.zip"
+
+# FIXME: CHANGE THIS TO CURRENT MULTIVERSE DATA FOLDER (ASSETS NOT REQUIRED)
+multiverseName = "Multiverse 5.3 - Data.zip"
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 
@@ -94,15 +95,20 @@ def slipstreamSettingsCheck(config: configparser.ConfigParser):
             file.write(fileText)
             file.truncate()
 
+# if this is taking a long time, there is probably more than one copy of 
 def getFilePath(fileName: str) -> str:
-    print(f'Finding location of {fileName}. Please wait.')
+    print(f'Finding location of {fileName}. Please wait ~3 minutes.')
 
     # look through hard drive for modman.jar
     filePathList = []
     for path, dirs, files in os.walk(f'{drive}\\'):
+        # skip bad files
+        # print(path)
+        # FIXME: is the below code necessary:
+        if f'{drive}\\$Recycle.Bin' in path or f'{drive}\\Windows' in path:
+            continue
         for file in files:
             if file == fileName:
-                # print(path)
                 filePathList.append(path)
 
     if len(filePathList) == 0:
