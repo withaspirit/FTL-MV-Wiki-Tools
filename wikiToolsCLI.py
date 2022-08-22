@@ -16,7 +16,7 @@ helpMessage = f"""
 --wikiElements              execute {wikiToolsInit.appendWikiElements}, patch 
                             the resulting files to the game, and extract-dats
                             to {wikiToolsInit.ftlDataPath}
---wikiLists                 zip {wikiToolsInit.wikiBlueprintListsName}, patch
+--wikiLists                 zip {wikiToolsInit.wikiListsName}, patch
                             it to the game's files, and extract-dats to 
                             .project/FTL Data
 --wikiShipExport            execute wikiShipExport.py - export ship data to
@@ -32,8 +32,8 @@ def wikiBlueprintLists():
     print('Starting step 1.')
     # FIXME: is bottom statement necessary
     config.read(wikiToolsInit.configFileName)
-    fileName = wikiToolsInit.wikiBlueprintListsName
-    directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiBlueprintList]
+    fileName = wikiToolsInit.wikiListsName
+    directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiLists]
     wikiToolsUtils.zipValidatePatchExtract(fileName, directory)
     print('Finished step 1.')
 
