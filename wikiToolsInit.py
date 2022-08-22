@@ -4,29 +4,27 @@ import time
 import configparser
 
 # Finds the location of SlipstreamModManager's modman.jar and creates
-# config.ini to store its location.
+# wikiTools.ini to store its location.
 
 # This file does set Slipstream's modman.cfg's allow_zip=true if it has not
-# been done already
+# been done already.
 # This file detects whether the project folder or Slipstream folder have been
-# moved
+# moved.
 
 # REQUIREMENTS
 # The project and SlipstreamModManager must be located on the same hard drive
-# For this to work, there must be only one copy of SlipstreamModManager on 
-# your system
+# For this to work, there must be only one copy of SlipstreamModManager on
+# your system.
 
-# Running this script for the first time may take ~2-3 minutes.
-# Please report if it takes longer
+# Running this for the first time may take ~2-3 minutes.
 
-# To get recreate config.ini, delete the file
+# To get recreate wikiTools.ini, delete the file
 
 drive  = pathlib.Path.home().drive
 
-# TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
 
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
-# formatted like 
+# formatted like
 # multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
 multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
 appendWikiElements = 'appendWikiElements.py'
@@ -66,6 +64,9 @@ ftl = 'ftl'
 initFinished = 'initFinished'
 locationChanged = 'locationChanged'
 
+# TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
+
+
 # create wikiTools.ini, adjust modman.cfg settings if necessary
 def __init__():
     start_time = time.time()
@@ -99,7 +100,7 @@ def slipstreamSettingsCheck(config: configparser.ConfigParser):
             file.write(fileText)
             file.truncate()
 
-# if this is taking a long time, there is probably more than one copy of 
+# if this is taking a long time, there is probably more than one copy of
 def getFilePath(fileName: str) -> str:
     print(f'Finding location of {fileName}. Please wait ~3 minutes.')
 
@@ -142,7 +143,7 @@ def initConfig(config: configparser.ConfigParser):
     cwdPath = os.path.dirname(os.path.abspath(__file__))
     config[mainPaths][cwd] = f'{cwdPath}\\'
 
-    # FIXME: maybe use a bunch of constants instead 
+    # FIXME: maybe use a bunch of constants instead
     # (assuming they don't change between iterations?)
     # only folders that could change are cwd and slipstream
     if config.has_section(projectPaths) == False:

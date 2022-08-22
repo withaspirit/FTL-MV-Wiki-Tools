@@ -47,4 +47,4 @@ def executeSlipstream(args: list[str]):
 
 def executePythonFile(path: str, fileName: str):
     args = ['python', fileName]
-    subprocess.check_call(args, cwd=path, shell=True)    
+    subprocess.check_call(args, cwd=path, shell=True)

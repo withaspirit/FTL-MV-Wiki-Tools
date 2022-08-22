@@ -5,7 +5,7 @@ import wikiToolsInit
 import wikiToolsUtils
 
 # This file accepts command-line arguments to execute various scripts and
-# sequences
+# sequences.
 
 config = configparser.ConfigParser()
 config.read(wikiToolsInit.configFileName)
@@ -13,11 +13,11 @@ config.read(wikiToolsInit.configFileName)
 helpMessage = f"""
 --init                      execute wikiToolsInit.py - initialize wikiTools.ini
                             and location of modman.jar
---wikiElements              execute {wikiToolsInit.appendWikiElements}, patch 
+--wikiElements              execute {wikiToolsInit.appendWikiElements}, patch
                             the resulting files to the game, and extract-dats
                             to {wikiToolsInit.ftlDataPath}
 --wikiLists                 zip {wikiToolsInit.wikiListsName}, patch
-                            it to the game's files, and extract-dats to 
+                            it to the game's files, and extract-dats to
                             .project/FTL Data
 --wikiShipExport            execute wikiShipExport.py - export ship data to
                             {wikiToolsInit.wikiShipsFile}
@@ -56,6 +56,7 @@ def wikiShipExport():
 # Executing section
 if __name__ == '__main__':
     numArgs = len(sys.argv)
+
     # initialize init.py
     # FIXME: slipstreamUtils.py gets KeyError for wikiTools.ini when this done
     # here instead of calling --init in wikiTools.bat
