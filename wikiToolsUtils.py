@@ -15,7 +15,7 @@ def zipValidatePatchExtract(fileName: str, directory: str):
     zipMove(config[wikiToolsInit.projectPaths][wikiToolsInit.project], fileName, directory)
     zipName = f'{fileName}.zip'
     validate([zipName])
-    patch([wikiToolsInit.multiverseName, zipName])
+    patch(wikiToolsInit.multiverseFiles + [zipName])
     extractDats(config[wikiToolsInit.zipPaths][wikiToolsInit.ftl])
 
 # Zip a mod folder and move it to SlipstreamModManager/mods

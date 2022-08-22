@@ -6,6 +6,12 @@ import configparser
 # Finds the location of SlipstreamModManager's modman.jar and creates
 # config.ini to store its location.
 
+# This file does set Slipstream's modman.cfg's allow_zip=true if it has not
+# been done already
+# This file detects whether the project folder or Slipstream folder have been
+# moved
+
+# REQUIREMENTS
 # The project and SlipstreamModManager must be located on the same hard drive
 # For this to work, there must be only one copy of SlipstreamModManager on 
 # your system
@@ -13,14 +19,16 @@ import configparser
 # Running this script for the first time may take ~2-3 minutes.
 # Please report if it takes longer
 
-# To get this file running when config.ini already exists and has its paths set, delete config.ini
+# To get recreate config.ini, delete the file
 
 drive  = pathlib.Path.home().drive
 
-# IDEA: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
+# TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
 
-# FIXME: CHANGE THIS TO CURRENT MULTIVERSE DATA FOLDER (ASSETS NOT REQUIRED)
-multiverseName = "Multiverse 5.3 - Data.zip"
+# NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
+# formatted like 
+# multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
+multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
@@ -28,7 +36,7 @@ wikiShipsFile = 'wikiShips.txt'
 
 #files / folders
 modman = 'modman.jar'
-configFileName = 'config.ini'
+configFileName = 'wikiTools.ini'
 wikiListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
 ftlDataPath = './project/FTL Data/'
@@ -43,7 +51,7 @@ errors = 'errors'
 #option names
 slipstream = 'slipstream'
 cwd = 'cwd'
-# TODO: rename folder to 'FTL Dats' instead of 'FTL Data' for consistency
+# TODO: rename folder to 'FTL dats' instead of 'FTL Data' for consistency
 ftlData = 'ftlData'
 
 project = 'project'
@@ -58,9 +66,7 @@ ftl = 'ftl'
 initFinished = 'initFinished'
 locationChanged = 'locationChanged'
 
-
-# process:
-# run wikiToolsInit.py -> fnd creates config.ini (sets up automation script)
+# create wikiTools.ini, adjust modman.cfg settings if necessary
 def __init__():
     start_time = time.time()
 
@@ -72,14 +78,7 @@ def __init__():
 
         slipstreamSettingsCheck(config)
     except:
-        # FIXME: not sure if safe or reachable
-        raise RuntimeError("BUG STATEMENT")
-        # if config.has_section(errors) == False:
-        #     config.add_section(errors)
-        # config[errors][initFinished] = 'false'
-        # config[errors][locationChanged] = 'true'
-        # writeToConfigFile(config)
-        # initConfig(config)
+        raise RuntimeError("wikiToolsInit.__init__() failed")
 
     print('Finished initializing after %s seconds.' % (time.time() - start_time))
 
@@ -143,7 +142,8 @@ def initConfig(config: configparser.ConfigParser):
     cwdPath = os.path.dirname(os.path.abspath(__file__))
     config[mainPaths][cwd] = f'{cwdPath}\\'
 
-    # FIXME: maybe use a bunch of constants instead (assuming they don't change between iterations?)
+    # FIXME: maybe use a bunch of constants instead 
+    # (assuming they don't change between iterations?)
     # only folders that could change are cwd and slipstream
     if config.has_section(projectPaths) == False:
         config.add_section(projectPaths)

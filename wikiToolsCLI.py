@@ -11,7 +11,7 @@ config = configparser.ConfigParser()
 config.read(wikiToolsInit.configFileName)
 
 helpMessage = f"""
---init                      execute wikiToolsInit.py - initialize config.ini
+--init                      execute wikiToolsInit.py - initialize wikiTools.ini
                             and location of modman.jar
 --wikiElements              execute {wikiToolsInit.appendWikiElements}, patch 
                             the resulting files to the game, and extract-dats
@@ -57,8 +57,9 @@ def wikiShipExport():
 if __name__ == '__main__':
     numArgs = len(sys.argv)
     # initialize init.py
-    # FIXME: slipstreamUtils.py gets KeyError for config.ini when this done here
-    #   instead of calling --init in windowsScript.bat
+    # FIXME: slipstreamUtils.py gets KeyError for wikiTools.ini when this done
+    # here instead of calling --init in wikiTools.bat
+
     # init.__init__()
 
     if numArgs > 2:
