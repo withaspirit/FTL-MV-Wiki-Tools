@@ -78,6 +78,10 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 
 ## Automatic Method
 
+<details>
+  <summary><b>Show Automatic Method</b></summary>
+<br>
+
 ### Windows:
 
 - The name of the *FTL: Multiverse* files to be patched should be specified in [wikiToolsInit.py](./wikiToolsInit.py) by editing the field `multiverseFiles`. They are included by default, but editing this field may be required between updates.
@@ -105,6 +109,9 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 - [wikiToolsCLI.py](./wikiToolsCLI.py) accepts command-line arguments to executes files based on user input.
 
 - [wikiToolsInit.py](./wikiToolsInit.py) finds the location of SlipstreamModManager's `modman.jar` on your system. It requires  `modman.jar` and the project to be on the same hard drive. Additionally, there must be only one copy of `modman.jar` on the current drive.
+
+</details>
+<br>
 
 </details>
 <br>
