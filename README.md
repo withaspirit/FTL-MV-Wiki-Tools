@@ -46,7 +46,7 @@ See the [autoBlueprints.xml.append file](./project/Append%20Wiki%20blueprintList
 
 Before the next step, the `.append` file is added to the game's existing files using [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102).
 
-## Step 2: Append Information to blueprints
+### Step 2: Append Information to blueprints
 
 A script called [appendWikiElements.py](./project/appendWikiElements.py) generates `.append` files adding Wiki information to existing blueprints. It uses the added information from the last step to override blueprint information where necessary.
 
