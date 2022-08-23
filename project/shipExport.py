@@ -521,7 +521,12 @@ class Ship:
         # augBlueprint should always have title
         title = blueprint.find('title').text
 
-        if 'LOCKED' in  blueprintName:
+        aug = self.hyperspace.find(f'.//augments/aug[@name="{blueprintName}"]')
+        locked = None
+        if aug is not None: 
+            locked = aug.find('locked')
+
+        if locked is not None:
             newBlueprintLink = '{{Lock}} ' + newBlueprintLink
         elif '[M]' in title:
             newBlueprintLink += ' [M]'
