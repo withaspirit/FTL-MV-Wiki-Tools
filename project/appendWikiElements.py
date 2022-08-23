@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 import xml.etree.ElementTree as ET
-import blueprintUtils as blueprintUtils
+import time
 from pathlib import Path
+import blueprintUtils as blueprintUtils
 
 # Generates code to insert blueprintList's <name> attributes
 # as elements into every blueprint that appears on the Wiki. 
@@ -82,7 +83,7 @@ def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
 def writeXMLAppendFile(fileName: str, fileText: str):
     fileText = f'<FTL>\n{fileText}\n</FTL>\n'
     fileText = blueprintUtils.processText(fileText)
-    # make path if not exist
+    # make directory if not exist
     Path(blueprintUtils.wikiElementsPath).mkdir(parents=True, exist_ok=True) 
     fileName = f'{blueprintUtils.wikiElementsPath}{fileName}.xml.append'
     appendFile = open(fileName, 'w', encoding='utf-8')
@@ -97,8 +98,11 @@ def wikiPageComment(wikiPage: str) -> str:
 
 # main section
 # read from autoblueprints, output into append files
+# FIXME: could reduce runtime by passing files instead of opening for each
+# exception
 if __name__ == '__main__':
     print('Creating .append files. Please wait ~10 seconds.')
+    start_time = time.time()
 
     autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
     blueprints = blueprintUtils.getBlueprints()
@@ -131,4 +135,4 @@ if __name__ == '__main__':
 
     autoBlueprintsAppend = getAutoBlueprintsAppend(autoBlueprints)
     writeXMLAppendFile('autoBlueprints', autoBlueprintsAppend)
-    print('Done creating .append files.')
+    print('Done creating .append files after %s seconds.' % (time.time() - start_time))
