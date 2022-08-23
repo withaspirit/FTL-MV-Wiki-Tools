@@ -2954,13 +2954,13 @@
                 <blueprintListName wikiRedirect="PLACEHOLDER#Pirate Crew" wikiName="Pirate Crew" wikiHeading="Pirate Crew" wikiPage="PLACEHOLDER#">LIST_CREW_PIRATE_RANDOM</blueprintListName>
                 <blueprintListName wikiRedirect="Wrecked Bombers#Unique Crew" wikiName="Random Unique Crew" wikiHeading="Unique Crew" wikiPage="Wrecked Bombers#">LIST_CREW_UNIQUE_CRAPBUCKET</blueprintListName>
                 <blueprintListName wikiRedirect="Wrecked Bombers#Regular Crew" wikiName="Random Crew" wikiHeading="Regular Crew" wikiPage="Wrecked Bombers#">LIST_CREW_ALL_CRAPBUCKET</blueprintListName>
+                <blueprintListName wikiRedirect="Slot 3 Crewsers#Morph List" wikiName="Random Morph" wikiHeading="Morph List" wikiPage="Slot 3 Crewsers#">LIST_CREW_MORPH_RANDOM_ONLY</blueprintListName>
+                <blueprintListName wikiRedirect="Slot 3 Crewsers#Technopath List" wikiName="Random Technopath" wikiHeading="Technopath List" wikiPage="Slot 3 Crewsers#">LIST_CREW_TECHNO_RANDOM_ONLY</blueprintListName>
+                <blueprintListName wikiRedirect="Merchant Transport#Sylvan List" wikiName="Random Sylvan" wikiHeading="Sylvan List" wikiPage="Merchant Transport#">LIST_CREW_SYLVAN_START</blueprintListName>
             <!-- Weapon Lists -->
                 <blueprintListName wikiRedirect="Wrecked Bombers#Weapon List" wikiName="Random Weapon" wikiHeading="Weapon List" wikiPage="Wrecked Bombers#">LIST_WEAPONS_ALL_CRAPBUCKET</blueprintListName>
             <!-- Drone Lists -->
                 <blueprintListName wikiRedirect="Wrecked Bombers#Drone List" wikiName="Random Drone" wikiHeading="Drone List" wikiPage="Wrecked Bombers#">LIST_DRONES_ALL_CRAPBUCKET</blueprintListName>
-                <blueprintListName wikiRedirect="Merchant Transport#Sylvan List" wikiName="Random Sylvan" wikiHeading="Sylvan List" wikiPage="Slot 3 Crewsers#">LIST_CREW_SYLVAN_START</blueprintListName>
-                <blueprintListName wikiRedirect="Slot 3 Crewsers#Morph List" wikiName="Random Morph" wikiHeading="Morph List" wikiPage="Slot 3 Crewsers#">LIST_CREW_MORPH_RANDOM_ONLY</blueprintListName>
-                <blueprintListName wikiRedirect="Slot 3 Crewsers#Technopath List" wikiName="Random Technopath" wikiHeading="Technopath List" wikiPage="Slot 3 Crewsers#">LIST_CREW_TECHNO_RANDOM_ONLY</blueprintListName>
         </blueprintList>
 <!-- wikiEnd -->
 
