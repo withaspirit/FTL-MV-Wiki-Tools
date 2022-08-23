@@ -405,7 +405,6 @@ class Ship:
         return ''
 
     def getSlots(self) -> str:
-        # TODO: fix for no system
         weaponSlots = int(self.getElement('weaponSlots').text)
         weaponText = f'{weaponSlots} Weapon'
         weaponText = self.pluralize(weaponSlots, weaponText)
@@ -494,6 +493,7 @@ class Ship:
             blueprintList.append(blueprintLink)
         return blueprintList
 
+    # FIXME: Try doing this at "appendWikiElements" stage instead of at "wikiShipExport" stage
     # customName is names given to Regular Crew or Secret Crew members (N/A for Unique Crew)
     def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
@@ -511,6 +511,8 @@ class Ship:
                 blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
         return blueprintLink
 
+    # TODO: check hyperspace.xml if f'augments/aug[@name="{blueprintName}"]' has "locked" element -> (INDICATES LOCKED)
+    # TODO: maybe pass hyperspace.xml to ships
     def augmentProcessing(self, blueprintName: str, tag: str, blueprintLink: str) -> str:
         newBlueprintLink = blueprintLink
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, blueprintName)

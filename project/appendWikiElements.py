@@ -96,9 +96,9 @@ def wikiPageComment(wikiPage: str) -> str:
 -->"""
 
 # main section
-# read from autoblueprints, output into some append files
+# read from autoblueprints, output into append files
 if __name__ == '__main__':
-    print('Starting to create .append files. Please wait ~10 seconds.')
+    print('Creating .append files. Please wait ~10 seconds.')
 
     autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
     blueprints = blueprintUtils.getBlueprints()

@@ -24,6 +24,7 @@ drive  = pathlib.Path.home().drive
 
 
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
+# ASSET FOLDER UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
 # multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
 multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
