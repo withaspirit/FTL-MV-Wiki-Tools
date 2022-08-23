@@ -32,12 +32,16 @@ class Ship:
         'battery': (1, 2)
     }
 
-    def __init__(self, blueprint, blueprints):
+    # opening files once and passing instead of opening them many times
+    # significantly reduces runtime
+    def __init__(self, blueprint, blueprints, hyperspace, text_blueprints, events_boss):
         self.blueprint = blueprint
         self.blueprints = blueprints
         self.blueprintName = self.blueprint.get('name')
 
-        hyperspace = ET.parse(pathToData + 'hyperspace.xml').getroot()
+        self.hyperspace = hyperspace
+        self.text_blueprints = text_blueprints
+        self.events_boss = events_boss
         customShipPath = f'.//ships/customShip[@name="{self.blueprintName}"]'
         self.customShip = hyperspace.find(customShipPath)
 
@@ -436,9 +440,8 @@ class Ship:
         return lastStandEntryText
 
     def getLastStandText(self, shipType: str) -> str:
-        eventsBoss = ET.parse(pathToData + 'events_boss.xml').getroot()
         choicePath = './/event[@name="TRUE_LAST_STAND_START"]/choice[@lvl="-2147483648"]'
-        choiceElement = eventsBoss.find(choicePath)
+        choiceElement = self.events_boss.find(choicePath)
 
         lastStandTextPath = f'.//event/choice[@req="{shipType}"]/event/text'
         lastStandElement = choiceElement.find(lastStandTextPath)
@@ -450,9 +453,8 @@ class Ship:
             return ''
 
         unlockId = unlockElement.get('id')
-        textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
         unlockPath = f'.//text[@name="{unlockId}"]'
-        unlockBlueprint = textBlueprints.find(unlockPath)
+        unlockBlueprint = self.text_blueprints.find(unlockPath)
         unlockText = unlockBlueprint.text
 
         unlock = "\n==='''Unlock'''==="
