@@ -5,7 +5,7 @@
 
 How this mod affects game data is untested. Your game data could become corrupted and unusable. Backing up game data before using patching FTL: Multiverse with anything mitigates that issue. On Windows, the game data is commonly located in the folder `Documents/My Games/FasterThanLight`. Copy all files in the folder to another folder for safekeeping.
 
-# Requirements:
+# Requirements
 
 - The game [FTL: Faster Than Light](https://en.wikipedia.org/wiki/FTL:_Faster_Than_Light)
 - The mod [FTL: Multiverse](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) 5.0+ and everything it requires
