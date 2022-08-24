@@ -7,16 +7,17 @@ import time
 # appendWikiBlueprints.py must be run before this
 # Takes ~ 5-7 minutes
 
-filePath = blueprintUtils.wikiElementsPath
 files = {
     'blueprints.xml.append',
     'autoBlueprints.xml.append',
     'dlcBlueprints.xml.append'
 }
 
-urlRegex = re.compile('>(https:\/\/.+)<')
 def getUrls() -> set[str]:
+    urlRegex = re.compile('>(https:\/\/.+)<')
+    filePath = blueprintUtils.wikiElementsPath
     urlsToTest = set()
+
     for fileName in files:
         with open(filePath + fileName, encoding='utf-8') as file:
             fileText = file.read()
