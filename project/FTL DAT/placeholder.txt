@@ -1,1 +1,1 @@
-this file is here so the 'FTL Data' folder shows on GitHub
+this file is here so the 'FTL DAT' folder shows on GitHub
