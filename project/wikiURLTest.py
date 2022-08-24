@@ -3,19 +3,21 @@ import urllib.request
 import re
 import time
 
-# verifies that the wikiHeading of each blueprint is found on its corresponding page
-# takes ~ 5-7 minutes
+# Verifies that the wikiHeading of each blueprint is found on its corresponding page
+# appendWikiBlueprints.py must be run before this
+# Takes ~ 5-7 minutes
 
-filePath = blueprintUtils.wikiElementsPath
 files = {
     'blueprints.xml.append',
     'autoBlueprints.xml.append',
     'dlcBlueprints.xml.append'
 }
 
-urlRegex = re.compile('>(https:\/\/.+)<')
 def getUrls() -> set[str]:
+    urlRegex = re.compile('>(https:\/\/.+)<')
+    filePath = blueprintUtils.wikiElementsPath
     urlsToTest = set()
+
     for fileName in files:
         with open(filePath + fileName, encoding='utf-8') as file:
             fileText = file.read()
@@ -24,10 +26,10 @@ def getUrls() -> set[str]:
 
 def getHeading(url: str) -> str:
     heading = url.replace('https://ftlmultiverse.fandom.com/wiki/', '')
-    pageEnd = heading.find('#') 
+    pageEnd = heading.find('#')
     if pageEnd != -1:
         heading = heading[pageEnd + 1:]
-    
+
     return heading.replace("_", " ")
 
 if __name__ == '__main__':
@@ -53,7 +55,7 @@ if __name__ == '__main__':
                     heading = getHeading(url)
                     if heading not in text:
                         badHeadingUrls.append(newUrl)
-                
+
         except urllib.error.HTTPError as e:
             notFoundUrls.append(newUrl)
             pass

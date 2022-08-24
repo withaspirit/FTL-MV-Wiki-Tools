@@ -17,13 +17,13 @@ import configparser
 # your system.
 
 # Running this for the first time may take ~2-3 minutes.
+# To restart initializing wikiTools.ini, delete the file
 
-# To get recreate wikiTools.ini, delete the file
 
 drive  = pathlib.Path.home().drive
 
-
-# NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
+# NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
+# ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
 # multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
 multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
@@ -32,32 +32,30 @@ wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
 
 
-#files / folders
+# files / folders
 modman = 'modman.jar'
 configFileName = 'wikiTools.ini'
 wikiListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
-ftlDataPath = './project/FTL Data/'
+ftlDATPath = './project/FTL Data/'
 
 
 # section names
 mainPaths = 'mainPaths'
 projectPaths = 'projectPaths'
 zipPaths = 'zipPaths'
-errors = 'errors'
+initInfo = 'initInfo'
 
-#option names
+# option names
 slipstream = 'slipstream'
 cwd = 'cwd'
-# TODO: rename folder to 'FTL dats' instead of 'FTL Data' for consistency
-ftlData = 'ftlData'
 
 project = 'project'
-ftlData = 'ftlData'
-wikiListsData = 'wikiBlueprintListsData'
+ftlDAT = 'ftlDAT'
+wikiListsData = 'wikiListsData'
 wikiElementsData = 'wikiElementsData'
 
-wikiLists = 'wikiBlueprintLists'
+wikiLists = 'wikiLists'
 wikiElements = 'wikiElements'
 ftl = 'ftl'
 
@@ -66,8 +64,7 @@ locationChanged = 'locationChanged'
 
 # TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
 
-
-# create wikiTools.ini, adjust modman.cfg settings if necessary
+# Create wikiTools.ini, adjust modman.cfg settings if necessary
 def __init__():
     start_time = time.time()
 
@@ -77,14 +74,14 @@ def __init__():
         if configDone(config) == False:
             initConfig(config)
 
-        slipstreamSettingsCheck(config)
+        slipstreamConfigCheck(config)
     except:
         raise RuntimeError("wikiToolsInit.__init__() failed")
 
     print('Finished initializing after %s seconds.' % (time.time() - start_time))
 
-# Ensure that modman.cfg is initialized and change allow_zip=false to allow_zip=true
-def slipstreamSettingsCheck(config: configparser.ConfigParser):
+# Ensure modman.cfg is initialized; change allow_zip=false to allow_zip=true
+def slipstreamConfigCheck(config: configparser.ConfigParser):
     modmanCfg = 'modman.cfg'
     modmanCfgPath = f'{config[mainPaths][slipstream]}{modmanCfg}'
 
@@ -100,7 +97,6 @@ def slipstreamSettingsCheck(config: configparser.ConfigParser):
             file.write(fileText)
             file.truncate()
 
-# if this is taking a long time, there is probably more than one copy of
 def getFilePath(fileName: str) -> str:
     print(f'Finding location of {fileName}. Please wait ~3 minutes.')
 
@@ -109,8 +105,8 @@ def getFilePath(fileName: str) -> str:
     for path, dirs, files in os.walk(f'{drive}\\'):
         # skip bad files
         # print(path)
-        # FIXME: is the below code necessary:
-        if f'{drive}\\$Recycle.Bin' in path or f'{drive}\\Windows' in path:
+        # Skip deleted files
+        if f'{drive}\\$Recycle.Bin' in path:
             continue
         for file in files:
             if file == fileName:
@@ -135,7 +131,8 @@ def initConfig(config: configparser.ConfigParser):
     if config.has_section(mainPaths) == False:
         config.add_section(mainPaths)
     slipstreamFilePath = ''
-    if (config.has_option(errors, locationChanged) == False) or (config.getboolean(errors, locationChanged) == True):
+    if ((config.has_option(initInfo, locationChanged) == False) or
+            (config.getboolean(initInfo, locationChanged) == True)):
         slipstreamFilePath = getFilePath(modman)
         config[mainPaths][slipstream] = f'{slipstreamFilePath}\\'
     else:
@@ -150,7 +147,7 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(projectPaths)
     projectPath = os.path.join(cwdPath,'project\\')
     config[projectPaths][project] = projectPath
-    config[projectPaths][ftlData] = os.path.join(projectPath, 'FTL Data\\data\\')
+    config[projectPaths][ftlDAT] = os.path.join(projectPath, 'FTL Data\\data\\')
     config[projectPaths][wikiListsData] = os.path.join(projectPath, f'{wikiListsName}\\data\\')
     config[projectPaths][wikiElementsData] = os.path.join(projectPath, f'{wikiElementsName}\\data\\')
 
@@ -160,10 +157,10 @@ def initConfig(config: configparser.ConfigParser):
     config[zipPaths][wikiElements] = os.path.join(projectPath, f'{wikiElementsName}\\')
     config[zipPaths][ftl] = os.path.join(projectPath, 'FTL Data')
 
-    if not config.has_section(errors):
-        config.add_section(errors)
-    config[errors][initFinished] = 'true'
-    config[errors][locationChanged] = 'false'
+    if not config.has_section(initInfo):
+        config.add_section(initInfo)
+    config[initInfo][initFinished] = 'true'
+    config[initInfo][locationChanged] = 'false'
 
     writeToConfigFile(config)
 
@@ -171,22 +168,19 @@ def writeToConfigFile(config: configparser.ConfigParser):
     with open(configFileName, 'w') as cfgFile:
         config.write(cfgFile)
 
-# TODO: check in case any files lived slipstreamModmanager are moved or
-# make avoid duplicating work
-# Check if file locations changed and whether the locations needs to be found again
 def configDone(config: configparser.ConfigParser) -> bool:
     if len(config) == 0:
         return False
 
-    # make sure directories still exist at locations
+    # make sure directories in .ini file still exist at locations
     if config.has_section(mainPaths):
         for (key, path) in config.items(mainPaths):
             if os.path.isdir(path) == False:
-                config[errors][locationChanged] = 'true'
+                config[initInfo][locationChanged] = 'true'
                 return False
 
     # when there are no changed locations, check if script already finished
-    if config.has_option(errors, initFinished) and config.getboolean(errors, initFinished) == True:
+    if config.has_option(initInfo, initFinished) and config.getboolean(initInfo, initFinished) == True:
         return True
 
     # FIXME: untested when this would be reached
