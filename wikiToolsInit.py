@@ -38,7 +38,7 @@ modman = 'modman.jar'
 configFileName = 'wikiTools.ini'
 wikiListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
-ftlDataPath = './project/FTL Data/'
+ftlDATPath = './project/FTL Data/'
 
 
 # section names
@@ -50,11 +50,9 @@ errors = 'errors'
 # option names
 slipstream = 'slipstream'
 cwd = 'cwd'
-# TODO: rename folder to 'FTL dats' instead of 'FTL Data' for consistency
-ftlData = 'ftlData'
 
 project = 'project'
-ftlData = 'ftlData'
+ftlDAT = 'ftlDats'
 wikiListsData = 'wikiBlueprintListsData'
 wikiElementsData = 'wikiElementsData'
 
@@ -66,7 +64,6 @@ initFinished = 'initFinished'
 locationChanged = 'locationChanged'
 
 # TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
-
 
 # create wikiTools.ini, adjust modman.cfg settings if necessary
 def __init__():
@@ -151,7 +148,7 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(projectPaths)
     projectPath = os.path.join(cwdPath,'project\\')
     config[projectPaths][project] = projectPath
-    config[projectPaths][ftlData] = os.path.join(projectPath, 'FTL Data\\data\\')
+    config[projectPaths][ftlDAT] = os.path.join(projectPath, 'FTL Data\\data\\')
     config[projectPaths][wikiListsData] = os.path.join(projectPath, f'{wikiListsName}\\data\\')
     config[projectPaths][wikiElementsData] = os.path.join(projectPath, f'{wikiElementsName}\\data\\')
 
