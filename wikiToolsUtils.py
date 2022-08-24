@@ -4,14 +4,14 @@ import subprocess
 
 import wikiToolsInit
 
-# This file contains functions involving the slipstream's validate, patch,
+# This file contains functions involving Slipstream's validate, patch,
 # and extract-dats commands. Also contains functions to zip and move a folder.
 
 config = configparser.ConfigParser()
 config.read(wikiToolsInit.configFileName)
 
-# zipMove and patchExtract steps together
-def zipValidatePatchExtract(fileName: str, directory: str):
+# zipMove, validate, patch, and extract-dats steps together
+def zipPatchExtract(fileName: str, directory: str):
     zipMove(config[wikiToolsInit.projectPaths][wikiToolsInit.project], fileName, directory)
     zipName = f'{fileName}.zip'
     validate([zipName])
@@ -34,7 +34,7 @@ def patch(files: list[str]):
     patchCmd = ['--patch'] + files
     executeSlipstream(patchCmd)
 
-# extract-dats to project/FTL Data
+# extract-dats to project/FTL DAT
 def extractDats(filePath: str):
     extractDatsCmd = ['--extract-dats', filePath]
     executeSlipstream(extractDatsCmd)
