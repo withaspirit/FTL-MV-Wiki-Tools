@@ -34,7 +34,7 @@ def wikiBlueprintLists():
     config.read(wikiToolsInit.configFileName)
     fileName = wikiToolsInit.wikiListsName
     directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiLists]
-    wikiToolsUtils.zipValidatePatchExtract(fileName, directory)
+    wikiToolsUtils.zipPatchExtract(fileName, directory)
     print('Finished step 1.')
 
 # Run appendWikiElements.py, zip, patch, extract Append wikiElements
@@ -44,7 +44,7 @@ def appendWikiElements():
 
     fileName = wikiToolsInit.wikiElementsName
     directory = config[wikiToolsInit.zipPaths][wikiToolsInit.wikiElements]
-    wikiToolsUtils.zipValidatePatchExtract(fileName, directory)
+    wikiToolsUtils.zipPatchExtract(fileName, directory)
     print('Finished step 2.')
 
 # Run wikiShipExport.py
@@ -60,7 +60,6 @@ if __name__ == '__main__':
     # initialize init.py
     # FIXME: slipstreamUtils.py gets KeyError for wikiTools.ini when this done
     # here instead of calling --init in wikiTools.bat
-
     # init.__init__()
 
     if numArgs > 2:

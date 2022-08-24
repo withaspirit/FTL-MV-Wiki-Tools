@@ -1,7 +1,7 @@
 wikiTools.ini
 __pycache__
 
-# FTL data
+# FTL DAT
 # \ to preserve space character
 /project/FTL\ DAT/*
 !/project/FTL\ DAT/placeholder.txt

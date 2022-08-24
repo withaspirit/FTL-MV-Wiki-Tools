@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from shipExport import Ship
 import blueprintUtils as blueprintUtils
 
-# Gathers the text from using shipExport.Ship.toString() for every player ship.
+# Gets the text from using shipExport.Ship.toString() for every player ship.
 # Writes the resulting text to a file.
 
 # omit for 5.3

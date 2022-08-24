@@ -9,7 +9,7 @@ This project contains files, mods, and scripts for [*FTL: Multiverse*](https://s
 - A script [comparing old/new versions of *FTL: Multiverse*](./project/compareVersions.py) to determine which object blueprints were added, removed, or changed.
 - A [JSON file](./project/utils/vanillaMultiverseMap.json) mapping the blueprint "name" attributes from Vanilla *FTL: Faster Than Light* to those found in *FTL: Multiverse*. It is limited to the items found in blueprints.xml and dlcBlueprints.xml files.
 
-# Requirements:
+# Requirements
 
 - The game [*FTL: Faster Than Light*](https://en.wikipedia.org/wiki/FTL:_Faster_Than_Light)
 - The mod [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) 5.0+ and everything it requires.
