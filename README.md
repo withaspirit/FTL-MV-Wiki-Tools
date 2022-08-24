@@ -1,88 +1,140 @@
-# FTL: Multiverse Game Data to Wiki Script
+# FTL: Multiverse Wiki Tools
 
+This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
 
-# Notes: 
+# Features
 
-How this mod affects game data is untested. Your game data could become corrupted and unusable. Backing up game data before using patching FTL: Multiverse with anything mitigates that issue. On Windows, the game data is commonly located in the folder `Documents/My Games/FasterThanLight`. Copy all files in the folder to another folder for safekeeping.
+- *FTL: Multiverse* scripts and mods adding Wiki information to the blueprints of most objects found on [Player ships](https://ftlmultiverse.fandom.com/wiki/Player_ships).
+- A script [exporting ship information](./project/wikiShipExport.py) so it can be easily copy-pasted to the Wiki.
+- A script [comparing old/new versions of *FTL: Multiverse*](./project/compareVersions.py) to determine which object blueprints were added, removed, or changed.
 
 # Requirements:
 
-- The game [FTL: Faster Than Light](https://en.wikipedia.org/wiki/FTL:_Faster_Than_Light)
-- The mod [FTL: Multiverse](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) 5.0+ and everything it requires
-- [Python 3.9.2 or greater](https://www.python.org/downloads)
-- Load order: In [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102), all the mods should be patched after FTL: Multiverse
+- The game [*FTL: Faster Than Light*](https://en.wikipedia.org/wiki/FTL:_Faster_Than_Light)
+- The mod [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) 5.0+ and everything it requires.
+- [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102)
+- [Python version 3.9.2 or later](https://www.python.org/downloads/). If Python is not installed on your system, download it.
+- The [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) mod files to be in  `SlipstreamModManager`'s `/mods/` folder.
+- Load order: In [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102), all the mods should be patched AFTER *FTL: Multiverse*.
 
-# Explanation
+# Introduction
 
-## Problem
+<details>
+  <summary><b>View Explanation</b></summary>
+<br>
 
-In FTL: Faster Than Light, game data is contained in [XML files](https://en.wikipedia.org/wiki/XML). Each in-game object has a blueprint: an XML element, detailing the object and dictating its behavior.
+In *FTL: Faster Than Light*, game data is contained in [XML files](https://en.wikipedia.org/wiki/XML). Each in-game object has a blueprint: an XML element detailing the object and dictating its behavior. 
 
-The original idea was to create a script to extract each [Player Ship's](https://ftlmultiverse.fandom.com/wiki/Player_ships) game data and output it in a format matching the Wiki, allowing ships to be easily updated by copy-pasting the output of the script. 
+*FTL: Multiverse* follows the same schema. However, it introduces more than 500 objects compared to the original game. This can make updating the *FTL: Multiverse* Wiki between *FTL: Multiverse* updates time-consuming when done manually.
 
-The problem is that in-game blueprints do not contain enough information to determine what wikiPage they belong to. This means that the output script for the ships would lack hyperlinks to crew, weapons, drones, and other items they feature. Additionally, details like a blueprint's in-game name do not always match its heading or how it is referred to on the Wiki.
+A script to extract game information from object blueprints could help in editing the Wiki. However, most object blueprints do not contain enough information to determine what page on the *FTL: Multiverse* Wiki they belong to. This means that extracted information for objects would not include hyperlinks to their page on the Wiki. Hyperlinks would have to be added manually. Additionally, details from an object's blueprint, like its in-game name, do not always match its heading or how it is referred to on the Wiki.
 
-To support hyperlinks in the output text, a solution must address the hyperlink problem, which consists of two parts:
+This project includes a two-step solution. The first step matches object blueprints to their Wiki page and provides additional information where necessary. The second step adds elements containing Wiki information to existing blueprints. This enables a script extracting game information to refer to objects correctly and include hyperlinks to their Wiki page.
 
-1. Match blueprints to their wikiPages
-2. Override blueprint information where it doesn't match the Wiki 
+</details>
 
-## Solution
+<details>
+  <summary><b>Show Two-Step Solution Details</b></summary>
 
- The overall solution involves three steps. The first step solves the hyperlink problem. The second step adds elements to existing game files. The third step uses the added elements to generate the output text.
+### Step 1: Add blueprintLists to Game Files
 
-### Step 1: The Hyperlink Problem
+The first step involves a `.append` file in the folder [Append Wiki blueprintsLists](/project/Append%20Wiki%20blueprintLists/data), [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append). It is an XML file that uses blueprintLists to associate in-game objects with their corresponding Wiki page. It also contains information for objects where the blueprint information doesn't match the Wiki.
 
-The first step involves a .append file, [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append). It is an XML file containining blueprintLists. Each contained blueprintList has a wikiPage as an attribute. For its elements, it has the `"name"` attributes of all blueprints found on that wikiPage. blueprints are uniquely identified by their `name` attribute. The association between blueprints and their wikiPage using blueprintLists solves the first part of the hyperlink problem.
+See the [autoBlueprints.xml.append file](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append) file for more information.
 
-Solving the second part must deal with blueprint information not matching the Wiki. Where a blueprint's information does not match the Wiki, the following information is added as attributes):
-- `wikiName`: how an item is referred to on the Wiki
-- `wikiHeading`: the heading used to locate an item on a wikiPage
+Before the next step, the `.append` file is added to the game's existing files using [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102).
 
-With these attributes, each `<name>` element is provided the necessary information for how its blueprint should be referred to and where it's located on the Wiki. Where these attributes are omitted, it is assumed that the information in the blueprint matches the information on the Wiki.
+### Step 2: Append Information to blueprints
 
-## Step 2: Adding Information
+A script called [appendWikiElements.py](./project/appendWikiElements.py) generates `.append` files adding Wiki information to existing blueprints. It uses the added information from the last step to override blueprint information where necessary.
 
-The second step requires the [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append) file to be added to the game's existing files using SlipstreamModManager. After that, a script called [appendWikiElements.py](./project/appendWikiElements.py) is generate .append files adding the attributes from the `<name>` elements to their corresponding blueprints. The attributes are added as elements. Where the attributes were omitted, information is taken from the game files.
+The generated `.append` files are added to the game files with SlipstreamModManager. With that, each blueprint referred to by Player Ships is given elements detailing their location on the Wiki.
 
-# Step 3:
+</details>
 
-The last step requires the generated .append files to be added to the game files. That requires each blueprint has information on where it's located on the Wiki. After that, a script called [wikiShipExport.py](./project/wikiShipExport.py) is used to extract information from the game files and format it for the Wiki. The resulting file is inserted in a file called [wikiShips.txt](./project/wikiShips.txt).
+<details>
+  <summary><b>Show Details for Other Scripts</b></summary>
+
+### Exporting Ship Data
+
+After following the two-step solution, a script called [wikiShipExport.py](./project/wikiShipExport.py) can be used to extract information about Player Ships from the game files and format it for the Wiki. The resulting file is inserted into a file called `wikiShips.txt`.
+
+</details>
 
 # Instructions
 
-### Disclaimer
+Before using the mod, ensure all [Requirements](#requirements) have been met and that the [Disclaimer](#disclaimer) has been read.
 
-How this mod affects game data is untested. Your game data could become corrupted and unusable. Therefore, it is recommended to backup game data before using this mod. On Windows, the game data is commonly located in the folder `Documents/My Games/FasterThanLight'. Copy all files in the folder to another folder for safekeeping.
+There are two ways to use the script adding information to the game files. The first way is [automatically](#automatic-method), which is recommended. The second way is [manually](#manual-method).
 
-## Step 0: Requirements
+## Disclaimer
 
-This project requires Python version 3.9.2 or later. If Python is not installed on your system, install it [here](https://www.python.org/downloads/). Download any version of python 3.X.Y, where X >= 9 and Y >= 2.
+The scripts use mods whose effect on game data while running *FTL: Multiverse* is untested. Your game data could become corrupted and unusable. It is recommended to backup game data before using the mods and scripts. Game data is commonly found in the folder `Documents/My Games/FasterThanLight`. Copy all files in that folder to another folder to backup the game data.
 
-## Step 1. Add blueprintLists
+## Automatic Method
 
-1. If you haven't modified [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append), go to [SlipstreamModManager Process step 2](#slipstreammodmanager-process), with {modName} as `Append Wiki blueprintLists`.
-2. If [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append) was modified, go to [SlipstreamModManager Process](#slipstreammodmanager-process), with with {modName} being 'Append Wiki blueprintLists'.
+<details>
+  <summary><b>Show Automatic Method</b></summary>
 
-# Step 2. Add Information
+### Windows:
 
-- After following Step 1. There are multiple options:
-    - [run from terminal](#running-from-terminal-step-2) (easier for beginners)
-    - [run from IDE](#running-from-ide) (better option for editing and development) (INCOMPLETE)
+- The name of the *FTL: Multiverse* files to be patched should be specified in [wikiToolsInit.py](./wikiToolsInit.py) by editing the field `multiverseFiles`. They are included by default, but editing this field may be required between updates.
+- Double-click [wikiTools.bat](./wikiTools.bat) in File Explorer to run the script. By default, it includes a command to extract ship information. To disable that, delete the line `python wikiToolsCLI.py --wikiShipExport`.
+- Note that the batch file [may stall if you click and drag the terminal window while it is executing](https://superuser.com/questions/1676378). Pressing the `ENTER` key with the window selected fixes this.
+
+### Mac/Linux
+
+- Follow the instruction from [Running in terminal](#running-from-terminal), deviating from Windows-specific instructions where necessary.
+- Enter the following into terminal, one after the other: 
+  ```
+  python wikiToolsCLI.py --init
+  ```
+  ```
+  python wikiToolsCLI.py --wikiInfo
+  ```
+  ```
+  python wikiToolsCLI.py --wikiShips
+  ```
+
+<details>
+  <summary><b>Script Details</b></summary>
+
+- [wikiToolsCLI.py](./wikiToolsCLI.py) accepts command-line arguments to executes files based on user input.
+
+- [wikiToolsInit.py](./wikiToolsInit.py) finds the location of SlipstreamModManager's `modman.jar` on your system. It requires  `modman.jar` and the project to be on the same hard drive. Additionally, there must be only one copy of `modman.jar` on the current drive.
+
+</details>
+<br>
+
+</details>
+
+## Manual Method
+
+<details>
+  <summary><b>Show Manual Method</b></summary>
+
+### Step 1: Add blueprintLists
+
+1. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} as `Append Wiki blueprintLists`.
+
+### Step 2: Add Information
+
+After following Step 1. There are multiple options:
+  - [Run from Terminal](#running-from-terminal-step-2) (easier for beginners)
+  - Run from IDE (better option for editing and development)
 
 ### Running from Terminal Step 2
 
 1. Complete the [Running from Terminal](#running-from-terminal) instructions to open the terminal and navigate to the correct directory.
-2. Enter in terminal `python ./appendWikiElements.py`. This activates the script and creates the .append files in the [Append wikiElements](./project/Append%20wikiElements/data) folder.
-3. Go to [SlipstreamModManager Process](#slipstreammodmanager-process) step 1, with {modName} being `Append wikiElements`.
+2. Enter in terminal `python ./appendWikiElements.py`. This activates the script [appendWikiElements.py](./project/appendWikiElements.py) to create the `.append` files in the `Append wikiElements` folder.
+3. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} being `Append wikiElements`.
 
-# Step 3. Export Ships
+### Step 3: Export Ships
 
 1. If the terminal was closed, or the directory changed, repeat the [Running from Terminal](#running-from-terminal) instructions.
-2. Enter in terminal `python ./wikiShipExport.py`. This activates the script [wikiShipExport.py](./project/wikiShipExport.py), which outputs text to [wikiShips.txt](./project/wikiShips.txt)
+2. Enter in terminal `python ./wikiShipExport.py`. This activates the script [wikiShipExport.py](./project/wikiShipExport.py), which outputs text to a file called `wikiShips.txt`.
 
-
-## SlipstreamModManager Process:
+### SlipstreamModManager Process:
 
 Make sure that ZIP files are recognized by SlipstreamModManager. To enable this, in SlipstreamModManager, click in this sequence: `File -> Preferences`. In the popup, ensure the `allow_zip` option is checked.
 
@@ -93,36 +145,33 @@ Make sure that ZIP files are recognized by SlipstreamModManager. To enable this,
 3. In SlipstreamModManager folder, double-click `modman.jar` to start SlipstreamModManager.
 4. In the list of mods, check the `{modName}` file.
 5. Click 'Validate' to ensure the `{modName}` file contains valid XML. Ignore warnings about the invalid character '🗲'. For other warning messages, fix it using the information provided by SlipstreamModManager.
-5. 'Patch' FTL with `FTL: Multiverse` and the ZIP file checked. Ensure the ZIP file is listed AFTER FTL: Multiverse. Otherwise, the patch will not work.
+5. 'Patch' FTL with the relevant *`FTL: Multiverse`* mod files and the ZIP file checked. Ensure the ZIP file is listed AFTER *FTL: Multiverse*. Otherwise, the patch will not work.
 6. If you receive a popup asking to start FTL, DO NOT do it. See [Disclaimer](#disclaimer) for details. The popup after patching can be disabled by following the sequence in SlipstreamModManager: `File -> Preferences` and ensuring that 'never_run_ftl' is checked.
-7. Do `File-> Extract Dats...` and select the project folder. It is important that the project folder is selected because the scripts rely on the game folders being in the same directory.
+7. Do `File-> Extract Dats...` and select the [FTL DAT](./project/FTL%20DAT/) folder. It is important that the FTL DAT folder is selected because the scripts rely on the game data being in the same directory.
 8. Click `Save` in the `Extract Dats...` popup. Wait for the files to be extracted.
 
-If coming from [Step 1. Add blueprintLists](#step-1-add-blueprintlists), go to [Step 2. Add Information](#step-2-add-information).
+If coming from [Step 1](#step-1-add-blueprintlists), go to [Step 2](#step-2-add-information).
 
-If coming from [Step 2. Add Information](#step-2-add-information), go to [Step 3.](TODO).
+If coming from [Step 2](#step-2-add-information), go to [Step 3](#step-3-export-ships).
 
-- Note that after completing [Step 2](#step-2-add-information), [createShipBlueprintLists.py](./project/createShipBlueprintLists.py) and [appendWikiElements.py](./project/appendWikiElements) will not because the blueprintLists are no longer contained in 'autoBlueprints.xml'. In SlipstreamModManager, doing the following will recreate the environment for the scripts to work correctly:
-
-1. Patch FTL with only FTL: Multiverse selected.
-2. `Extract the Dat...` to the [/project/FTL Data](./project/FTL%20Data/) folder.
+</details>
 
 ## Running from Terminal
 
-(Guide for Windows) 
+(Guide for Windows)
 
 1. In the Windows search bar, type "terminal". The app "Command Prompt" should appear. Click it to open the Command Prompt.
-2. Locate and copy the filePath of the project folder, referred to as `projectFilePath`.
-3. In the terminal, enter `cd {projectFilePath}/project`. This changes the working directory of the terminal to where the script is.
+2. In File Explorer, locate and copy the file path of the project folder, referred to as `projectFilePath`.
+3. In the terminal, enter `cd {projectFilePath}`. This changes the working directory of the terminal to where the scripts are.
+4. If coming from the [Manual Method](#manual-method), also enter `cd project`.
+
+#### Terminal Input Example
 
 <img src="images/runFromTerminal.png" alt="Image containing terminal commands">
 
-## Running from IDE
-[INCOMPLETE]
-
 # Development Tools
 - Windows 10
-- [Python 3.9.2](https://www.python.org/downloads)
-- [Visual Studio Code](https://code.visualstudio.com/)
 - [SlipstreamModManager](https://subsetgames.com/forum/viewtopic.php?t=17102)
-
+- [Python 3.9.2](https://www.python.org/downloads)
+- [Batch](https://en.wikipedia.org/wiki/Batch_file)
+- [Visual Studio Code](https://code.visualstudio.com/)

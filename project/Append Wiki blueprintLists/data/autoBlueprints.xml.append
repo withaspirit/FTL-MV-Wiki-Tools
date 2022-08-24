@@ -2,48 +2,84 @@
 <!-- wikiStart -->
 
 <!--
-
-    Introduction:
     https://ftlmultiverse.fandom.com/wiki/
-    This file contains blueprintLists matching objects to their corresponding FTL: Multiverse Wiki page.
-    This files' blueprintLists contain <name> elements which contain the "name" element of each object's blueprint.
 
-    There's no reliable pattern in the game files to identify what page in the FTL: Multiverse Wiki each object corresponds to.
-    This file associates object blueprints with their corresponding wikiPage.
-    The result should be that the following elements are added to
-    the blueprint of each included object: <wikiName>, <wikiHeading>,  <wikiPage>, and <wikiRedirect>
+    # Introduction:
+    This file associates FTL: Multiverse objects with their corresponding
+    FTL: Multiverse Wiki page. It also contains information on how each 
+    object should be referred and linked to.
 
 
-    Information:
-    Almost all objects in this file belong to blueprints.xml.
-    Some belong to dlcBlueprints.xml or autoBlueprints.xml. They are identified accordingly.
+    # FTL Information:
+    All objects have a <blueprint> element (for blueprint types see # Legend).
+    Almost all blueprints are found in blueprints.xml. Some belong to
+    dlcBlueprints.xml or autoBlueprints.xml. They are identified accordingly.
+    
+    The game files include blueprints which are not included here.
+    _ENEMY variants of most objects are not included because they are not 
+    on the Wiki. Their <desc> element text usually reads 
+    "YOU SHOULD NEVER SEE THIS"
 
-    _ENEMY variants of most blueprints are not included because they are not on the Wiki.
-    _ENEMY variants usually have their <desc> element text as "YOU SHOULD NEVER SEE THIS"
 
-    For <name> elements in these blueprintLists, if wikiName, wikiHeading, or both are omitted,
-    they are obtained from the blueprint's existing elements. If the blueprint is a shipBlueprint,
-    the <class> element is used. Otherwise, <title> element is used.
+    # Page to Blueprint:
+    This file contains blueprintLists representing pages on the Wiki. The 
+    'wikiPage' attribute on each blueprintList identifies the page.
 
-    Legend:
-    <wikiPage>: the Wiki page a list of objects belongs to
+    Each object's blueprint element has a `"name"` attribute as a unique 
+    identifier. blueprintLists contain the `"name"` attributes of all or 
+    most objects' blueprint elements found on the wikiPage as elements.
+    
+
+    # Blueprint Information
+    For <name> elements in the blueprintLists, attributes overriding a 
+    blueprint's information have been added where an object's heading or name
+    on the Wiki differs from its blueprint's information (for details on 
+    <wikiName> and <wikiHeading> see # Legend). On <name> elements where these
+    attributes are omitted, it is assumed that the information in the blueprint
+    matches the information on the Wiki.
+    
+
+    # Legend:
+    Note that attributes for <name> elements in this document are converted to
+    elements when they are added to an object's blueprint
+
+    <wikiPage>: usually represents the Wiki page a list of objects belongs to
+        (for more details see # wikiPage Suffix Guide)
     <wikiName>: the name of the object as displayed on the Wiki
     <wikiHeading>: the heading as displayed on the wiki. Also used for redirects
-    <wikiRedirect>: the full redirect to be used in the format: https://ftlmultiverse.fandom.com/wiki/<wikiRedirect>
+    <wikiRedirect>: the full redirect to be used in the format: 
+        https://ftlmultiverse.fandom.com/wiki/<wikiRedirect>
+    <fullUrl>: (not in document) the full Wiki URL with <wikiRedirect>
 
-    <blueprint>: contains object information. Used here to refer to <crewBlueprint>, <weaponBlueprint>, <droneBlueprint>, <augBlueprint>, and <shipBlueprint>
-    <blueprintList>: typically contains the "name" attributes of one or more blueprints
-    <name>: in blueprintLists, the value of a blueprint's "name" atttribute. In shipBlueprints, the object's in-game name
-    <blueprintListName>: the value of a blueprint's "name" atttribute. Used here to refer to autoBlueprint.xml exclusively.
-    <title>: the <title> element containing the object's in-game name. Overridden when "wikiName" present. Found on <crewBlueprint>, <weaponBlueprint>, <droneBlueprint>, <augBlueprint>.
-    <class>: the <class> element found on <shipBlueprint>. Layouts A, B, and C of a type of ship will usually belong to the same class.
+    'object': an item with a corresponding blueprint.
+    <blueprint>: contains object information. Refers to the blueprint types:
+        <crewBlueprint>, <weaponBlueprint>, <droneBlueprint>, <augBlueprint>,
+         and <shipBlueprint> .
+    <blueprintList>: typically contains the "name" attributes of one or more 
+        blueprints as elements.
+    <name>: in blueprintLists, the value of a blueprint's "name" attribute.
+    <blueprintListName>: the value of a blueprint's "name" atttribute. 
+        Used here to refer to autoBlueprint.xml exclusively.
+    <title>: the <title> element containing the object's in-game name. 
+        Found on all blueprint types except <shipBlueprint>.
+    <class>: the <class> element found on <shipBlueprint>. 
+        Layouts A, B, and C of a type of ship usually belong to the same class.
 
-    wikiPage guide:
-    wikiPage="Page Name" -> indicates that the wikiRedirect should be {title/name}, {wikiName}, or {wikiHeading}
+
+    # wikiPage Suffix Guide:
+    The presence and location of a '#' in a wikiPage dictates how it's handled
+    by code.
+
+    wikiPage="Page Name" -> indicates that the wikiRedirect should come from a
+        blueprint's {title/name}, {wikiName}, or {wikiHeading}
         ex: https://ftlmultiverse.fandom.com/wiki/Breach_Sealant
-    wikiPage="Page Name#" -> indicates wikiRedirect is {Page Name#} followed by {title/name}, or {wikiHeading}
+
+    wikiPage="Page Name#" -> indicates wikiRedirect is {Page Name#} followed by
+        {title/name}, or {wikiHeading}
         ex: https://ftlmultiverse.fandom.com/wiki/Crew#Standard_Human
-    wikiPage="Page Name#Redirect" -> indicates that the wikiRedirect should be {Page Name#Redirect}
+
+    wikiPage="Page Name#Redirect" -> indicates that the wikiRedirect should be
+        {Page Name#Redirect}
         ex: https://ftlmultiverse.fandom.com/wiki/Drones_Types#Defender_Drones
 
 -->
@@ -52,13 +88,13 @@
     <!--
         Used for creating lists of <name> elements from https://ftlmultiverse.fandom.com/wiki/List_of_IDs
 
-        keep only first word in line:
+        - keep only first word in line:
         replace:
         (^.+?)\s.*$
         with:
         $1
 
-        wrap with <name>
+        - wrap with <name>
         replace:
         \w+
         with with:
@@ -298,7 +334,7 @@
             <name wikiName="Nights" wikiHeading="Captain Nights">unique_nights</name>
             <name wikiName="Slocknog" wikiHeading="Slocknog">unique_slocknog</name>
             <name wikiName="Irwin" wikiHeading="Irwin">unique_irwin</name>
-            <name wikiName="Irwin (Demon)" wikiHeading="Irwin">unique_irwin_demon</name> <!-- FIXME: name + heading -->
+            <name wikiName="Irwin (Demon)" wikiHeading="Irwin">unique_irwin_demon</name> <!-- FIXME: add on wiki -->
             <name wikiName="Alkram" wikiHeading="Alkram">unique_alkram</name>
             <name wikiName="Tyrdeo" wikiHeading="Tyrdeo">unique_tyrdeo</name>
             <name wikiName="Wealsey" wikiHeading="Wealsey">unique_tyrdeo_bird</name>
@@ -306,7 +342,7 @@
             <name wikiName="Freddy (Fedora)" wikiHeading="Freddy">unique_freddy_fedora</name>
             <name wikiName="Freddy (Jester)" wikiHeading="Freddy">unique_freddy_jester</name>
             <name wikiName="Freddy (Sombrero)" wikiHeading="Freddy">unique_freddy_sombrero</name>
-            <name wikiName="Freddy (Two Hats)" wikiHeading="Freddy">unique_freddy_twohats</name> <!-- FIXME: name+heading -->
+            <name wikiName="Freddy (Two Hats)" wikiHeading="Freddy">unique_freddy_twohats</name> <!-- FIXME: add on wiki -->
             <name wikiName="Kazaaakplethkilik" wikiHeading="Kazaaakplethkilik">unique_kaz</name>
             <name wikiName="Dianesh" wikiHeading="Dianesh">unique_dianesh</name>
             <name wikiName="Ariadne" wikiHeading="Ariadne">unique_ariadne</name>
@@ -322,7 +358,7 @@
             <name wikiName="Venomous Queen (Chaos)" wikiHeading="Venomous Queen (Chaos)">spider_venom_chaos</name>
             <name wikiName="Sylvan" wikiHeading="Sylvan">unique_sylvan</name>
             <name wikiName="Obyn" wikiHeading="Obyn">unique_obyn</name>
-            <name wikiName="Obyn" wikiHeading="Obyn">unique_obyn_temp</name>
+            <name wikiName="Obyn (Temp)" wikiHeading="Obyn">unique_obyn_temp</name>
             <name wikiName="Billy" wikiHeading="Billy">unique_billy</name>
             <name wikiName="Billy (Box)" wikiHeading="Billy (Box)">unique_billy_box</name>
             <name wikiName="Guntput" wikiHeading="Guntput">unique_guntput</name>
@@ -390,7 +426,7 @@
         <weaponBlueprint>
         https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
         https://ftlmultiverse.fandom.com/wiki/Weapon_Types
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/<weaponType>#<weaponBlueprint>.<title>
 
         All weapons follow the provided redirect pattern
@@ -1037,7 +1073,7 @@
 <!-- Drones -->
     <!--
         <droneBlueprint>
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/<wikiPage>#<droneList>
 
         Most Drones are not linked in the pattern <droneBlueprint>.<title>.
@@ -1048,7 +1084,7 @@
     -->
     <!-- Drone Types -->
 
-        <!-- Defense_Drones -->
+        <!-- Defense Drones -->
             <!--
                 Defender Drones
                 https://ftlmultiverse.fandom.com/wiki/Drone_Types#Defender_Drones
@@ -1228,7 +1264,7 @@
         <!--
             Uplifted Drone
             https://ftlmultiverse.fandom.com/wiki/Event_Weapons#Uplifted_Drone
-            FIXME: not included on wiki
+            FIXME: not on wiki yet
         -->
             <blueprintList wikiPage="Event Weapons#" name="LIST_DRONES_EVENT_WEAPONS_WIKI">
                 <name>COMBAT_ENGINEER</name>
@@ -1346,7 +1382,7 @@
     <!--
         Standard Augments
         https://ftlmultiverse.fandom.com/wiki/Augments
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/<augBlueprint>.<title>
 
         Anything commented out with "No blueprints" is included because it was found on
@@ -1555,7 +1591,7 @@
     <!--
         Crew Lab
         https://ftlmultiverse.fandom.com/wiki/Crew_Lab
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/Crew_Lab#<title>
     -->
         <blueprintList wikiPage="Crew Lab#" name="LIST_AUGMENTS_CREW_WIKI">
@@ -1649,7 +1685,7 @@
     <!--
         Internal Upgrades
         https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades#<title>
     -->
         <blueprintList wikiPage="Internal Upgrades#" name="LIST_AUGMENTS_INTERNAL_WIKI">
@@ -1715,7 +1751,7 @@
     <!--
         Modular Arms
         https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/Internal_Upgrades#<title>
 
         found in: blueprintList name="LIST_UPG_ARMS" and name="BLUELIST_ARM"
@@ -1759,7 +1795,6 @@
         <!--
             Obsidian Armor
             https://ftlmultiverse.fandom.com/wiki/Obsidian_Armor
-            redirect: https://ftlmultiverse.fandom.com/wiki/Obsidian_Armor
         -->
             <mod:findName name="BLUELIST_OBSIDIAN" type="blueprintList">
                 <mod:setAttributes wikiPage="Obsidian Armor"/>
@@ -1805,17 +1840,19 @@
     -->
         <!--
             Found in hyperspace.xml on <customShip> elements.
-            <customShip> elements have the same "name" attribute as their corresponding <shipBlueprint>
-            All <customShips> have at least 2 <hiddenAug>.
-            The first <hiddenAug> determines Tully's response to the player's ship when arriving in Sector 8. Used in events_boss.xml
-            The second <hiddenAug> indicates the ship was made for FTL: Multiverse
+            <customShip> elements have the same "name" attribute
+            as their corresponding <shipBlueprint>
+
+            All <customShips> have at least 2 <hiddenAug>
+            The first <hiddenAug> is for Tully's dialogue on entering Sector 8
+            The second <hiddenAug> is used for hyperspace mod blueprint
+            
 
             Any <hiddenAug> after the first two are noteworthy
         -->
 
         <!--
             Rhyme Cruisers
-            FIXME: location
             https://ftlmultiverse.fandom.com/wiki/Rhyme_Cruisers
         -->
             <blueprintList wikiPage="Rhyme Cruisers#" name="LIST_AUGMENTS_HIDDEN_CHAOS_WIKI">
@@ -1844,7 +1881,7 @@
     <!--
         <weaponBlueprint>
         https://ftlmultiverse.fandom.com/wiki/Artilleries
-        redirect:
+        pattern:
         https://ftlmultiverse.fandom.com/wiki/Artilleries#<weaponBlueprint>.<title>
 
         Note that Artilleries, despite being a system, are each considered a "weaponBlueprint"
@@ -2912,7 +2949,7 @@
         https://ftlmultiverse.fandom.com/wiki/Elite_Cruisers#
 
     -->
-        <blueprintList wikiPage="EliteCruisers#" name="LIST_SHIPS_ELITE_WIKI">
+        <blueprintList wikiPage="Elite Cruisers#" name="LIST_SHIPS_ELITE_WIKI">
             <name wikiName="EDC Cruiser" wikiHeading="EDC Cruiser" teleporterLimit="4">ELITE_SHIP_MILITIA</name>
             <name wikiName="Elite Federation Cruiser" wikiHeading="Elite Federation Cruiser" teleporterLimit="2">ELITE_SHIP_FED</name>
             <name wikiName="Elite Rebel Cruiser" wikiHeading="Elite Rebel Cruiser" teleporterLimit="4">ELITE_SHIP_REBEL</name>
@@ -2940,12 +2977,12 @@
 <!-- Lists -->
     <!--
         List of Lists
+        All of the following are blueprintLists found in autoBlueprints.xml
         Not found on Wiki
-        Some ships use a blueprintList to determine their crew, drones, or weapons
-        All of the following are found in autoBlueprints.xml
+        Some ships use a blueprintList to select their crew, drones, or weapons
 
-        LIST_CREW_PIRATE_RANDOM is used on both Prototype Cruisers and Brood Cruisers
-        In code, replace PLACEHOLDER with Prototype Cruisers or Brood_Cruisers depending on page type
+        LIST_CREW_PIRATE_RANDOM is used on Prototype Cruisers and Brood Cruisers
+        In code, replace PLACEHOLDER with appropriate page 
     -->
         <blueprintList name="LIST_LISTS_WIKI">
             <!-- Crew Lists -->
