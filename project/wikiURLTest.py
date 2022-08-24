@@ -3,8 +3,9 @@ import urllib.request
 import re
 import time
 
-# verifies that the wikiHeading of each blueprint is found on its corresponding page
-# takes ~ 5-7 minutes
+# Verifies that the wikiHeading of each blueprint is found on its corresponding page
+# appendWikiBlueprints.py must be run before this
+# Takes ~ 5-7 minutes
 
 filePath = blueprintUtils.wikiElementsPath
 files = {

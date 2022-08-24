@@ -52,7 +52,7 @@ slipstream = 'slipstream'
 cwd = 'cwd'
 
 project = 'project'
-ftlDAT = 'ftlDats'
+ftlDAT = 'ftlDAT'
 wikiListsData = 'wikiBlueprintListsData'
 wikiElementsData = 'wikiElementsData'
 
