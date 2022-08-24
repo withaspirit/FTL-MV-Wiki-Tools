@@ -23,8 +23,8 @@ import configparser
 drive  = pathlib.Path.home().drive
 
 
-# NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
-# ASSET FOLDER UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
+# NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
+# ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
 # multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
 multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
@@ -33,7 +33,7 @@ wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
 
 
-#files / folders
+# files / folders
 modman = 'modman.jar'
 configFileName = 'wikiTools.ini'
 wikiListsName = 'Append Wiki blueprintLists'
@@ -47,7 +47,7 @@ projectPaths = 'projectPaths'
 zipPaths = 'zipPaths'
 errors = 'errors'
 
-#option names
+# option names
 slipstream = 'slipstream'
 cwd = 'cwd'
 # TODO: rename folder to 'FTL dats' instead of 'FTL Data' for consistency
