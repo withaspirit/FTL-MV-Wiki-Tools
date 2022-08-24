@@ -187,7 +187,7 @@
                 <name wikiName="Cyberpony (Chaos)" wikiHeading="Cyberpony (Chaos)">pony_engi_nano_chaos</name>
             <!-- Siren -->
                 <name>siren</name>
-                <name wikiName="Siren Harpy" wikiHeading="Siren Harpy">siren_harpy</name>                
+                <name wikiName="Siren Harpy" wikiHeading="Siren Harpy">siren_harpy</name>
             <!-- Obelisk -->
                 <name>obelisk</name>
                 <name wikiHeading="Royal Obelisk">obelisk_royal</name> <!-- FIXME: change on wiki -->
@@ -283,7 +283,7 @@
             <name wikiName="Ellie (Lvl 4)" wikiHeading="Ellie">unique_ellie_lvl4</name>
             <name wikiName="Ellie (Lvl 5)" wikiHeading="Ellie">unique_ellie_lvl5</name>
             <name wikiName="Ellie (Lvl 6)" wikiHeading="Ellie">unique_ellie_lvl6</name>
-            <name wikiName="Stephan" wikiHeading="Stephan">unique_ellie_stephan</name> 
+            <name wikiName="Stephan" wikiHeading="Stephan">unique_ellie_stephan</name>
             <name wikiName="Devorak" wikiHeading="Devorak">unique_devorak</name>
             <name wikiName="Anurak" wikiHeading="Anurak">unique_anurak</name>
             <name wikiName="Vance" wikiHeading="Vance (Enemy Only)">unique_vance</name>
@@ -303,7 +303,7 @@
             <name wikiName="Tyrdeo" wikiHeading="Tyrdeo">unique_tyrdeo</name>
             <name wikiName="Wealsey" wikiHeading="Wealsey">unique_tyrdeo_bird</name>
             <name wikiName="Freddy" wikiHeading="Freddy">unique_freddy</name>
-            <name wikiName="Freddy (Fedora)" wikiHeading="Freddy">unique_freddy_fedora</name> 
+            <name wikiName="Freddy (Fedora)" wikiHeading="Freddy">unique_freddy_fedora</name>
             <name wikiName="Freddy (Jester)" wikiHeading="Freddy">unique_freddy_jester</name>
             <name wikiName="Freddy (Sombrero)" wikiHeading="Freddy">unique_freddy_sombrero</name>
             <name wikiName="Freddy (Two Hats)" wikiHeading="Freddy">unique_freddy_twohats</name> <!-- FIXME: name+heading -->
@@ -1280,7 +1280,7 @@
             Combat Drones
             https://ftlmultiverse.fandom.com/wiki/Transport_Loot#Combat_Drones
         -->
-            <blueprintList wikiPage="Transport Loot#Combat Drones" name="LIST_DRONES_TRANSPORT_LOOT_COMBAT_WIKI">  
+            <blueprintList wikiPage="Transport Loot#Combat Drones" name="LIST_DRONES_TRANSPORT_LOOT_COMBAT_WIKI">
                 <name>LOOT_AUTO_1_LASER</name>
                 <name>LOOT_AUTO_1_BEAM</name>
                 <name>LOOT_ENGI_2</name>
@@ -1288,11 +1288,11 @@
                 <name>LOOT_AUG_1_AMP2</name>
                 <name>LOOT_AUG_1_AMP3</name>
                 <name>LOOT_AUG_1_AMP4</name>
-                <!-- 
-                removed in 5.3 
+                <!--
+                removed in 5.3
                 <name wikiName="Combat Drone Mark I">LOOT_AUTO_1</name>
                 <name wikiName="Anti-Ship Beam Drone I">LOOT_AUTO_2</name>
-                <name wikiName="Heavy Combat Drone">LOOT_LANIUS_2</name> 
+                <name wikiName="Heavy Combat Drone">LOOT_LANIUS_2</name>
                 <name wikiName="Anti-Ship Beam Drone I">LOOT_LANIUS_1</name>
                 -->
             </blueprintList>
@@ -1413,7 +1413,7 @@
                 <name>COMBAT_CLOAKING_JAMMER</name>
                 <name>COMBAT_WARP_JAMMER</name>
                 <name>COMBAT_REACTOR_JAMMER</name>
-                <!-- 
+                <!--
                 removed in 5.3
                 <name>LOCKED_COMBAT_REACTOR_JAMMER</name>
                 <name wikiName="Shield Jammer MK 2" wikiHeading="Shield Jammer MK 2">COMBAT_SHIELDS_JAMMER_2</name>
@@ -1809,7 +1809,7 @@
             All <customShips> have at least 2 <hiddenAug>.
             The first <hiddenAug> determines Tully's response to the player's ship when arriving in Sector 8. Used in events_boss.xml
             The second <hiddenAug> indicates the ship was made for FTL: Multiverse
-            
+
             Any <hiddenAug> after the first two are noteworthy
         -->
 
@@ -1892,9 +1892,9 @@
             <name wikiName="Dreadnought Artillery (R)" wikiHeading="Dreadnought Artillery (R)">ROYAL_DREAD</name>
             <name>ARTILLERY_ROCK_MINIBOSS</name>
             <name>ARTILLERY_FED_C</name>  <!-- dlcBlueprints -->
-            <!-- 
+            <!--
             Vanilla blueprints (!!!)
-            only include if documenting enemy ships 
+            only include if documenting enemy ships
             <name>ARTILLERY_BOSS_1</name>
             <name>ARTILLERY_BOSS_2</name>
             <name>ARTILLERY_BOSS_3</name>
