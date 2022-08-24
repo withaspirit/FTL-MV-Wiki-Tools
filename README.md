@@ -115,25 +115,24 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 
 ### Step 1. Add blueprintLists
 
-1. If you haven't modified [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append), go to [SlipstreamModManager Process Step 2](#slipstreammodmanager-process), with {modName} as `Append Wiki blueprintLists`.
-2. If [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append) was modified, go to [SlipstreamModManager Process](#slipstreammodmanager-process), with with {modName} being 'Append Wiki blueprintLists'.
+1. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} as `Append Wiki blueprintLists`.
 
 ### Step 2. Add Information
 
-- After following Step 1. There are multiple options:
-    - Run from Terminal](#running-from-terminal-step-2) (easier for beginners)
-    - Run from IDE (better option for editing and development)
+After following Step 1. There are multiple options:
+  - [Run from Terminal](#running-from-terminal-step-2) (easier for beginners)
+  - Run from IDE (better option for editing and development)
 
 ### Running from Terminal Step 2
 
 1. Complete the [Running from Terminal](#running-from-terminal) instructions to open the terminal and navigate to the correct directory.
-2. Enter in terminal `python ./appendWikiElements.py`. This activates the script and creates the .append files in the [Append wikiElements](./project/Append%20wikiElements/data) folder.
-3. Go to [SlipstreamModManager Process](#slipstreammodmanager-process) step 1, with {modName} being `Append wikiElements`.
+2. Enter in terminal `python ./appendWikiElements.py`. This activates the script [appendWikiElements.py](./project/appendWikiElements.py) to create the `.append` files in the [Append wikiElements](./project/Append%20wikiElements/data) folder.
+3. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} being `Append wikiElements`.
 
 ### Step 3. Export Ships
 
 1. If the terminal was closed, or the directory changed, repeat the [Running from Terminal](#running-from-terminal) instructions.
-2. Enter in terminal `python ./wikiShipExport.py`. This activates the script [wikiShipExport.py](./project/wikiShipExport.py), which outputs text to [wikiShips.txt](./project/wikiShips.txt)
+2. Enter in terminal `python ./wikiShipExport.py`. This activates the script [wikiShipExport.py](./project/wikiShipExport.py), which outputs text to a file called `wikiShips.txt`.
 
 ### SlipstreamModManager Process:
 
@@ -146,19 +145,14 @@ Make sure that ZIP files are recognized by SlipstreamModManager. To enable this,
 3. In SlipstreamModManager folder, double-click `modman.jar` to start SlipstreamModManager.
 4. In the list of mods, check the `{modName}` file.
 5. Click 'Validate' to ensure the `{modName}` file contains valid XML. Ignore warnings about the invalid character '🗲'. For other warning messages, fix it using the information provided by SlipstreamModManager.
-5. 'Patch' FTL with the *`FTL: Multiverse`* mod file and the ZIP file checked. Ensure the ZIP file is listed AFTER *FTL: Multiverse*. Otherwise, the patch will not work.
+5. 'Patch' FTL with the relevant *`FTL: Multiverse`* mod files and the ZIP file checked. Ensure the ZIP file is listed AFTER *FTL: Multiverse*. Otherwise, the patch will not work.
 6. If you receive a popup asking to start FTL, DO NOT do it. See [Disclaimer](#disclaimer) for details. The popup after patching can be disabled by following the sequence in SlipstreamModManager: `File -> Preferences` and ensuring that 'never_run_ftl' is checked.
-7. Do `File-> Extract Dats...` and select the project folder. It is important that the project folder is selected because the scripts rely on the game folders being in the same directory.
+7. Do `File-> Extract Dats...` and select the [FTL Data](./project/FTL%20Data/) folder. It is important that the FTL Data folder is selected because the scripts rely on the game data being in the same directory.
 8. Click `Save` in the `Extract Dats...` popup. Wait for the files to be extracted.
 
-If coming from [Step 1. Add blueprintLists](#step-1-add-blueprintlists), go to [Step 2. Add Information](#step-2-add-information).
+If coming from [Step 1](#step-1-add-blueprintlists), go to [Step 2](#step-2-add-information).
 
-If coming from [Step 2. Add Information](#step-2-add-information), go to [Step 3.](#step-3-export-ships).
-
-- Note that after completing [Step 2](#step-2-add-information), [createShipBlueprintLists.py](./project/createShipBlueprintLists.py) and [appendWikiElements.py](./project/appendWikiElements) will not because the blueprintLists are no longer contained in 'autoBlueprints.xml'. In SlipstreamModManager, doing the following will recreate the environment for the scripts to work correctly:
-
-1. Patch FTL with only *FTL: Multiverse* selected.
-2. `Extract the Dat...` to the [/project/FTL Data](./project/FTL%20Data/) folder.
+If coming from [Step 2](#step-2-add-information), go to [Step 3](#step-3-export-ships).
 
 </details>
 
