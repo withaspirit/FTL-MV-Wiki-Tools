@@ -2,8 +2,6 @@
 
 This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
 
-<br>
-
 # Features
 
 - *FTL: Multiverse* scripts and mods adding Wiki information to the blueprints of most objects found on [Player ships](https://ftlmultiverse.fandom.com/wiki/Player_ships).
@@ -59,7 +57,6 @@ The generated `.append` files are added to the game files with SlipstreamModMana
 
 <details>
   <summary><b>Show Details for Other Scripts</b></summary>
-<br>
 
 ### Exporting Ship Data
 
@@ -116,7 +113,6 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 <br>
 
 </details>
-<br>
 
 ## Manual Method
 
@@ -172,7 +168,6 @@ If coming from [Step 2. Add Information](#step-2-add-information), go to [Step 3
 2. `Extract the Dat...` to the [/project/FTL Data](./project/FTL%20Data/) folder.
 
 </details>
-<br>
 
 ## Running from Terminal
 
