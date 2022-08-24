@@ -253,7 +253,7 @@ class Ship:
 
     # The following information can be appended after for each system:
     # Whether the 'max' attribute of a system differs from the default value
-    # Whether a system's 'power' attribute starts at a non-default value on purchase
+    # Whether a system's 'power' attribute is a non-default value on purchase
     # Whether the system's room is resistant
     def getSystemAppend(self, systemElement: ET.Element, systemSettings: list[str]):
         defaultStartPower = systemSettings[0]
@@ -265,7 +265,8 @@ class Ship:
         differentMax = False
         systemAppend = ''
 
-        # systemMax different than defaultMaxPower or systemPower greater than defaultMaxPower
+        # 'Max' Attributes
+        # systemMax not equal to defaultMaxPower or systemPower greater than defaultMaxPower
         systemAppend = ''
         if (systemMax is not None) and (int(systemMax) != defaultMaxPower):
             systemAppend += f" '''[Max {systemMax}]'''"
@@ -283,15 +284,15 @@ class Ship:
         # Resistant room: System, Ion, or both
         # assume ships start with all resistant rooms they'll have
         roomId = systemElement.get('room')
-        sysDamageResistChancePath = f'.//rooms/room[@id="{roomId}"]/sysDamageResistChance'
-        sysResist = self.customShip.find(sysDamageResistChancePath)
-        ionDamageResistChancePath = f'.//rooms/room[@id="{roomId}"]/ionDamageResistChance'
-        ionResist = self.customShip.find(ionDamageResistChancePath)
+        sysDamageResistPath = f'.//rooms/room[@id="{roomId}"]/sysDamageResistChance'
+        sysResist = self.customShip.find(sysDamageResistPath)
+        ionDamageResistPath = f'.//rooms/room[@id="{roomId}"]/ionDamageResistChance'
+        ionResist = self.customShip.find(ionDamageResistPath)
 
-        ionResistBool = ionResist is not None
         sysResistBool = sysResist is not None
+        ionResistBool = ionResist is not None
 
-        if not ionResistBool and not sysResistBool:
+        if not sysResistBool and not ionResistBool:
             return systemAppend
 
         resistText = 'Resists '

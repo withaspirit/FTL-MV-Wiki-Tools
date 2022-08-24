@@ -103,7 +103,6 @@ def getFilePath(fileName: str) -> str:
     # look through hard drive for modman.jar
     filePathList = []
     for path, dirs, files in os.walk(f'{drive}\\'):
-        # skip bad files
         # print(path)
         # Skip deleted files
         if f'{drive}\\$Recycle.Bin' in path:
@@ -141,7 +140,6 @@ def initConfig(config: configparser.ConfigParser):
     config[mainPaths][cwd] = f'{cwdPath}\\'
 
     # FIXME: maybe use a bunch of constants instead
-    # (assuming they don't change between iterations?)
     # only folders that could change are cwd and slipstream
     if config.has_section(projectPaths) == False:
         config.add_section(projectPaths)
