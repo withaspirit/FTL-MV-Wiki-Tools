@@ -5,7 +5,7 @@ from pathlib import Path
 import blueprintUtils as blueprintUtils
 
 # Generates code to insert blueprintList's <name> attributes
-# as elements into every blueprint that appears on the Wiki. 
+# as elements into every blueprint that appears on the Wiki.
 # It then writes that text to .append files
 
 # files used:
@@ -84,7 +84,7 @@ def writeXMLAppendFile(fileName: str, fileText: str):
     fileText = f'<FTL>\n{fileText}\n</FTL>\n'
     fileText = blueprintUtils.processText(fileText)
     # make directory if not exist
-    Path(blueprintUtils.wikiElementsPath).mkdir(parents=True, exist_ok=True) 
+    Path(blueprintUtils.wikiElementsPath).mkdir(parents=True, exist_ok=True)
     fileName = f'{blueprintUtils.wikiElementsPath}{fileName}.xml.append'
     appendFile = open(fileName, 'w', encoding='utf-8')
     appendFile.write(fileText)

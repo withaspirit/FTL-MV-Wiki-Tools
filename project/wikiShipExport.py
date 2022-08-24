@@ -17,6 +17,7 @@ def getWikiShipText() -> str:
     hyperspace = ET.parse(blueprintUtils.pathToData + 'hyperspace.xml').getroot()
     text_blueprints = ET.parse(blueprintUtils.pathToData + 'text_blueprints.xml').getroot()
     events_boss = ET.parse(blueprintUtils.pathToData + 'events_boss.xml').getroot()
+
     shipPath = './/shipBlueprint[@name]'
     shipBlueprints = blueprints.findall(shipPath)
 
@@ -25,11 +26,11 @@ def getWikiShipText() -> str:
     wikiShipText = ''
     for shipBlueprint in shipBlueprints:
         blueprintName = shipBlueprint.get('name')
-        
+
         if blueprintName in errorShips:
             #print(f'Skipped {blueprintName}')
             continue
-        
+
         currWikiPage = shipBlueprint.find('wikiPage').text
         if currWikiPage != prevWikiPage:
             prevWikiPage = currWikiPage
@@ -44,7 +45,7 @@ if __name__ == '__main__':
     start_time = time.time()
 
     print('Exporting player ships to Wiki format. Please wait ~5 seconds.')
-    
+
     text = getWikiShipText()
     wikiShipsFile = open(blueprintUtils.cwd + '\wikiShips.txt', 'w', encoding='utf-8')
     wikiShipsFile.write(text)

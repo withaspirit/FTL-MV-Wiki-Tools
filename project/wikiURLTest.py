@@ -24,10 +24,10 @@ def getUrls() -> set[str]:
 
 def getHeading(url: str) -> str:
     heading = url.replace('https://ftlmultiverse.fandom.com/wiki/', '')
-    pageEnd = heading.find('#') 
+    pageEnd = heading.find('#')
     if pageEnd != -1:
         heading = heading[pageEnd + 1:]
-    
+
     return heading.replace("_", " ")
 
 if __name__ == '__main__':
@@ -53,7 +53,7 @@ if __name__ == '__main__':
                     heading = getHeading(url)
                     if heading not in text:
                         badHeadingUrls.append(newUrl)
-                
+
         except urllib.error.HTTPError as e:
             notFoundUrls.append(newUrl)
             pass

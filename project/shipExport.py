@@ -154,7 +154,7 @@ class Ship:
 
                 blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint')
                 crewMap.update({blueprintName : [blueprintLink, amount]})
-        return crewMap    
+        return crewMap
 
     def getStartingReactor(self) -> str:
         maxPower = self.getElementAttribute('maxPower', 'amount')
@@ -201,7 +201,7 @@ class Ship:
         # len(systemList) never 0
         startingSystems = '\n* Starting Systems\n** ' + '\n** '.join(systemsList)
         return startingSystems
-    
+
     # FIXME: this function is awfully long
     def getSystemsList(self) -> list[str]:
         systemList = self.blueprint.find('systemList')
@@ -293,7 +293,7 @@ class Ship:
 
         if not ionResistBool and not sysResistBool:
             return systemAppend
-        
+
         resistText = 'Resists '
         resistList = []
         if sysResistBool:
@@ -523,7 +523,7 @@ class Ship:
 
         aug = self.hyperspace.find(f'.//augments/aug[@name="{blueprintName}"]')
         locked = None
-        if aug is not None: 
+        if aug is not None:
             locked = aug.find('locked')
 
         if locked is not None:
