@@ -513,8 +513,6 @@ class Ship:
                 blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
         return blueprintLink
 
-    # TODO: check hyperspace.xml if f'augments/aug[@name="{blueprintName}"]' has "locked" element -> (INDICATES LOCKED)
-    # TODO: maybe pass hyperspace.xml to ships
     def augmentProcessing(self, blueprintName: str, tag: str, blueprintLink: str) -> str:
         newBlueprintLink = blueprintLink
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, blueprintName)
