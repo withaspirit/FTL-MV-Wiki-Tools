@@ -2,6 +2,8 @@
 
 This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
 
+<br>
+
 # Features
 
 - *FTL: Multiverse* scripts and mods adding Wiki information to the blueprints of most objects found on [Player ships](https://ftlmultiverse.fandom.com/wiki/Player_ships).
