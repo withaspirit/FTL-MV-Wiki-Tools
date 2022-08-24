@@ -52,10 +52,10 @@ cwd = 'cwd'
 
 project = 'project'
 ftlDAT = 'ftlDAT'
-wikiListsData = 'wikiBlueprintListsData'
+wikiListsData = 'wikiListsData'
 wikiElementsData = 'wikiElementsData'
 
-wikiLists = 'wikiBlueprintLists'
+wikiLists = 'wikiLists'
 wikiElements = 'wikiElements'
 ftl = 'ftl'
 
