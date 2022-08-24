@@ -21,7 +21,6 @@ This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgam
 
 <details>
   <summary><b>View Explanation</b></summary>
-<br>
 
 In *FTL: Faster Than Light*, game data is contained in [XML files](https://en.wikipedia.org/wiki/XML). Each in-game object has a blueprint: an XML element detailing the object and dictating its behavior. 
 
@@ -32,11 +31,9 @@ A script to extract game information from object blueprints could help in editin
 This project includes a two-step solution. The first step matches object blueprints to their Wiki page and provides additional information where necessary. The second step adds elements containing Wiki information to existing blueprints. This enables a script extracting game information to refer to objects correctly and include hyperlinks to their Wiki page.
 
 </details>
-<br>
 
 <details>
   <summary><b>Show Two-Step Solution Details</b></summary>
-<br> 
 
 ### Step 1: Add blueprintLists
 
@@ -53,7 +50,6 @@ A script called [appendWikiElements.py](./project/appendWikiElements.py) generat
 The generated `.append` files are added to the game files with SlipstreamModManager. With that, each blueprint referred to by Player Ships is given elements detailing their location on the Wiki.
 
 </details>
-<br>
 
 <details>
   <summary><b>Show Details for Other Scripts</b></summary>
@@ -63,7 +59,6 @@ The generated `.append` files are added to the game files with SlipstreamModMana
 After following the [two-step solution](#step-1-add-blueprintlists), a script called [wikiShipExport.py](./project/wikiShipExport.py) can be used to extract information about Player Ships from the game files and format it for the Wiki. The resulting file is inserted into a file called `wikiShips.txt`.
 
 </details>
-<br>
 
 # Instructions
 
@@ -79,7 +74,6 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 
 <details>
   <summary><b>Show Automatic Method</b></summary>
-<br>
 
 ### Windows:
 
@@ -103,7 +97,6 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 
 <details>
   <summary><b>Script Details</b></summary>
-<br>
 
 - [wikiToolsCLI.py](./wikiToolsCLI.py) accepts command-line arguments to executes files based on user input.
 
