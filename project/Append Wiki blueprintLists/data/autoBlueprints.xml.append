@@ -97,7 +97,7 @@
                 <name>zoltan_devotee</name>
                 <name>zoltan_martyr</name>
             <!-- Orchid -->
-                <name wikiHeading="Standard Orchid">orchid</name>
+                <name>orchid</name>
                 <name wikiName="Orchid Chieftain" wikiHeading="Orchid Chieftain" >orchid_chieftain</name>
                 <name wikiName="Orchid Cultivator" wikiHeading="Orchid Cultivator">orchid_cultivator</name>
                 <name>orchid_vampweed</name>
@@ -259,9 +259,9 @@
         this exists because existing redirects on the wiki (except for unique_queen) go to the Giant_Alien_Spiders page
     -->
         <blueprintList wikiPage="Giant Alien Spiders#" name="LIST_CREW_SPIDERS_WIKI">
-            <name wikiName="Giant Alien Spider" wikiHeading="Giant Alien Spider">spider</name>
-            <name wikiName="Spider Weaver" wikiHeading="Spider Weaver">spider_weaver</name>
-            <name>spider_hatch</name>
+            <name>spider</name>
+            <name>spider_weaver</name>
+            <name wikiName="G.A.S. Hatchling" wikiHeading="G.A.S. Hatchling">spider_hatch</name>
         </blueprintList>
 
     <!--
@@ -317,7 +317,7 @@
             <name wikiName="Anointed" wikiHeading="The Anointed">unique_anointed</name>
             <name wikiName="Dessius" wikiHeading="Dessius">unique_dessius</name>
             <name wikiName="Lord Vortigon" wikiHeading="Lord Vortigon">unique_vortigon</name>
-            <name wikiName="Spider Queen" wikiHeading="Spider Queen">unique_queen</name>
+            <name wikiName="G.A.S. Queen" wikiHeading="G.A.S. Queen">unique_queen</name>
             <name>spider_venom</name>
             <name wikiName="Venomous Queen (Chaos)" wikiHeading="Venomous Queen (Chaos)">spider_venom_chaos</name>
             <name wikiName="Sylvan" wikiHeading="Sylvan">unique_sylvan</name>
