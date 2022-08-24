@@ -79,27 +79,27 @@ class Ship:
 
     def getImages(self) -> str:
         shipName = self.getElement('name').text
-        shipImg = self.getAttribute('img') + " base"
+        shipImg = self.getAttribute('img') + ' base'
         shipImg = shipImg.capitalize()
-        shipImg = shipImg.replace("_", " ")
+        shipImg = shipImg.replace('_', ' ')
 
         if self.blueprintName == 'PLAYER_SHIP_VANILLA':
             shipName += ' (Alpha)'
         elif 'VANILLA' in self.blueprintName:
             shipName = 'VANILLA ' + shipName
 
-        return f" [[File:{shipName}.jpg|thumb|400px]][[File:{shipImg}.png|thumb|400px]]"
+        return f' [[File:{shipName}.jpg|thumb|400px]][[File:{shipImg}.png|thumb|400px]]'
 
     def getDefaultName(self) -> str:
         shipName = self.getElement('name').text
-        return f"\n* Default Name: {shipName}"
+        return f'\n* Default Name: {shipName}'
 
     def getStartingCrew(self) -> str:
         crewMap = self.getCrewMap()
 
-        startingCrew = f"\n* Starting Crew: "
+        startingCrew = f'\n* Starting Crew: '
         if len(crewMap.keys()) == 0:
-            startingCrew += "None"
+            startingCrew += 'None'
             return startingCrew
 
         crewList = []
@@ -394,10 +394,10 @@ class Ship:
         startingResources = '\n* Starting Resources'
 
         if missiles != '' and int(missiles) > 0:
-            startingResources += f"\n** {missiles}" + " {{Missile}}"
+            startingResources += f'\n** {missiles}' + ' {{Missile}}'
 
         if drones != '' and int(drones) > 0:
-            startingResources += f"\n** {drones}" + " {{DroneParts}}"
+            startingResources += f'\n** {drones}' + ' {{DroneParts}}'
 
         # make text actually appended
         if startingResources != '\n* Starting Resources':

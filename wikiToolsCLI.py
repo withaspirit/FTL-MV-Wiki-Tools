@@ -10,7 +10,7 @@ import wikiToolsUtils
 config = configparser.ConfigParser()
 config.read(wikiToolsInit.configFileName)
 
-helpMessage = f"""
+helpMessage = f'''
 --init                      execute wikiToolsInit.py - initialize wikiTools.ini
                             and location of modman.jar
 --wikiElements              execute {wikiToolsInit.appendWikiElements}, patch
@@ -25,7 +25,7 @@ helpMessage = f"""
 --wikiShips                 do --wikiLists, --wikiElements, and
                             --wikiShipExport
 --help                      display help message
-"""
+'''
 
 # Zip, patch, extract Append Wiki blueprintLists
 def wikiBlueprintLists():

@@ -25,8 +25,8 @@ drive  = pathlib.Path.home().drive
 
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA FOLDER
 # formatted like
-# multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
-multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
+# multiverseFiles = ['ASSET ZIP FILE', 'DATA ZIP FILE']
+multiverseFiles = ['', 'Multiverse 5.3 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
@@ -79,7 +79,7 @@ def __init__():
 
         slipstreamSettingsCheck(config)
     except:
-        raise RuntimeError("wikiToolsInit.__init__() failed")
+        raise RuntimeError('wikiToolsInit.__init__() failed.')
 
     print('Finished initializing after %s seconds.' % (time.time() - start_time))
 
