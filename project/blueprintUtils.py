@@ -202,7 +202,6 @@ modularWeaponEffects = {
 # modular weapons formatted like:
 # MODULAR_WEAPONTYPE_MOD1
 # MODULAR_WEAPONTYPE_MOD1_MOD2
-# FIXME: could put return false in here instead of before its usage
 def modularWeaponTitle(blueprintElem: ET.Element) -> str:
     blueprintName = blueprintElem.get('name')
     blueprintTitle = blueprintElem.find('title').text
@@ -221,7 +220,7 @@ def modularWeaponTitle(blueprintElem: ET.Element) -> str:
         newTitle += f' + {modularWeaponEffects[weaponMods[3]]}'
     return f'{newTitle} {titleArray[1]}'
 
-# cleans up text
+# Cleans up text
 # Wiki uses '🗲' and '↑', XML uses &amp; instead of '&'
 def processText(text: str) -> str:
     # below two statements commented to match Wiki better
@@ -268,16 +267,3 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
     start = '<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->'
     end = '<weaponBlueprint name="SHOTGUN_PLAYER">'
     return replaceText(blueprintsText, start, end)
-
-# def findBlueprint(blueprintFile, blueprintName, blueprintTag):
-#     blueprintPath = f'.//*[@name="{blueprintName}"]'
-#     potentialBlueprints = blueprintFile.findall(blueprintPath) 
-#     blueprint = None
-#     # dealing with duplicate weaponBlueprints 
-#     # reversed so that BOMB_LOCK old comes after BOMB_LOCK new
-#     # need 'Blueprint' in blueprintTag so that
-#     for potentialBlueprint in reversed(potentialBlueprints):
-#         if f'{blueprintTag}' in potentialBlueprint.tag:
-#             blueprint = potentialBlueprint
-#             break
-#     return blueprint

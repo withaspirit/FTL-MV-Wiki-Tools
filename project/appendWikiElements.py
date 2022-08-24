@@ -4,9 +4,9 @@ import time
 from pathlib import Path
 import blueprintUtils as blueprintUtils
 
-# Generates code to insert blueprintList's <name> attributes
-# as elements into every blueprint that appears on the Wiki.
-# It then writes that text to .append files
+# Generates code to insert blueprintList's <name> attributes as elements into
+# every blueprint that appears on the Wiki.
+# It then writes that text to .append files.
 
 # files used:
 # blueprints.xml (all)
@@ -15,7 +15,7 @@ import blueprintUtils as blueprintUtils
 
 pathToData = blueprintUtils.pathToData
 
-# if wikiHeading not provided, it's assumed to be the same
+# if wikiHeading not provided, it's assumed to be the same as existing info
 def getOrCreateWikiHeading(blueprint: ET.Element, nameElem: ET.Element) -> str:
     wikiHeading = nameElem.get('wikiHeading')
     if wikiHeading is None:
@@ -23,6 +23,7 @@ def getOrCreateWikiHeading(blueprint: ET.Element, nameElem: ET.Element) -> str:
     return wikiHeading
 
 # TODO: better logic
+# if wikiName not provided, assumed to be the same as existing info
 def getOrCreateWikiName(blueprint: ET.Element, nameElem: ET.Element) -> str:
     wikiName = nameElem.get('wikiName')
     if wikiName is None:
@@ -96,9 +97,8 @@ def wikiPageComment(wikiPage: str) -> str:
     https://ftlmultiverse.fandom.com/wiki/{wikiPage.replace(' ', '_')}
 -->'''
 
-# main section
 # read from autoblueprints, output into append files
-# FIXME: could reduce runtime by passing files instead of opening for each
+# FIXME: could reduce runtime by opening files once instead of opening for each
 # exception
 if __name__ == '__main__':
     print('Creating .append files. Please wait ~10 seconds.')

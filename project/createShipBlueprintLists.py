@@ -1,8 +1,8 @@
-import xml.etree.ElementTree as ET
 import re
 import blueprintUtils as blueprintUtils
 
-# Creates blueprintLists for ships. Note that Elite and single-page ships are out of order in output text
+# Creates blueprintLists for ships. Note that Elite and single-page ships are
+# out of order in output text
 
 # files used
 # autoBlueprints.xml
