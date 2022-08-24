@@ -1,12 +1,13 @@
 # FTL: Multiverse Wiki Tools
 
-This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
+This project contains files, mods, and scripts for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
 
 # Features
 
 - *FTL: Multiverse* scripts and mods adding Wiki information to the blueprints of most objects found on [Player ships](https://ftlmultiverse.fandom.com/wiki/Player_ships).
 - A script [exporting ship information](./project/wikiShipExport.py) so it can be easily copy-pasted to the Wiki.
 - A script [comparing old/new versions of *FTL: Multiverse*](./project/compareVersions.py) to determine which object blueprints were added, removed, or changed.
+- A [JSON file](./project/utils/vanillaMultiverseMap.json) mapping the blueprint "name" attributes from Vanilla *FTL: Faster Than Light* to those found in *FTL: Multiverse*. It is limited to the items found in blueprints.xml and dlcBlueprints.xml files.
 
 # Requirements:
 
