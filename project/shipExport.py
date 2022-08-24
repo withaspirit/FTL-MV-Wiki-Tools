@@ -32,12 +32,16 @@ class Ship:
         'battery': (1, 2)
     }
 
-    def __init__(self, blueprint, blueprints):
+    # opening files once and passing instead of opening them many times
+    # significantly reduces runtime
+    def __init__(self, blueprint, blueprints, hyperspace, text_blueprints, events_boss):
         self.blueprint = blueprint
         self.blueprints = blueprints
         self.blueprintName = self.blueprint.get('name')
 
-        hyperspace = ET.parse(pathToData + 'hyperspace.xml').getroot()
+        self.hyperspace = hyperspace
+        self.text_blueprints = text_blueprints
+        self.events_boss = events_boss
         customShipPath = f'.//ships/customShip[@name="{self.blueprintName}"]'
         self.customShip = hyperspace.find(customShipPath)
 
@@ -150,7 +154,7 @@ class Ship:
 
                 blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint')
                 crewMap.update({blueprintName : [blueprintLink, amount]})
-        return crewMap    
+        return crewMap
 
     def getStartingReactor(self) -> str:
         maxPower = self.getElementAttribute('maxPower', 'amount')
@@ -197,7 +201,7 @@ class Ship:
         # len(systemList) never 0
         startingSystems = '\n* Starting Systems\n** ' + '\n** '.join(systemsList)
         return startingSystems
-    
+
     # FIXME: this function is awfully long
     def getSystemsList(self) -> list[str]:
         systemList = self.blueprint.find('systemList')
@@ -289,7 +293,7 @@ class Ship:
 
         if not ionResistBool and not sysResistBool:
             return systemAppend
-        
+
         resistText = 'Resists '
         resistList = []
         if sysResistBool:
@@ -405,7 +409,6 @@ class Ship:
         return ''
 
     def getSlots(self) -> str:
-        # TODO: fix for no system
         weaponSlots = int(self.getElement('weaponSlots').text)
         weaponText = f'{weaponSlots} Weapon'
         weaponText = self.pluralize(weaponSlots, weaponText)
@@ -437,9 +440,8 @@ class Ship:
         return lastStandEntryText
 
     def getLastStandText(self, shipType: str) -> str:
-        eventsBoss = ET.parse(pathToData + 'events_boss.xml').getroot()
         choicePath = './/event[@name="TRUE_LAST_STAND_START"]/choice[@lvl="-2147483648"]'
-        choiceElement = eventsBoss.find(choicePath)
+        choiceElement = self.events_boss.find(choicePath)
 
         lastStandTextPath = f'.//event/choice[@req="{shipType}"]/event/text'
         lastStandElement = choiceElement.find(lastStandTextPath)
@@ -451,9 +453,8 @@ class Ship:
             return ''
 
         unlockId = unlockElement.get('id')
-        textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
         unlockPath = f'.//text[@name="{unlockId}"]'
-        unlockBlueprint = textBlueprints.find(unlockPath)
+        unlockBlueprint = self.text_blueprints.find(unlockPath)
         unlockText = unlockBlueprint.text
 
         unlock = "\n==='''Unlock'''==="
@@ -494,6 +495,7 @@ class Ship:
             blueprintList.append(blueprintLink)
         return blueprintList
 
+    # FIXME: Try doing this at "appendWikiElements" stage instead of at "wikiShipExport" stage
     # customName is names given to Regular Crew or Secret Crew members (N/A for Unique Crew)
     def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
@@ -517,7 +519,12 @@ class Ship:
         # augBlueprint should always have title
         title = blueprint.find('title').text
 
-        if 'LOCKED' in  blueprintName:
+        aug = self.hyperspace.find(f'.//augments/aug[@name="{blueprintName}"]')
+        locked = None
+        if aug is not None:
+            locked = aug.find('locked')
+
+        if locked is not None:
             newBlueprintLink = '{{Lock}} ' + newBlueprintLink
         elif '[M]' in title:
             newBlueprintLink += ' [M]'
