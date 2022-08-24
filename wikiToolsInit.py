@@ -45,7 +45,7 @@ ftlDATPath = './project/FTL Data/'
 mainPaths = 'mainPaths'
 projectPaths = 'projectPaths'
 zipPaths = 'zipPaths'
-errors = 'errors'
+initInfo = 'initInfo'
 
 # option names
 slipstream = 'slipstream'
@@ -133,7 +133,7 @@ def initConfig(config: configparser.ConfigParser):
     if config.has_section(mainPaths) == False:
         config.add_section(mainPaths)
     slipstreamFilePath = ''
-    if (config.has_option(errors, locationChanged) == False) or (config.getboolean(errors, locationChanged) == True):
+    if (config.has_option(initInfo, locationChanged) == False) or (config.getboolean(initInfo, locationChanged) == True):
         slipstreamFilePath = getFilePath(modman)
         config[mainPaths][slipstream] = f'{slipstreamFilePath}\\'
     else:
@@ -158,10 +158,10 @@ def initConfig(config: configparser.ConfigParser):
     config[zipPaths][wikiElements] = os.path.join(projectPath, f'{wikiElementsName}\\')
     config[zipPaths][ftl] = os.path.join(projectPath, 'FTL Data')
 
-    if not config.has_section(errors):
-        config.add_section(errors)
-    config[errors][initFinished] = 'true'
-    config[errors][locationChanged] = 'false'
+    if not config.has_section(initInfo):
+        config.add_section(initInfo)
+    config[initInfo][initFinished] = 'true'
+    config[initInfo][locationChanged] = 'false'
 
     writeToConfigFile(config)
 
@@ -180,11 +180,11 @@ def configDone(config: configparser.ConfigParser) -> bool:
     if config.has_section(mainPaths):
         for (key, path) in config.items(mainPaths):
             if os.path.isdir(path) == False:
-                config[errors][locationChanged] = 'true'
+                config[initInfo][locationChanged] = 'true'
                 return False
 
     # when there are no changed locations, check if script already finished
-    if config.has_option(errors, initFinished) and config.getboolean(errors, initFinished) == True:
+    if config.has_option(initInfo, initFinished) and config.getboolean(initInfo, initFinished) == True:
         return True
 
     # FIXME: untested when this would be reached
