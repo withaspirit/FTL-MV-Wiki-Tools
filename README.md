@@ -147,7 +147,7 @@ Make sure that ZIP files are recognized by SlipstreamModManager. To enable this,
 5. Click 'Validate' to ensure the `{modName}` file contains valid XML. Ignore warnings about the invalid character '🗲'. For other warning messages, fix it using the information provided by SlipstreamModManager.
 5. 'Patch' FTL with the relevant *`FTL: Multiverse`* mod files and the ZIP file checked. Ensure the ZIP file is listed AFTER *FTL: Multiverse*. Otherwise, the patch will not work.
 6. If you receive a popup asking to start FTL, DO NOT do it. See [Disclaimer](#disclaimer) for details. The popup after patching can be disabled by following the sequence in SlipstreamModManager: `File -> Preferences` and ensuring that 'never_run_ftl' is checked.
-7. Do `File-> Extract Dats...` and select the [FTL Data](./project/FTL%20Data/) folder. It is important that the FTL Data folder is selected because the scripts rely on the game data being in the same directory.
+7. Do `File-> Extract Dats...` and select the [FTL DAT](./project/FTL%20DAT/) folder. It is important that the FTL DAT folder is selected because the scripts rely on the game data being in the same directory.
 8. Click `Save` in the `Extract Dats...` popup. Wait for the files to be extracted.
 
 If coming from [Step 1](#step-1-add-blueprintlists), go to [Step 2](#step-2-add-information).
