@@ -3,9 +3,9 @@ import re
 import os
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-pathToData = os.path.join(cwd,'FTL Data/data/')
-wikiElementsPath = cwd + "\\Append wikiElements\\data\\"
-wikiBlueprintListsPath = cwd + "\\Append Wiki blueprintLists\\data\\"
+pathToData = os.path.join(cwd,'FTL DAT/data/')
+wikiElementsPath = cwd + '\\Append wikiElements\\data\\'
+wikiBlueprintListsPath = cwd + '\\Append Wiki blueprintLists\\data\\'
 
 nonexistantBlueprints = {
     'ARTILLERY_FED',
@@ -184,7 +184,7 @@ def removeBracketsFromTitle(title: str) -> str:
     match = detectBracketedPart(title)
     if match:
         partToRemove = match.group(0)
-        title = title.replace(partToRemove, "")
+        title = title.replace(partToRemove, '')
     return title
 
 modularWeaponEffects = {
@@ -225,8 +225,8 @@ def modularWeaponTitle(blueprintElem: ET.Element) -> str:
 # Wiki uses '🗲' and '↑', XML uses &amp; instead of '&'
 def processText(text: str) -> str:
     # below two statements commented to match Wiki better
-    # text = text.replace('Mk.', "MK")
-    # text = text.replace('Mk.', "MK")
+    # text = text.replace('Mk.', 'MK')
+    # text = text.replace('Mk.', 'MK')
     text = text.replace('&', '&amp;') # XML doesn't accept '&' characters 
     text = text.replace('†', '🗲')
     text = text.replace('™', '↑')
@@ -247,8 +247,8 @@ def replaceText(blueprintsText: str, startText: str, endText: str) -> str:
     return blueprintsText[:startIndex] + blueprintsText[endIndex:]   
 
 def purgeVanillaBlueprints(blueprintsText: str) -> str:
-    vanillaStartText = """<!-- Customization possibilities -->"""
-    vanillaEndText = """<!--
+    vanillaStartText = '''<!-- Customization possibilities -->'''
+    vanillaEndText = '''<!--
 /////////////
 	KEY
 /////////////
@@ -261,11 +261,11 @@ def purgeVanillaBlueprints(blueprintsText: str) -> str:
 6. Drones
 7. Artillery and Surges
 9. Player Ships
--->"""
+-->'''
     return replaceText(blueprintsText, vanillaStartText, vanillaEndText)
 
 def purgeDLCBlueprints(blueprintsText: str) -> str:
-    start = "<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->"
+    start = '<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->'
     end = '<weaponBlueprint name="SHOTGUN_PLAYER">'
     return replaceText(blueprintsText, start, end)
 

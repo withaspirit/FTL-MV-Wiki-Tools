@@ -43,21 +43,21 @@ def appendWikiElements(blueprint: ET.Element, nameElem: ET.Element) -> str:
     wikiHeading = getOrCreateWikiHeading(blueprint, nameElem)
     wikiRedirect = blueprintUtils.createWikiRedirect(wikiPage, wikiHeading)
 
-    appendText = f"""
+    appendText = f'''
     <mod:findName type="{blueprintTag}" name="{blueprintName}">
         <mod-append:wikiRedirect>{wikiRedirect}</mod-append:wikiRedirect>
         <mod-append:wikiName>{wikiName}</mod-append:wikiName>
         <mod-append:wikiHeading>{wikiHeading}</mod-append:wikiHeading>
-        <mod-append:wikiPage>{wikiPage}</mod-append:wikiPage>"""
+        <mod-append:wikiPage>{wikiPage}</mod-append:wikiPage>'''
 
     if blueprintTag == 'shipBlueprint':
         teleporterLimit = nameElem.get('teleporterLimit')
-        appendText += f"""
-        <mod-append:teleporterLimit>{teleporterLimit}</mod-append:teleporterLimit>"""
+        appendText += f'''
+        <mod-append:teleporterLimit>{teleporterLimit}</mod-append:teleporterLimit>'''
 
-    appendText += f"""
-        <mod-append:fullURL>https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(" ", "_")}</mod-append:fullURL>
-    </mod:findName>"""
+    appendText += f'''
+        <mod-append:fullURL>https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(' ', '_')}</mod-append:fullURL>
+    </mod:findName>'''
     return appendText
 
 def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
@@ -72,12 +72,12 @@ def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
         wikiPage = blueprintListNameElem.get('wikiPage')
         wikiRedirect = blueprintUtils.createWikiRedirect(wikiPage, wikiHeading)
 
-        autoBlueprintsAppend += f"""
+        autoBlueprintsAppend += f'''
     <mod:findName type="blueprintList" name="{blueprintListName}">
         <mod:setAttributes wikiName="{wikiName}" wikiPage="{wikiPage}"/>
         <mod:setAttributes wikiRedirect="{wikiRedirect}" wikiHeading="{wikiHeading}"/>
         <mod:setAttributes fullURL="https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(' ', '_')}"/>
-    </mod:findName>"""
+    </mod:findName>'''
     return autoBlueprintsAppend
 
 def writeXMLAppendFile(fileName: str, fileText: str):
@@ -91,10 +91,10 @@ def writeXMLAppendFile(fileName: str, fileText: str):
     appendFile.close()
 
 def wikiPageComment(wikiPage: str) -> str:
-    return f"""\n<!--
+    return f'''\n<!--
     {wikiPage}
-    https://ftlmultiverse.fandom.com/wiki/{wikiPage.replace(" ", "_")}
--->"""
+    https://ftlmultiverse.fandom.com/wiki/{wikiPage.replace(' ', '_')}
+-->'''
 
 # main section
 # read from autoblueprints, output into append files
@@ -119,7 +119,7 @@ if __name__ == '__main__':
         # parse blueprintList nameElements; skip over ones with blueprintListName
         for nameElem in blueprintList.iter('name'):
             blueprintName = nameElem.text
-            blueprint = blueprintUtils.findBlueprint(blueprints, "*", blueprintName)
+            blueprint = blueprintUtils.findBlueprint(blueprints, '*', blueprintName)
             if blueprint is None:
                 continue
 

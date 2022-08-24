@@ -36,7 +36,7 @@ pageShipClassMismatch = {
     'PLAYER_SHIP_MFK': 'MFK Cruisers#',
     'PLAYER_SHIP_ANGEL': 'Angel Cruisers#',
     'PLAYER_SHIP_SPIDER': 'Spider Hunter Cruisers#',
-    'PLAYER_SHIP_SYLVANTRANS': "Merchant Transport#",
+    'PLAYER_SHIP_SYLVANTRANS': 'Merchant Transport#',
     'PLAYER_SHIP_SYLVAN': 'Sylvan Cruisers#',
     'PLAYER_SHIP_MORPH': 'Morph Spurgle Yurgle#',
     'PLAYER_SHIP_HEKTAR': 'Hektar Cruisers#',
@@ -89,12 +89,12 @@ def getShipText():
         if len(shipNames) > 1 and (wikiPageName[-1] != '#'):
             wikiPageName += '#'
 
-        shipText += f"""
+        shipText += f'''
         <!--
             {wikiPageName}
-            https://ftlmultiverse.fandom.com/wiki/{wikiPageName.replace(" ", "_")}
+            https://ftlmultiverse.fandom.com/wiki/{wikiPageName.replace(' ', '_')}
         -->
-            <blueprintList wikiPage="{wikiPageName}" name="LIST_SHIPS_{wikiListName}_WIKI">"""
+            <blueprintList wikiPage="{wikiPageName}" name="LIST_SHIPS_{wikiListName}_WIKI">'''
 
         for blueprintName in shipNames:
             shipBlueprintPath = f'.//shipBlueprint[@name="{blueprintName}"]'
@@ -109,11 +109,11 @@ def getShipText():
                 wikiName = wikiName.replace('Mk', 'MK')
                 wikiHeading = wikiHeading.replace('Mk', 'MK')
 
-            shipText += f"""
-                <name wikiName="{wikiName}" wikiHeading="{wikiHeading}" teleporterLimit="{teleporterLimit}">{blueprintName}</name>"""
+            shipText += f'''
+                <name wikiName="{wikiName}" wikiHeading="{wikiHeading}" teleporterLimit="{teleporterLimit}">{blueprintName}</name>'''
 
-        shipText +=  f"""
-            </blueprintList>\n"""
+        shipText +=  f'''
+            </blueprintList>\n'''
 
     shipText = blueprintUtils.processText(shipText)
     return shipText
@@ -208,8 +208,8 @@ def getWikiHeadingShip(blueprintName: str, shipClass: str, wikiPageName: str) ->
             shipClass = shipClass.replace('Crewser', 'Cruiser')
         wikiHeading = shipClass
     elif blueprintName in wikiListNameMap:
-        shipClassCorrect = shipClass.replace("MV ", "")
-        shipClassCorrect = shipClassCorrect.replace("Cruiser", "")
+        shipClassCorrect = shipClass.replace('MV ', '')
+        shipClassCorrect = shipClassCorrect.replace('Cruiser', '')
         shipClassCorrect += 'Multiverse Cruiser'
         wikiHeading = shipClassCorrect
     else:
@@ -231,7 +231,7 @@ def getLayoutId(blueprintName):
 # get teleporter room size
 def getTeleporterLimit(blueprint) -> int:
     layout = blueprint.get('layout')
-    layoutFileName = layout.replace(" ", "_") + ".txt"
+    layoutFileName = layout.replace(' ', '_') + '.txt'
     layoutFile = open(pathToData + layoutFileName, 'r')
     fileText = layoutFile.read()
 
