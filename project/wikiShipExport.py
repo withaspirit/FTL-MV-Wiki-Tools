@@ -44,7 +44,7 @@ def getWikiShipText() -> str:
 if __name__ == '__main__':
     start_time = time.time()
 
-    print('Exporting player ships to Wiki format. Please wait ~5 seconds.')
+    print('Exporting player ships to Wiki format. Please wait ~10 seconds.')
 
     text = getWikiShipText()
     wikiShipsFile = open(blueprintUtils.cwd + '\wikiShips.txt', 'w', encoding='utf-8')
