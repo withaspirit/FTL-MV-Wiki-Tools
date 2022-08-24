@@ -15,7 +15,7 @@ helpMessage = f"""
                             and location of modman.jar
 --wikiElements              execute {wikiToolsInit.appendWikiElements}, patch
                             the resulting files to the game, and extract-dats
-                            to {wikiToolsInit.ftlDataPath}
+                            to {wikiToolsInit.ftlDATPath}
 --wikiLists                 zip {wikiToolsInit.wikiListsName}, patch
                             it to the game's files, and extract-dats to
                             .project/FTL Data
