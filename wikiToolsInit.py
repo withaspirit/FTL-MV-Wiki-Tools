@@ -25,8 +25,8 @@ drive  = pathlib.Path.home().drive
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
-# multiverseFiles = ["ASSET ZIP FILE", "DATA ZIP FILE"]
-multiverseFiles = ["", "Multiverse 5.3 - Data.zip"]
+# multiverseFiles = ['ASSET ZIP FILE', 'DATA ZIP FILE']
+multiverseFiles = ['', 'Multiverse 5.3 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
@@ -37,7 +37,7 @@ modman = 'modman.jar'
 configFileName = 'wikiTools.ini'
 wikiListsName = 'Append Wiki blueprintLists'
 wikiElementsName = 'Append wikiElements'
-ftlDATPath = './project/FTL Data/'
+ftlDATPath = './project/FTL DAT/'
 
 
 # section names
@@ -76,7 +76,7 @@ def __init__():
 
         slipstreamConfigCheck(config)
     except:
-        raise RuntimeError("wikiToolsInit.__init__() failed")
+        raise RuntimeError('wikiToolsInit.__init__() failed.')
 
     print('Finished initializing after %s seconds.' % (time.time() - start_time))
 
@@ -147,7 +147,8 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(projectPaths)
     projectPath = os.path.join(cwdPath,'project\\')
     config[projectPaths][project] = projectPath
-    config[projectPaths][ftlDAT] = os.path.join(projectPath, 'FTL Data\\data\\')
+
+    config[projectPaths][ftlDAT] = os.path.join(projectPath, 'FTL DAT\\data\\')
     config[projectPaths][wikiListsData] = os.path.join(projectPath, f'{wikiListsName}\\data\\')
     config[projectPaths][wikiElementsData] = os.path.join(projectPath, f'{wikiElementsName}\\data\\')
 
@@ -155,7 +156,7 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(zipPaths)
     config[zipPaths][wikiLists] = os.path.join(projectPath, f'{wikiListsName}\\')
     config[zipPaths][wikiElements] = os.path.join(projectPath, f'{wikiElementsName}\\')
-    config[zipPaths][ftl] = os.path.join(projectPath, 'FTL Data')
+    config[zipPaths][ftl] = os.path.join(projectPath, 'FTL DAT')
 
     if not config.has_section(initInfo):
         config.add_section(initInfo)

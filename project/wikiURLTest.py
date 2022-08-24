@@ -30,7 +30,7 @@ def getHeading(url: str) -> str:
     if pageEnd != -1:
         heading = heading[pageEnd + 1:]
 
-    return heading.replace("_", " ")
+    return heading.replace('_', ' ')
 
 if __name__ == '__main__':
     start_time = time.time()
@@ -60,8 +60,8 @@ if __name__ == '__main__':
             notFoundUrls.append(newUrl)
             pass
 
-    badUrls = "\n".join(badHeadingUrls)
-    notFoundUrls = "\n".join(notFoundUrls)
+    badUrls = '\n'.join(badHeadingUrls)
+    notFoundUrls = '\n'.join(notFoundUrls)
     print(f'Non-functioning urls: {nonFunctioningUrls}')
     print(f'Bad urls: {badUrls}')
     print(f'Not found urls: {notFoundUrls}')

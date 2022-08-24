@@ -10,7 +10,7 @@ import wikiToolsUtils
 config = configparser.ConfigParser()
 config.read(wikiToolsInit.configFileName)
 
-helpMessage = f"""
+helpMessage = f'''
 --init                      execute wikiToolsInit.py - initialize wikiTools.ini
                             and location of modman.jar
 --wikiElements              execute {wikiToolsInit.appendWikiElements}, patch
@@ -18,14 +18,14 @@ helpMessage = f"""
                             to {wikiToolsInit.ftlDATPath}
 --wikiLists                 zip {wikiToolsInit.wikiListsName}, patch
                             it to the game's files, and extract-dats to
-                            .project/FTL Data
+                            .project/FTL DAT
 --wikiShipExport            execute wikiShipExport.py - export ship data to
                             {wikiToolsInit.wikiShipsFile}
 --wikiInfo                  do --wikiLists and --wikiElements
 --wikiShips                 do --wikiLists, --wikiElements, and
                             --wikiShipExport
 --help                      display help message
-"""
+'''
 
 # Zip, patch, extract Append Wiki blueprintLists
 def wikiBlueprintLists():
