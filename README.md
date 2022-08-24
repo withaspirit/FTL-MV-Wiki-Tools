@@ -36,7 +36,7 @@ This project includes a two-step solution. The first step matches object bluepri
 <details>
   <summary><b>Show Two-Step Solution Details</b></summary>
 
-### Step 1: Add blueprintLists
+### Step 1: Add blueprintLists to Game Files
 
 The first step involves a `.append` file in the folder [Append Wiki blueprintsLists](/project/Append%20Wiki%20blueprintLists/data), [autoBlueprints.xml.append](./project/Append%20Wiki%20blueprintLists/data/autoBlueprints.xml.append). It is an XML file that uses blueprintLists to associate in-game objects with their corresponding Wiki page. It also contains information for objects where the blueprint information doesn't match the Wiki.
 
@@ -57,7 +57,7 @@ The generated `.append` files are added to the game files with SlipstreamModMana
 
 ### Exporting Ship Data
 
-After following the [two-step solution](#step-1-add-blueprintlists), a script called [wikiShipExport.py](./project/wikiShipExport.py) can be used to extract information about Player Ships from the game files and format it for the Wiki. The resulting file is inserted into a file called `wikiShips.txt`.
+After following the two-step solution, a script called [wikiShipExport.py](./project/wikiShipExport.py) can be used to extract information about Player Ships from the game files and format it for the Wiki. The resulting file is inserted into a file called `wikiShips.txt`.
 
 </details>
 
@@ -113,11 +113,11 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 <details>
   <summary><b>Show Manual Method</b></summary>
 
-### Step 1. Add blueprintLists
+### Step 1: Add blueprintLists
 
 1. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} as `Append Wiki blueprintLists`.
 
-### Step 2. Add Information
+### Step 2: Add Information
 
 After following Step 1. There are multiple options:
   - [Run from Terminal](#running-from-terminal-step-2) (easier for beginners)
@@ -126,10 +126,10 @@ After following Step 1. There are multiple options:
 ### Running from Terminal Step 2
 
 1. Complete the [Running from Terminal](#running-from-terminal) instructions to open the terminal and navigate to the correct directory.
-2. Enter in terminal `python ./appendWikiElements.py`. This activates the script [appendWikiElements.py](./project/appendWikiElements.py) to create the `.append` files in the [Append wikiElements](./project/Append%20wikiElements/data) folder.
+2. Enter in terminal `python ./appendWikiElements.py`. This activates the script [appendWikiElements.py](./project/appendWikiElements.py) to create the `.append` files in the `Append wikiElements` folder.
 3. Go to [SlipstreamModManager Process](#slipstreammodmanager-process), with {modName} being `Append wikiElements`.
 
-### Step 3. Export Ships
+### Step 3: Export Ships
 
 1. If the terminal was closed, or the directory changed, repeat the [Running from Terminal](#running-from-terminal) instructions.
 2. Enter in terminal `python ./wikiShipExport.py`. This activates the script [wikiShipExport.py](./project/wikiShipExport.py), which outputs text to a file called `wikiShips.txt`.
