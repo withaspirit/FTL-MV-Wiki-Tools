@@ -21,6 +21,7 @@ This project contains scripts and mods for [*FTL: Multiverse*](https://subsetgam
 
 <details>
   <summary><b>View Explanation</b></summary>
+<br>
 
 In *FTL: Faster Than Light*, game data is contained in [XML files](https://en.wikipedia.org/wiki/XML). Each in-game object has a blueprint: an XML element detailing the object and dictating its behavior. 
 
@@ -111,7 +112,6 @@ The scripts use mods whose effect on game data while running *FTL: Multiverse* i
 
 <details>
   <summary><b>Show Manual Method</b></summary>
-<br>
 
 ### Step 1. Add blueprintLists
 
