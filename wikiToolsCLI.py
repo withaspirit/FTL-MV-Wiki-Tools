@@ -18,7 +18,7 @@ helpMessage = f'''
                             to {wikiToolsInit.ftlDATPath}
 --wikiLists                 zip {wikiToolsInit.wikiListsName}, patch
                             it to the game's files, and extract-dats to
-                            .project/FTL Data
+                            .project/FTL DAT
 --wikiShipExport            execute wikiShipExport.py - export ship data to
                             {wikiToolsInit.wikiShipsFile}
 --wikiInfo                  do --wikiLists and --wikiElements

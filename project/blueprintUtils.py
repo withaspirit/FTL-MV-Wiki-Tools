@@ -3,7 +3,7 @@ import re
 import os
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-pathToData = os.path.join(cwd,'FTL Data/data/')
+pathToData = os.path.join(cwd,'FTL DAT/data/')
 wikiElementsPath = cwd + '\\Append wikiElements\\data\\'
 wikiBlueprintListsPath = cwd + '\\Append Wiki blueprintLists\\data\\'
 

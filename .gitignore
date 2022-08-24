@@ -3,8 +3,8 @@ __pycache__
 
 # FTL data
 # \ to preserve space character
-/project/FTL\ Data/*
-!/project/FTL\ Data/placeholder.txt
+/project/FTL\ DAT/*
+!/project/FTL\ DAT/placeholder.txt
 
 # environment
 /project/__pycache__
