@@ -1003,9 +1003,9 @@
                 <name>MISSILES_OBSIDIAN_CHAOS</name>
                 <name>SHOTGUN_STEEL</name>
                 <name>SHOTGUN_STEEL_CHAOS</name>
-                <name>SHOTGUN_TOGGLE_FIRE</name>
-                <name>SHOTGUN_TOGGLE_ION</name>
-                <name>SHOTGUN_TOGGLE_TOXIC</name>
+                <name wikiName="Toggle Flak (F)" wikiHeading="Toggle Flak (F)">SHOTGUN_TOGGLE_FIRE</name>
+                <name wikiName="Toggle Flak (E)" wikiHeading="Toggle Flak (E)">SHOTGUN_TOGGLE_ION</name>
+                <name wikiName="Toggle Flak (R)" wikiHeading="Toggle Flak (R)">SHOTGUN_TOGGLE_TOXIC</name>
                 <name>SHOTGUN_TOGGLE_CHAOS</name>
                 <name>SHELL_LAUNCHER</name>
                 <name>SHELL_LAUNCHER_CHAOS</name>
