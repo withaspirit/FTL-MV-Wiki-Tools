@@ -496,22 +496,27 @@ class Ship:
             blueprintList.append(blueprintLink)
         return blueprintList
 
-    # FIXME: Try doing this at "appendWikiElements" stage instead of at "wikiShipExport" stage
-    # customName is names given to Regular Crew or Secret Crew members (N/A for Unique Crew)
+    # Gets the wikiLink attribute from blueprint and if necessary, adds info
+    # that shouldn't be part of the wikiLink
     def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
-        wikiRedirect = blueprintUtils.getWikiRedirectWithPlaceholder(blueprint, self.getElement('wikiPage').text)
-        wikiName = blueprintUtils.getWikiName(blueprint)
-        blueprintLink = ''
-        # could condense this into one method
-        if crewName is None:
-            blueprintLink = blueprintUtils.formatBlueprintLink(wikiRedirect, wikiName)
-        else:
-            blueprintLink = blueprintUtils.formatCrewBlueprintLink(wikiRedirect, wikiName, crewName)
 
-        # this is done after blueprintLink() function because it shouldn't be part of the link
-        if tag == 'augBlueprint':
+        blueprintLink = ''
+        if blueprint.tag == 'blueprintList':
+            blueprintLink = blueprint.get('wikiLink')
+        else:
+            blueprintLink = blueprint.find('wikiLink').text
+
+        if 'PLACEHOLDER' in blueprintLink:
+            # for blueprintLists belonging to more than one page
+            wikiPage = self.getElement('wikiPage').text
+            blueprintLink = blueprintLink.replace('PLACEHOLDER', wikiPage)
+        elif crewName is not None and 'Unique' not in blueprintLink:
+            # for Crew or Secret Crew with 'name' attributes in hyperspace.xml
+            blueprintLink += f" '{crewName}'"
+        elif blueprint.tag == 'augBlueprint':
                 blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
+
         return blueprintLink
 
     def augmentProcessing(self, blueprintName: str, tag: str, blueprintLink: str) -> str:
