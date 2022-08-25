@@ -124,14 +124,14 @@ class Ship:
         if crewElements:
             for i, crewElement in enumerate(crewElements):
                 blueprintName = crewElement.tag
-                customName = crewElement.get('name')
+                crewName = crewElement.get('name')
 
                 # blueprintName already visited
                 if blueprintName in crewMap:
                     crewMap[blueprintName][1] += 1
                     continue
 
-                blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint', customName)
+                blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint', crewName)
 
                 # make crew with customName count as 1 crew; distinguish from other crew and duplicates
                 if blueprintLink[-1] == "'": # is customName
@@ -498,7 +498,7 @@ class Ship:
 
     # Gets the wikiLink attribute from blueprint and if necessary, adds info
     # that shouldn't be part of the wikiLink
-    def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
+    def getBlueprintLink(self, name: str, tag: str, crewName: str = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
 
         blueprintLink = ''
