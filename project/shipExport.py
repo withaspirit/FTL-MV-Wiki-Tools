@@ -237,7 +237,7 @@ class Ship:
                     # using getBlueprintList for one element
                     artilleryNames = []
                     artilleryNames.append(artilleryName)
-                    displayName = self.getBlueprintList('weaponBlueprint', artilleryNames)[0]
+                    displayName = self.getBlueprintLinks('weaponBlueprint', artilleryNames)[0]
                 else:
                     displayName = self.getSystemName(displayName)
 
@@ -315,7 +315,7 @@ class Ship:
 
     def getStartingWeapons(self) -> str:
         blueprintNames = self.getBlueprintNames('weaponList')
-        weaponList = self.getBlueprintList('weaponBlueprint', blueprintNames)
+        weaponList = self.getBlueprintLinks('weaponBlueprint', blueprintNames)
 
         if len(weaponList) == 0:
             return ''
@@ -346,7 +346,7 @@ class Ship:
 
     def getStartingDrones(self) -> str:
         blueprintNames = self.getBlueprintNames('droneList')
-        droneList = self.getBlueprintList('droneBlueprint', blueprintNames)
+        droneList = self.getBlueprintLinks('droneBlueprint', blueprintNames)
 
         if len(droneList) == 0:
             return ''
@@ -360,7 +360,7 @@ class Ship:
             augName = augElement.get('name')
             blueprintNames.append(augName)
 
-        augmentList = self.getBlueprintList('augBlueprint', blueprintNames)
+        augmentList = self.getBlueprintLinks('augBlueprint', blueprintNames)
         if len(augmentList) == 0:
             return ''
 
@@ -489,7 +489,7 @@ class Ship:
             blueprintNames.append(blueprintName)
         return blueprintNames
 
-    def getBlueprintList(self, tag: str, blueprintNames: list[str]) -> list[str]:
+    def getBlueprintLinks(self, tag: str, blueprintNames: list[str]) -> list[str]:
         blueprintList = []
         for blueprintName in blueprintNames:
             blueprintLink =  self.getBlueprintLink(blueprintName, tag)
