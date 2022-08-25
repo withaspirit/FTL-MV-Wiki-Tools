@@ -1007,9 +1007,6 @@
                 <name>SHOTGUN_TOGGLE_ION</name>
                 <name>SHOTGUN_TOGGLE_TOXIC</name>
                 <name>SHOTGUN_TOGGLE_CHAOS</name>
-                <name>CHAOS_TOGGLE_FIRE</name>
-                <name>CHAOS_TOGGLE_ION</name>
-                <name>CHAOS_TOGGLE_TOXIC</name>
                 <name>SHELL_LAUNCHER</name>
                 <name>SHELL_LAUNCHER_CHAOS</name>
                 <name>SLOTGUN</name>
