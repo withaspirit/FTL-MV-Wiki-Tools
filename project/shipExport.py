@@ -504,18 +504,18 @@ class Ship:
         blueprintLink = ''
         if blueprint.tag == 'blueprintList':
             blueprintLink = blueprint.get('wikiLink')
+            # for blueprintLists belonging to more than one page
+            if 'PLACEHOLDER' in blueprintLink:
+                wikiPage = self.getElement('wikiPage').text
+                blueprintLink = blueprintLink.replace('PLACEHOLDER', wikiPage)
         else:
             blueprintLink = blueprint.find('wikiLink').text
 
-        if 'PLACEHOLDER' in blueprintLink:
-            # for blueprintLists belonging to more than one page
-            wikiPage = self.getElement('wikiPage').text
-            blueprintLink = blueprintLink.replace('PLACEHOLDER', wikiPage)
-        elif crewName is not None and 'Unique' not in blueprintLink:
             # for Crew or Secret Crew with 'name' attributes in hyperspace.xml
-            blueprintLink += f" '{crewName}'"
-        elif blueprint.tag == 'augBlueprint':
-                blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
+            if crewName is not None and 'Unique' not in blueprintLink:
+                blueprintLink += f" '{crewName}'"
+            elif blueprint.tag == 'augBlueprint':
+                    blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
 
         return blueprintLink
 
