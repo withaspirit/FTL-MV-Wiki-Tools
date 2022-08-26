@@ -102,8 +102,6 @@ def wikiPageComment(wikiPage: str) -> str:
 -->'''
 
 # read from autoblueprints, output into append files
-# FIXME: could reduce runtime by opening files once instead of opening for each
-# exception
 if __name__ == '__main__':
     print('Creating .append files. Please wait ~10 seconds.')
     start_time = time.time()
@@ -124,6 +122,7 @@ if __name__ == '__main__':
         for nameElem in blueprintList.iter('name'):
             blueprintName = nameElem.text
             blueprint = blueprintUtils.findBlueprint(blueprints, '*', blueprintName)
+
             if blueprint is None:
                 continue
 

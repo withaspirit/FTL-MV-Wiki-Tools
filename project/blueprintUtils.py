@@ -55,14 +55,12 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
     # in dlcBlueprints.xml
     # TODO: try blueprintName in dlcItems:
     if blueprint is None:
-        dlcBlueprints = getDLCBlueprints()
         blueprint = dlcBlueprints.find(blueprintPath)
     
     # in autoBlueprints.xml
     if blueprint is None:
         # blueprint belongs to a list
         blueprintListPath = f'.//blueprintList[@name="{blueprintName}"]'
-        autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
         blueprint = autoBlueprints.find(blueprintListPath)
 
     if blueprint is None:
@@ -111,29 +109,14 @@ def getWikiName(wikiElement: ET.Element) -> str:
     return displayName
 
 def getTitle(blueprint: ET.Element) -> str:
-
-    # if element already has wikiName, use it
-    # this statement should be activated before this point though
-    if blueprint.get('wikiName'):
-        print('DELETEME IF THIS STATEMENT IS NOT USED')
-        return blueprint.get('wikiName')
-
     titleElement = getElementClassOrTitle(blueprint)
     
     # Dealing with <title> that has 'id' attribute
     # if it has an 'id' attribute, access it from text_blueprints.xml
     if not titleElement.get('id'):
         title = titleElement.text    
-    else: 
-        id = titleElement.get('id')
-        # title in text_blueprints
-        textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
-        textBlueprint = findBlueprint(textBlueprints, 'text', id)
-
-        if textBlueprint is None:
-            blueprintName = blueprint.get('name')
-            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprintName}') 
-        title = textBlueprint.text
+    else:
+        raise Exception(f'blueprint relying on id: {blueprint.get("name")}')
 
     title = removeBracketsFromTitle(title)
     return title
@@ -258,3 +241,7 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
     start = '<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->'
     end = '<weaponBlueprint name="SHOTGUN_PLAYER">'
     return replaceText(blueprintsText, start, end)
+
+blueprints = getBlueprints()
+dlcBlueprints =  getDLCBlueprints()
+autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
