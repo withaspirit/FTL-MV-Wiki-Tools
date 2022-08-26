@@ -99,15 +99,6 @@ def getWikiRedirect(wikiElement: ET.Element) -> str:
         raise Exception(f'wikiRedirect not found for {elementName}')
     return wikiRedirect.text
 
-# replaces 'PLACEHOLDER' in wikiRedirect
-def getWikiRedirectWithPlaceholder(wikiElement: ET.Element, wikiPage: str) -> str:
-    #print(wikiElement.get('name'))
-    wikiRedirectText = getWikiRedirect(wikiElement)
-    if 'PLACEHOLDER' in wikiRedirectText:
-        wikiRedirectText = wikiRedirectText.replace('PLACEHOLDER', wikiPage)
-
-    return wikiRedirectText
-
 def getWikiName(wikiElement: ET.Element) -> str:
     if wikiElement.tag == 'blueprintList':
         return wikiElement.get('wikiName')
