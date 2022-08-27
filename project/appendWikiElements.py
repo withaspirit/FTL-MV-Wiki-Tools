@@ -43,13 +43,15 @@ def appendWikiElements(blueprint: ET.Element, nameElem: ET.Element) -> str:
     wikiName = getOrCreateWikiName(blueprint, nameElem)
     wikiHeading = getOrCreateWikiHeading(blueprint, nameElem)
     wikiRedirect = blueprintUtils.createWikiRedirect(wikiPage, wikiHeading)
+    wikiLink = blueprintUtils.formatBlueprintLink(wikiRedirect, wikiName)
 
     appendText = f'''
     <mod:findName type="{blueprintTag}" name="{blueprintName}">
         <mod-append:wikiRedirect>{wikiRedirect}</mod-append:wikiRedirect>
         <mod-append:wikiName>{wikiName}</mod-append:wikiName>
         <mod-append:wikiHeading>{wikiHeading}</mod-append:wikiHeading>
-        <mod-append:wikiPage>{wikiPage}</mod-append:wikiPage>'''
+        <mod-append:wikiPage>{wikiPage}</mod-append:wikiPage>
+        <mod-append:wikiLink>{wikiLink}</mod-append:wikiLink>'''
 
     if blueprintTag == 'shipBlueprint':
         teleporterLimit = nameElem.get('teleporterLimit')
@@ -72,11 +74,13 @@ def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
         wikiHeading = blueprintListNameElem.get('wikiHeading')
         wikiPage = blueprintListNameElem.get('wikiPage')
         wikiRedirect = blueprintUtils.createWikiRedirect(wikiPage, wikiHeading)
+        wikiLink = blueprintUtils.formatBlueprintLink(wikiRedirect, wikiName)
 
         autoBlueprintsAppend += f'''
     <mod:findName type="blueprintList" name="{blueprintListName}">
-        <mod:setAttributes wikiName="{wikiName}" wikiPage="{wikiPage}"/>
-        <mod:setAttributes wikiRedirect="{wikiRedirect}" wikiHeading="{wikiHeading}"/>
+        <mod:setAttributes wikiRedirect="{wikiRedirect}" wikiName="{wikiName}"/>
+        <mod:setAttributes wikiHeading="{wikiHeading}" wikiPage="{wikiPage}"/>
+        <mod:setAttributes wikiLink="{wikiLink}"/>
         <mod:setAttributes fullURL="https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(' ', '_')}"/>
     </mod:findName>'''
     return autoBlueprintsAppend
@@ -98,8 +102,6 @@ def wikiPageComment(wikiPage: str) -> str:
 -->'''
 
 # read from autoblueprints, output into append files
-# FIXME: could reduce runtime by opening files once instead of opening for each
-# exception
 if __name__ == '__main__':
     print('Creating .append files. Please wait ~10 seconds.')
     start_time = time.time()
@@ -120,6 +122,7 @@ if __name__ == '__main__':
         for nameElem in blueprintList.iter('name'):
             blueprintName = nameElem.text
             blueprint = blueprintUtils.findBlueprint(blueprints, '*', blueprintName)
+
             if blueprint is None:
                 continue
 

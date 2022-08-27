@@ -49,20 +49,18 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
     blueprint = rootElement.find(blueprintPath)
 
     # blueprint != text is for when accessing text_blueprints.id
-    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag) and (blueprint.tag != 'text'):
+    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag):
         blueprint = None
     
     # in dlcBlueprints.xml
     # TODO: try blueprintName in dlcItems:
     if blueprint is None:
-        dlcBlueprints = getDLCBlueprints()
         blueprint = dlcBlueprints.find(blueprintPath)
     
     # in autoBlueprints.xml
     if blueprint is None:
         # blueprint belongs to a list
         blueprintListPath = f'.//blueprintList[@name="{blueprintName}"]'
-        autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
         blueprint = autoBlueprints.find(blueprintListPath)
 
     if blueprint is None:
@@ -99,15 +97,6 @@ def getWikiRedirect(wikiElement: ET.Element) -> str:
         raise Exception(f'wikiRedirect not found for {elementName}')
     return wikiRedirect.text
 
-# replaces 'PLACEHOLDER' in wikiRedirect
-def getWikiRedirectWithPlaceholder(wikiElement: ET.Element, wikiPage: str) -> str:
-    #print(wikiElement.get('name'))
-    wikiRedirectText = getWikiRedirect(wikiElement)
-    if 'PLACEHOLDER' in wikiRedirectText:
-        wikiRedirectText = wikiRedirectText.replace('PLACEHOLDER', wikiPage)
-
-    return wikiRedirectText
-
 def getWikiName(wikiElement: ET.Element) -> str:
     if wikiElement.tag == 'blueprintList':
         return wikiElement.get('wikiName')
@@ -120,29 +109,14 @@ def getWikiName(wikiElement: ET.Element) -> str:
     return displayName
 
 def getTitle(blueprint: ET.Element) -> str:
-
-    # if element already has wikiName, use it
-    # this statement should be activated before this point though
-    if blueprint.get('wikiName'):
-        print('DELETEME IF THIS STATEMENT IS NOT USED')
-        return blueprint.get('wikiName')
-
     titleElement = getElementClassOrTitle(blueprint)
     
     # Dealing with <title> that has 'id' attribute
     # if it has an 'id' attribute, access it from text_blueprints.xml
     if not titleElement.get('id'):
         title = titleElement.text    
-    else: 
-        id = titleElement.get('id')
-        # title in text_blueprints
-        textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
-        textBlueprint = findBlueprint(textBlueprints, 'text', id)
-
-        if textBlueprint is None:
-            blueprintName = blueprint.get('name')
-            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprintName}') 
-        title = textBlueprint.text
+    else:
+        raise Exception(f'blueprint relying on id: {blueprint.get("name")}')
 
     title = removeBracketsFromTitle(title)
     return title
@@ -267,3 +241,7 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
     start = '<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->'
     end = '<weaponBlueprint name="SHOTGUN_PLAYER">'
     return replaceText(blueprintsText, start, end)
+
+blueprints = getBlueprints()
+dlcBlueprints =  getDLCBlueprints()
+autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()

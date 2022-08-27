@@ -124,14 +124,14 @@ class Ship:
         if crewElements:
             for i, crewElement in enumerate(crewElements):
                 blueprintName = crewElement.tag
-                customName = crewElement.get('name')
+                crewName = crewElement.get('name')
 
                 # blueprintName already visited
                 if blueprintName in crewMap:
                     crewMap[blueprintName][1] += 1
                     continue
 
-                blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint', customName)
+                blueprintLink = self.getBlueprintLink(blueprintName, 'crewBlueprint', crewName)
 
                 # make crew with customName count as 1 crew; distinguish from other crew and duplicates
                 if blueprintLink[-1] == "'": # is customName
@@ -237,7 +237,7 @@ class Ship:
                     # using getBlueprintList for one element
                     artilleryNames = []
                     artilleryNames.append(artilleryName)
-                    displayName = self.getBlueprintList('weaponBlueprint', artilleryNames)[0]
+                    displayName = self.getBlueprintLinks('weaponBlueprint', artilleryNames)[0]
                 else:
                     displayName = self.getSystemName(displayName)
 
@@ -315,7 +315,7 @@ class Ship:
 
     def getStartingWeapons(self) -> str:
         blueprintNames = self.getBlueprintNames('weaponList')
-        weaponList = self.getBlueprintList('weaponBlueprint', blueprintNames)
+        weaponList = self.getBlueprintLinks('weaponBlueprint', blueprintNames)
 
         if len(weaponList) == 0:
             return ''
@@ -346,7 +346,7 @@ class Ship:
 
     def getStartingDrones(self) -> str:
         blueprintNames = self.getBlueprintNames('droneList')
-        droneList = self.getBlueprintList('droneBlueprint', blueprintNames)
+        droneList = self.getBlueprintLinks('droneBlueprint', blueprintNames)
 
         if len(droneList) == 0:
             return ''
@@ -360,7 +360,7 @@ class Ship:
             augName = augElement.get('name')
             blueprintNames.append(augName)
 
-        augmentList = self.getBlueprintList('augBlueprint', blueprintNames)
+        augmentList = self.getBlueprintLinks('augBlueprint', blueprintNames)
         if len(augmentList) == 0:
             return ''
 
@@ -489,34 +489,38 @@ class Ship:
             blueprintNames.append(blueprintName)
         return blueprintNames
 
-    def getBlueprintList(self, tag: str, blueprintNames: list[str]) -> list[str]:
+    def getBlueprintLinks(self, tag: str, blueprintNames: list[str]) -> list[str]:
         blueprintList = []
         for blueprintName in blueprintNames:
             blueprintLink =  self.getBlueprintLink(blueprintName, tag)
             blueprintList.append(blueprintLink)
         return blueprintList
 
-    # FIXME: Try doing this at "appendWikiElements" stage instead of at "wikiShipExport" stage
-    # customName is names given to Regular Crew or Secret Crew members (N/A for Unique Crew)
-    def getBlueprintLink(self, name: str, tag: str, crewName: ET.Element = None) -> str:
+    # Gets the wikiLink attribute from blueprint and if necessary, adds info
+    # that shouldn't be part of the wikiLink
+    def getBlueprintLink(self, name: str, tag: str, crewName: str = None) -> str:
         blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, name)
-        wikiRedirect = blueprintUtils.getWikiRedirectWithPlaceholder(blueprint, self.getElement('wikiPage').text)
-        wikiName = blueprintUtils.getWikiName(blueprint)
-        blueprintLink = ''
-        # could condense this into one method
-        if crewName is None:
-            blueprintLink = blueprintUtils.formatBlueprintLink(wikiRedirect, wikiName)
-        else:
-            blueprintLink = blueprintUtils.formatCrewBlueprintLink(wikiRedirect, wikiName, crewName)
 
-        # this is done after blueprintLink() function because it shouldn't be part of the link
-        if tag == 'augBlueprint':
-                blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
+        blueprintLink = ''
+        if blueprint.tag == 'blueprintList':
+            blueprintLink = blueprint.get('wikiLink')
+            # for blueprintLists belonging to more than one page
+            if 'PLACEHOLDER' in blueprintLink:
+                wikiPage = self.getElement('wikiPage').text
+                blueprintLink = blueprintLink.replace('PLACEHOLDER', wikiPage)
+        else:
+            blueprintLink = blueprint.find('wikiLink').text
+
+            # for Crew or Secret Crew with 'name' attribute in hyperspace.xml
+            if crewName is not None and 'Unique' not in blueprintLink:
+                blueprintLink += f" '{crewName}'"
+            elif blueprint.tag == 'augBlueprint':
+                    blueprintLink = self.augmentProcessing(blueprint, name, blueprintLink)
+
         return blueprintLink
 
-    def augmentProcessing(self, blueprintName: str, tag: str, blueprintLink: str) -> str:
+    def augmentProcessing(self, blueprint: ET.Element, blueprintName: str, blueprintLink: str) -> str:
         newBlueprintLink = blueprintLink
-        blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, blueprintName)
         # augBlueprint should always have title
         title = blueprint.find('title').text
 
