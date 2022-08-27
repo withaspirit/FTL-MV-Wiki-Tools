@@ -511,17 +511,16 @@ class Ship:
         else:
             blueprintLink = blueprint.find('wikiLink').text
 
-            # for Crew or Secret Crew with 'name' attributes in hyperspace.xml
+            # for Crew or Secret Crew with 'name' attribute in hyperspace.xml
             if crewName is not None and 'Unique' not in blueprintLink:
                 blueprintLink += f" '{crewName}'"
             elif blueprint.tag == 'augBlueprint':
-                    blueprintLink = self.augmentProcessing(name, tag, blueprintLink)
+                    blueprintLink = self.augmentProcessing(blueprint, name, blueprintLink)
 
         return blueprintLink
 
-    def augmentProcessing(self, blueprintName: str, tag: str, blueprintLink: str) -> str:
+    def augmentProcessing(self, blueprint: ET.Element, blueprintName: str, blueprintLink: str) -> str:
         newBlueprintLink = blueprintLink
-        blueprint = blueprintUtils.findBlueprint(self.blueprints, tag, blueprintName)
         # augBlueprint should always have title
         title = blueprint.find('title').text
 
