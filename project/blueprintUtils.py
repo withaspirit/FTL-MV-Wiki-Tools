@@ -49,7 +49,7 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
     blueprint = rootElement.find(blueprintPath)
 
     # blueprint != text is for when accessing text_blueprints.id
-    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag) and (blueprint.tag != 'text'):
+    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag):
         blueprint = None
     
     # in dlcBlueprints.xml
