@@ -67,6 +67,16 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
         raise Exception(f'Blueprint not found: {blueprintName}')
     return blueprint
 
+# Gets blueprint found in blueprints.xml or dlcBlueprints.xml
+def getNormalBlueprint(path: str) -> ET.Element:
+    blueprint = blueprints.find(path)
+    if blueprint is None:
+        blueprint = dlcBlueprints.find(path)
+
+    if blueprint is None:
+        raise Exception(f'Invalid blueprintPath: {path}')
+    return blueprint
+
 def createWikiRedirect(wikiPage: str, wikiHeading: str) -> str:
     # remove brackets from drones and player weapons
     wikiHeading = removeBracketsFromTitle(wikiHeading)
