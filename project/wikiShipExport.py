@@ -15,7 +15,6 @@ errorShips = {
 def getWikiShipText() -> str:
     blueprints = blueprintUtils.getBlueprints()
     hyperspace = ET.parse(blueprintUtils.pathToData + 'hyperspace.xml').getroot()
-    text_blueprints = ET.parse(blueprintUtils.pathToData + 'text_blueprints.xml').getroot()
     events_boss = ET.parse(blueprintUtils.pathToData + 'events_boss.xml').getroot()
 
     shipPath = './/shipBlueprint[@name]'
@@ -37,7 +36,7 @@ def getWikiShipText() -> str:
             wikiShipText += f'\n{currWikiPage}\n'
 
         #print(blueprintName)
-        ship = Ship(shipBlueprint, blueprints, hyperspace, text_blueprints, events_boss)
+        ship = Ship(shipBlueprint, blueprints, hyperspace, events_boss)
         wikiShipText += ship.toString() + '\n'
     return wikiShipText
 

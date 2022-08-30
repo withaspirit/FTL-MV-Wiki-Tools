@@ -34,13 +34,13 @@ class Ship:
 
     # opening files once and passing instead of opening them many times
     # significantly reduces runtime
-    def __init__(self, blueprint, blueprints, hyperspace, text_blueprints, events_boss):
+    def __init__(self, blueprint, blueprints, hyperspace, events_boss):
         self.blueprint = blueprint
         self.blueprints = blueprints
         self.blueprintName = self.blueprint.get('name')
 
         self.hyperspace = hyperspace
-        self.text_blueprints = text_blueprints
+        self.text_blueprints = blueprintUtils.textBlueprints
         self.events_boss = events_boss
         customShipPath = f'.//ships/customShip[@name="{self.blueprintName}"]'
         self.customShip = hyperspace.find(customShipPath)

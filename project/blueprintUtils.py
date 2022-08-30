@@ -205,6 +205,7 @@ def processText(text: str) -> str:
     text = text.replace('™', '↑')
     return text
 
+# exclude text between startText and endText
 def replaceText(blueprintsText: str, startText: str, endText: str) -> str:
     startIndex = blueprintsText.find(startText)
     endIndex = blueprintsText.find(endText)
@@ -245,3 +246,4 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
 blueprints = getBlueprints()
 dlcBlueprints =  getDLCBlueprints()
 autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
+textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
