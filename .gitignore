@@ -14,6 +14,7 @@ __pycache__
 # unreleased stuff
 /project/utils
 /project/wikiShips.txt
+/project/wikiWeaponPages.txt
 /project/compareVersions.txt
 
 /project/Append\ wikiElements
