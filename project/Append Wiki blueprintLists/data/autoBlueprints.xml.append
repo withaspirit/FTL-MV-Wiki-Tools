@@ -669,20 +669,28 @@
         <!--
             Kernel Weapons
             https://ftlmultiverse.fandom.com/wiki/Kernel_Weapons
+            like both blueprintList name="GIFTLIST_KERNEL" and name="GIFTLIST_KERNEL_ELITE"
         -->
-            <mod:findName name="GIFTLIST_KERNEL" type="blueprintList">
-                <mod:setAttributes wikiPage="Kernel Weapons#"/>
-            </mod:findName>
-            <mod:findName name="GIFTLIST_KERNEL_ELITE" type="blueprintList">
-                <mod:setAttributes wikiPage="Kernel Weapons#"/>
-            </mod:findName>
+            <blueprintList wikiPage="Kernel Weapons#" name="LIST_WEAPONS_KERNEL_WIKI">
+            	<name>KERNEL_1</name>
+                <name>KERNEL_2</name>
+                <name>KERNEL_HEAVY</name>
+                <name>KERNEL_CHAIN</name>
+                <name>KERNEL_CHARGE</name>
+                <name>KERNEL_FIRE</name>
+                <name>KERNEL_1_ELITE</name>
+                <name>KERNEL_2_ELITE</name>
+                <name>KERNEL_HEAVY_ELITE</name>
+                <name>KERNEL_CHAIN_ELITE</name>
+                <name>KERNEL_CHARGE_ELITE</name>
+            </blueprintList>
 
         <!--
             Particle Weapons
             https://ftlmultiverse.fandom.com/wiki/Particle_Weapons
             like blueprintList name="BLUELIST_PARTICLE" without drones
         -->
-            <blueprintList wikiPage="Particle Weapons#" name="LIST_WEAPONS_FOCUS_WIKI">
+            <blueprintList wikiPage="Particle Weapons#" name="LIST_WEAPONS_PARTICLE_WIKI">
                 <name>LASER_PARTICLE</name>
                 <name>LASER_PARTICLE_2</name>
                 <name>BEAM_PARTICLE</name>
@@ -812,6 +820,7 @@
             Aether Weapons
             https://ftlmultiverse.fandom.com/wiki/Aether_Weapons
             like blueprintList name="BLUELIST_OBELISK" without drones
+            TODO: split up into different tables
         -->
             <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_WIKI">
                 <name>ANCIENT_LASER</name>
