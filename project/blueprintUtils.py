@@ -127,16 +127,11 @@ def getTitle(blueprint: ET.Element) -> str:
         title = titleElement.text    
     else: 
         id = titleElement.get('id')
-        # title in text_blueprints
+        # title in textBlueprints
         textBlueprint = textBlueprints.find(f'.//text[@name="{id}"]')
-
         if textBlueprint is None:
-            blueprintName = blueprint.get('name')
-            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprintName}') 
+            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprint.get("name")}') 
         title = textBlueprint.text
-
-    title = removeBracketsFromTitle(title)
-    return title
 
     title = removeBracketsFromTitle(title)
     return title
