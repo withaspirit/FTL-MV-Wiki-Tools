@@ -68,6 +68,7 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
     return blueprint
 
 # Gets blueprint found in blueprints.xml or dlcBlueprints.xml
+# FIXME: this method name isn't descriptive
 def getNormalBlueprint(path: str) -> ET.Element:
     blueprint = blueprints.find(path)
     if blueprint is None:
