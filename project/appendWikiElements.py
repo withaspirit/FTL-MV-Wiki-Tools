@@ -84,15 +84,16 @@ def getAutoBlueprintsAppend(autoBlueprints: ET.Element) -> str:
         <mod:setAttributes fullURL="https://ftlmultiverse.fandom.com/wiki/{wikiRedirect.replace(' ', '_')}"/>
     </mod:findName>'''
 
-    # Add autoBlueprints with wikiPages
-    # this takes 4 seconds
+    # Add blueprintLists with wikiPages to autoBlueprints.xml.append
+    #   Enables script to use blueprintLists along with wikiElements
+    # Takes ~4 seconds
     bpLists = autoBlueprints.findall('.//blueprintList[@wikiPage]')
-    bpListString = []
+    bpListStringList = []
     for bpList in bpLists:
-        string = ET.tostring(bpList, encoding='utf-8').decode()
-        bpListString.append(string)
+        bpListString = ET.tostring(bpList, encoding='utf-8').decode()
+        bpListStringList.append(bpListString)
 
-    autoBlueprintsAppend += '\n'.join(bpListString)
+    autoBlueprintsAppend += '\n'.join(bpListStringList)
     return autoBlueprintsAppend
 
 def writeXMLAppendFile(fileName: str, fileText: str):
