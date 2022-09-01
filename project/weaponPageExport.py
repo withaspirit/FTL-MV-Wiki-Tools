@@ -6,6 +6,9 @@ import blueprintUtils as blueprintUtils
 # droneLists, artilleryLists, augmentLists, shipLists etc.
 
 # weaponPageExport limited atm to Starting Weapons
+
+# weaponLists that are in the autoBlueprints.xml instead of the
+# autoBlueprints.xml.append file
 otherWeaponLists = {
     'GIFTLIST_KERNEL',
     'GIFTLIST_KERNEL_ELITE',
@@ -30,7 +33,7 @@ skipNames = {
 shipsToSkip = {
     'PLAYER_SHIP_PALADIN',
     'PLAYER_SHIP_PALADIN_2',
-    'PLAYER_SHIP_PALADIN_3'
+    'PLAYER_SHIP_PALADIN_3',
     'PLAYER_SHIP_GUARD',
     'PLAYER_SHIP_GUARD_2',
     'PLAYER_SHIP_GUARD_3',
@@ -39,30 +42,31 @@ shipsToSkip = {
 }
 
 blueprints = blueprintUtils.blueprints
-autoBlueprints = ET.parse(blueprintUtils.pathToData + 'autoBlueprints.xml').getroot()
+autoBlueprints = blueprintUtils.autoBlueprints
 bpLists = autoBlueprints.findall('.//blueprintList[@wikiPage]')
 
-# build map of starting weapons
-# weapon: {shipWikiLink, count}
+# build map of starting weapons to ships they're on
+# weaponTitle: {shipWikiLink, count}
 def buildStartingWeaponMap():
     weaponShipMap = {}
-    for bpList in bpLists:
+    for blueprintList in bpLists:
 
         # skip invalid cases
-        bpListName = bpList.get('name')
-        if bpListName in skipNames:
+        listName = blueprintList.get('name')
+        if listName in skipNames:
             continue
 
         # include only weapon lists
-        if 'LIST_WEAPONS_' not in bpListName and bpListName not in otherWeaponLists:
+        if 'LIST_WEAPONS_' not in listName and listName not in otherWeaponLists:
             continue
 
         # weaponTitle
-        for nameElem in bpList.iter('name'):
+        for nameElem in blueprintList.iter('name'):
             weaponName = nameElem.text
             weaponShipMap[weaponName] = {}
 
             weaponPath = f'weaponList/weapon[@name="{weaponName}"]'
+
             # each 2 dots traverses back up tree once
             shipWithWeaponPath = f'.//shipBlueprint/{weaponPath}....'
             for shipElem in blueprints.findall(shipWithWeaponPath):
@@ -71,14 +75,14 @@ def buildStartingWeaponMap():
                 if shipName in shipsToSkip:
                     continue
 
+                # {shipLink, count}
                 weaponCount = len(shipElem.findall(f'.//{weaponPath}'))
-                # (shipLink, count)
                 shipLink = shipElem.find('wikiLink').text
                 weaponShipMap[weaponName][shipLink] = weaponCount
     return weaponShipMap
 
 def getStartingWeapons(weaponName: str) -> str:
-    text = '\n* Starting Weapon on:'
+    text = '\n* Starting weapon on:'
     for (shipLink, count) in weaponShipMap[weaponName].items():
         text += f'\n** {shipLink}'
 
@@ -89,22 +93,22 @@ def getStartingWeapons(weaponName: str) -> str:
 weaponShipMap = buildStartingWeaponMap()
 
 text = ''
-for bpList in bpLists:
+for blueprintList in bpLists:
 
-    bpListName = bpList.get('name')
-    if bpListName in skipNames:
+    listName = blueprintList.get('name')
+    if listName in skipNames:
         continue
 
     # include only weapon lists
-    if 'LIST_WEAPONS_' not in bpListName and bpListName not in otherWeaponLists:
+    if 'LIST_WEAPONS_' not in listName and listName not in otherWeaponLists:
         continue
 
     # fullURL
-    wikiPage = bpList.get("wikiPage").replace(" ", "_")
+    wikiPage = blueprintList.get("wikiPage").replace(" ", "_")
     fullURL = f'https://ftlmultiverse.fandom.com/wiki/{wikiPage}'
     text += f'\n\n\n{fullURL}\n'
 
-    for nameElem in bpList.iter('name'):
+    for nameElem in blueprintList.iter('name'):
         weaponName = nameElem.text
         if weaponName not in weaponShipMap or len(weaponShipMap[weaponName]) == 0:
             continue
