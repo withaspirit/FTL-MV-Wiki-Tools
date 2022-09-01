@@ -128,8 +128,8 @@ def getTitle(blueprint: ET.Element) -> str:
         title = titleElement.text    
     else: 
         id = titleElement.get('id')
-        # title in textBlueprints
-        textBlueprint = textBlueprints.find(f'.//text[@name="{id}"]')
+        # title in text_blueprints
+        textBlueprint = text_blueprints.find(f'.//text[@name="{id}"]')
         if textBlueprint is None:
             raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprint.get("name")}') 
         title = textBlueprint.text
@@ -262,4 +262,4 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
 blueprints = getBlueprints()
 dlcBlueprints =  getDLCBlueprints()
 autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
-textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
+text_blueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()

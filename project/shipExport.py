@@ -40,7 +40,7 @@ class Ship:
         self.blueprintName = self.blueprint.get('name')
 
         self.hyperspace = hyperspace
-        self.text_blueprints = blueprintUtils.textBlueprints
+        self.text_blueprints = blueprintUtils.text_blueprints
         self.events_boss = events_boss
         customShipPath = f'.//ships/customShip[@name="{self.blueprintName}"]'
         self.customShip = hyperspace.find(customShipPath)
