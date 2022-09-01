@@ -2,6 +2,9 @@ import xml.etree.ElementTree as ET
 import re
 import os
 
+# Contains various functions, variables, and sets for other files to use.
+# FIXME: the name of this file isn't descriptive
+
 cwd = os.path.dirname(os.path.abspath(__file__))
 pathToData = os.path.join(cwd,'FTL DAT/data/')
 wikiElementsPath = cwd + '\\Append wikiElements\\data\\'
@@ -67,6 +70,17 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
         raise Exception(f'Blueprint not found: {blueprintName}')
     return blueprint
 
+# Gets blueprint found in blueprints.xml or dlcBlueprints.xml
+# FIXME: this method name isn't descriptive
+def getNormalBlueprint(path: str) -> ET.Element:
+    blueprint = blueprints.find(path)
+    if blueprint is None:
+        blueprint = dlcBlueprints.find(path)
+
+    if blueprint is None:
+        raise Exception(f'Invalid blueprintPath: {path}')
+    return blueprint
+
 def createWikiRedirect(wikiPage: str, wikiHeading: str) -> str:
     # remove brackets from drones and player weapons
     wikiHeading = removeBracketsFromTitle(wikiHeading)
@@ -115,8 +129,13 @@ def getTitle(blueprint: ET.Element) -> str:
     # if it has an 'id' attribute, access it from text_blueprints.xml
     if not titleElement.get('id'):
         title = titleElement.text    
-    else:
-        raise Exception(f'blueprint relying on id: {blueprint.get("name")}')
+    else: 
+        id = titleElement.get('id')
+        # title in text_blueprints
+        textBlueprint = text_blueprints.find(f'.//text[@name="{id}"]')
+        if textBlueprint is None:
+            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprint.get("name")}') 
+        title = textBlueprint.text
 
     title = removeBracketsFromTitle(title)
     return title
@@ -205,6 +224,7 @@ def processText(text: str) -> str:
     text = text.replace('™', '↑')
     return text
 
+# exclude text between startText and endText
 def replaceText(blueprintsText: str, startText: str, endText: str) -> str:
     startIndex = blueprintsText.find(startText)
     endIndex = blueprintsText.find(endText)
@@ -245,3 +265,4 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
 blueprints = getBlueprints()
 dlcBlueprints =  getDLCBlueprints()
 autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
+text_blueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
