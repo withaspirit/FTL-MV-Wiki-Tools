@@ -12,7 +12,8 @@ __pycache__
 /project/old\ version
 /project/old\ data/
 # unreleased stuff
-/project/utils
+/project/utils/*
+!/project/utils/tableColumns.json
 /project/wikiShips.txt
 /project/compareVersions.txt
 
