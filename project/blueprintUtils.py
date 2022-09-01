@@ -2,6 +2,9 @@ import xml.etree.ElementTree as ET
 import re
 import os
 
+# Contains various functions, variables, and sets for other files to use.
+# FIXME: the name of this file isn't descriptive
+
 cwd = os.path.dirname(os.path.abspath(__file__))
 pathToData = os.path.join(cwd,'FTL DAT/data/')
 wikiElementsPath = cwd + '\\Append wikiElements\\data\\'
