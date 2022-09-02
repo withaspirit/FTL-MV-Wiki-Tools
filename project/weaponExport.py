@@ -1,5 +1,5 @@
 import blueprintUtils as blueprintUtils
-
+import xml.etree.ElementTree as ET
 # https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
 
 accuracyImages = {
@@ -8,8 +8,7 @@ accuracyImages = {
     '30': '{{Accuracy|30}}',
 }
 
-tableThing = '''{|class=" wikitable floatheader sortable" style="text-align:center;" cellspacing="0" cellpadding="0" border="1"
-|-'''
+# unused templates: https://ftlmultiverse.fandom.com/wiki/User:Puporongo/Sandbox
 
 columnFormats = {
     'weapon': '! rowspan="2" |Weapon',
@@ -61,6 +60,26 @@ class Weapon:
         self.validColumns = validColumns
         self.columnValues = []
 
+    def toString(self) -> str:
+        self.getWeapon()
+        self.getHullDamage()
+        self.getSysDamage()
+        self.getCrewDamage()
+        self.getIonDamage()
+        self.getShots()
+        self.getRadius()
+        self.getLength()
+        self.getPower()
+        self.getPierce()
+        self.getCooldown()
+        self.getFireChance()
+        self.getBreachChance()
+        self.getStun()
+        self.getCost()
+        self.getRarity()
+        self.getSpeed()
+
+        return '||'.join(self.columnValues)
 
 # SPECIAL COLUMNS
 # EVENT_WEAPONS: faction column
@@ -105,6 +124,8 @@ class Weapon:
             return ''
         
         columnText = self.getElementText('persDamage')
+        if len(columnText) > 0:
+            columnText = str(int(columnText) * 15)
         self.columnValues.append(columnText)
 
     def getIonDamage(self) -> str:
@@ -139,32 +160,40 @@ class Weapon:
         self.columnValues.append(columnText)
 
     def getFireChance(self) -> str:
-        columnText = self.getElementText('fireChance')
+        columnText = self.getPercent(self.getElementText('fireChance'))
         self.columnValues.append(columnText)
 
     def getBreachChance(self) -> str:
-        columnText = self.getElementText('breachChance')
+        columnText = self.getPercent(self.getElementText('breachChance'))
         self.columnValues.append(columnText)
 
     def getStun(self) -> str:
         stunChanceElem = self.blueprint.find('stunChance')
         stunElem = self.blueprint.find('stun')
 
-        columnText = ' ! '
+        columnText = ''
         if stunChanceElem is None and stunElem is None:
-            return columnText
+            self.columnValues.append(columnText)
+            return
 
         if stunChanceElem is None:
-            columnText += '100% '
+            columnText += '100%'
         else:
-            columnText += f'{stunChanceElem.text}% '
+            columnText += self.getPercent(stunChanceElem.text)
 
         if stunElem is None:
-            columnText = '(3s)'
+            columnText += ' (3s)'
         else:
-            columnText = f'({stunElem.text}s)'
+            columnText += f' ({stunElem.text}s)'
 
-        return columnText
+        self.columnValues.append(columnText)
+
+    def getPercent(self, chance: str) -> str:
+        if len(chance) == 0 or int(chance) == 0:
+            return ''
+
+        percentChance = int(chance) * 10
+        return f'{percentChance}%'
 
     def getCost(self) -> str:
         columnText = self.getElementText('cost')
