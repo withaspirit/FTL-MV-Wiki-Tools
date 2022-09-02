@@ -53,10 +53,14 @@ class Weapon:
     
     validColumns = {}
 
+    columnValues = None
+
     def __init__(self, blueprint, validColumns):
         self.blueprint = blueprint
         self.blueprintName = self.blueprint.get('name')
         self.validColumns = validColumns
+        self.columnValues = []
+
 
 # SPECIAL COLUMNS
 # EVENT_WEAPONS: faction column
@@ -72,7 +76,9 @@ class Weapon:
     def getWeapon(self):
         link = self.getWikiLink()
         img = self.getImg()
-        return f'\n|{link}<br>[[File:{img}.png]]'
+        columnText = f'{link}<br>[[File:{img}.png]]'
+
+        self.columnValues.append(columnText)
 
     def getWikiLink(self) -> str:
         return self.blueprint.find('.//wikiLink').text
@@ -80,106 +86,65 @@ class Weapon:
     def getImg(self) -> str:
         return self.blueprint.find('.//weaponArt').text
 
-    def getHullDamage(self) -> str:
-        if self.validColumns['H'] is False:
-            return ''
+    def getHullDamage(self):
+        if 'H' not in self.validColumns:
+            return
 
-        damageElem = self.blueprint.find('damage')
-        if damageElem is None:
-            return ''
+        columnText = self.getElementText('damage')
+        self.columnValues.append(columnText)
 
-        return damageElem.text
-        
     def getSysDamage(self) -> str:
-        if self.validColumns['S'] is False:
+        if 'S' not in self.validColumns:
             return ''
 
-        sysdamageElem = self.blueprint.find('sysDamage')
-        if sysdamageElem is None:
-            return ''
-        return sysdamageElem.text
+        columnText = self.getElementText('sysDamage')
+        self.columnValues.append(columnText)
 
     def getCrewDamage(self) -> str:
-        if self.validColumns['C'] is False:
+        if 'C' not in self.validColumns:
             return ''
         
-        crewdamageElem = self.blueprint.find('persDamage')
-        if crewdamageElem is None:
-            return ''
-        return crewdamageElem.text
+        columnText = self.getElementText('persDamage')
+        self.columnValues.append(columnText)
 
     def getIonDamage(self) -> str:
-        if self.validColumns['I'] is False:
+        if 'I' not in self.validColumns:
             return ''
         
-        ionDamageElem = self.blueprint.find('ion')
-        if ionDamageElem is None:
-            return ''
-        return ionDamageElem.text
+        columnText = self.getElementText('ion')
+        self.columnValues.append(columnText)
     
     def getShots(self) -> str:
-        shotsElem = self.blueprint.find('shots')
-
-        columnText = ' ! '
-        if shotsElem is not None:
-            columnText += shotsElem.text
-        return columnText
+        columnText = self.getElementText('shots')
+        self.columnValues.append(columnText)
 
     def getRadius(self) -> str:
-        radiusElem = self.blueprint.find('radius')
-
-        columnText = ' ! '
-        if radiusElem is not None:
-            columnText += radiusElem.text
-        return columnText
+        columnText = self.getElementText('radius')
+        self.columnValues.append(columnText)
 
     def getLength(self) -> str:
-        lengthElem = self.blueprint.find('length')
-
-        columnText = ' ! '
-        if lengthElem is not None:
-            columnText += lengthElem.text
-        return columnText
+        columnText = self.getElementText('length')
+        self.columnValues.append(columnText)
 
     def getPower(self) -> str:
-        powerElem = self.blueprint.find('power')
-
-        columnText = ' ! '
-        if powerElem is not None:
-            columnText += powerElem.text
-        return columnText
+        columnText = self.getElementText('power')
+        self.columnValues.append(columnText)
 
     def getPierce(self) -> str:
-        pierceElem = self.blueprint.find('sp')
-
-        columnText = ' ! '
-        if pierceElem is not None:
-            columnText += pierceElem.text
-        return columnText
+        columnText = self.getElementText('sp')
+        self.columnValues.append(columnText)
     
-    def getFireChance(self) -> str:
-        cooldownElem = self.blueprint.find('cooldown')
-
-        columnText = ' ! '
-        if cooldownElem is not None:
-            columnText += cooldownElem.text
-        return columnText
+    def getCooldown(self) -> str:
+        columnText = self.getElementText('cooldown')
+        self.columnValues.append(columnText)
 
     def getFireChance(self) -> str:
-        fireElem = self.blueprint.find('fireChance')
-
-        columnText = ' ! '
-        if fireElem is not None:
-            columnText += f'{fireElem.text}%'
-        return columnText
+        columnText = self.getElementText('fireChance')
+        self.columnValues.append(columnText)
 
     def getBreachChance(self) -> str:
-        breachElem = self.blueprint.find('breachChance')
-
-        columnText = ' ! '
-        if breachElem is not None:
-            columnText += f'{breachElem.text}%'
-        return columnText
+        columnText = self.getElementText('breachChance')
+        self.columnValues.append(columnText)
 
     def getStun(self) -> str:
         stunChanceElem = self.blueprint.find('stunChance')
@@ -202,27 +167,23 @@ class Weapon:
         return columnText
 
     def getCost(self) -> str:
-        costElem = self.blueprint.find('cost')
+        columnText = self.getElementText('cost')
+        if len(columnText) == 0:
+            columnText = '0'
 
-        columnText = ' ! '
-        if costElem is None:
-            return columnText + '0'
-        else:
-            columnText += f'{costElem}{icons["scrap"]}'
-        return columnText
+        columnText += icons["scrap"]
+        self.columnValues.append(columnText)
 
-    def getSpeed(self) -> str:
-        rarityElem = self.blueprint.find('rarity')
-
-        columnText = ' ! '
-        if rarityElem is not None:
-            columnText += rarityElem.text
-        return columnText
+    def getRarity(self) -> str:
+        columnText = self.getElementText('rarity')
+        self.columnValues.append(columnText)
 
     def getSpeed(self) -> str:
-        speedElem = self.blueprint.find('speed')
+        columnText = self.getElementText('speed')
+        self.columnValues.append(columnText)
 
-        columnText = ' ! '
-        if speedElem is not None:
-            columnText += speedElem.text
-        return columnText
+    def getElementText(self, tag: str) -> str:
+        elem = self.blueprint.find(tag)
+        if elem is None:
+            return ''
+        return elem.text
