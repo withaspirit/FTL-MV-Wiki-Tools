@@ -460,7 +460,7 @@
                 <name>LASER_CHAINGUN</name>
                 <name>LASER_CHAINGUN_2</name>
                 <name>LASER_CHARGEGUN</name>
-                <name>LASER_CHARGEGUN_PLAYER</name> <!-- dlcBlueprints -->
+                <name wikiName="Laser Charger" wikiHeading="Laser Charger">LASER_CHARGEGUN_PLAYER</name> <!-- dlcBlueprints -->
                 <name>LASER_CHARGEGUN_2</name>
                 <name>LASER_CHARGEGUN_3</name>
                 <name>LASER_CHARGE_CHAIN</name>
@@ -1003,13 +1003,10 @@
                 <name>MISSILES_OBSIDIAN_CHAOS</name>
                 <name>SHOTGUN_STEEL</name>
                 <name>SHOTGUN_STEEL_CHAOS</name>
-                <name>SHOTGUN_TOGGLE_FIRE</name>
-                <name>SHOTGUN_TOGGLE_ION</name>
-                <name>SHOTGUN_TOGGLE_TOXIC</name>
+                <name wikiName="Toggle Flak (F)" wikiHeading="Toggle Flak (F)">SHOTGUN_TOGGLE_FIRE</name>
+                <name wikiName="Toggle Flak (E)" wikiHeading="Toggle Flak (E)">SHOTGUN_TOGGLE_ION</name>
+                <name wikiName="Toggle Flak (R)" wikiHeading="Toggle Flak (R)">SHOTGUN_TOGGLE_TOXIC</name>
                 <name>SHOTGUN_TOGGLE_CHAOS</name>
-                <name>CHAOS_TOGGLE_FIRE</name>
-                <name>CHAOS_TOGGLE_ION</name>
-                <name>CHAOS_TOGGLE_TOXIC</name>
                 <name>SHELL_LAUNCHER</name>
                 <name>SHELL_LAUNCHER_CHAOS</name>
                 <name>SLOTGUN</name>
@@ -1928,7 +1925,7 @@
             <name>ANCIENT_DREAD</name>
             <name wikiName="Dreadnought Artillery (R)" wikiHeading="Dreadnought Artillery (R)">ROYAL_DREAD</name>
             <name>ARTILLERY_ROCK_MINIBOSS</name>
-            <name>ARTILLERY_FED_C</name>  <!-- dlcBlueprints -->
+            <name wikiName="Flak Artillery" wikiHeading="Flak Artillery">ARTILLERY_FED_C</name>  <!-- dlcBlueprints -->
             <!--
             Vanilla blueprints (!!!)
             only include if documenting enemy ships

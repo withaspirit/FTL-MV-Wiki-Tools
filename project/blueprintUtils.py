@@ -2,6 +2,9 @@ import xml.etree.ElementTree as ET
 import re
 import os
 
+# Contains various functions, variables, and sets for other files to use.
+# FIXME: the name of this file isn't descriptive
+
 cwd = os.path.dirname(os.path.abspath(__file__))
 pathToData = os.path.join(cwd,'FTL DAT/data/')
 wikiElementsPath = cwd + '\\Append wikiElements\\data\\'
@@ -49,24 +52,33 @@ def findBlueprint(rootElement: ET.Element, searchTag: str, blueprintName: str) -
     blueprint = rootElement.find(blueprintPath)
 
     # blueprint != text is for when accessing text_blueprints.id
-    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag) and (blueprint.tag != 'text'):
+    if (blueprint is not None) and  ('Blueprint' not in blueprint.tag):
         blueprint = None
     
     # in dlcBlueprints.xml
     # TODO: try blueprintName in dlcItems:
     if blueprint is None:
-        dlcBlueprints = getDLCBlueprints()
         blueprint = dlcBlueprints.find(blueprintPath)
     
     # in autoBlueprints.xml
     if blueprint is None:
         # blueprint belongs to a list
         blueprintListPath = f'.//blueprintList[@name="{blueprintName}"]'
-        autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
         blueprint = autoBlueprints.find(blueprintListPath)
 
     if blueprint is None:
         raise Exception(f'Blueprint not found: {blueprintName}')
+    return blueprint
+
+# Gets blueprint found in blueprints.xml or dlcBlueprints.xml
+# FIXME: this method name isn't descriptive
+def getNormalBlueprint(path: str) -> ET.Element:
+    blueprint = blueprints.find(path)
+    if blueprint is None:
+        blueprint = dlcBlueprints.find(path)
+
+    if blueprint is None:
+        raise Exception(f'Invalid blueprintPath: {path}')
     return blueprint
 
 def createWikiRedirect(wikiPage: str, wikiHeading: str) -> str:
@@ -99,15 +111,6 @@ def getWikiRedirect(wikiElement: ET.Element) -> str:
         raise Exception(f'wikiRedirect not found for {elementName}')
     return wikiRedirect.text
 
-# replaces 'PLACEHOLDER' in wikiRedirect
-def getWikiRedirectWithPlaceholder(wikiElement: ET.Element, wikiPage: str) -> str:
-    #print(wikiElement.get('name'))
-    wikiRedirectText = getWikiRedirect(wikiElement)
-    if 'PLACEHOLDER' in wikiRedirectText:
-        wikiRedirectText = wikiRedirectText.replace('PLACEHOLDER', wikiPage)
-
-    return wikiRedirectText
-
 def getWikiName(wikiElement: ET.Element) -> str:
     if wikiElement.tag == 'blueprintList':
         return wikiElement.get('wikiName')
@@ -120,13 +123,6 @@ def getWikiName(wikiElement: ET.Element) -> str:
     return displayName
 
 def getTitle(blueprint: ET.Element) -> str:
-
-    # if element already has wikiName, use it
-    # this statement should be activated before this point though
-    if blueprint.get('wikiName'):
-        print('DELETEME IF THIS STATEMENT IS NOT USED')
-        return blueprint.get('wikiName')
-
     titleElement = getElementClassOrTitle(blueprint)
     
     # Dealing with <title> that has 'id' attribute
@@ -136,12 +132,9 @@ def getTitle(blueprint: ET.Element) -> str:
     else: 
         id = titleElement.get('id')
         # title in text_blueprints
-        textBlueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
-        textBlueprint = findBlueprint(textBlueprints, 'text', id)
-
+        textBlueprint = text_blueprints.find(f'.//text[@name="{id}"]')
         if textBlueprint is None:
-            blueprintName = blueprint.get('name')
-            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprintName}') 
+            raise Exception(f'Unhanded blueprint relying on id: blueprint: {blueprint.get("name")}') 
         title = textBlueprint.text
 
     title = removeBracketsFromTitle(title)
@@ -231,6 +224,7 @@ def processText(text: str) -> str:
     text = text.replace('™', '↑')
     return text
 
+# exclude text between startText and endText
 def replaceText(blueprintsText: str, startText: str, endText: str) -> str:
     startIndex = blueprintsText.find(startText)
     endIndex = blueprintsText.find(endText)
@@ -267,3 +261,8 @@ def purgeDLCBlueprints(blueprintsText: str) -> str:
     start = '<!-- Copyright (c) 2012 by Subset Games. All rights reserved -->'
     end = '<weaponBlueprint name="SHOTGUN_PLAYER">'
     return replaceText(blueprintsText, start, end)
+
+blueprints = getBlueprints()
+dlcBlueprints =  getDLCBlueprints()
+autoBlueprints = ET.parse(pathToData + 'autoBlueprints.xml').getroot()
+text_blueprints = ET.parse(pathToData + 'text_blueprints.xml').getroot()
