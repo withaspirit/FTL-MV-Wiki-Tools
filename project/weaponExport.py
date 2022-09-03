@@ -84,7 +84,7 @@ class Weapon:
 # SPECIAL COLUMNS
 # EVENT_WEAPONS: faction column
 #
-# CLONE_CANNON: crew
+# CLONE_CANNON: Table
 #
 # SKIP: if _ENEMY in name
 # special effects:
@@ -122,30 +122,64 @@ class Weapon:
             return
 
         columnText = ''
-        sysDamageText = self.getElementText('sysDamage')
+        xDamageText = self.getElementText('sysDamage')
 
+        # damage is added with sysDamage
         if (self.getElementText('noSysDamage') != 'true' and
-            sysDamageText not in self.invalidSysDamageValues):
-
-            sysDamage = 0
-            hullDamageText = self.getElementText('damage')
-            sysDamage += self.strToInt(hullDamageText)
-            sysDamage += self.strToInt(sysDamageText)
-            columnText = str(sysDamage)
+            xDamageText not in self.invalidSysDamageValues):
+            columnText = self.getDamagePlusXDamage(xDamageText)
 
         self.columnValues.append(columnText)
 
+    radStatBoosts = ['moveSpeedMultiplier', 'stunMultiplier', 'repairSpeed']
     def getCrewDamage(self) -> str:
-        if ('C' not in self.validColumns or
-            self.getElementText('noPersDamage') == 'true'):
-            return ''
+        if ('C' not in self.validColumns):
+            return
 
-        columnText = self.getElementText('persDamage')
-        if columnText == '-1' or columnText == '0':
-            columnText = ''
-        elif len(columnText) > 0:
-            columnText = str(int(columnText) * 15)
+        columnText = ''
+        xDamageText = self.getElementText('persDamage')
+
+        # damage is added with persDamage
+        if (self.getElementText('noSysDamage') != 'true' and
+            xDamageText not in self.invalidSysDamageValues):
+            columnText = self.getDamagePlusXDamage(xDamageText)
+            if len(columnText) > 0:
+                columnText = str(int(columnText) * 15)
+
+        # get RAD Debuff if necessary
+        columnText += self.getRadDebuff()
+
         self.columnValues.append(columnText)
+
+    # Returns rad debuff icon if rad effects present, empty str otherwise
+    def getRadDebuff(self) -> str:
+        appendText = ''
+        statBoostsElem = self.blueprint.find('statBoosts')
+        radBoostCount = 0
+        if statBoostsElem is not None:
+
+            for statBoostElem in statBoostsElem.findall('statBoost'):
+                if statBoostElem.get('name') not in self.radStatBoosts:
+                    radBoostCount = 0
+                    break
+                else:
+                    radBoostCount += 1
+
+        if radBoostCount == 3:
+            appendText = icons['rad']
+        return appendText
+
+    # Adds hull damage to xDamage text
+    def getDamagePlusXDamage(self, xDamageText: str) -> str:
+        columnText = ''
+        xDamage = 0
+        hullDamageText = self.getElementText('damage')
+
+        xDamage += self.strToInt(hullDamageText)
+        xDamage += self.strToInt(xDamageText)
+        if xDamage != 0:
+            columnText = str(xDamage)
+        return columnText
 
     def getIonDamage(self) -> str:
         if 'I' not in self.validColumns:
