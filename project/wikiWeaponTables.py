@@ -81,8 +81,13 @@ for blueprintList in bpLists:
 
     weaponRows = []
     for nameElem in blueprintList.iter('name'):
-        weaponName = nameElem.text
-        weaponPath = f'.//weaponBlueprint[@name="{weaponName}"]'
+        blueprintName = nameElem.text
+
+        isEnemyWeapon = blueprintName[len(blueprintName) - 6:] == '_ENEMY'
+        if isEnemyWeapon:
+            continue
+
+        weaponPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
         blueprint = blueprintUtils.getNormalBlueprint(weaponPath)
         weapon = Weapon(blueprint, allColumnsSet)
         weaponRows.append(weapon.toString())
