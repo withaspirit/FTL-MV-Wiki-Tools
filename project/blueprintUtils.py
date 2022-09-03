@@ -161,7 +161,7 @@ def formatCrewBlueprintLink(wikiRedirect: str, wikiName: str, customName: str) -
 
 def formatBlueprintLink(wikiRedirect: str, wikiName: str) -> str:
     blueprintString = ''
-    displayName = removeBracketsFromTitle(wikiName)
+    displayName = wikiName
     if wikiRedirect == displayName:
         blueprintString += f'[[{displayName}]]'
     else:
