@@ -15,6 +15,7 @@ __pycache__
 /project/utils/*
 !/project/utils/tableColumns.yaml
 /project/wikiShips.txt
+/project/wikiWeaponTables.txt
 /project/compareVersions.txt
 
 /project/Append\ wikiElements
