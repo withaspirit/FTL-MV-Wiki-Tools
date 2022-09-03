@@ -183,14 +183,14 @@ class Weapon:
 
     def getIonDamage(self) -> str:
         if 'I' not in self.validColumns:
-            return ''
+            return
 
         columnText = self.getElementText('ion')
         if columnText == '0':
-            columnText == ''
+            columnText = ''
         self.columnValues.append(columnText)
 
-     # Accepts number that is str
+    # Accepts number that is str
     # if text is "''", pass ValueError exception
     def strToInt(self, number: str) -> int:
         intVal = 0
@@ -202,6 +202,10 @@ class Weapon:
 
     def getShots(self) -> str:
         columnText = self.getElementText('shots')
+
+        accuracyMod = self.getElementText('accuracyMod')
+        if len(accuracyMod) > 0:
+            columnText += f' {{Accuracy|{accuracyMod}}}'
         self.columnValues.append(columnText)
 
     def getPierce(self) -> str:
