@@ -49,7 +49,7 @@ icons = {
 }
 
 class Weapon:
-    
+
     validColumns = {}
 
     columnValues = None
@@ -66,11 +66,11 @@ class Weapon:
         self.getSysDamage()
         self.getCrewDamage()
         self.getIonDamage()
+        self.getPierce()
         self.getShots()
         self.getRadius()
         self.getLength()
         self.getPower()
-        self.getPierce()
         self.getCooldown()
         self.getFireChance()
         self.getBreachChance()
@@ -83,14 +83,14 @@ class Weapon:
 
 # SPECIAL COLUMNS
 # EVENT_WEAPONS: faction column
-# 
+#
 # CLONE_CANNON: crew
-# 
+#
 # SKIP: if _ENEMY in name
 # special effects:
 # ZOLTAN_DELETER
 # SALT_LAUNCHER
-# skip clone cannon, separate table? 
+# skip clone cannon, separate table?
 
     def getWeapon(self):
         link = self.getWikiLink()
@@ -110,33 +110,70 @@ class Weapon:
             return
 
         columnText = self.getElementText('damage')
+        if columnText == '-1' or columnText == '0':
+            columnText = ''
         self.columnValues.append(columnText)
+
+
+    invalidSysDamageValues = {'0', '-1'}
 
     def getSysDamage(self) -> str:
         if 'S' not in self.validColumns:
-            return ''
+            return
 
-        columnText = self.getElementText('sysDamage')
+        columnText = ''
+        sysDamageText = self.getElementText('sysDamage')
+
+        if (self.getElementText('noSysDamage') != 'true' and
+            sysDamageText not in self.invalidSysDamageValues):
+
+            sysDamage = 0
+            hullDamageText = self.getElementText('damage')
+            sysDamage += self.strToInt(hullDamageText)
+            sysDamage += self.strToInt(sysDamageText)
+            columnText = str(sysDamage)
+
         self.columnValues.append(columnText)
 
     def getCrewDamage(self) -> str:
-        if 'C' not in self.validColumns:
+        if ('C' not in self.validColumns or
+            self.getElementText('noPersDamage') == 'true'):
             return ''
-        
+
         columnText = self.getElementText('persDamage')
-        if len(columnText) > 0:
+        if columnText == '-1' or columnText == '0':
+            columnText = ''
+        elif len(columnText) > 0:
             columnText = str(int(columnText) * 15)
         self.columnValues.append(columnText)
 
     def getIonDamage(self) -> str:
         if 'I' not in self.validColumns:
             return ''
-        
+
         columnText = self.getElementText('ion')
+        if columnText == '0':
+            columnText == ''
         self.columnValues.append(columnText)
-    
+
+     # Accepts number that is str
+    # if text is "''", pass ValueError exception
+    def strToInt(self, number: str) -> int:
+        intVal = 0
+        try:
+            intVal = int(number)
+        except:
+            pass
+        return intVal
+
     def getShots(self) -> str:
         columnText = self.getElementText('shots')
+        self.columnValues.append(columnText)
+
+    def getPierce(self) -> str:
+        columnText = self.getElementText('sp')
+        if len(columnText) > 0 and int(columnText) == 0:
+            columnText = ''
         self.columnValues.append(columnText)
 
     def getRadius(self) -> str:
@@ -151,10 +188,6 @@ class Weapon:
         columnText = self.getElementText('power')
         self.columnValues.append(columnText)
 
-    def getPierce(self) -> str:
-        columnText = self.getElementText('sp')
-        self.columnValues.append(columnText)
-    
     def getCooldown(self) -> str:
         columnText = self.getElementText('cooldown')
         self.columnValues.append(columnText)
