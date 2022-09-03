@@ -48,6 +48,22 @@ icons = {
     'scrap': '{{Scrap}}'
 }
 
+# TODO: lockdown, special effects (projector),
+# TODO: hullbust,
+# TODO: damage chain, cooldown chain (effects on other damage systems too)
+# TODO: varying shots
+# TODO: free missile chance
+# TODO: negative power -> to right of table
+# TODO: special case: god killer cooldown
+# TODO: Shots -> projectiles
+# TODO: Shots -> undetectable by drones
+# TODO: does not require missile
+# TODO: medical bomb effects (crew damage)
+# TODO: shots: missile consumption?
+# TODO: faction column? (transport loot table)
+# TODO: chaotic weapon table
+
+
 class Weapon:
 
     validColumns = {}
@@ -105,6 +121,7 @@ class Weapon:
     def getImg(self) -> str:
         return self.blueprint.find('.//weaponArt').text
 
+    # TODO: damage boost
     def getHullDamage(self):
         if 'H' not in self.validColumns:
             return
@@ -200,6 +217,7 @@ class Weapon:
             pass
         return intVal
 
+    # Number of shots. Appends Accuracy template if there's an accuracyMod elem
     def getShots(self) -> str:
         columnText = self.getElementText('shots')
 
@@ -208,6 +226,7 @@ class Weapon:
             columnText += f' {{Accuracy|{accuracyMod}}}'
         self.columnValues.append(columnText)
 
+    # TODO: damage boost
     def getPierce(self) -> str:
         columnText = self.getElementText('sp')
         if len(columnText) > 0 and int(columnText) == 0:
@@ -216,16 +235,17 @@ class Weapon:
 
     def getRadius(self) -> str:
         columnText = self.getElementText('radius')
-        self.columnValues.append(columnText)
+        self.columnValues.append(f'{columnText}px')
 
     def getLength(self) -> str:
         columnText = self.getElementText('length')
-        self.columnValues.append(columnText)
+        self.columnValues.append(f'{columnText}px')
 
     def getPower(self) -> str:
         columnText = self.getElementText('power')
         self.columnValues.append(columnText)
-
+    
+    # TODO: cooldown boost
     def getCooldown(self) -> str:
         columnText = self.getElementText('cooldown')
         self.columnValues.append(columnText)
@@ -278,6 +298,8 @@ class Weapon:
         columnText = self.getElementText('rarity')
         self.columnValues.append(columnText)
 
+    # TODO: laser speed (default 60?)
+    # TODO: no speed (-)? (seen on bombs in event weapons)
     def getSpeed(self) -> str:
         columnText = self.getElementText('speed')
         self.columnValues.append(columnText)
