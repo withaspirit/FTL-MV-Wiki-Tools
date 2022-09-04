@@ -14,6 +14,7 @@ __pycache__
 # unreleased stuff
 /project/utils/*
 !/project/utils/tableColumns.yaml
+!/project/utils/vanillaMultiverseMap.json
 /project/wikiShips.txt
 /project/wikiWeaponTables.txt
 /project/compareVersions.txt
