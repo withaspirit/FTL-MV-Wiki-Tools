@@ -2,12 +2,6 @@ import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
 # https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
 
-accuracyImages = {
-    '10': '',
-    '20': '',
-    '30': '{{Accuracy|30}}',
-}
-
 # unused templates: https://ftlmultiverse.fandom.com/wiki/User:Puporongo/Sandbox
 
 columnFormats = {
@@ -34,18 +28,11 @@ columnFormats = {
 !I'''
 }
 
-
-# IDEA: for missiles: [shot]/1{{Missiles}}
-defaults = {
-    'persDamage': 1, # x15
-    'sysDamage': 1,
-    'stun': 3,
-    'stunChance': 100
-}
-
 icons = {
     'rad': '{{RadDebuffIcon}}',
-    'scrap': '{{Scrap}}'
+    'scrap': '{{Scrap}}',
+    'missile': '{{Missile}}',
+    'accuracy': '{{Accuracy|num}}'
 }
 
 # TODO: lockdown, special effects (projector),
@@ -70,7 +57,7 @@ class Weapon:
 
     columnValues = None
 
-    def __init__(self, blueprint, validColumns):
+    def __init__(self, blueprint: ET.ElementTree, validColumns: list = []):
         self.blueprint = blueprint
         self.blueprintName = self.blueprint.get('name')
         self.validColumns = validColumns
@@ -217,14 +204,43 @@ class Weapon:
             pass
         return intVal
 
-    # Number of shots. Appends Accuracy template if there's an accuracyMod elem
+    # Number of shots. Appends Accuracy template if there's an 
+    # accuracyMod elem
     def getShots(self) -> str:
         columnText = self.getElementText('shots')
 
+        # get projectiles (Flak, burst, etc)
+        typeElem = self.blueprint.find('type')
+        if typeElem.text == 'BURST':
+
+            projectileCount = 0
+            projectilePath = './/projectiles/projectile[@fake="false"]'
+            for projectileElem in self.blueprint.findall(projectilePath):
+                projectileCount += int(projectileElem.get('count'))
+
+            if len(columnText) > 0:
+                projectileCount *= int(columnText)
+            columnText = str(projectileCount)
+
+        # TODO: drone targetable, ammo cost
+        # charge levels
+        chargeLevelsText = self.getElementText('chargeLevels')
+        if len(chargeLevelsText) > 0:
+            columnText += f'-{chargeLevelsText}'
+        
+        # missile cost
+        missilesText = self.getElementText('missiles')
+        if len(missilesText) > 0 and int(missilesText) != 0:
+            columnText += f'/{missilesText}{icons["missile"]}'
+
+        # accuracy
         accuracyMod = self.getElementText('accuracyMod')
         if len(accuracyMod) > 0:
-            columnText += f' {{Accuracy|{accuracyMod}}}'
+            accuracyIcon = icons["accuracy"].replace("num", accuracyMod)
+            columnText += f' {accuracyIcon}'
+            print(columnText)
         self.columnValues.append(columnText)
+        return columnText
 
     # TODO: damage boost
     def getPierce(self) -> str:
