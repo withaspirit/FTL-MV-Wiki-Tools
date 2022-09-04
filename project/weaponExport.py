@@ -256,11 +256,17 @@ class Weapon:
 
     def getRadius(self) -> str:
         columnText = self.getElementText('radius')
-        self.columnValues.append(f'{columnText}px')
+        if len(columnText) > 0:
+            columnText += 'px'
+        self.columnValues.append(columnText)
+        return columnText
 
     def getLength(self) -> str:
         columnText = self.getElementText('length')
-        self.columnValues.append(f'{columnText}px')
+        if len(columnText) > 0:
+            columnText += 'px'
+        self.columnValues.append(columnText)
+        return columnText
 
     def getPower(self) -> str:
         columnText = self.getElementText('power')

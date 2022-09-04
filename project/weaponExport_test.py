@@ -56,3 +56,25 @@ def testGetPierce(blueprintName, expected):
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
     weapon = Weapon(blueprint)
     assert weapon.getPierce() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    ('SHOTGUN_1', '42px'),
+    ('RUSTY_LASER_BURST_2', '52px'),
+    ('RUSTY_MISSILES_1', '52px')
+])
+def testGetRadius(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getRadius() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    ('BEAM_1', '45px')
+])
+def testGetLength(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getLength() == expected
