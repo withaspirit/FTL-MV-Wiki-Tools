@@ -11,15 +11,19 @@ from weaponExport import Weapon
 @pytest.mark.parametrize('blueprintName, expected', [
     ('BEAM_1', ''),
     ('LASER_BURST_2', '2'),
-    # missile cost
-    ('MISSILES_FREE', '1'),
-    ('MISSILES_1', '1/1{{Missile}}'),
-    ('SLOTGUN_CHAOS', '12/3{{Missile}}'),
     # projectile count
     ('RUSTY_MISSILES_BURST', '2/1{{Missile}}'),
     ('SHOTGUN_1', '2'),
     ('SHOTGUN_2', '3'),
     ('CLONE_CANNON_BABYORCHID', '20'),
+     # missile cost
+    ('MISSILES_FREE', '1'),
+    ('MISSILES_1', '1/1{{Missile}}'),
+    ('SLOTGUN_CHAOS', '12/3{{Missile}}'),
+    # chargeLevels
+    ('LASER_CHARGEGUN', '1-2'),
+    ('SHOTGUN_CHARGE', '1-3'),
+    ('MISSILES_BURST', '1-3/1{{Missile}}'),
     # ammo chance (TODO)
     ('KERNEL_1', '2/1{{Missile}}'),
     # accuracy
@@ -33,8 +37,20 @@ def testGetShots(blueprintName, expected):
     assert weapon.getShots() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
+    # regular pierce
+    ('LASER_BURST_1', ''),
+    ('LASER_PIERCE', '1'),
+    ('MODULAR_ION_BASE_PIERCE', '3'),
+    # beam piercing
+    ('BEAM_2', ''),
+    ('BIG_ION_CHAOS', '11'),
+    ('BEAM_PIERCE', '2'),
+    ('BEAM_FIRE_PIERCE', '3'),
+    # missile pierce
+    ('MISSILES_1', '10'),
+    # gaster_blaster
+    ('GASTER_BLASTER', '')
 ])
-
 def testGetPierce(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)

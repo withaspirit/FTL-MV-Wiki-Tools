@@ -89,7 +89,6 @@ class Weapon:
 #
 # CLONE_CANNON: Table
 #
-# SKIP: if _ENEMY in name
 # special effects:
 # ZOLTAN_DELETER
 # SALT_LAUNCHER
@@ -204,7 +203,7 @@ class Weapon:
             pass
         return intVal
 
-    # Number of shots. Appends Accuracy template if there's an 
+    # Number of shots. Appends Accuracy template if there's an
     # accuracyMod elem
     def getShots(self) -> str:
         columnText = self.getElementText('shots')
@@ -223,11 +222,11 @@ class Weapon:
             columnText = str(projectileCount)
 
         # TODO: drone targetable, ammo cost
-        # charge levels
+        # chargeLevels
         chargeLevelsText = self.getElementText('chargeLevels')
         if len(chargeLevelsText) > 0:
             columnText += f'-{chargeLevelsText}'
-        
+
         # missile cost
         missilesText = self.getElementText('missiles')
         if len(missilesText) > 0 and int(missilesText) != 0:
@@ -238,16 +237,22 @@ class Weapon:
         if len(accuracyMod) > 0:
             accuracyIcon = icons["accuracy"].replace("num", accuracyMod)
             columnText += f' {accuracyIcon}'
-            print(columnText)
         self.columnValues.append(columnText)
         return columnText
 
     # TODO: damage boost
     def getPierce(self) -> str:
-        columnText = self.getElementText('sp')
-        if len(columnText) > 0 and int(columnText) == 0:
-            columnText = ''
+        columnText = ''
+
+        spText = self.getElementText('sp')
+        if len(spText) > 0:
+            if int(spText) < 0:
+                columnText = ''
+            elif int(spText) != 0:
+                columnText = spText
+
         self.columnValues.append(columnText)
+        return columnText
 
     def getRadius(self) -> str:
         columnText = self.getElementText('radius')
@@ -260,7 +265,7 @@ class Weapon:
     def getPower(self) -> str:
         columnText = self.getElementText('power')
         self.columnValues.append(columnText)
-    
+
     # TODO: cooldown boost
     def getCooldown(self) -> str:
         columnText = self.getElementText('cooldown')
