@@ -38,15 +38,11 @@ icons = {
 # TODO: lockdown, special effects (projector),
 # TODO: hullbust,
 # TODO: damage chain, cooldown chain (effects on other damage systems too)
-# TODO: varying shots
 # TODO: free missile chance
 # TODO: negative power -> to right of table
 # TODO: special case: god killer cooldown
-# TODO: Shots -> projectiles
 # TODO: Shots -> undetectable by drones
-# TODO: does not require missile
 # TODO: medical bomb effects (crew damage)
-# TODO: shots: missile consumption?
 # TODO: faction column? (transport loot table)
 # TODO: chaotic weapon table
 
