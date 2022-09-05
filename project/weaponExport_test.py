@@ -3,6 +3,7 @@
 import pytest
 import xml.etree.ElementTree
 import blueprintUtils
+import weaponExport
 from weaponExport import Weapon
 
 # https://realpython.com/python-testing/#automated-vs-manual-testing
@@ -91,3 +92,32 @@ def testGetPower(blueprintName, expected):
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
     weapon = Weapon(blueprint)
     assert weapon.getPower() == expected
+
+cooldownAbbr = weaponExport.cooldownAbbr
+preemptAbbr = weaponExport.preemptAbbr
+fireTimeAbbr = weaponExport.fireTimeAbbr
+startChargedAbbr = weaponExport.startChargedAbbr
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '9'),
+    ('LASER_CHARGEGUN', '6.5'),
+    ('CLONE_CANNON', ''),
+    # Chain weapons / Cooldown boost
+    ('LASER_CHAINGUN', cooldownAbbr.format(15, 6, 3, 3)),
+    ('LASER_CHARGE_CHAIN', cooldownAbbr.format(7.5, 3, 1.5, 3)),
+    # instant weapons
+    ('ION_INSTANT', preemptAbbr.format(1)),
+    ('LOOT_MATH_5', preemptAbbr.format(15)),
+    # fireTime
+    ('STRAWBERRY_CHAOS', f'40/{fireTimeAbbr.format(0.05)}'),
+    # Chain weapons / fireTime
+    ('GATLING_SYLVAN', f'{cooldownAbbr.format(20, 0, 20, 1)}/{fireTimeAbbr.format(0.2)}'),
+    # startCharged / fireTime
+    ('GATLING_ANCIENT', f'{startChargedAbbr}/{fireTimeAbbr.format(0.05)}')
+])
+def testGetCooldown(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    print(weapon.getCooldown())
+    assert weapon.getCooldown() == expected

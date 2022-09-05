@@ -1,5 +1,6 @@
-import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
+import math
+
 # https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
 
 # unused templates: https://ftlmultiverse.fandom.com/wiki/User:Puporongo/Sandbox
@@ -35,9 +36,18 @@ icons = {
     'accuracy': '{{Accuracy|num}}'
 }
 
+# Cooldown
+cooldownAbbr = (
+    '<abbr title="Decreases by {2:g}s after each '
+    'volley, down to {1:g}s after {3} volleys.">{0:g}-{1:g}</abbr>'
+)
+preemptAbbr = '<abbr title="Can only be fired once per fight.">{0:g}</abbr>'
+fireTimeAbbr = '<abbr title="Fires projectiles {0:g}s apart.">{0:g}</abbr>'
+startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
+
 # TODO: lockdown, special effects (projector),
 # TODO: hullbust,
-# TODO: damage chain, cooldown chain (effects on other damage systems too)
+# TODO: damage chain (effects on other damage systems too)
 # TODO: free missile chance
 # TODO: negative power -> to right of table
 # TODO: special case: god killer cooldown
@@ -88,6 +98,7 @@ class Weapon:
 # special effects:
 # ZOLTAN_DELETER
 # SALT_LAUNCHER
+# GASTER_BLASTER -> noSysDamage = false
 # skip clone cannon, separate table?
 
     def getWeapon(self):
@@ -139,7 +150,7 @@ class Weapon:
         xDamageText = self.getElementText('persDamage')
 
         # damage is added with persDamage
-        if (self.getElementText('noSysDamage') != 'true' and
+        if (self.getElementText('noPersDamage') != 'true' and
             xDamageText not in self.invalidSysDamageValues):
             columnText = self.getDamagePlusXDamage(xDamageText)
             if len(columnText) > 0:
@@ -275,15 +286,60 @@ class Weapon:
         # abbr for power-providing weapons
         if len(columnText) > 0 and int(columnText) < 0:
             power = -1 * int(columnText)
-            columnText = f'<abbr title="Provides {power} power to the weapon to its right.">{columnText}</abbr>'
+            columnText = (
+                f'<abbr title="Provides {power} power to the weapon to its '
+                f'right.">{columnText}</abbr>'
+            )
         self.columnValues.append(columnText)
         return columnText
 
-    # TODO: cooldown boost
-    # TODO: fireTime
     def getCooldown(self) -> str:
         columnText = self.getElementText('cooldown')
+        # cooldown boost
+
+        if (len(columnText) > 0 and
+            math.isclose(float(columnText), 0, rel_tol=1e-18)):
+             # weapons that start charged
+            columnText = startChargedAbbr
+        elif len(columnText) > 0 and float(columnText) < 0:
+            columnText = ''
+        else:
+            boostElem = self.blueprint.find('boost')
+            if (boostElem is not None and
+                boostElem.find('.//type').text == 'cooldown'):
+                # assume cooldown nonzero if boost present
+                columnText = self.getBoostCooldown(boostElem, float(columnText))
+
+        fireTimeElem = self.blueprint.find('fireTime')
+        if fireTimeElem is not None:
+            columnText += self.getFireTime(fireTimeElem)
+            
+
         self.columnValues.append(columnText)
+        return columnText
+
+    def getBoostCooldown(self, boostElem: ET.Element, cooldownMax: float) -> str:
+        columnText = ''
+
+        amount = float(boostElem.find('.//amount').text)
+        count = int(boostElem.find('.//count').text)
+        cooldownMin = cooldownMax - (amount * count)
+
+        if cooldownMin >= 0:
+            columnText = cooldownAbbr.format(cooldownMax, cooldownMin, amount, count)           
+        else:
+            # INSTANT / pre-emptive weapon (no cooldown)
+            # TODO: make symbol/template? 
+            columnText = preemptAbbr.format(cooldownMax)
+        return columnText
+
+    def getFireTime(self, fireTimeElem: ET.Element) -> str:
+        columnText = ''
+        fireTime = float(fireTimeElem.text)
+        fireTimeNotDefault = math.isclose(fireTime, 0.25, rel_tol=1e09)
+        if fireTimeNotDefault:
+            columnText = f'/{fireTimeAbbr.format(fireTime)}'
+        return columnText
 
     def getFireChance(self) -> str:
         columnText = self.getPercent(self.getElementText('fireChance'))
