@@ -253,22 +253,34 @@ class Weapon:
     def getRadius(self) -> str:
         columnText = self.getElementText('radius')
         if len(columnText) > 0:
-            columnText += 'px'
+            if int(columnText) == 0:
+                columnText = ''
+            else:
+                columnText += 'px'
         self.columnValues.append(columnText)
         return columnText
 
     def getLength(self) -> str:
         columnText = self.getElementText('length')
         if len(columnText) > 0:
-            columnText += 'px'
+            if int(columnText) == 0:
+                columnText = ''
+            else:
+                columnText += 'px'
         self.columnValues.append(columnText)
         return columnText
 
     def getPower(self) -> str:
         columnText = self.getElementText('power')
+        # abbr for power-providing weapons
+        if len(columnText) > 0 and int(columnText) < 0:
+            power = -1 * int(columnText)
+            columnText = f'<abbr title="Provides {power} power to the weapon to its right.">{columnText}</abbr>'
         self.columnValues.append(columnText)
+        return columnText
 
     # TODO: cooldown boost
+    # TODO: fireTime
     def getCooldown(self) -> str:
         columnText = self.getElementText('cooldown')
         self.columnValues.append(columnText)

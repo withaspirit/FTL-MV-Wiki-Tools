@@ -71,10 +71,23 @@ def testGetRadius(blueprintName, expected):
 
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', ''),
-    ('BEAM_1', '45px')
+    ('BEAM_1', '45px'),
+    ('POWER_CORE', '')
 ])
 def testGetLength(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
     weapon = Weapon(blueprint)
     assert weapon.getLength() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '1'),
+    ('LASER_CONSERVATIVE', '0'),
+    ('BEAM_BATTERY', '<abbr title="Provides 2 power to the weapon to its right.">-2</abbr>'),
+    ('POWER_CORE', '<abbr title="Provides 3 power to the weapon to its right.">-3</abbr>')
+])
+def testGetPower(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getPower() == expected
