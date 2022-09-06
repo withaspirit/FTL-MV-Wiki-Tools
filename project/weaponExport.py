@@ -50,12 +50,10 @@ startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
 # TODO: damage chain (effects on other damage systems too)
 # TODO: free missile chance
 # TODO: negative power -> to right of table
-# TODO: special case: god killer cooldown
 # TODO: Shots -> undetectable by drones
 # TODO: medical bomb effects (crew damage)
 # TODO: faction column? (transport loot table)
 # TODO: chaotic weapon table
-
 
 class Weapon:
 
@@ -344,11 +342,14 @@ class Weapon:
     def getFireChance(self) -> str:
         columnText = self.getPercent(self.getElementText('fireChance'))
         self.columnValues.append(columnText)
+        return columnText
 
     def getBreachChance(self) -> str:
         columnText = self.getPercent(self.getElementText('breachChance'))
         self.columnValues.append(columnText)
+        return columnText
 
+    # compatible if stunChance and stun ever can occur simultaneously
     def getStun(self) -> str:
         stunChanceElem = self.blueprint.find('stunChance')
         stunElem = self.blueprint.find('stun')
@@ -356,7 +357,7 @@ class Weapon:
         columnText = ''
         if stunChanceElem is None and stunElem is None:
             self.columnValues.append(columnText)
-            return
+            return ''
 
         if stunChanceElem is None:
             columnText += '100%'
@@ -369,12 +370,12 @@ class Weapon:
             columnText += f' ({stunElem.text}s)'
 
         self.columnValues.append(columnText)
+        return columnText
 
-    def getPercent(self, chance: str) -> str:
-        if len(chance) == 0 or int(chance) == 0:
+    def getPercent(self, chanceBaseOne: str) -> str:
+        if len(chanceBaseOne) == 0 or int(chanceBaseOne) == 0:
             return ''
-
-        percentChance = int(chance) * 10
+        percentChance = int(chanceBaseOne) * 10
         return f'{percentChance}%'
 
     def getCost(self) -> str:
@@ -382,18 +383,21 @@ class Weapon:
         if len(columnText) == 0:
             columnText = '0'
 
-        columnText += icons["scrap"]
+        columnText += f' {icons["scrap"]}'
         self.columnValues.append(columnText)
+        return columnText
 
     def getRarity(self) -> str:
         columnText = self.getElementText('rarity')
         self.columnValues.append(columnText)
+        return columnText
 
     # TODO: laser speed (default 60?)
     # TODO: no speed (-)? (seen on bombs in event weapons)
     def getSpeed(self) -> str:
         columnText = self.getElementText('speed')
         self.columnValues.append(columnText)
+        return columnText
 
     def getElementText(self, tag: str) -> str:
         elem = self.blueprint.find(tag)

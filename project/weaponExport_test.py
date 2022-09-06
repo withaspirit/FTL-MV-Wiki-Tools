@@ -24,6 +24,7 @@ from weaponExport import Weapon
     # chargeLevels
     ('LASER_CHARGEGUN', '1-2'),
     ('SHOTGUN_CHARGE', '1-3'),
+    # chargeLevel / missiles
     ('MISSILES_BURST', '1-3/1{{Missile}}'),
     # ammo chance (TODO)
     ('KERNEL_1', '2/1{{Missile}}'),
@@ -102,10 +103,10 @@ startChargedAbbr = weaponExport.startChargedAbbr
     ('LASER_BURST_1', '9'),
     ('LASER_CHARGEGUN', '6.5'),
     ('CLONE_CANNON', ''),
-    # Chain weapons / Cooldown boost
+    # Chain weapons (Cooldown boost)
     ('LASER_CHAINGUN', cooldownAbbr.format(15, 6, 3, 3)),
     ('LASER_CHARGE_CHAIN', cooldownAbbr.format(7.5, 3, 1.5, 3)),
-    # instant weapons
+    # Instant weapons
     ('ION_INSTANT', preemptAbbr.format(1)),
     ('LOOT_MATH_5', preemptAbbr.format(15)),
     # fireTime
@@ -119,5 +120,58 @@ def testGetCooldown(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
     weapon = Weapon(blueprint)
-    print(weapon.getCooldown())
     assert weapon.getCooldown() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_HEAVY_PIERCE', ''),
+    ('LASER_BURST_1', '10%')
+])
+def testGetFireChance(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getFireChance() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    ('LASER_HEAVY_PIERCE', '40%')
+])
+def testGetStun(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getBreachChance() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    ('LASER_HEAVY_PIERCE', '20% (3s)'),
+    ('LASER_STUN', '100% (16s)')
+])
+def testGetStun(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getStun() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '40 {{Scrap}}'),
+    ('CRASH_LASER', '0 {{Scrap}}')
+
+])
+def testGetCost(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getCost() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '0'),
+    ('LASER_BURST_2', '3')
+])
+def testGetRarity(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getRarity() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
