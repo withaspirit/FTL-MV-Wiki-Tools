@@ -3,6 +3,9 @@ import math
 
 # https://ftlmultiverse.fandom.com/wiki/Weapon_Tables
 
+# template: https://ftlmultiverse.fandom.com/wiki/Template:Accuracy
+
+
 # unused templates: https://ftlmultiverse.fandom.com/wiki/User:Puporongo/Sandbox
 
 columnFormats = {
@@ -54,6 +57,13 @@ startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
 # TODO: medical bomb effects (crew damage)
 # TODO: faction column? (transport loot table)
 # TODO: chaotic weapon table
+
+defaultSpeeds = {
+    'MISSILES': '35',
+    'LASER': '60',
+    'BURST': '60',
+    'BEAM': '5'
+}
 
 class Weapon:
 
@@ -392,10 +402,15 @@ class Weapon:
         self.columnValues.append(columnText)
         return columnText
 
-    # TODO: laser speed (default 60?)
-    # TODO: no speed (-)? (seen on bombs in event weapons)
     def getSpeed(self) -> str:
         columnText = self.getElementText('speed')
+        if len(columnText) == 0:
+            typeText = self.blueprint.find('type').text
+
+            if typeText in defaultSpeeds:
+                columnText = defaultSpeeds[typeText]
+        elif len(columnText) > 0 and int(columnText) == 0:
+            columnText = ''
         self.columnValues.append(columnText)
         return columnText
 

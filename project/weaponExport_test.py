@@ -175,3 +175,18 @@ def testGetRarity(blueprintName, expected):
     assert weapon.getRarity() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
+    # defaults
+    ('LASER_BURST_1', weaponExport.defaultSpeeds['LASER']), # LASER
+    ('LASER_CHAINGUN_2', weaponExport.defaultSpeeds['BURST']), # BURST
+    ('MISSILES_PARTICLE', weaponExport.defaultSpeeds['MISSILES']), # MISSILES
+    ('BEAM_PARTICLE', weaponExport.defaultSpeeds['BEAM']), # BEAM
+    # normal
+    ('ION_1', '30'),
+    ('BOMB_1', ''),
+    ('MODULE_ACCURACY', '')
+])
+def testGetSpeed(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint)
+    assert weapon.getSpeed() == expected
