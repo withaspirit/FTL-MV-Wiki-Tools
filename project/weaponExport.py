@@ -313,32 +313,42 @@ class Weapon:
             columnText = ''
         else:
             boostElem = self.blueprint.find('boost')
+
             if (boostElem is not None and
                 boostElem.find('.//type').text == 'cooldown'):
                 # assume cooldown nonzero if boost present
-                columnText = self.getBoostCooldown(boostElem, float(columnText))
+                cooldownMax =  float(columnText)
+                columnText = self.getBoost(boostElem, cooldownAbbr, cooldownMax)
+
+                # INSTANT / pre-emptive weapon (no cooldown)
+                if len(columnText) == 0:
+                    columnText = preemptAbbr.format(cooldownMax)
 
         fireTimeElem = self.blueprint.find('fireTime')
         if fireTimeElem is not None:
             columnText += self.getFireTime(fireTimeElem)
-            
 
         self.columnValues.append(columnText)
         return columnText
 
-    def getBoostCooldown(self, boostElem: ET.Element, cooldownMax: float) -> str:
+    # for boost types: damage, cooldown
+    def getBoost(self, boostElem: ET.Element, abbr: str, startVal: float) -> str:
         columnText = ''
 
         amount = float(boostElem.find('.//amount').text)
         count = int(boostElem.find('.//count').text)
-        cooldownMin = cooldownMax - (amount * count)
+        endVal = 0
+        change = (amount * count)
+        if boostElem.find('.//type').text == 'cooldown':
+            endVal = startVal - change
+        else:
+            endVal = startVal + change
 
-        if cooldownMin >= 0:
-            columnText = cooldownAbbr.format(cooldownMax, cooldownMin, amount, count)           
+        if endVal >= 0:
+            columnText = abbr.format(startVal, endVal, amount, count)           
         else:
             # INSTANT / pre-emptive weapon (no cooldown)
-            # TODO: make symbol/template? 
-            columnText = preemptAbbr.format(cooldownMax)
+            columnText = ''
         return columnText
 
     def getFireTime(self, fireTimeElem: ET.Element) -> str:
