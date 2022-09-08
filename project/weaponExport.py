@@ -279,7 +279,10 @@ class Weapon:
         # missile cost
         missilesText = self.getElementText('missiles')
         if len(missilesText) > 0 and int(missilesText) != 0:
-            columnText += f'/{missilesText}{icons["missile"]}'
+            # beams do not consume missiles
+            if typeElem.text != 'BEAM':
+                columnText += '/'
+            columnText += f'{missilesText}{icons["missile"]}'
 
         # accuracy
         accuracyMod = self.getElementText('accuracyMod')

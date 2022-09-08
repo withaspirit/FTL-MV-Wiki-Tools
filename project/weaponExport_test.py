@@ -79,6 +79,8 @@ def testGetIonDamage(blueprintName, expected):
     ('MISSILES_FREE', '1'),
     ('MISSILES_1', '1/1{{Missile}}'),
     ('SLOTGUN_CHAOS', '12/3{{Missile}}'),
+    # beam not consuming missiles
+    ('BEAM_ADAPT_3_CHAOS', '10{{Missile}}'),
     # <projectiles><projectile>.count
     ('SHOTGUN_1', '2'),
     ('SHOTGUN_2', '3'),
