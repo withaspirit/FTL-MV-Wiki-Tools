@@ -12,16 +12,16 @@ from weaponExport import Weapon
 @pytest.mark.parametrize('blueprintName, expected', [
     ('BEAM_1', ''),
     ('LASER_BURST_2', '2'),
-    # projectile count
-    ('RUSTY_MISSILES_BURST', '2/1{{Missile}}'),
-    ('SHOTGUN_1', '2'),
-    ('SHOTGUN_2', '3'),
-    ('CLONE_CANNON_BABYORCHID', '20'),
      # missile cost
     ('MISSILES_FREE', '1'),
     ('MISSILES_1', '1/1{{Missile}}'),
     ('SLOTGUN_CHAOS', '12/3{{Missile}}'),
-    # chargeLevels
+    # <projectiles><projectile>.count
+    ('SHOTGUN_1', '2'),
+    ('SHOTGUN_2', '3'),
+    ('CLONE_CANNON_BABYORCHID', '20'),
+    ('RUSTY_MISSILES_BURST', '2/1{{Missile}}'),
+     # chargeLevels
     ('LASER_CHARGEGUN', '1-2'),
     ('SHOTGUN_CHARGE', '1-3'),
     # chargeLevel / missiles
@@ -156,7 +156,6 @@ def testGetStun(blueprintName, expected):
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', '40 {{Scrap}}'),
     ('CRASH_LASER', '0 {{Scrap}}')
-
 ])
 def testGetCost(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
