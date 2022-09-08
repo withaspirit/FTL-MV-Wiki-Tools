@@ -110,6 +110,7 @@ class Weapon:
 # EVENT_WEAPONS: faction column
 #
 # CLONE_CANNON: Table
+# silenced effect
 #
 # special effects:
 # ZOLTAN_DELETER
@@ -187,7 +188,7 @@ class Weapon:
     damageDisablers = {
         'sysDamage': 'noSysDamage',
         'persDamage': 'noPersDamage',
-        'ionDamage': 'noIonDamage' # not in game but for "ion" to use the below fxn
+        'ion': 'noIonDamage' # not in game but for "ion" to use the below fxn
     }
     # Adds hull damage to xDamage text
     def getDamagePlusXDamage(self, damageType: str) -> str:
@@ -198,6 +199,9 @@ class Weapon:
         if (xDamageText in self.invalidSysDamageValues or
             self.getElementText(noXDamage) == 'true'):
             return columnText
+        
+        if len(xDamageText) > 0 and int(xDamageText) < -1:
+            return xDamageText
             
         isCrewDamage = False
         if damageType == 'persDamage':
@@ -209,7 +213,8 @@ class Weapon:
         totalXDamage = 0
     
         hullDamageText = self.getElementText('damage')
-        if len(hullDamageText) > 0 and int(hullDamageText) != -1:
+        if (damageType != 'ion' and len(hullDamageText) > 0
+             and int(hullDamageText) != -1):
             if isCrewDamage:
                 hullDamageText = str(int(hullDamageText) * 15)
             totalXDamage += int(hullDamageText)
@@ -231,11 +236,11 @@ class Weapon:
     def getIonDamage(self) -> str:
         if 'I' not in self.validColumns:
             return
-
-        columnText = self.getElementText('ion')
-        if columnText == '0':
-            columnText = ''
+        # use the getDamagePlusXDamage but bypass the part where
+        # hullDamage is added to the damage total
+        columnText = self.getDamagePlusXDamage('ion')
         self.columnValues.append(columnText)
+        return columnText
 
     # Accepts number that is str
     # if text is "''", pass ValueError exception
@@ -265,7 +270,7 @@ class Weapon:
                 projectileCount *= int(columnText)
             columnText = str(projectileCount)
 
-        # TODO: drone targetable, ammo cost
+        # TODO: drone targetable
         # chargeLevels
         chargeLevelsText = self.getElementText('chargeLevels')
         if len(chargeLevelsText) > 0:

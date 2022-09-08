@@ -36,7 +36,7 @@ def testGetHullDamage(blueprintName, expected):
     ('MISSILES_ENERGY', ''), # noSysDamage = true
     ('LASER_LIGHT_CHARGEGUN', ''), # <sysDamage>-1</sysDamage>
     ('BOMB_BREACH_1', '2'), # sysDamage, <damage>0</damage>
-    ('BOMB_HEAL_SYSTEM', '-10'), # (-) sysDamage plus (-) damage
+    ('BOMB_HEAL_SYSTEM', '-8'), # (-) sysDamage plus (-) damage
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
 ])
@@ -59,6 +59,18 @@ def testGetCrewDamage(blueprintName, expected):
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
     weapon = Weapon(blueprint, allColumnsSet)
     assert weapon.getCrewDamage() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    ('ION_1', '1'),
+    ('SHOTGUN_ION', '1'), # damage separate from ion
+    ('ION_PIERCE_CHAIN', damageAbbr.format(1, 5, 1, 4)), # chain
+])
+def testGetIonDamage(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint, allColumnsSet)
+    assert weapon.getIonDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
     ('BEAM_1', ''),
