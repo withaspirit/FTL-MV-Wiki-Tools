@@ -39,6 +39,11 @@ icons = {
     'accuracy': '{{Accuracy|num}}'
 }
 
+# Damage
+damageAbbr = (
+    '<abbr title="Increases by {2:g} after each '
+    'volley, up to {1:g} after {3} volleys.">{0:g}-{1:g}</abbr>'
+)
 # Cooldown
 cooldownAbbr = (
     '<abbr title="Decreases by {2:g}s after each '
@@ -123,15 +128,19 @@ class Weapon:
         return self.blueprint.find('.//weaponArt').text
 
     # TODO: damage boost
-    def getHullDamage(self):
+    def getHullDamage(self) -> str:
         if 'H' not in self.validColumns:
             return
 
         columnText = self.getElementText('damage')
         if columnText == '-1' or columnText == '0':
             columnText = ''
-        self.columnValues.append(columnText)
+        elif len(columnText) > 0:
+            damage = float(columnText)
+            columnText = self.getBoost(columnText, damageAbbr, damage)
 
+        self.columnValues.append(columnText)
+        return columnText
 
     invalidSysDamageValues = {'0', '-1'}
 

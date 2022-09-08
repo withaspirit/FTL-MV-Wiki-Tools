@@ -5,9 +5,25 @@ import xml.etree.ElementTree
 import blueprintUtils
 import weaponExport
 from weaponExport import Weapon
+import wikiWeaponTables
 
 # https://realpython.com/python-testing/#automated-vs-manual-testing
 # https://realpython.com/pytest-python-testing/#marks-categorizing-tests
+
+damageAbbr = weaponExport.damageAbbr
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '1'),
+    ('LASER_BIO', ''),
+    ('BEAM_REPAIR', '-2'), 
+    ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
+    ('BEAM_ADAPT_3', damageAbbr.format(2, 1500.5, 1.5, 999))
+    # TODO: systemless rooms
+])
+def testGetHullDamage(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint, wikiWeaponTables.allColumns)
+    assert weapon.getHullDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
     ('BEAM_1', ''),
