@@ -13,12 +13,13 @@ allColumnsSet =  set(wikiWeaponTables.allColumns)
 # https://realpython.com/pytest-python-testing/#marks-categorizing-tests
 
 damageAbbr = weaponExport.damageAbbr
+infiniteAbbr = weaponExport.infiniteAbbr
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', '1'),
     ('LASER_BIO', ''),
     ('BEAM_REPAIR', '-2'), 
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
-    ('BEAM_ADAPT_3', damageAbbr.format(2, 1500.5, 1.5, 999))
+    ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
     # TODO: systemless rooms
 ])
 def testGetHullDamage(blueprintName, expected):
@@ -37,6 +38,7 @@ def testGetHullDamage(blueprintName, expected):
     ('BOMB_BREACH_1', '2'), # sysDamage, <damage>0</damage>
     ('BOMB_HEAL_SYSTEM', '-10'), # (-) sysDamage plus (-) damage
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
+    ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
 ])
 def testGetSysDamage(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
@@ -50,6 +52,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_STUN', '30'), # only persDamage
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
+    ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
 ])
 def testGetCrewDamage(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'

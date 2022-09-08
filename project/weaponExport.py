@@ -44,6 +44,9 @@ damageAbbr = (
     '<abbr title="Increases by {2:g} after each '
     'volley, up to {1:g} after {3} volleys.">{0:g}-{1:g}</abbr>'
 )
+infiniteAbbr = (
+    '<abbr title="Increases by {1:g} per volley, infinitely.">{0:g}-∞</abbr>'
+)
 # Cooldown
 cooldownAbbr = (
     '<abbr title="Decreases by {2:g}s after each '
@@ -132,9 +135,9 @@ class Weapon:
             return
 
         columnText = self.getElementText('damage')
-
-        if (len(columnText) > 0 and 
-            columnText not in self.invalidSysDamageValues):
+        if columnText in self.invalidSysDamageValues:
+            columnText = ''
+        elif len(columnText) > 0:
             damage = float(columnText)
             columnText = self.getBoost(columnText, damageAbbr, damage)
 
@@ -368,6 +371,14 @@ class Weapon:
         count = int(boostElem.find('.//count').text)
         endVal = 0
         change = (amount * count)
+
+        # infinitely increasing
+        if count == 999:
+            abbr = infiniteAbbr
+            columnText = abbr.format(startVal, amount)
+            return columnText
+
+
         if boostElem.find('.//type').text == 'cooldown':
             endVal = startVal - change
         else:
