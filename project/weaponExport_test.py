@@ -7,6 +7,8 @@ import weaponExport
 from weaponExport import Weapon
 import wikiWeaponTables
 
+
+allColumnsSet =  set(wikiWeaponTables.allColumns)
 # https://realpython.com/python-testing/#automated-vs-manual-testing
 # https://realpython.com/pytest-python-testing/#marks-categorizing-tests
 
@@ -22,8 +24,38 @@ damageAbbr = weaponExport.damageAbbr
 def testGetHullDamage(blueprintName, expected):
     blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
     blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint, wikiWeaponTables.allColumns)
+    weapon = Weapon(blueprint, allColumnsSet)
     assert weapon.getHullDamage() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '1'),
+    ('LASER_BIO', ''), # damage =  0
+    ('BOMB_FIRE', ''), # sysDamage = 0
+    ('MISSILES_4', '5'), # sysDamage with damage
+    ('MISSILES_ENERGY', ''), # noSysDamage = true
+    ('LASER_LIGHT_CHARGEGUN', ''), # <sysDamage>-1</sysDamage>
+    ('BOMB_BREACH_1', '2'), # sysDamage, <damage>0</damage>
+    ('BOMB_HEAL_SYSTEM', '-10'), # (-) sysDamage plus (-) damage
+    ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
+])
+def testGetSysDamage(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint, allColumnsSet)
+    assert weapon.getSysDamage() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', '15'),
+    ('ION_1', ''),
+    ('BEAM_STUN', '30'), # only persDamage
+    ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
+    ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
+])
+def testGetCrewDamage(blueprintName, expected):
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint, allColumnsSet)
+    assert weapon.getCrewDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
     ('BEAM_1', ''),

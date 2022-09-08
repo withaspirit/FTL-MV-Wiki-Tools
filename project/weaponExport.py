@@ -127,15 +127,14 @@ class Weapon:
     def getImg(self) -> str:
         return self.blueprint.find('.//weaponArt').text
 
-    # TODO: damage boost
     def getHullDamage(self) -> str:
         if 'H' not in self.validColumns:
             return
 
         columnText = self.getElementText('damage')
-        if columnText == '-1' or columnText == '0':
-            columnText = ''
-        elif len(columnText) > 0:
+
+        if (len(columnText) > 0 and 
+            columnText not in self.invalidSysDamageValues):
             damage = float(columnText)
             columnText = self.getBoost(columnText, damageAbbr, damage)
 
@@ -148,35 +147,20 @@ class Weapon:
         if 'S' not in self.validColumns:
             return
 
-        columnText = ''
-        xDamageText = self.getElementText('sysDamage')
-
-        # damage is added with sysDamage
-        if (self.getElementText('noSysDamage') != 'true' and
-            xDamageText not in self.invalidSysDamageValues):
-            columnText = self.getDamagePlusXDamage(xDamageText)
-
+        columnText = self.getDamagePlusXDamage('sysDamage')
         self.columnValues.append(columnText)
+        return columnText
 
     radStatBoosts = ['moveSpeedMultiplier', 'stunMultiplier', 'repairSpeed']
     def getCrewDamage(self) -> str:
         if ('C' not in self.validColumns):
             return
 
-        columnText = ''
-        xDamageText = self.getElementText('persDamage')
-
-        # damage is added with persDamage
-        if (self.getElementText('noPersDamage') != 'true' and
-            xDamageText not in self.invalidSysDamageValues):
-            columnText = self.getDamagePlusXDamage(xDamageText)
-            if len(columnText) > 0:
-                columnText = str(int(columnText) * 15)
-
+        columnText = self.getDamagePlusXDamage('persDamage')
         # get RAD Debuff if necessary
         columnText += self.getRadDebuff()
-
         self.columnValues.append(columnText)
+        return columnText        
 
     # Returns rad debuff icon if rad effects present, empty str otherwise
     def getRadDebuff(self) -> str:
@@ -196,16 +180,49 @@ class Weapon:
             appendText = icons['rad']
         return appendText
 
-    # Adds hull damage to xDamage text
-    def getDamagePlusXDamage(self, xDamageText: str) -> str:
-        columnText = ''
-        xDamage = 0
-        hullDamageText = self.getElementText('damage')
 
-        xDamage += self.strToInt(hullDamageText)
-        xDamage += self.strToInt(xDamageText)
-        if xDamage != 0:
-            columnText = str(xDamage)
+    damageDisablers = {
+        'sysDamage': 'noSysDamage',
+        'persDamage': 'noPersDamage',
+        'ionDamage': 'noIonDamage' # not in game but for "ion" to use the below fxn
+    }
+    # Adds hull damage to xDamage text
+    def getDamagePlusXDamage(self, damageType: str) -> str:
+        columnText = ''
+        xDamageText = self.getElementText(damageType)
+        noXDamage = self.damageDisablers[damageType]
+
+        if (xDamageText in self.invalidSysDamageValues or
+            self.getElementText(noXDamage) == 'true'):
+            return columnText
+            
+        isCrewDamage = False
+        if damageType == 'persDamage':
+            isCrewDamage = True
+            if len(xDamageText) > 0:
+                xDamageText = str(int(xDamageText) * 15)
+        
+        columnText = ''
+        totalXDamage = 0
+    
+        hullDamageText = self.getElementText('damage')
+        if len(hullDamageText) > 0 and int(hullDamageText) != -1:
+            if isCrewDamage:
+                hullDamageText = str(int(hullDamageText) * 15)
+            totalXDamage += int(hullDamageText)
+
+        if len(xDamageText) > 0:
+            totalXDamage += int(xDamageText)
+
+        totalXDamageText = str(totalXDamage)
+        if (len(totalXDamageText) > 0 and
+            totalXDamageText not in self.invalidSysDamageValues):
+            damage = float(totalXDamageText)
+            totalXDamageText = self.getBoost(totalXDamageText, damageAbbr, damage, isCrewDamage)
+
+        if len(totalXDamageText) > 0 and totalXDamageText != '0':
+            columnText = totalXDamageText
+
         return columnText
 
     def getIonDamage(self) -> str:
@@ -264,7 +281,6 @@ class Weapon:
         self.columnValues.append(columnText)
         return columnText
 
-    # TODO: damage boost
     def getPierce(self) -> str:
         columnText = ''
 
@@ -327,7 +343,7 @@ class Weapon:
                 boostElem.find('.//type').text == 'cooldown'):
                 # assume cooldown nonzero if boost present
                 cooldownMax =  float(columnText)
-                columnText = self.getBoost(boostElem, cooldownAbbr, cooldownMax)
+                columnText = self.getBoost(columnText, cooldownAbbr, cooldownMax)
 
                 # INSTANT / pre-emptive weapon (no cooldown)
                 if len(columnText) == 0:
@@ -341,10 +357,14 @@ class Weapon:
         return columnText
 
     # for boost types: damage, cooldown
-    def getBoost(self, boostElem: ET.Element, abbr: str, startVal: float) -> str:
-        columnText = ''
+    def getBoost(self, columnText: str, abbr: str, startVal: float, isCrewDamage: bool = False) -> str:
+        boostElem = self.blueprint.find('boost')
+        if boostElem is None:
+            return columnText
 
         amount = float(boostElem.find('.//amount').text)
+        if isCrewDamage:
+            amount *= 15
         count = int(boostElem.find('.//count').text)
         endVal = 0
         change = (amount * count)
