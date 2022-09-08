@@ -12,6 +12,12 @@ allColumnsSet =  set(wikiWeaponTables.allColumns)
 # https://realpython.com/python-testing/#automated-vs-manual-testing
 # https://realpython.com/pytest-python-testing/#marks-categorizing-tests
 
+def getWeapon(blueprintName) -> weaponExport.Weapon:
+    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
+    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
+    weapon = Weapon(blueprint, allColumnsSet)
+    return weapon
+
 damageAbbr = weaponExport.damageAbbr
 infiniteAbbr = weaponExport.infiniteAbbr
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -23,9 +29,7 @@ infiniteAbbr = weaponExport.infiniteAbbr
     # TODO: systemless rooms
 ])
 def testGetHullDamage(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint, allColumnsSet)
+    weapon = getWeapon(blueprintName)
     assert weapon.getHullDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -41,9 +45,7 @@ def testGetHullDamage(blueprintName, expected):
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
 ])
 def testGetSysDamage(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint, allColumnsSet)
+    weapon = getWeapon(blueprintName)
     assert weapon.getSysDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -55,9 +57,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
 ])
 def testGetCrewDamage(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint, allColumnsSet)
+    weapon = getWeapon(blueprintName)
     assert weapon.getCrewDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -67,9 +67,7 @@ def testGetCrewDamage(blueprintName, expected):
     ('ION_PIERCE_CHAIN', damageAbbr.format(1, 5, 1, 4)), # chain
 ])
 def testGetIonDamage(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint, allColumnsSet)
+    weapon = getWeapon(blueprintName)
     assert weapon.getIonDamage() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -98,9 +96,7 @@ def testGetIonDamage(blueprintName, expected):
     ('LOOT_MATH_2', '1/2{{Missile}} {{Accuracy|30}}'),
 ])
 def testGetShots(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getShots() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -119,9 +115,7 @@ def testGetShots(blueprintName, expected):
     ('GASTER_BLASTER', '')
 ])
 def testGetPierce(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getPierce() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -131,9 +125,7 @@ def testGetPierce(blueprintName, expected):
     ('RUSTY_MISSILES_1', '52px')
 ])
 def testGetRadius(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getRadius() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -142,9 +134,7 @@ def testGetRadius(blueprintName, expected):
     ('POWER_CORE', '')
 ])
 def testGetLength(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getLength() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -154,9 +144,7 @@ def testGetLength(blueprintName, expected):
     ('POWER_CORE', '<abbr title="Provides 3 power to the weapon to its right.">-3</abbr>')
 ])
 def testGetPower(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getPower() == expected
 
 cooldownAbbr = weaponExport.cooldownAbbr
@@ -182,9 +170,7 @@ startChargedAbbr = weaponExport.startChargedAbbr
     ('GATLING_ANCIENT', f'{startChargedAbbr}/{fireTimeAbbr.format(0.05)}')
 ])
 def testGetCooldown(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getCooldown() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -192,9 +178,7 @@ def testGetCooldown(blueprintName, expected):
     ('LASER_BURST_1', '10%')
 ])
 def testGetFireChance(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getFireChance() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -202,9 +186,7 @@ def testGetFireChance(blueprintName, expected):
     ('LASER_HEAVY_PIERCE', '40%')
 ])
 def testGetStun(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getBreachChance() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -213,9 +195,7 @@ def testGetStun(blueprintName, expected):
     ('LASER_STUN', '100% (16s)')
 ])
 def testGetStun(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getStun() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -223,9 +203,7 @@ def testGetStun(blueprintName, expected):
     ('CRASH_LASER', '0 {{Scrap}}')
 ])
 def testGetCost(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getCost() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -233,9 +211,7 @@ def testGetCost(blueprintName, expected):
     ('LASER_BURST_2', '3')
 ])
 def testGetRarity(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getRarity() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
@@ -250,7 +226,5 @@ def testGetRarity(blueprintName, expected):
     ('MODULE_ACCURACY', '')
 ])
 def testGetSpeed(blueprintName, expected):
-    blueprintPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
-    blueprint = blueprintUtils.getNormalBlueprint(blueprintPath)
-    weapon = Weapon(blueprint)
+    weapon = getWeapon(blueprintName)
     assert weapon.getSpeed() == expected
