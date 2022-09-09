@@ -40,6 +40,7 @@ icons = {
     'lockdown': '{{Lockdown}}',
     'non_drone_targetable': '{{NonDroneTargetable}}',
     'hullbust': '{{HullBust}}',
+    'freemissile': '{{FreeMissileChance|{0}}}'
 }
 
 # Damage
@@ -294,6 +295,12 @@ class Weapon:
             if typeElem.text != 'BEAM':
                 columnText += '/'
             columnText += f'{missilesText}{icons["missile"]}'
+        
+        # freeMissileChance
+        freeMissileChanceText = self.getElementText('freeMissileChance')
+        if len(freeMissileChanceText) > 0:
+            freeMissileChance = int(freeMissileChanceText)
+            columnText += f' {icons["freemissile"].format(freeMissileChance)}'
 
         # accuracy
         accuracyMod = self.getElementText('accuracyMod')

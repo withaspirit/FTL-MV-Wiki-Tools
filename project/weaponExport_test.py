@@ -28,7 +28,6 @@ infiniteAbbr = weaponExport.infiniteAbbr
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
     ('LASER_HULL_1', f'1 {icons["hullbust"]}'), # hullBust=1
-    # TODO: systemless rooms
 ])
 def testGetHullDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)
@@ -79,7 +78,6 @@ def testGetIonDamage(blueprintName, expected):
      # missile cost
     ('MISSILES_FREE', '1'),
     ('MISSILES_1', '1/1{{Missile}}'),
-    ('SLOTGUN_CHAOS', '12/3{{Missile}}'),
     # beam not consuming missiles
     ('BEAM_ADAPT_3_CHAOS', '10{{Missile}}'),
     # <projectiles><projectile>.count
@@ -92,8 +90,9 @@ def testGetIonDamage(blueprintName, expected):
     ('SHOTGUN_CHARGE', '1-3'),
     # chargeLevel / missiles
     ('MISSILES_BURST', '1-3/1{{Missile}}'),
-    # ammo chance (TODO)
-    ('KERNEL_1', '2/1{{Missile}}'),
+    # freeMissileChance
+    ('KERNEL_1', f'2/1{icons["missile"]} {icons["freemissile"].format(35)}'),
+    ('SLOTGUN_CHAOS', f'12/3{icons["missile"]} {icons["freemissile"].format(75)}'),
     # accuracy
     ('BOMB_1', '1/1{{Missile}} {{Accuracy|30}}'),
     ('LOOT_MATH_2', '1/2{{Missile}} {{Accuracy|30}}'),
