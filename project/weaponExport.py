@@ -36,7 +36,9 @@ icons = {
     'rad': '{{RadDebuffIcon}}',
     'scrap': '{{Scrap}}',
     'missile': '{{Missile}}',
-    'accuracy': '{{Accuracy|num}}'
+    'accuracy': '{{Accuracy|num}}',
+    'lockdown': '{{Lockdown}}',
+    'non_drone_targetable': '{{NonDroneTargetable}}',
 }
 
 # Damage
@@ -152,6 +154,11 @@ class Weapon:
             return
 
         columnText = self.getDamagePlusXDamage('sysDamage')
+
+        lockdownText = self.getElementText('lockdown')
+        if lockdownText == '1':
+            columnText += f' {icons["lockdown"]}'
+
         self.columnValues.append(columnText)
         return columnText
 
@@ -289,6 +296,12 @@ class Weapon:
         if len(accuracyMod) > 0:
             accuracyIcon = icons["accuracy"].replace("num", accuracyMod)
             columnText += f' {accuracyIcon}'
+
+        # drone_targetable = 0
+        drone_targetable_text = self.getElementText('drone_targetable')
+        if drone_targetable_text == '0' and typeElem.text == 'MISSILES':
+            columnText += f' {icons["non_drone_targetable"]}'
+            
         self.columnValues.append(columnText)
         return columnText
 

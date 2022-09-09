@@ -9,6 +9,7 @@ import wikiWeaponTables
 
 
 allColumnsSet =  set(wikiWeaponTables.allColumns)
+icons = weaponExport.icons
 # https://realpython.com/python-testing/#automated-vs-manual-testing
 # https://realpython.com/pytest-python-testing/#marks-categorizing-tests
 
@@ -43,6 +44,7 @@ def testGetHullDamage(blueprintName, expected):
     ('BOMB_HEAL_SYSTEM', '-8'), # (-) sysDamage plus (-) damage
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
+    ('BOMB_LOCK', f'1 {weaponExport.icons["lockdown"]}'),
 ])
 def testGetSysDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)
@@ -94,6 +96,12 @@ def testGetIonDamage(blueprintName, expected):
     # accuracy
     ('BOMB_1', '1/1{{Missile}} {{Accuracy|30}}'),
     ('LOOT_MATH_2', '1/2{{Missile}} {{Accuracy|30}}'),
+    # non_drone_targetable
+    ('SHOTGUN_1', '2'), # <drone_targetable>1</drone_targetable>
+    ('MISSILES_CLOAK', (
+        f'1/1{icons["missile"]} {icons["accuracy"].replace("num", "100")}'
+        f' {icons["non_drone_targetable"]}'
+    )),
 ])
 def testGetShots(blueprintName, expected):
     weapon = getWeapon(blueprintName)
