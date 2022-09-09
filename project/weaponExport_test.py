@@ -27,6 +27,7 @@ infiniteAbbr = weaponExport.infiniteAbbr
     ('BEAM_REPAIR', '-2'), 
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
+    ('LASER_HULL_1', f'1 {icons["hullbust"]}'), # hullBust=1
     # TODO: systemless rooms
 ])
 def testGetHullDamage(blueprintName, expected):

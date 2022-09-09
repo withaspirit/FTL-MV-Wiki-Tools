@@ -39,6 +39,7 @@ icons = {
     'accuracy': '{{Accuracy|num}}',
     'lockdown': '{{Lockdown}}',
     'non_drone_targetable': '{{NonDroneTargetable}}',
+    'hullbust': '{{HullBust}}',
 }
 
 # Damage
@@ -143,6 +144,9 @@ class Weapon:
         elif len(columnText) > 0:
             damage = float(columnText)
             columnText = self.getBoost(columnText, damageAbbr, damage)
+
+        if self.getElementText('hullBust') == '1':
+            columnText += f' {icons["hullbust"]}'
 
         self.columnValues.append(columnText)
         return columnText
