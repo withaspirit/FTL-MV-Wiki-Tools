@@ -60,12 +60,9 @@ preemptAbbr = '<abbr title="Can only be fired once per fight.">{0:g}</abbr>'
 fireTimeAbbr = '<abbr title="Fires projectiles {0:g}s apart.">{0:g}</abbr>'
 startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
 
-# TODO: lockdown, special effects (projector),
-# TODO: hullbust,
-# TODO: damage chain (effects on other damage systems too)
-# TODO: free missile chance
+# TODO: special effects (projector),
+# TODO: silenced effect
 # TODO: negative power -> to right of table
-# TODO: Shots -> undetectable by drones
 # TODO: medical bomb effects (crew damage)
 # TODO: faction column? (transport loot table)
 # TODO: chaotic weapon table
@@ -282,7 +279,6 @@ class Weapon:
                 projectileCount *= int(columnText)
             columnText = str(projectileCount)
 
-        # TODO: drone targetable
         # chargeLevels
         chargeLevelsText = self.getElementText('chargeLevels')
         if len(chargeLevelsText) > 0:
