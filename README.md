@@ -1,6 +1,6 @@
 # FTL: Multiverse Wiki Tools
 
-This project contains files, mods, and scripts for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki) easier. It is written with [Python](https://www.python.org/downloads).
+This project contains files, mods, and scripts for [*FTL: Multiverse*](https://subsetgames.com/forum/viewtopic.php?f=11&t=35332) used to make editing the [*FTL: Multiverse* Wiki](https://ftlmultiverse.fandom.com/wiki/FTL:_Multiverse_Wiki) easier. It is written with [Python](https://www.python.org/downloads).
 
 # Features
 
