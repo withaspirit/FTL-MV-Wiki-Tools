@@ -4,9 +4,9 @@ LIST_WEAPONS_LASER_WIKI:
   - H
   - S
   - C
+  - Pierce
   - Shots
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -36,9 +36,9 @@ LIST_WEAPONS_ION_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -52,9 +52,9 @@ LIST_WEAPONS_BEAM_WIKI:
   - H
   - S
   - C
+  - Pierce
   - Length
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -101,10 +101,10 @@ LIST_WEAPONS_CRYSTAL_WIKI:
   - H
   - S
   - C
+  - Pierce
   - Shots
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Breach
   - Stun
@@ -149,9 +149,9 @@ LIST_WEAPONS_FOCUS_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -265,9 +265,9 @@ HEKTAR_MODULAR_LASERS:
   - H
   - S
   - C
+  - Pierce
   - Shots
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -328,11 +328,11 @@ LIST_WEAPONS_SENTRY_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -361,10 +361,10 @@ LIST_WEAPONS_NEWGEN:
   - H
   - S
   - C
+  - Pierce
   - Shots
   - Length
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -379,11 +379,11 @@ LIST_WEAPONS_OBELISK_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -398,11 +398,11 @@ LIST_WEAPONS_EVENT_LOOT_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -434,11 +434,11 @@ JUDGELIST_ROCK_MATH_LOOT:
   - H
   - S
   - C
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -471,11 +471,11 @@ LIST_WEAPONS_CURA_LOOT_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach
@@ -490,11 +490,11 @@ LIST_WEAPONS_NEXUS_LOOT_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
   - Power
-  - Pierce
   - Cooldown
   - Fire
   - Breach

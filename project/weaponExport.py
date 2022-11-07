@@ -474,6 +474,7 @@ class Weapon:
             return ''
 
         if stunChanceElem is not None and stunChanceElem.text == '0':
+            self.columnValues.append(columnText)
             return ''
 
         if stunChanceElem is None:
