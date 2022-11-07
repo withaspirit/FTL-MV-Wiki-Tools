@@ -105,11 +105,14 @@ class Weapon:
         self.getRarity()
         self.getSpeed()
 
-        return '\n|'.join(self.columnValues)
+        return '\n| '.join(self.columnValues)
 
 # SPECIAL COLUMNS
-# EVENT_WEAPONS: faction column
-#
+# TODO:
+# fire, breach, stun styling in each column
+# EVENT_WEAPONS: faction column ?
+# fix big ion not showing up correctly
+# nexus weapons: misaligned table 
 # CLONE_CANNON: Table
 # silenced effect
 #
