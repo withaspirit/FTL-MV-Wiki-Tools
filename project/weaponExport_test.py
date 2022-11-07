@@ -92,8 +92,8 @@ def testGetIonDamage(blueprintName, expected):
     # chargeLevel / missiles
     ('MISSILES_BURST', '1-3/1{{Missile}}'),
     # freeMissileChance
-    ('KERNEL_1', f'2/1{icons["missile"]}{{{icons["freemissile"].format(35)}}}'),
-    ('SLOTGUN_CHAOS', f'12/3{icons["missile"]}{{{icons["freemissile"].format(75)}}}'),
+    ('KERNEL_1', f'2/1{icons["missile"]}{icons["freemissile"].format(35)}'),
+    ('SLOTGUN_CHAOS', f'12/3{icons["missile"]}{icons["freemissile"].format(75)}'),
     # accuracy
     ('BOMB_1', '1/1{{Missile}}{{Accuracy|30}}'),
     ('LOOT_MATH_2', '1/2{{Missile}}{{Accuracy|30}}'),
