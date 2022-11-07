@@ -32,8 +32,6 @@ LIST_WEAPONS_MISSILE_WIKI:
   # - Other
 LIST_WEAPONS_ION_WIKI:
   - Weapon
-  - H
-  - S
   - C
   - I
   - Pierce
@@ -69,7 +67,6 @@ LIST_WEAPONS_BOMB_WIKI:
   - S
   - C
   - I
-  - Length
   - Power
   - Cooldown
   - Fire
@@ -77,7 +74,6 @@ LIST_WEAPONS_BOMB_WIKI:
   - Stun
   - Cost
   - '[[Rarity]]'
-  - Speed
   # - Other
 LIST_WEAPONS_FLAK_WIKI:
   - Weapon
@@ -131,8 +127,6 @@ LIST_WEAPONS_MINELAUNCHERS_WIKI:
 LIST_WEAPONS_ENERGY_WIKI:
   - Weapon
   - H
-  - S
-  - C
   - I
   - Shots
   - Power
@@ -148,9 +142,8 @@ LIST_WEAPONS_FOCUS_WIKI:
   - H
   - S
   - C
-  - I
   - Pierce
-  - Shots
+  - Length
   - Power
   - Cooldown
   - Fire
@@ -173,6 +166,7 @@ LIST_WEAPONS_KERNEL_WIKI:
   - Stun
   - Cost
   - '[[Rarity]]'
+  - Speed
   # - Other
 LIST_WEAPONS_PARTICLE_WIKI:
   - Weapon
@@ -196,9 +190,7 @@ GIFTLIST_RUSTY:
   - H
   - S
   - C
-  - I
   - Shots
-  - Length
   - Radius
   - Power
   - Cooldown
@@ -217,7 +209,6 @@ SHOP_ITEM_SYLVAN_CONSERVATIVE:
   - I
   - Shots
   - Length
-  - Radius
   - Power
   - Cooldown
   - Fire
@@ -327,11 +318,8 @@ LIST_WEAPONS_SENTRY_WIKI:
   - H
   - S
   - C
-  - I
   - Pierce
   - Shots
-  - Length
-  - Radius
   - Power
   - Cooldown
   - Fire
@@ -343,7 +331,6 @@ LIST_WEAPONS_SENTRY_WIKI:
   # - Other
 GIFTLIST_SPORE:
   - Weapon
-  - H
   - S
   - C
   - Shots
@@ -354,7 +341,6 @@ GIFTLIST_SPORE:
   - Stun
   - Cost
   - '[[Rarity]]'
-  - Speed
   # - Other
 LIST_WEAPONS_NEWGEN:
   - Weapon
@@ -470,11 +456,8 @@ LIST_WEAPONS_CURA_LOOT_WIKI:
   - H
   - S
   - C
-  - I
   - Pierce
   - Shots
-  - Length
-  - Radius
   - Power
   - Cooldown
   - Fire
