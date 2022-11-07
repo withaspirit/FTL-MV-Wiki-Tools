@@ -298,18 +298,18 @@ class Weapon:
         freeMissileChanceText = self.getElementText('freeMissileChance')
         if len(freeMissileChanceText) > 0:
             freeMissileChance = int(freeMissileChanceText)
-            columnText += f' {icons["freemissile"].format(freeMissileChance)}'
+            columnText += f'{icons["freemissile"].format(freeMissileChance)}'
 
         # accuracy
         accuracyMod = self.getElementText('accuracyMod')
         if len(accuracyMod) > 0:
             accuracyIcon = icons["accuracy"].replace("num", accuracyMod)
-            columnText += f' {accuracyIcon}'
+            columnText += f'{accuracyIcon}'
 
         # drone_targetable = 0
         drone_targetable_text = self.getElementText('drone_targetable')
         if drone_targetable_text == '0' and typeElem.text == 'MISSILES':
-            columnText += f' {icons["non_drone_targetable"]}'
+            columnText += f'{icons["non_drone_targetable"]}'
             
         self.columnValues.append(columnText)
         return columnText
