@@ -94,8 +94,8 @@ class Weapon:
         self.getIonDamage()
         self.getPierce()
         self.getShots()
-        self.getRadius()
         self.getLength()
+        self.getRadius()
         self.getPower()
         self.getCooldown()
         self.getFireChance()
@@ -344,7 +344,7 @@ class Weapon:
 
     def getLength(self) -> str:
         if 'Length' not in self.validColumns:
-            return    
+            return
         
         columnText = self.getElementText('length')
         if len(columnText) > 0:
