@@ -17,6 +17,7 @@ __pycache__
 !/project/utils/vanillaMultiverseMap.json
 /project/wikiShips.txt
 /project/wikiWeaponTables.txt
+/project/wikiWeaponTablesAll.txt
 /project/compareVersions.txt
 
 /project/Append\ wikiElements

@@ -14,7 +14,7 @@ LIST_WEAPONS_LASER_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_MISSILE_WIKI:
   - Weapon
   - H
@@ -29,7 +29,7 @@ LIST_WEAPONS_MISSILE_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_ION_WIKI:
   - Weapon
   - H
@@ -46,7 +46,7 @@ LIST_WEAPONS_ION_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_BEAM_WIKI:
   - Weapon
   - H
@@ -62,7 +62,7 @@ LIST_WEAPONS_BEAM_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_BOMB_WIKI:
   - Weapon
   - H
@@ -78,7 +78,7 @@ LIST_WEAPONS_BOMB_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_FLAK_WIKI:
   - Weapon
   - H
@@ -95,7 +95,7 @@ LIST_WEAPONS_FLAK_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_CRYSTAL_WIKI:
   - Weapon
   - H
@@ -111,7 +111,7 @@ LIST_WEAPONS_CRYSTAL_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_MINELAUNCHERS_WIKI:
   - Weapon
   - H
@@ -127,7 +127,7 @@ LIST_WEAPONS_MINELAUNCHERS_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_ENERGY_WIKI:
   - Weapon
   - H
@@ -142,7 +142,7 @@ LIST_WEAPONS_ENERGY_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_FOCUS_WIKI:
   - Weapon
   - H
@@ -159,7 +159,7 @@ LIST_WEAPONS_FOCUS_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_KERNEL_WIKI:
   - Weapon
   - H
@@ -173,7 +173,7 @@ LIST_WEAPONS_KERNEL_WIKI:
   - Stun
   - Cost
   - '[[Rarity]]'
-  - Other
+  # - Other
 LIST_WEAPONS_PARTICLE_WIKI:
   - Weapon
   - H
@@ -190,7 +190,7 @@ LIST_WEAPONS_PARTICLE_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 GIFTLIST_RUSTY:
   - Weapon
   - H
@@ -208,7 +208,7 @@ GIFTLIST_RUSTY:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 SHOP_ITEM_SYLVAN_CONSERVATIVE:
   - Weapon
   - H
@@ -226,7 +226,22 @@ SHOP_ITEM_SYLVAN_CONSERVATIVE:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
+BLUELIST_WEAPONS_RECYCLER:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
 LIST_WEAPONS_INSTANT_WIKI:
   - Weapon
   - H
@@ -244,7 +259,7 @@ LIST_WEAPONS_INSTANT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 HEKTAR_MODULAR_LASERS:
   - Weapon
   - H
@@ -260,7 +275,7 @@ HEKTAR_MODULAR_LASERS:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 HEKTAR_MODULAR_BEAMS:
   - Weapon
   - H
@@ -275,7 +290,7 @@ HEKTAR_MODULAR_BEAMS:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 HEKTAR_MODULAR_MISSILES:
   - Weapon
   - H
@@ -290,16 +305,14 @@ HEKTAR_MODULAR_MISSILES:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
-HEKTAR_MODULAR_ION:
+  # - Other
+HEKTAR_MODULAR_IONS:
   - Weapon
   - H
   - S
   - C
   - I
   - Shots
-  - Length
-  - Radius
   - Power
   - Cooldown
   - Fire
@@ -308,7 +321,7 @@ HEKTAR_MODULAR_ION:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_SENTRY_WIKI:
   - Weapon
   - H
@@ -327,7 +340,7 @@ LIST_WEAPONS_SENTRY_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 GIFTLIST_SPORE:
   - Weapon
   - H
@@ -342,7 +355,7 @@ GIFTLIST_SPORE:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_NEWGEN:
   - Weapon
   - H
@@ -359,7 +372,7 @@ LIST_WEAPONS_NEWGEN:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_OBELISK_WIKI:
   - Weapon
   - H
@@ -378,7 +391,7 @@ LIST_WEAPONS_OBELISK_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_EVENT_LOOT_WIKI:
   - Weapon
   - H
@@ -397,7 +410,7 @@ LIST_WEAPONS_EVENT_LOOT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_TRANSPORT_LOOT_WIKI:
   - Weapon
   - H
@@ -415,7 +428,7 @@ LIST_WEAPONS_TRANSPORT_LOOT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 JUDGELIST_ROCK_MATH_LOOT:
   - Weapon
   - H
@@ -433,7 +446,7 @@ JUDGELIST_ROCK_MATH_LOOT:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_RENEGADE_LOOT_WIKI:
   - Weapon
   - H
@@ -451,7 +464,7 @@ LIST_WEAPONS_RENEGADE_LOOT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_CURA_LOOT_WIKI:
   - Weapon
   - H
@@ -470,7 +483,7 @@ LIST_WEAPONS_CURA_LOOT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other
 LIST_WEAPONS_NEXUS_LOOT_WIKI:
   - Weapon
   - H
@@ -489,4 +502,4 @@ LIST_WEAPONS_NEXUS_LOOT_WIKI:
   - Cost
   - '[[Rarity]]'
   - Speed
-  - Other
+  # - Other

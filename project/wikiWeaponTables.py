@@ -1,14 +1,15 @@
 import os
 import blueprintUtils
 from weaponExport import Weapon
+import yaml
 
-# Creates Weapon Tables
-# FIXME: configure to output
-# (1) all weapons in one table
-# (2) separate tables
+cwd = os.path.dirname(os.path.abspath(__file__))
 
-# file to write to
-filePath = '\wikiWeaponTables.txt'
+# pip install pyyaml
+
+# Creates Weapon Tables:
+# (1) separate tables
+# (2) all weapons in one table
 
 # blueprintLists of weapons that don't have 'LIST_WEAPONS_' in their name
 otherWeaponLists = {
@@ -29,7 +30,8 @@ otherWeaponLists = {
 # excluded
 skipNames = {
     'LIST_WEAPONS_ARTILLERY_WIKI',
-    'LIST_WEAPONS_ALL_CRAPBUCKET'
+    'LIST_WEAPONS_ALL_CRAPBUCKET',
+    'LIST_WEAPONS_MODULAR_MODULES_WIKI',
 }
 
 # All possible columns
@@ -54,18 +56,65 @@ allColumns = [
     # "Other"
 ]
 
-tableStyle = '''{|class="wikitable floatheader sortable" style="text-align:center;" cellspacing="0" cellpadding="0" border="1"'''
+
+tableStartText = '''{|class="wikitable floatheader sortable" style="text-align:center;" cellspacing="0" cellpadding="0" border="1"'''
+tableEndText = '''\n|}\n
+<small>Want to edit this table? Click [[Editing Tables|here]]</small>\n'''
+
+def wrapTable(columns, tableText):
+    rowOfColumns = formatColumnHeaders(columns)
+    tableStart = tableStartText + f'|-\n{rowOfColumns}\n'
+    tableText = tableStart + tableText + tableEndText
+    return tableText
+
+# format column header according to wiki
+dmgTypeSet = {'H', 'S', 'C', 'I'}
+def formatColumnHeaders(columns: list) -> str:
+    # find how many of letters in dmgSet to include (colSpan)
+
+    dmgTypeList = []
+    for column in columns:
+        if column in dmgTypeSet:
+            dmgTypeList.append(column)
+
+    columnList = []
+    dmgSeen = False
+    for column in columns:
+        # skip dmgTypeSet (they go on first row)
+        if column in dmgTypeSet:
+            if dmgSeen == False:
+                columnList.append(f'colspan="{len(dmgTypeList)}" |Damage')
+                dmgSeen = True
+            else:
+                continue
+        else:
+            columnList.append(f'rowspan="2" |{column}')
+
+    # add second row
+    columnHeader = '|-\n!' + '\n! '.join(columnList)
+    # add first row
+    columnHeader += '\n|-\n!' + '\n!'.join(dmgTypeList)
+    return columnHeader
+
+def weaponTable(weaponList):
+    tableText = '\n|-\n|'
+    tableText += '\n|-\n|'.join(weaponList)
+    return tableText
 
 blueprints = blueprintUtils.blueprints
 autoBlueprints = blueprintUtils.autoBlueprints
 bpLists = autoBlueprints.findall('.//blueprintList[@wikiPage]')
 
-text = tableStyle
-rowOfColumns = "!!".join(allColumns)
-text += f'|-\n!{rowOfColumns}\n'
+columnFile = open(cwd + './utils/tableColumns.yaml', 'r')
+columnMap = yaml.safe_load(columnFile)
 
-tableList = []
-allColumnsSet = set(allColumns)
+individualTableList = []
+allTableList = []
+
+allColumnSet = set(allColumns)
+
+# make this T/F 
+completeTable = False
 # iterate over each weapon list
 for blueprintList in bpLists:
 
@@ -74,12 +123,12 @@ for blueprintList in bpLists:
     if (listName in skipNames or
         ('LIST_WEAPONS_' not in listName and listName not in otherWeaponLists)):
         continue
+    
+    columns = columnMap[listName]
+    columnSet = set(columns)
 
-    #wikiPage = blueprintList.get('wikiPage')
-    #tableText = f'\n\n{wikiPage}'
-    tableText = '\n|-\n'
-
-    weaponRows = []
+    weaponList = []
+    weaponAllList = []
     for nameElem in blueprintList.iter('name'):
         blueprintName = nameElem.text
 
@@ -89,19 +138,30 @@ for blueprintList in bpLists:
 
         weaponPath = f'.//weaponBlueprint[@name="{blueprintName}"]'
         blueprint = blueprintUtils.getNormalBlueprint(weaponPath)
-        weapon = Weapon(blueprint, allColumnsSet)
-        weaponRows.append(weapon.toString())
 
-    tableText += '|'
-    tableText += '\n|-\n|'.join(weaponRows)
-    tableList.append(tableText)
-    #print(weaponList)
+        weapon = Weapon(blueprint, columnSet)
+        weaponList.append(weapon.toString())
+
+        weaponAll = Weapon(blueprint, allColumnSet)
+        weaponAllList.append(weaponAll.toString())
+
+    tableText = weaponTable(weaponList)
+    individualTableList.append(wrapTable(columns, tableText))
+
+    tableAllText = weaponTable(weaponAllList)
+    allTableList.append(tableAllText)
+
+columnFile.close()
 
 # end of table
-text += '\n\n'.join(tableList)
-text += '''\n|}\n
-<small>Want to edit this table? Click [[Editing Tables|here]]</small>'''
+individualTableText = '\n\n'.join(individualTableList)
 
-cwd = os.path.dirname(os.path.abspath(__file__))
-with open(cwd + filePath, 'w', encoding='utf-8') as file:
-    file.write(text)
+allTableText = '\n\n'.join(allTableList)
+allTableText = wrapTable(allColumns, allTableText)
+
+with open(cwd + '\wikiWeaponTables.txt', 'w', encoding='utf-8') as file:
+    file.write(individualTableText)
+
+with open(cwd + '\wikiWeaponTablesAll.txt', 'w', encoding='utf-8') as file:
+    file.write(allTableText)
+

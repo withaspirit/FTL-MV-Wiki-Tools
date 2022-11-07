@@ -105,7 +105,7 @@ class Weapon:
         self.getRarity()
         self.getSpeed()
 
-        return '||'.join(self.columnValues)
+        return '\n|'.join(self.columnValues)
 
 # SPECIAL COLUMNS
 # EVENT_WEAPONS: faction column
@@ -264,6 +264,8 @@ class Weapon:
     # Number of shots. Appends Accuracy template if there's an
     # accuracyMod elem
     def getShots(self) -> str:
+        if 'Shots' not in self.validColumns:
+            return
         columnText = self.getElementText('shots')
 
         # get projectiles (Flak, burst, etc)
@@ -313,6 +315,8 @@ class Weapon:
         return columnText
 
     def getPierce(self) -> str:
+        if 'Pierce' not in self.validColumns:
+            return
         columnText = ''
 
         spText = self.getElementText('sp')
@@ -326,6 +330,8 @@ class Weapon:
         return columnText
 
     def getRadius(self) -> str:
+        if 'Radius' not in self.validColumns:
+            return
         columnText = self.getElementText('radius')
         if len(columnText) > 0:
             if int(columnText) == 0:
@@ -336,6 +342,9 @@ class Weapon:
         return columnText
 
     def getLength(self) -> str:
+        if 'Length' not in self.validColumns:
+            return    
+        
         columnText = self.getElementText('length')
         if len(columnText) > 0:
             if int(columnText) == 0:
@@ -346,6 +355,9 @@ class Weapon:
         return columnText
 
     def getPower(self) -> str:
+        if 'Power' not in self.validColumns:
+            return
+
         columnText = self.getElementText('power')
         # abbr for power-providing weapons
         if len(columnText) > 0 and int(columnText) < 0:
@@ -358,6 +370,9 @@ class Weapon:
         return columnText
 
     def getCooldown(self) -> str:
+        if 'Cooldown' not in self.validColumns:
+            return
+
         columnText = self.getElementText('cooldown')
         # cooldown boost
 
@@ -428,17 +443,25 @@ class Weapon:
         return columnText
 
     def getFireChance(self) -> str:
+        if 'Fire' not in self.validColumns:
+            return
+
         columnText = self.getPercent(self.getElementText('fireChance'))
         self.columnValues.append(columnText)
         return columnText
 
     def getBreachChance(self) -> str:
+        if 'Breach' not in self.validColumns:
+            return
+
         columnText = self.getPercent(self.getElementText('breachChance'))
         self.columnValues.append(columnText)
         return columnText
 
     # compatible if stunChance and stun ever can occur simultaneously
     def getStun(self) -> str:
+        if 'Stun' not in self.validColumns:
+            return
         stunChanceElem = self.blueprint.find('stunChance')
         stunElem = self.blueprint.find('stun')
 
@@ -467,6 +490,8 @@ class Weapon:
         return f'{percentChance}%'
 
     def getCost(self) -> str:
+        if 'Cost' not in self.validColumns:
+            return
         columnText = self.getElementText('cost')
         if len(columnText) == 0:
             columnText = '0'
@@ -476,11 +501,17 @@ class Weapon:
         return columnText
 
     def getRarity(self) -> str:
+        if '[[Rarity]]' not in self.validColumns:
+            return
+            
         columnText = self.getElementText('rarity')
         self.columnValues.append(columnText)
         return columnText
 
     def getSpeed(self) -> str:
+        if 'Speed' not in self.validColumns:
+            return
+
         columnText = self.getElementText('speed')
         if len(columnText) == 0:
             typeText = self.blueprint.find('type').text
