@@ -299,7 +299,7 @@ class Weapon:
         freeMissileChanceText = self.getElementText('freeMissileChance')
         if len(freeMissileChanceText) > 0:
             freeMissileChance = int(freeMissileChanceText)
-            columnText += f'{icons["freemissile"].format(freeMissileChance)}'
+            columnText += f'{{{icons["freemissile"].format(freeMissileChance)}}}'
 
         # accuracy
         accuracyMod = self.getElementText('accuracyMod')
