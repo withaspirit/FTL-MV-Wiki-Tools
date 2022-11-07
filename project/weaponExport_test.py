@@ -200,7 +200,8 @@ def testGetStun(blueprintName, expected):
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', ''),
     ('LASER_HEAVY_PIERCE', '20% (3s)'),
-    ('LASER_STUN', '100% (16s)')
+    ('LASER_STUN', '100% (16s)'),
+    ('MISSILES_FREE', '')
 ])
 def testGetStun(blueprintName, expected):
     weapon = getWeapon(blueprintName)

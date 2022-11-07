@@ -473,6 +473,9 @@ class Weapon:
             self.columnValues.append(columnText)
             return ''
 
+        if stunChanceElem is not None and stunChanceElem.text == '0':
+            return ''
+
         if stunChanceElem is None:
             columnText += '100%'
         else:
