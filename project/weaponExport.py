@@ -111,8 +111,6 @@ class Weapon:
 # TODO:
 # fire, breach, stun styling in each column
 # EVENT_WEAPONS: faction column ?
-# fix big ion not showing up correctly
-# nexus weapons: misaligned table 
 # CLONE_CANNON: Table
 # silenced effect
 #
@@ -426,6 +424,10 @@ class Weapon:
 
 
         if boostElem.find('.//type').text == 'cooldown':
+            if abbr != cooldownAbbr:
+                if int(startVal) == startVal and isinstance(startVal, float):
+                    startVal = int(startVal)
+                return str(startVal)
             endVal = startVal - change
         else:
             endVal = startVal + change
