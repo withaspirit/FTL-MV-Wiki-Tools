@@ -8,30 +8,6 @@ import math
 
 # unused templates: https://ftlmultiverse.fandom.com/wiki/User:Puporongo/Sandbox
 
-columnFormats = {
-    'weapon': '! rowspan="2" |Weapon',
-    'damagehsc': '! colspan="3" |Damage',
-    'damagehsci': '! colspan="4" |Damage',
-    'shots': '! rowspan="2" |Shots',
-    'power': '! rowspan="2" |Power',
-    'pierce': '! rowspan="2" |Piercing',
-    'effects': '''! rowspan="2" |Fire
-! rowspan="2" |Breach
-! rowspan="2" |Stun''',
-    'misc': '''! rowspan="2" |Cost
-! rowspan="2" |[[Rarity]]
-! rowspan="2" |Speed''',
-    'hsc': '''|-
-!H
-!S
-!C''',
-    'hsci': '''|-
-!H
-!S
-!C
-!I'''
-}
-
 icons = {
     'rad': '{{RadDebuffIcon}}',
     'scrap': '{{Scrap}}',
