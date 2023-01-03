@@ -58,6 +58,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
+    ('BOMB_HEAL', '-60')
 ])
 def testGetCrewDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)

@@ -187,7 +187,9 @@ class Weapon:
             return columnText
         
         if len(xDamageText) > 0 and int(xDamageText) < -1:
-            return xDamageText
+            # NOTE: hacky solution for negative persDamage on BOMB_HEAL, but it works for now
+            if (self.blueprintName != 'BOMB_HEAL'):
+                return xDamageText
             
         isCrewDamage = False
         if damageType == 'persDamage':
