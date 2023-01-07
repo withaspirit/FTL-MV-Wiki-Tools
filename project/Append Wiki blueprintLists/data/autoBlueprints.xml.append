@@ -82,6 +82,8 @@
         {Page Name#Redirect}
         ex: https://ftlmultiverse.fandom.com/wiki/Drones_Types#Defender_Drones
 
+    
+    TODO: create separate lists for drone chaos variants
 -->
 
 <!-- Regex -->
@@ -850,14 +852,11 @@
     <!-- Special Weapons -->
 
         <!--
-            Event Weapons
+            Event Weapons (No Chaos)
             https://ftlmultiverse.fandom.com/wiki/Event_Weapons
         -->
             <blueprintList wikiPage="Event Weapons#" name="LIST_WEAPONS_EVENT_LOOT_WIKI">
                 <name>BA_LASER_ARTILLERY_2</name>
-                <name>BEAM_MADNESS</name>
-                <name>BEAM_MADNESS_ELITE</name>
-                <name>BEAM_MADNESS_VISION</name>
                 <name wikiName="Plushie Gun" wikiHeading="Plushie Gun">HORSE_GUN</name>
                 <name>MISSILES_ROCK</name>
                 <name>LASER_BISHOP</name>
@@ -945,6 +944,17 @@
                     <name wikiHeading="Clone Cannon">CLONE_CANNON_AMPERE</name>
             </blueprintList>
 
+
+        <!--
+            Event Weapons (Chaos)
+            https://ftlmultiverse.fandom.com/wiki/Event_Weapons
+        -->
+            <blueprintList wikiPage="Event Weapons#" name="LIST_WEAPONS_EVENT_LOOT_CHAOS_WIKI">
+                <name>BEAM_MADNESS</name>
+                <name>BEAM_MADNESS_ELITE</name>
+                <name>BEAM_MADNESS_VISION</name>
+            </blueprintList>
+        
         <!--
             Transport Loot
             https://ftlmultiverse.fandom.com/wiki/Transport_Loot
@@ -988,55 +998,61 @@
             </mod:findName>
 
         <!--
-            Renegade Loot
+            Renegade Loot (No Chaos)
             https://ftlmultiverse.fandom.com/wiki/Renegade_Loot
-            like as name="JUDGELIST_ROCK_RENEGADE_LOOT" without drones
         -->
             <blueprintList wikiPage="Renegade Loot#" name="LIST_WEAPONS_RENEGADE_LOOT_WIKI">
                 <name>BEAM_BATTERY</name>
-                <name>BEAM_BATTERY_CHAOS</name>
                 <name>BEAM_ADAPT_3</name>
-                <name>BEAM_ADAPT_3_CHAOS</name>
                 <name>BIG_ION</name>
-                <name>BIG_ION_CHAOS</name>
                 <name>BOMB_CONSERVRECYCLER</name>
-                <name>BOMB_CONSERVRECYCLER_CHAOS</name>
                 <name>BOMB_DRAIN</name>
-                <name>BOMB_DRAIN_CHAOS</name>
                 <name>FROST_CHARGEGUN</name>
-                <name>FROST_CHARGEGUN_CHAOS</name>
                 <name>ION_CHAIN_CHARGEGUN</name>
-                <name>ION_CHAIN_CHARGEGUN_CHAOS</name>
                 <name>MISSILES_OBSIDIAN</name>
                 <name wikiName="Obsidian Missiles (Enemy)" wikiHeading="Obsidian Missiles (Enemy)">MISSILES_OBSIDIAN_ENEMY</name>
-                <name>MISSILES_OBSIDIAN_CHAOS</name>
                 <name>SHOTGUN_STEEL</name>
-                <name>SHOTGUN_STEEL_CHAOS</name>
                 <name wikiName="Toggle Flak (F)" wikiHeading="Toggle Flak (F)">SHOTGUN_TOGGLE_FIRE</name>
                 <name wikiName="Toggle Flak (E)" wikiHeading="Toggle Flak (E)">SHOTGUN_TOGGLE_ION</name>
                 <name wikiName="Toggle Flak (R)" wikiHeading="Toggle Flak (R)">SHOTGUN_TOGGLE_TOXIC</name>
-                <name>SHOTGUN_TOGGLE_CHAOS</name>
                 <name>SHELL_LAUNCHER</name>
-                <name>SHELL_LAUNCHER_CHAOS</name>
                 <name>SLOTGUN</name>
-                <name>SLOTGUN_CHAOS</name>
                 <name>UNSPOOLER</name>
-                <name>UNSPOOLER_CHAOS</name>
                 <name>SNIPER</name>
                 <name wikiName="'Nevermiss' (Enemy)" wikiHeading="'Nevermiss' (Enemy)">SNIPER_ENEMY</name>
-                <name>SNIPER_CHAOS</name>
                 <name>MINELAUNCHER_GIANT</name>
                 <name wikiName="'Pharaoh' Mine Launcher (Enemy)" wikiHeading="'Pharaoh' Mine Launcher (Enemy)">MINELAUNCHER_GIANT_ENEMY</name>
-                <name>MINELAUNCHER_GIANT_CHAOS</name>
                 <name>LASER_LIGHT_CHARGEGUN</name>
-                <name>LASER_LIGHT_CHARGEGUN_CHAOS</name>
                 <name>CRYSTAL_BURST_FIRE</name>
-                <name>CRYSTAL_BURST_FIRE_CHAOS</name>
                 <name>STRAWBERRY</name>
-                <name>STRAWBERRY_CHAOS</name>
                 <name>BOMB_ELITE</name>
-                <name>BOMB_ELITE_CHAOS</name>
                 <name>GASTER_BLASTER</name>
+            </blueprintList>
+
+        <!--
+            Renegade Loot (Chaos)
+            https://ftlmultiverse.fandom.com/wiki/Renegade_Loot
+        -->
+            <blueprintList wikiPage="Renegade Loot#" name="LIST_WEAPONS_RENEGADE_LOOT_CHAOS_WIKI">
+                <name>BEAM_BATTERY_CHAOS</name>
+                <name>BEAM_ADAPT_3_CHAOS</name>
+                <name>BIG_ION_CHAOS</name>
+                <name>BOMB_CONSERVRECYCLER_CHAOS</name>
+                <name>BOMB_DRAIN_CHAOS</name>
+                <name>FROST_CHARGEGUN_CHAOS</name>
+                <name>ION_CHAIN_CHARGEGUN_CHAOS</name>
+                <name>MISSILES_OBSIDIAN_CHAOS</name>
+                <name>SHOTGUN_STEEL_CHAOS</name>
+                <name>SHOTGUN_TOGGLE_CHAOS</name>
+                <name>SHELL_LAUNCHER_CHAOS</name>
+                <name>SLOTGUN_CHAOS</name>
+                <name>UNSPOOLER_CHAOS</name>
+                <name>SNIPER_CHAOS</name>
+                <name>MINELAUNCHER_GIANT_CHAOS</name>
+                <name>LASER_LIGHT_CHARGEGUN_CHAOS</name>
+                <name>CRYSTAL_BURST_FIRE_CHAOS</name>
+                <name>STRAWBERRY_CHAOS</name>
+                <name>BOMB_ELITE_CHAOS</name>
                 <name>GASTER_BLASTER_CHAOS</name>
             </blueprintList>
 
