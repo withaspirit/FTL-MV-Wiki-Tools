@@ -400,6 +400,21 @@ LIST_WEAPONS_EVENT_LOOT_WIKI:
   - '[[Rarity]]'
   - Speed
   # - Other
+LIST_WEAPONS_EVENT_LOOT_CHAOS_WIKI:
+  - Weapon
+  - S
+  - C
+  - Pierce
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  - Other
 LIST_WEAPONS_TRANSPORT_LOOT_WIKI:
   - Weapon
   - H
@@ -455,6 +470,25 @@ LIST_WEAPONS_RENEGADE_LOOT_WIKI:
   - '[[Rarity]]'
   - Speed
   # - Other
+LIST_WEAPONS_RENEGADE_LOOT_CHAOS_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  - Other
 LIST_WEAPONS_CURA_LOOT_WIKI:
   - Weapon
   - H

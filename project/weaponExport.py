@@ -91,6 +91,7 @@ class Weapon:
         self.getCost()
         self.getRarity()
         self.getSpeed()
+        self.getOther()
 
         return '\n| '.join(self.columnValues)
 
@@ -284,9 +285,6 @@ class Weapon:
             
         self.columnValues.append(columnText)
         return columnText
-
-    def getSilencedEffect(self) -> str:
-
 
     def getPierce(self) -> str:
         if 'Pierce' not in self.validColumns:
@@ -516,6 +514,26 @@ class Weapon:
             columnText = ''
         self.columnValues.append(columnText)
         return columnText
+
+    def getOther(self) -> str:
+        if 'Other' not in self.validColumns:
+            return
+        columnText = ''
+        columnText += self.getSilencedEffect()
+        # effectsList = []
+        # effectsList.append(self.getSilencedEffect())
+        # columnText += ', '.join(effectsList)
+        
+        self.columnValues.append(columnText)
+        return columnText
+
+    def getSilencedEffect(self) -> str:
+        statBoostsElem = self.blueprint.find('statBoosts')
+        if statBoostsElem is not None:
+            for statBoostElem in statBoostsElem.findall('statBoost'):
+                if statBoostElem.get('name') == 'silenced':
+                    return 'Silenced'
+        return ''
 
     def getElementText(self, tag: str) -> str:
         elem = self.blueprint.find(tag)

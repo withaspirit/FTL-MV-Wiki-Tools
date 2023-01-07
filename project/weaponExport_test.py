@@ -246,3 +246,12 @@ def testGetRarity(blueprintName, expected):
 def testGetSpeed(blueprintName, expected):
     weapon = getWeapon(blueprintName)
     assert weapon.getSpeed() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    ('LASER_BURST_1', ''),
+    # silenced
+    ('BEAM_MADNESS', 'Silenced')
+])
+def testGetOther(blueprintName, expected):
+    weapon = getWeapon(blueprintName)
+    assert weapon.getOther() == expected
