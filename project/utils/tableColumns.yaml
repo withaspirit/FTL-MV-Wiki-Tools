@@ -400,6 +400,22 @@ LIST_WEAPONS_EVENT_LOOT_WIKI:
   - '[[Rarity]]'
   - Speed
   # - Other
+LIST_WEAPONS_EVENT_LOOT_CLONE_CANNON_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Other
 LIST_WEAPONS_EVENT_LOOT_CHAOS_WIKI:
   - Weapon
   - S
