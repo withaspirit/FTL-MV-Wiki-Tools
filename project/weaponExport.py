@@ -43,6 +43,16 @@ startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
 # TODO: faction column? (transport loot table)
 # TODO: chaotic weapon table
 
+# SPECIAL COLUMNS
+# TODO:
+# EVENT_WEAPONS: faction column ?
+# CLONE_CANNON: Table
+#
+# special effects:
+# ZOLTAN_DELETER
+# SALT_LAUNCHER
+# skip clone cannon, separate table?
+
 defaultSpeeds = {
     'MISSILES': '35',
     'LASER': '60',
@@ -83,19 +93,6 @@ class Weapon:
         self.getSpeed()
 
         return '\n| '.join(self.columnValues)
-
-# SPECIAL COLUMNS
-# TODO:
-# fire, breach, stun styling in each column
-# EVENT_WEAPONS: faction column ?
-# CLONE_CANNON: Table
-# silenced effect
-#
-# special effects:
-# ZOLTAN_DELETER
-# SALT_LAUNCHER
-# GASTER_BLASTER -> noSysDamage = false
-# skip clone cannon, separate table?
 
     def getWeapon(self):
         link = self.getWikiLink()
@@ -287,6 +284,9 @@ class Weapon:
             
         self.columnValues.append(columnText)
         return columnText
+
+    def getSilencedEffect(self) -> str:
+
 
     def getPierce(self) -> str:
         if 'Pierce' not in self.validColumns:
