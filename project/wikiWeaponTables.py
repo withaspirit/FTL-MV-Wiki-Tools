@@ -50,6 +50,7 @@ allColumns = [
     "Fire",
     "Breach",
     "Stun",
+    "FreeMissileChance",
     "Cost",
     "[[Rarity]]",
     "Speed",

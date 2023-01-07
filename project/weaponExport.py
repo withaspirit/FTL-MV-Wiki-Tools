@@ -16,7 +16,7 @@ icons = {
     'lockdown': '{{Lockdown}}',
     'non_drone_targetable': '{{NonDroneTargetable}}',
     'hullbust': '{{HullBust}}',
-    'freemissile': '{{FreeMissileChance|{0}}}'
+    # 'freemissile': '{{FreeMissileChance|{0}}}'
 }
 
 # Damage
@@ -77,6 +77,7 @@ class Weapon:
         self.getFireChance()
         self.getBreachChance()
         self.getStun()
+        self.getFreeMissileChance()
         self.getCost()
         self.getRarity()
         self.getSpeed()
@@ -272,12 +273,6 @@ class Weapon:
             if typeElem.text != 'BEAM':
                 columnText += '/'
             columnText += f'{missilesText}{icons["missile"]}'
-        
-        # freeMissileChance
-        freeMissileChanceText = self.getElementText('freeMissileChance')
-        if len(freeMissileChanceText) > 0:
-            freeMissileChance = int(freeMissileChanceText)
-            columnText += f'{icons["freemissile"].format(freeMissileChance)}'
 
         # accuracy
         accuracyMod = self.getElementText('accuracyMod')
@@ -466,6 +461,18 @@ class Weapon:
             columnText += ' (3s)'
         else:
             columnText += f' ({stunElem.text}s)'
+
+        self.columnValues.append(columnText)
+        return columnText
+
+    def getFreeMissileChance(self) -> str:
+        if 'FreeMissileChance' not in self.validColumns:
+            return
+        columnText = ''
+
+        freeMissileChanceText = self.getElementText('freeMissileChance')
+        if len(freeMissileChanceText) > 0:
+            columnText += freeMissileChanceText + '%'
 
         self.columnValues.append(columnText)
         return columnText

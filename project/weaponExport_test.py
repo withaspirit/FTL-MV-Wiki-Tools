@@ -1,4 +1,5 @@
-# to use this do 'python -m pip install pytest' in cmd
+# pytest must be installed to use this
+# install pytest: do 'python -m pip install pytest' in cmd
 # run command:  pytest project/
 import pytest
 import xml.etree.ElementTree
@@ -80,6 +81,7 @@ def testGetIonDamage(blueprintName, expected):
      # missile cost
     ('MISSILES_FREE', '1'),
     ('MISSILES_1', '1/1{{Missile}}'),
+    ('SLOTGUN_CHAOS', f'12/3{icons["missile"]}'),
     # beam not consuming missiles
     ('BEAM_ADAPT_3_CHAOS', '10{{Missile}}'),
     # <projectiles><projectile>.count
@@ -92,9 +94,6 @@ def testGetIonDamage(blueprintName, expected):
     ('SHOTGUN_CHARGE', '1-3'),
     # chargeLevel / missiles
     ('MISSILES_BURST', '1-3/1{{Missile}}'),
-    # freeMissileChance
-    ('KERNEL_1', f'2/1{icons["missile"]}{icons["freemissile"].format(35)}'),
-    ('SLOTGUN_CHAOS', f'12/3{icons["missile"]}{icons["freemissile"].format(75)}'),
     # accuracy
     ('BOMB_1', '1/1{{Missile}}{{Accuracy|30}}'),
     ('LOOT_MATH_2', '1/2{{Missile}}{{Accuracy|30}}'),
@@ -208,6 +207,14 @@ def testGetStun(blueprintName, expected):
 def testGetStun(blueprintName, expected):
     weapon = getWeapon(blueprintName)
     assert weapon.getStun() == expected
+
+@pytest.mark.parametrize('blueprintName, expected', [
+    # freeMissileChance
+    ('KERNEL_1', f'35%'),
+])
+def testGetFreeMissileChance(blueprintName, expected):
+    weapon = getWeapon(blueprintName)
+    assert weapon.getFreeMissileChance() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', '40 {{Scrap}}'),
