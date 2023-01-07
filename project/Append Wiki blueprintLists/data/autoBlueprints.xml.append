@@ -874,76 +874,79 @@
                 <name wikiName="'The Debugger'" wikiHeading="Gatling Gun">GATLING_VERSION8</name>
                 <name>GATLING_VERSIONF</name>
                 <name wikiName="Energy Missile" wikiHeading="Energy Missiles">MISSILES_ENERGY</name>
-                <!--
-                    Clone Cannon
-                    The same as LIST_CLONE_CANNON found in blueprints.xml
-                -->
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BABYORCHID</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BIRD</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ANCIENT</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AVATAR</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_BISHOP</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CHIEF</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CLAN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_COMMANDO</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CRUSADER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CRYSTAL</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_CULTIST</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DEFEND</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DUSK</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGINEER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGI</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_FREEMANTIS</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WARLORD</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM_ALPHA</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL_ALPHA</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE_ALPHA</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH_ALPHA</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HATCH</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HUMAN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_LANIUS</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MANTIS</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MEDIC</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_MONK</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ORCHID</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_OUTCAST</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PONY</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PONYC</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_PEACE</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_QUEEN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RADIANT</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RADICAL</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_DEVORAK</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ROCK</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SABO</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_RANGER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SENTINEL</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SEPARATIST</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_GUARDIAN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MECH</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MEDIC</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SSLG</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SLUG</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_HEKTAR</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SOLDIER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SPIDER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SUZERAIN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_SYMBIOTE</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WEAVER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_WELDER</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AUGMENTED</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_VAMPWEED</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_ZOLTAN</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_LEECH</name>
-                    <name wikiHeading="Clone Cannon">CLONE_CANNON_AMPERE</name>
             </blueprintList>
 
+        <!--
+            Clone Cannons
+            https://ftlmultiverse.fandom.com/wiki/Event_Weapons
+            The same as LIST_CLONE_CANNON found in blueprints.xml
+        -->
+            <blueprintList wikiPage="Event Weapons#" name="LIST_WEAPONS_EVENT_LOOT_CLONE_CANNON_WIKI">
+                <name wikiHeading="Clone Cannon">CLONE_CANNON</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_BABYORCHID</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_BIRD</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ANCIENT</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_AVATAR</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_BISHOP</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_CHIEF</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_CLAN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_COMMANDO</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_CRUSADER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_CRYSTAL</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_CULTIST</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_DEFEND</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_DUSK</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGINEER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ENGI</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_FREEMANTIS</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_WARLORD</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_PHANTOM_ALPHA</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_GOUL_ALPHA</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_MARE_ALPHA</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_WRAITH_ALPHA</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_HATCH</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_HUMAN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_LANIUS</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_MANTIS</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_MEDIC</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_MONK</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ORCHID</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_OUTCAST</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_PONY</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_PONYC</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_PEACE</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_QUEEN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_RADIANT</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_RADICAL</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_DEVORAK</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ROCK</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SABO</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_RANGER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SENTINEL</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SEPARATIST</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_GUARDIAN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MECH</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SHELL_MEDIC</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SSLG</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SLUG</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_HEKTAR</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SOLDIER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SPIDER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SUZERAIN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_SYMBIOTE</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_WEAVER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_WELDER</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_AUGMENTED</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_VAMPWEED</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_ZOLTAN</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_LEECH</name>
+                <name wikiHeading="Clone Cannon">CLONE_CANNON_AMPERE</name>
+            </blueprintList>
 
         <!--
             Event Weapons (Chaos)
