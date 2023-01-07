@@ -91,9 +91,9 @@ def formatColumnHeaders(columns: list) -> str:
         else:
             columnList.append(f'rowspan="2" |{column}')
 
-    # add second row
-    columnHeader = '|-\n!' + '\n! '.join(columnList)
-    # add first row
+    # add second row (column names)
+    columnHeader = '|-\n! ' + '\n! '.join(columnList)
+    # add first row (damage types)
     columnHeader += '\n|-\n!' + '\n!'.join(dmgTypeList)
     return columnHeader
 
