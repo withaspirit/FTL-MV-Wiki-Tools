@@ -120,7 +120,7 @@ LIST_WEAPONS_MINELAUNCHERS_WIKI:
   - Fire
   - Breach
   - Stun
-  - FreeMissileChance
+  - Free Missile Chance
   - Cost
   - '[[Rarity]]'
   - Speed
@@ -165,7 +165,7 @@ LIST_WEAPONS_KERNEL_WIKI:
   - Fire
   - Breach
   - Stun
-  - FreeMissileChance
+  - Free Missile Chance
   - Cost
   - '[[Rarity]]'
   - Speed
@@ -341,7 +341,7 @@ GIFTLIST_SPORE:
   - Fire
   - Breach
   - Stun
-  - FreeMissileChance
+  - Free Missile Chance
   - Cost
   - '[[Rarity]]'
   # - Other
@@ -450,7 +450,7 @@ LIST_WEAPONS_RENEGADE_LOOT_WIKI:
   - Fire
   - Breach
   - Stun
-  - FreeMissileChance
+  - Free Missile Chance
   - Cost
   - '[[Rarity]]'
   - Speed

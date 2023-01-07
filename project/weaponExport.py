@@ -466,7 +466,7 @@ class Weapon:
         return columnText
 
     def getFreeMissileChance(self) -> str:
-        if 'FreeMissileChance' not in self.validColumns:
+        if 'Free Missile Chance' not in self.validColumns:
             return
         columnText = ''
 
