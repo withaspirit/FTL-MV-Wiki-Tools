@@ -1116,12 +1116,12 @@
                 <name>BEAM_HARDSCIFI</name>
                 <name>CRASH_LASER</name>
                 <name>LASER_BURST_SYLVAN</name>
-                <name>LASER_BURST_SYLVAN_DELAY</name>
+                <name wikiName="Uplifted BLII (Desync)" wikiHeading="Uplifted BLII (Desync)">LASER_BURST_SYLVAN_DELAY</name>
                 <name>LASER_BURST_5_SYLVAN</name>
                 <name>SHOTGUN_GOLD_3</name>
                 <name>GATLING_ANCIENT</name>
                 <name>PRIME_LASER</name>
-                <name>PRIME_LASER_DESYNC</name>
+                <name wikiName="Vindicator Laser (Desync)" wikiHeading="Vindicator Laser (Desync)">PRIME_LASER_DESYNC</name>
                 <name>AWESOME_LASER_RED</name>
                 <name>AWESOME_LASER_BLUE</name>
                 <name>AWESOME_LASER_GREEN</name>
