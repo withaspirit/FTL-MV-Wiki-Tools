@@ -419,7 +419,6 @@ LIST_WEAPONS_OBELISK_BEAM_WIKI:
   - S
   - C
   - Pierce
-  - Shots
   - Length
   - Power
   - Cooldown
@@ -540,6 +539,7 @@ LIST_WEAPONS_RENEGADE_LOOT_WIKI:
   - S
   - C
   - I
+  - Pierce
   - Shots
   - Length
   - Radius
