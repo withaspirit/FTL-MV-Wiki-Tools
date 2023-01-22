@@ -98,7 +98,11 @@ class Weapon:
     def getWeapon(self):
         link = self.getWikiLink()
         img = self.getImg()
-        columnText = f'{link}<br>[[File:{img}.png]]'
+        columnText = f'{link}<br>[[File:{img}'
+        if self.blueprintName == 'ION_PIERCE_DISCO':
+            columnText += '.gif]]'
+        else:
+            columnText += '.png]]'
 
         self.columnValues.append(columnText)
 
