@@ -824,6 +824,7 @@
             like blueprintList name="BLUELIST_OBELISK" without drones
             TODO: split up into different tables
         -->
+        <!--
             <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_WIKI">
                 <name>ANCIENT_LASER</name>
                 <name>ANCIENT_LASER_2</name>
@@ -844,6 +845,40 @@
                 <name>ANCIENT_FOCUS</name>
                 <name>ANCIENT_FOCUS_2</name>
                 <name>ROYAL_FOCUS</name>
+                <name>ANCIENT_ION_1</name>
+                <name>ANCIENT_ION_2</name>
+                <name>ROYAL_ION_2</name>
+            </blueprintList>
+        -->
+            <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_LASER_WIKI">
+                <name>ANCIENT_LASER</name>
+                <name>ANCIENT_LASER_2</name>
+                <name>ANCIENT_LASER_3</name>
+                <name>ROYAL_LASER_3</name>
+            </blueprintList>
+
+            <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_MISSILE_WIKI">
+                <name>ANCIENT_MISSILES</name>
+                <name>ROYAL_MISSILES</name>
+                <name>ANCIENT_BOMB</name>
+                <name>ROYAL_BOMB</name>
+                <name>ANCIENT_MINELAUNCHER</name>
+                <name>ANCIENT_STUN</name>
+            </blueprintList>
+
+            <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_BEAM_WIKI">
+                <name>ANCIENT_BEAM</name>
+                <name>ANCIENT_BEAM_2</name>
+                <name>ANCIENT_BEAM_3</name>
+                <name>ROYAL_BEAM_3</name>
+                <name>ANCIENT_HAVOC</name>
+                <name>ROYAL_HAVOC</name>
+                <name>ANCIENT_FOCUS</name>
+                <name>ANCIENT_FOCUS_2</name>
+                <name>ROYAL_FOCUS</name>
+            </blueprintList>
+
+            <blueprintList wikiPage="Aether Weapons#" name="LIST_WEAPONS_OBELISK_ION_WIKI">
                 <name>ANCIENT_ION_1</name>
                 <name>ANCIENT_ION_2</name>
                 <name>ROYAL_ION_2</name>
