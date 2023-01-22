@@ -114,8 +114,6 @@ allTableList = []
 
 allColumnSet = set(allColumns)
 
-# make this T/F 
-completeTable = False
 # iterate over each weapon list
 for blueprintList in bpLists:
 
