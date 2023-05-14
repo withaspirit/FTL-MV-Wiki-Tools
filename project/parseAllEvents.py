@@ -17,7 +17,7 @@ import json
 # current working directory
 cwd = os.path.dirname(os.path.abspath(__file__)) + "\\"
 # have THE FTL DAT file in this folder
-dataDir = '/FTL DAT/data/'
+dataDir = 'FTL DAT\\data\\'
 # create file path
 dataPath = cwd + dataDir
 
@@ -113,21 +113,55 @@ invalidsReqs = {
 reqEventMap = {}
 reqNameMap = {}
 
-indent = '    '
+dummyElement = ET.Element('dummy')
+
+def findElementByName(fileElement : ET.Element, tag : str, name : str):
+    if fileElement == dummyElement:
+        # search for element in files
+        # TODO: look into index for easier access
+        for fileName in fileNames:
+            newFileElement = ET.parse(dataPath + fileName).getroot()
+            elems = newFileElement.findall(f".//{tag}[@name='{name}']")
+            if len(elems) > 0:
+                # return last version of element
+                return elems[len(elems) - 1]
+    else:
+        elems = fileElement.findall(f".//{tag}[@name='{name}']")
+        if len(elems) > 0:
+            # return last version of element
+            return elems[len(elems) - 1]
+    return None
+
+indent = '*'
 # indent level is 0 by default
 # get the 'text' element from every event, choice, or eventList within an eventType
 parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
-def getChildText(element : ET.Element, reqSet : set, indentLevel : int = 0) -> str:
+def getChildText(element : ET.Element, reqSet : set, fileElement : ET.Element, indentLevel : int = 0) -> str:
     textToAdd = ''
 
     textElem = element.find('text')
     textElemText = ''
-    if textElem is not None and textElem.text is not None:
-        # append text with indent
-        textElemText = textElem.text
-        textToAdd += '\n' + (indent * indentLevel)
-        textToAdd += textElem.text
+    if textElem is not None:
+        if textElem.text is not None:
+            # append text with indent
+            textElemText = textElem.text
+            textToAdd += '\n' + (indent * indentLevel)
+            textToAdd += f"''{textElem.text}''"
+        
+        # textList
+        loadAttr = textElem.get('load')
+        if loadAttr is not None and len(loadAttr) > 0:
+            textToAdd += '\n' + (indent * indentLevel)
+            textToAdd += 'textList:'
+            textListElem = findElementByName(fileElement, 'textList', loadAttr)
+            if textListElem is None:
+                textListElem = findElementByName(dummyElement, 'textList', loadAttr)
 
+            for elem in textListElem.iter('text'):
+                textToAdd += '\n' + (indent * (indentLevel + 1))
+                textToAdd += f"''{elem.text}''"
+
+    # build list of req for blueOptionNames.json
     reqText = element.get('req')
     if reqText is not None and len(reqText) > 0:
         # prevent reqs with 'loc_' and 'ach_' from appearing
@@ -156,7 +190,7 @@ def getChildText(element : ET.Element, reqSet : set, indentLevel : int = 0) -> s
     # descend element tree
     for childElement in element:
         if childElement.tag in tagsWithTextChildren:
-            textToAdd += getChildText(childElement, reqSet, indentLevel + 1)
+            textToAdd += getChildText(childElement, reqSet, fileElement, indentLevel + 1)
 
     return textToAdd
 
@@ -190,7 +224,7 @@ for fileName in fileNames:
             reqSet = set()
             eventText = getChildText(childElem, reqSet)
             if len(eventText.strip()) > 0:
-                outputText += f'\n\nEVENT: {eventName}'
+                outputText += f'\n\n{childElem.tag}: {eventName}'
                 outputText += eventText
 
                 # add to map of reqs and events
