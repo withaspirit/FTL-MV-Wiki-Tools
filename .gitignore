@@ -11,6 +11,7 @@ __pycache__
 # data
 /project/old\ version
 /project/old\ data/
+
 # unreleased stuff
 /project/utils/*
 !/project/utils/vanillaMultiverseMap.json
