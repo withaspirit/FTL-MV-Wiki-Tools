@@ -218,13 +218,16 @@ for fileName in fileNames:
 
     # loop over all events in file
     for childElem in fileElement:
-        if childElem.tag in eventTypes:
-            eventName = childElem.get('name')
+        tag = childElem.tag
+        if tag in eventTypes:
+            # skip over duplicates
+            # eventName = childElem.get('name')
+            # eventElem = findElementByName(fileElement, tag, eventName)
 
             reqSet = set()
-            eventText = getChildText(childElem, reqSet)
+            eventText = getChildText(childElem, reqSet, fileElement)
             if len(eventText.strip()) > 0:
-                outputText += f'\n\n{childElem.tag}: {eventName}'
+                outputText += f'\n\n{eventElem.tag}: {eventName}'
                 outputText += eventText
 
                 # add to map of reqs and events
