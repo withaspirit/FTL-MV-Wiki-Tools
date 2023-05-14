@@ -136,7 +136,7 @@ indent = '*'
 # indent level is 0 by default
 # get the 'text' element from every event, choice, or eventList within an eventType
 parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
-def getChildText(element : ET.Element, reqSet : set, fileElement : ET.Element, indentLevel : int = 0) -> str:
+def getChildText(element : ET.Element, reqSet : set, fileElement : ET.Element, indentLevel : int) -> str:
     textToAdd = ''
 
     textElem = element.find('text')
@@ -225,7 +225,7 @@ for fileName in fileNames:
             # eventElem = findElementByName(fileElement, tag, eventName)
 
             reqSet = set()
-            eventText = getChildText(childElem, reqSet, fileElement)
+            eventText = getChildText(childElem, reqSet, fileElement, 0)
             if len(eventText.strip()) > 0:
                 outputText += f'\n\n{eventElem.tag}: {eventName}'
                 outputText += eventText
