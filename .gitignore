@@ -16,7 +16,9 @@ __pycache__
 !/project/utils/vanillaMultiverseMap.json
 /project/wikiShips.txt
 /project/compareVersions.txt
-
+/project/blueOptionNames.json
+/project/events.txt
+/project/blueOptions.txt
 /project/Append\ wikiElements
 
 /misc
