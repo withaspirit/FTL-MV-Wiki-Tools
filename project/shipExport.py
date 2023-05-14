@@ -295,14 +295,12 @@ class Ship:
         if not sysResistBool and not ionResistBool:
             return systemAppend
 
-        resistText = 'Resists '
         resistList = []
         if sysResistBool:
-            resistList.append('System')
+            resistList.append('{{SysDamageResist}}')
         if ionResistBool:
-            resistList.append('Ion')
-        resistText += ', '.join(resistList) + ' Damage'
-        systemAppend += f" ('''{resistText}''')"
+            resistList.append('{{IonDamageResist}}')
+        systemAppend += ' '.join(resistList)
         return systemAppend
 
     def getSystemName(self, name: str) -> str:
