@@ -58,7 +58,7 @@ fileNames = [
     "events_leech.xml",
     "events_lightspeed.xml",
     "events_lostsun.xml",
-    # "events_mantis.xml.append", # not well formed
+    "events_mantis.xml.append", # not well formed, remove ""
     "events_mechanical.xml",
     "events_morality.xml",
     "events_multiverse.xml",
@@ -87,15 +87,20 @@ fileNames = [
     "newEvents.xml.append"
 ]
 
+tagsWithTextChildren = {
+    'choice',
+    'event',
+    'eventList'
+}
+
 eventTypes = {
     'event',
     'eventList'
 }
 
-tagsWithTextChildren = {
-    'event',
-    'choice',
-    'eventList'
+loadEventTypes = {
+    'loadEvent',
+    'loadEventList',
 }
 
 invalidsReqs = {
@@ -108,6 +113,27 @@ invalidsReqs = {
     'prof'
 }
 
+
+# events to exlude loading when parsing through events
+passOverEvents = {
+    'LANIUS_TRADER_LIST'
+    'LANIUS_TRADER_LIST2' 
+    'COMBAT_CHECK_TOGGLE_LOAD'
+}
+
+excludedLoadEvents  = {
+    'COMBAT_CHECK' : 'Combat check.',
+    'COMBAT_CHECK_FLAGSHIP': 'COMBAT_CHECK_FLAGSHIP',
+    'COMBAT_CHECK_FAIL' : 'COMBAT_CHECK_FAIL',
+    'STORAGE_CHECK_AUG_PANDORA_OPEN' : 'STORAGE_CHECK_AUG_PANDORA_OPEN',
+    'STORAGE_CHECK' : 'STORAGE_CHECK',
+    'REFUGEE_TRADER' : 'REFUGEE_TRADER', # missing
+    'TUTORIAL_PART0' : 'TUTORIAL_PART0', # causes glitch
+}
+
+falseEventNames = {
+    'SAVE_CIVILIAN_LIST' : 'SAVE_CIVILIAN_LIST_LANIUS', # missing
+}
 
 # blue options
 reqEventMap = {}
@@ -132,12 +158,71 @@ def findElementByName(fileElement : ET.Element, tag : str, name : str):
             return elems[len(elems) - 1]
     return None
 
+# do in-file and other files search separately to optimize performance
+def getEvent(fileElement : ET.Element, name : str):
+    for tagType in eventTypes:
+        newEventElem = findElementByName(fileElement, tagType, name)
+        if newEventElem is not None:
+            return newEventElem
+
+    for tagType in eventTypes:
+        newEventElem = findElementByName(dummyElement, tagType, name)
+        if newEventElem is not None:
+            return newEventElem
+
+    raise Error(f'No event found: {name}')
+    return None
+
+# TODO: make this work
+def checkEventName(eventName : str, eventSet : set) -> str:
+    return eventName
+
+# TODO: indent function
 indent = '*'
 # indent level is 0 by default
 # get the 'text' element from every event, choice, or eventList within an eventType
 parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
-def getChildText(element : ET.Element, reqSet : set, fileElement : ET.Element, indentLevel : int) -> str:
+def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement : ET.Element, indentLevel : int) -> str:
     textToAdd = ''
+
+    # TODO: revisit
+    if element.tag in loadEventTypes:
+        return ''
+
+    if element.tag in eventTypes:
+        eventName = element.get('name')
+        if eventName is not None:
+            print('event: ' + eventName)
+            if eventName in eventSet:
+                return ''
+            elif eventName in excludedLoadEvents:
+                return excludedLoadEvents[eventName]
+            elif eventName in passOverEvents and len(eventSet) != 0:
+                return eventName
+
+            if eventName in falseEventNames:
+                eventName = falseEventNames[eventName]
+            else:
+                eventSet.add(eventName)
+            # print(eventName)
+
+        loadAttr = element.get('load')
+        if loadAttr is not None:
+            print('load: ' + loadAttr)
+            if loadAttr in eventSet:
+                return ''
+            elif loadAttr in excludedLoadEvents:
+                return excludedLoadEvents[loadAttr]
+            elif eventName in passOverEvents and len(eventSet) != 0:
+                return eventName
+
+            if loadAttr in falseEventNames:
+                loadAttr = falseEventNames[loadAttr]
+
+            # print(loadAttr)
+            newEventElem = getEvent(fileElement, loadAttr)
+            textToAdd += getChildText(newEventElem, reqSet, eventSet, fileElement, indentLevel + 1)
+            eventSet.add(eventName)
 
     textElem = element.find('text')
     textElemText = ''
@@ -190,7 +275,7 @@ def getChildText(element : ET.Element, reqSet : set, fileElement : ET.Element, i
     # descend element tree
     for childElement in element:
         if childElement.tag in tagsWithTextChildren:
-            textToAdd += getChildText(childElement, reqSet, fileElement, indentLevel + 1)
+            textToAdd += getChildText(childElement, reqSet, eventSet, fileElement, indentLevel + 1)
 
     return textToAdd
 
@@ -220,14 +305,12 @@ for fileName in fileNames:
     for childElem in fileElement:
         tag = childElem.tag
         if tag in eventTypes:
-            # skip over duplicates
-            # eventName = childElem.get('name')
-            # eventElem = findElementByName(fileElement, tag, eventName)
 
             reqSet = set()
-            eventText = getChildText(childElem, reqSet, fileElement, 0)
+            eventSet = set()
+            eventText = getChildText(childElem, reqSet, eventSet, fileElement, 0)
             if len(eventText.strip()) > 0:
-                outputText += f'\n\n{eventElem.tag}: {eventName}'
+                outputText += f'\n\n{childElem.tag}: {eventName}'
                 outputText += eventText
 
                 # add to map of reqs and events
@@ -235,7 +318,6 @@ for fileName in fileNames:
                     if req not in reqEventMap.keys():
                         reqEventMap.update({req : []})
                     reqEventMap[req].append(eventName)
-
 
 # eliminate duplicate values
 for req, names in reqNameMap.items():
