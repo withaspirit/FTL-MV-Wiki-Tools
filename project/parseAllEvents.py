@@ -103,6 +103,7 @@ loadEventTypes = {
     'loadEventList',
 }
 
+
 invalidsReqs = {
     'ach_',
     'loc_',
@@ -138,13 +139,15 @@ falseEventNames = {
     'SAVE_CIVILIAN_LIST' : 'SAVE_CIVILIAN_LIST_LANIUS', # missing
 }
 
+
 # blue options
 reqEventMap = {}
 reqNameMap = {}
+
 eventNameIndex = {}
 dummyElement = ET.Element('dummy')
 
-# watchout: MAGIC_HAT
+# TODO: MAGIC_HAT
 
 with open('utils\\eventNameIndex.json') as file:
     eventNameIndex = json.load(file)
@@ -181,10 +184,15 @@ def checkEventName(eventName : str, eventSet : set) -> str:
     return eventName
 
 # TODO: indent function
-indent = '*'
+# Adjust indent when finding recursive event
+defaultIndent = '*'
+
+def createIndent(indent : str, indentLevel : int):
+    return '\n' + (indent * (indentLevel))
+
 # indent level is 0 by default
-# get the 'text' element from every event, choice, or eventList within an eventType
 parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
+# get the 'text' element from every event, choice, or eventList within an eventType
 def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement : ET.Element, indentLevel : int) -> str:
     textToAdd = ''
 
@@ -194,30 +202,44 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
 
     if element.tag in eventTypes:
         eventName = element.get('name')
+        # should eventName and loadAttr be exclusive? loadAttr could be a textList
+        # TODO: find a better way to check this
         if eventName is not None:
             print('event: ' + eventName)
+            textToAdd += createIndent(defaultIndent, indentLevel)
+            textToAdd += f'{element.tag}: '
+
             if eventName in eventSet:
-                return ''
-            elif eventName in excludedLoadEvents:
-                return excludedLoadEvents[eventName]
+                textToAdd += eventName
+                return textToAdd
+            if eventName in excludedLoadEvents:
+                textToAdd += excludedLoadEvents[eventName]
+                return textToAdd
             elif eventName in passOverEvents and len(eventSet) != 0:
-                return eventName
+                textToAdd += eventName
+                return textToAdd
+
+            eventSet.add(eventName)
 
             if eventName in falseEventNames:
                 eventName = falseEventNames[eventName]
-            else:
-                eventSet.add(eventName)
-            # print(eventName)
+            textToAdd += eventName
 
+        # TODO: put this closer to textList?
         loadAttr = element.get('load')
         if loadAttr is not None:
-            print('load: ' + loadAttr)
+            # print('load: ' + loadAttr)
+            
+            loadText = createIndent(defaultIndent, indentLevel)
+            loadText += f'load {element.tag}: '
+
             if loadAttr in eventSet:
-                return ''
-            elif loadAttr in excludedLoadEvents:
-                return excludedLoadEvents[loadAttr]
-            elif eventName in passOverEvents and len(eventSet) != 0:
-                return eventName
+                return loadText + loadAttr
+
+            if loadAttr in excludedLoadEvents:
+                return loadText + excludedLoadEvents[loadAttr]
+            elif loadAttr in passOverEvents and len(eventSet) != 0: # events to exclude loading, make sure not the first event
+                return loadText + loadAttr
 
             if loadAttr in falseEventNames:
                 loadAttr = falseEventNames[loadAttr]
@@ -225,7 +247,6 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
             # print(loadAttr)
             newEventElem = getEvent(fileElement, loadAttr)
             textToAdd += getChildText(newEventElem, reqSet, eventSet, fileElement, indentLevel + 1)
-            eventSet.add(eventName)
             eventSet.add(loadAttr)
 
     textElem = element.find('text')
@@ -234,20 +255,20 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
         if textElem.text is not None:
             # append text with indent
             textElemText = textElem.text
-            textToAdd += '\n' + (indent * indentLevel)
+            textToAdd += createIndent(defaultIndent, indentLevel)
             textToAdd += f"''{textElem.text}''"
         
         # textList
         loadAttr = textElem.get('load')
         if loadAttr is not None and len(loadAttr) > 0:
-            textToAdd += '\n' + (indent * indentLevel)
-            textToAdd += 'textList:'
+            textToAdd += createIndent(defaultIndent, indentLevel)
+            textToAdd += f'textList: {loadAttr}'
             textListElem = findElementByName(fileElement, 'textList', loadAttr)
             if textListElem is None:
                 textListElem = findElementByName(dummyElement, 'textList', loadAttr)
 
             for elem in textListElem.iter('text'):
-                textToAdd += '\n' + (indent * (indentLevel + 1))
+                textToAdd += createIndent(defaultIndent, indentLevel + 1)
                 textToAdd += f"''{elem.text}''"
 
     # build list of req for blueOptionNames.json
@@ -300,6 +321,7 @@ def writeToFile(fileName: str, fileText: str):
 
 outputText = ''
 
+
 for fileName in fileNames:
     outputText += f'\n\nFILE: {fileName}\n'
     # print(fileName) # see which file causes malfunction
@@ -314,7 +336,7 @@ for fileName in fileNames:
             eventSet = set()
             eventText = getChildText(childElem, reqSet, eventSet, fileElement, 0)
             if len(eventText.strip()) > 0:
-                outputText += f'\n\n{childElem.tag}: {eventName}'
+                outputText += f'\n\n'
                 outputText += eventText
 
                 # add to map of reqs and events
