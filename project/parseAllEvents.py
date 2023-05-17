@@ -58,7 +58,7 @@ fileNames = [
     "events_leech.xml",
     "events_lightspeed.xml",
     "events_lostsun.xml",
-    "events_mantis.xml.append", # not well formed, remove ""
+    "events_mantis.xml.append", # not well formed, remove ""OLD ... on line 506
     "events_mechanical.xml",
     "events_morality.xml",
     "events_multiverse.xml",
@@ -90,7 +90,7 @@ fileNames = [
 tagsWithTextChildren = {
     'choice',
     'event',
-    'eventList'
+    'eventList',
 }
 
 eventTypes = {
@@ -122,13 +122,16 @@ passOverEvents = {
 }
 
 excludedLoadEvents  = {
-    'COMBAT_CHECK' : 'Combat check.',
+    'COMBAT_CHECK' : 'COMBAT_CHECK',
     'COMBAT_CHECK_FLAGSHIP': 'COMBAT_CHECK_FLAGSHIP',
     'COMBAT_CHECK_FAIL' : 'COMBAT_CHECK_FAIL',
     'STORAGE_CHECK_AUG_PANDORA_OPEN' : 'STORAGE_CHECK_AUG_PANDORA_OPEN',
     'STORAGE_CHECK' : 'STORAGE_CHECK',
     'REFUGEE_TRADER' : 'REFUGEE_TRADER', # missing
     'TUTORIAL_PART0' : 'TUTORIAL_PART0', # causes glitch
+    'ROCK_SLUG_ARGUMENT_NEBULA' : 'ROCK_SLUG_ARGUMENT_NEBULA', # error
+    'BOARDERS_MANTIS' : 'BOARDERS_MANTIS', # TODO look
+    'BOARDERS_ZOLTAN' : 'BOARDERS_ZOLTAN',
 }
 
 falseEventNames = {
@@ -138,25 +141,25 @@ falseEventNames = {
 # blue options
 reqEventMap = {}
 reqNameMap = {}
-
+eventNameIndex = {}
 dummyElement = ET.Element('dummy')
+
+# watchout: MAGIC_HAT
+
+with open('utils\\eventNameIndex.json') as file:
+    eventNameIndex = json.load(file)
 
 def findElementByName(fileElement : ET.Element, tag : str, name : str):
     if fileElement == dummyElement:
-        # search for element in files
-        # TODO: look into index for easier access
-        for fileName in fileNames:
-            newFileElement = ET.parse(dataPath + fileName).getroot()
-            elems = newFileElement.findall(f".//{tag}[@name='{name}']")
-            if len(elems) > 0:
-                # return last version of element
-                return elems[len(elems) - 1]
-    else:
-        elems = fileElement.findall(f".//{tag}[@name='{name}']")
-        if len(elems) > 0:
-            # return last version of element
-            return elems[len(elems) - 1]
-    return None
+        fileNameList = eventNameIndex[name]
+        if fileNameList is None:
+            return ''
+        fileElement = ET.parse(dataPath + fileNameList[0]).getroot()
+
+    elems = fileElement.findall(f".//{tag}[@name='{name}']")
+    if len(elems) > 0:
+        # return last version of element
+        return elems[len(elems) - 1]
 
 # do in-file and other files search separately to optimize performance
 def getEvent(fileElement : ET.Element, name : str):
@@ -223,6 +226,7 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
             newEventElem = getEvent(fileElement, loadAttr)
             textToAdd += getChildText(newEventElem, reqSet, eventSet, fileElement, indentLevel + 1)
             eventSet.add(eventName)
+            eventSet.add(loadAttr)
 
     textElem = element.find('text')
     textElemText = ''
