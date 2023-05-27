@@ -499,6 +499,7 @@ LIST_WEAPONS_EVENT_LOOT_CHAOS_WIKI:
   - Other
 LIST_WEAPONS_TRANSPORT_LOOT_WIKI:
   - Weapon
+  - Faction
   - H
   - S
   - C

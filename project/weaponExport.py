@@ -62,6 +62,31 @@ defaultSpeeds = {
     'BEAM': '5'
 }
 
+factionWeapons = {
+    'LOOT_CIVILIAN_1' : 'Civilian',
+    'LOOT_MILITIA_1' : 'Militia',
+    'LOOT_FEDERATION_1' : 'Federation',
+    'LOOT_COALITION_1' : 'Coalition',
+    'LOOT_DUSKBRINGER_1' : 'Free Mantis',
+    'LOOT_FREEMANTIS_1' : 'Duskbringers',
+    'LOOT_LOSTSUN_1' : 'Lost Suns',
+    'LOOT_LOSTSUN_2' : 'Lost Suns',
+    'LOOT_MANTIS_1' : 'Hive Mantis',
+    'LOOT_MANTIS_2' : 'Hive Mantis',
+    'LOOT_REBEL_1' : 'Rebellion',
+    'LOOT_ROCK_1' : 'Rock',
+    'LOOT_ZOLTAN_1' : 'Zoltan',
+    'LOOT_ZOLTAN_2' : 'Zoltan',
+    'LOOT_SLUG_1' : 'Slug',
+    'LOOT_CLAN_1' : 'Clan',
+    'LOOT_KNIGHT_1' : 'Knight',
+    'LOOT_SHELL_1' : 'Shell',
+    'LOOT_LEECH_1' : 'Leech',
+    'LOOT_CULTIST_1' : 'Cultist',
+    'LOOT_DYNASTY_1' : 'Dynasty',
+    'LOOT_LANIUS_1' : 'Lanius',
+}
+
 class Weapon:
 
     validColumns = {}
@@ -76,6 +101,7 @@ class Weapon:
 
     def toString(self) -> str:
         self.getWeapon()
+        self.getFaction()
         self.getHullDamage()
         self.getSysDamage()
         self.getCrewDamage()
@@ -113,6 +139,13 @@ class Weapon:
 
     def getImg(self) -> str:
         return self.blueprint.find('.//weaponArt').text
+    
+    def getFaction(self) -> str:
+        if 'Faction' not in self.validColumns:
+            return
+        columnText = factionWeapons[self.blueprintName]
+        self.columnValues.append(columnText)
+        return columnText
 
     def getHullDamage(self) -> str:
         if 'H' not in self.validColumns:
