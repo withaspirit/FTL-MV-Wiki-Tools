@@ -61,7 +61,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
-    ('BEAM_REPAIR', '-15'), # <damage>-2</damage> <persDamage>1</persDamage>
+    ('BEAM_REPAIR', '15'), # <damage>-2</damage> <persDamage>1</persDamage>
     ('BOMB_HEAL_SYSTEM', ''), # <persDamage>0</persDamage>
     ('BOMB_HEAL', '-60'), #  <damage>0</damage>, <persDamage>-4</persDamage>
     ('LASER_LIGHT', ''), # , <damage>1</damage>, <persDamage>-1</persDamage>
