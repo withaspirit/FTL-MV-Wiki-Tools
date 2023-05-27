@@ -16,8 +16,8 @@ import json
 
 # current working directory
 cwd = os.path.dirname(os.path.abspath(__file__)) + "\\"
-# have THE FTL DAT file in this folder
-dataDir = 'FTL DAT\\data\\'
+# have THE FTL DAT file unzipped in this folder
+dataDir = 'FTL DAT ZIP\\data\\'
 # create file path
 dataPath = cwd + dataDir
 
@@ -87,19 +87,20 @@ fileNames = [
     "newEvents.xml.append"
 ]
 
+# AKA tags to look at
 tagsWithTextChildren = {
     'choice',
     'event',
     'eventList',
+    'loadEvent',
 }
 
 eventTypes = {
     'event',
-    'eventList'
+    'eventList',
 }
 
 loadEventTypes = {
-    'loadEvent',
     'loadEventList',
 }
 
@@ -115,17 +116,76 @@ invalidsReqs = {
 }
 
 
-# events to exlude loading when parsing through events
-passOverEvents = {
-    'LANIUS_TRADER_LIST'
-    'LANIUS_TRADER_LIST2' 
-    'COMBAT_CHECK_TOGGLE_LOAD'
+# events to exclude loading when parsing through events
+# only want these being displayed once
+# how do i tell which one of these events are recursive text without going through
+# each of the them individually
+# on the wiki, some events have their own page, while other events are only used within other events and are on the same page as those events
+
+eventsToSkip = {
+    'COMBAT_CHECK',
+    'COMBAT_CHECK_FLAGSHIP',
+    'STORAGE_CHECK',
+    
+    'COMBAT_CHECK_TOGGLE_LOAD',
+    'REROUTE_MENU',
+    'DETECTIVE_EVIDENCE_MENU_LOAD',
+    'TRUE_VICTORY_LOAD',
+    'LOAD_ATLAS',
+    'LOAD_ATLAS_MARKER',
+    'ATLAS_MENU',
+    'ATLAS_MENU_NOEQUIPMENT',
+
+    'LANIUS_TRADER_LIST',
+    'LANIUS_TRADER_LIST2', 
+    'LANIUS_TRADER',
+
+    'HIGH_SCAN_TERRAFORMING'
+
+    'THE_JUDGES_ZOLTAN_ADVICE',
+    'LAST_STAND_START_2',
+    'SLAVER_BETRAYAL_SLUG_BETRAY',
+    'GUARD_ESCAPE',
+    'GUARD_MIND',
+    'GUARD_CLOAK',
+    'GUARD_CIVILIAN_INTERACT',
+    'GUARD_LEECH_INTERACT',
+
+    'STORE_LOAD_ZOLTAN',
+    'STORE_LOAD_GENERIC',
+    'STORE_LOAD_ENGI',
+    'STORE_LOAD_CRYSTAL',
+    'STORE_LOAD_NOSYS',
+    'STORE_LOAD_FREEMANTIS',
+    'STORE_LOAD_ORCHID',
+    'STORE_LOAD_MANTIS',
+    'STORE_LOAD_MERCHANTS_LASERS',
+    'STORE_LOAD_MERCHANTS_MISSILES',
+    'STORE_LOAD_MERCHANTS_IONS',
+    'STORE_LOAD_CRYSTAL_MORECRYSTAL',
+
+    'EMPTY_STATION2',
+    'PIRACY_LIST',
+    'PIRACY_LIST_GENERIC',
+    # 'ITEMS_ROCK',
+    # 'ITEMS_ROCKHOME',
+
+    # eventLists
+    'EXIT_LIST_CIVILIAN',
+    'EXIT_LIST_ZOLTAN'
+}
+
+
+textListsToSkip = {
+    'TEXT_LIGHTSPEED',
+    'TEXT_ENCOUNTER_REBEL',
 }
 
 excludedLoadEvents  = {
     'COMBAT_CHECK' : 'COMBAT_CHECK',
     'COMBAT_CHECK_FLAGSHIP': 'COMBAT_CHECK_FLAGSHIP',
     'COMBAT_CHECK_FAIL' : 'COMBAT_CHECK_FAIL',
+    'LOAD_ATLAS' : 'LOAD_ATLAS',
     'STORAGE_CHECK_AUG_PANDORA_OPEN' : 'STORAGE_CHECK_AUG_PANDORA_OPEN',
     'STORAGE_CHECK' : 'STORAGE_CHECK',
     'REFUGEE_TRADER' : 'REFUGEE_TRADER', # missing
@@ -133,6 +193,12 @@ excludedLoadEvents  = {
     'ROCK_SLUG_ARGUMENT_NEBULA' : 'ROCK_SLUG_ARGUMENT_NEBULA', # error
     'BOARDERS_MANTIS' : 'BOARDERS_MANTIS', # TODO look
     'BOARDERS_ZOLTAN' : 'BOARDERS_ZOLTAN',
+    'MORALITY_UPDATE_GENERAL' : 'MORALITY_UPDATE_GENERAL',
+    # ????
+    'NEUTRAL_ROCKHOME_GENERIC' : 'NEUTRAL_ROCKHOME_GENERIC',
+    'NEUTRAL_ROCKHOME_UNIQUE' : 'NEUTRAL_ROCKHOME_UNIQUE',
+    # 'HOSTILE_ROCKHOME',
+    # 'ITEMS_ROCKHOME',
 }
 
 falseEventNames = {
@@ -143,11 +209,10 @@ falseEventNames = {
 # blue options
 reqEventMap = {}
 reqNameMap = {}
-
 eventNameIndex = {}
 dummyElement = ET.Element('dummy')
 
-# TODO: MAGIC_HAT
+# watchout: MAGIC_HAT
 
 with open('utils\\eventNameIndex.json') as file:
     eventNameIndex = json.load(file)
@@ -191,63 +256,72 @@ def createIndent(indent : str, indentLevel : int):
     return '\n' + (indent * (indentLevel))
 
 # indent level is 0 by default
-parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
 # get the 'text' element from every event, choice, or eventList within an eventType
+parenthesizedTextRegexp = re.compile('(?<=\()(.*?)(?=\))') # text between brackets
 def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement : ET.Element, indentLevel : int) -> str:
     textToAdd = ''
-
+    # print(ET.tostring(element, method='xml'))
     # TODO: revisit
     if element.tag in loadEventTypes:
         return ''
 
     if element.tag in eventTypes:
+
         eventName = element.get('name')
         # should eventName and loadAttr be exclusive? loadAttr could be a textList
         # TODO: find a better way to check this
         if eventName is not None:
-            print('event: ' + eventName)
+            # print('event: ' + eventName)
             textToAdd += createIndent(defaultIndent, indentLevel)
             textToAdd += f'{element.tag}: '
 
             if eventName in eventSet:
                 textToAdd += eventName
                 return textToAdd
+                      
             if eventName in excludedLoadEvents:
                 textToAdd += excludedLoadEvents[eventName]
                 return textToAdd
-            elif eventName in passOverEvents and len(eventSet) != 0:
+            elif eventName in eventsToSkip and len(eventSet) != 0:
                 textToAdd += eventName
                 return textToAdd
-
+     
             eventSet.add(eventName)
 
             if eventName in falseEventNames:
                 eventName = falseEventNames[eventName]
             textToAdd += eventName
+        
 
-        # TODO: put this closer to textList?
+    # TODO: put this closer to textList?
+    loadAttr = None
+    if element.tag in eventTypes:
         loadAttr = element.get('load')
-        if loadAttr is not None:
-            # print('load: ' + loadAttr)
-            
-            loadText = createIndent(defaultIndent, indentLevel)
-            loadText += f'load {element.tag}: '
+    if element.tag == 'loadEvent':
+        # print('loadEvent: ' + element.text)
+        loadAttr = element.text
+    # elif element.tag = 'loadEventList':
+    #     loadAttr = element.get('default')
+    if loadAttr is not None:
+        loadText = createIndent(defaultIndent, indentLevel)
+        loadText += f'load {element.tag}: '
 
-            if loadAttr in eventSet:
-                return loadText + loadAttr
+        if loadAttr in eventSet:
+            return loadText + loadAttr
+        # textToAdd += createIndent(defaultIndent, indentLevel + 1)
+        # textToAdd += 'event: '
+        if loadAttr in excludedLoadEvents:
+            return loadText + excludedLoadEvents[loadAttr]
+        elif loadAttr in eventsToSkip and len(eventSet) != 0: # events to exclude loading, make sure not the first event
+            return loadText + loadAttr
 
-            if loadAttr in excludedLoadEvents:
-                return loadText + excludedLoadEvents[loadAttr]
-            elif loadAttr in passOverEvents and len(eventSet) != 0: # events to exclude loading, make sure not the first event
-                return loadText + loadAttr
+        if loadAttr in falseEventNames:
+            loadAttr = falseEventNames[loadAttr]
 
-            if loadAttr in falseEventNames:
-                loadAttr = falseEventNames[loadAttr]
-
-            # print(loadAttr)
-            newEventElem = getEvent(fileElement, loadAttr)
-            textToAdd += getChildText(newEventElem, reqSet, eventSet, fileElement, indentLevel + 1)
-            eventSet.add(loadAttr)
+        # print(loadAttr)
+        newEventElem = getEvent(fileElement, loadAttr)
+        textToAdd += getChildText(newEventElem, reqSet, eventSet, fileElement, indentLevel)
+        eventSet.add(loadAttr)
 
     textElem = element.find('text')
     textElemText = ''
@@ -330,7 +404,9 @@ for fileName in fileNames:
     # loop over all events in file
     for childElem in fileElement:
         tag = childElem.tag
+        eventName = ''
         if tag in eventTypes:
+            eventName = childElem.get('name')
 
             reqSet = set()
             eventSet = set()
