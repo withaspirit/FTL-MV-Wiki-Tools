@@ -5,6 +5,8 @@ __pycache__
 # \ to preserve space character
 /project/FTL\ DAT/*
 !/project/FTL\ DAT/placeholder.txt
+/project/FTL\ DAT\ ZIP/*
+!/project/FTL\ DAT\ ZIP/placeholder.txt
 
 # environment
 /project/__pycache__
