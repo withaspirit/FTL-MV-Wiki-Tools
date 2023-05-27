@@ -23,3 +23,6 @@ __pycache__
 /project/Append\ wikiElements
 
 /misc
+project/events.txt
+project/blueOptions.txt
+project/blueOptionNames.json
