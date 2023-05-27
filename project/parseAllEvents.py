@@ -248,7 +248,6 @@ def getEvent(fileElement : ET.Element, name : str):
 def checkEventName(eventName : str, eventSet : set) -> str:
     return eventName
 
-# TODO: indent function
 # Adjust indent when finding recursive event
 defaultIndent = '*'
 
