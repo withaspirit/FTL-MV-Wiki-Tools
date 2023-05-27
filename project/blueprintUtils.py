@@ -186,8 +186,8 @@ modularWeaponEffects = {
     'LOCKDOWN': 'Lockdown',
     'PIERCE': 'Pierce',
     'STUN': 'Neural',
-    'FIRE': 'Fire',
-    'HULL': 'Hull',
+    'FIRE': 'Firestarter',
+    'HULL': 'Hullbuster',
     'ACCURACY': 'Accuracy',
     'POWER': 'Power'
 }
