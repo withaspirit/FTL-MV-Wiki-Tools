@@ -197,6 +197,7 @@ class Weapon:
     }
     # Adds hull damage to damage of damageType (except for ion)
     # also applies boost effects for sys, pers, ion
+    # could be refactored
     def getDamagePlusXDamage(self, damageType: str) -> str:
         columnText = ''
         if damageType in self.damageDisablers and self.getElementText(self.damageDisablers[damageType]) == 'true':
