@@ -135,7 +135,7 @@ class Weapon:
             return
 
         columnText = self.getElementText('damage')
-        if columnText in self.invalidSysDamageValues:
+        if columnText == '0':
             columnText = ''
         elif len(columnText) > 0:
             damage = float(columnText)
@@ -147,8 +147,6 @@ class Weapon:
 
         self.columnValues.append(columnText)
         return columnText
-
-    invalidSysDamageValues = {'0', '-1'}
 
     def getSysDamage(self) -> str:
         if 'S' not in self.validColumns:
@@ -196,45 +194,33 @@ class Weapon:
     damageDisablers = {
         'sysDamage': 'noSysDamage',
         'persDamage': 'noPersDamage',
-        'ion': 'noIonDamage' # not in game but for "ion" to use the below fxn
     }
-    # Adds hull damage to xDamage text
+    # Adds hull damage to damage of damageType (except for ion)
+    # also applies boost effects for sys, pers, ion
     def getDamagePlusXDamage(self, damageType: str) -> str:
         columnText = ''
-        xDamageText = self.getElementText(damageType)
-        noXDamage = self.damageDisablers[damageType]
-
-        if (xDamageText in self.invalidSysDamageValues or
-            self.getElementText(noXDamage) == 'true'):
+        if damageType in self.damageDisablers and self.getElementText(self.damageDisablers[damageType]) == 'true':
             return columnText
-        
-        if len(xDamageText) > 0 and int(xDamageText) < -1:
-            # NOTE: hacky solution for negative persDamage on BOMB_HEAL, but it works for now
-            if (self.blueprintName != 'BOMB_HEAL'):
-                return xDamageText
+
+        xDamageText = self.getElementText(damageType)
+        if xDamageText == '0':
+            return columnText
+
+        totalDamage = 0
+        if len(xDamageText) > 0:
+            totalDamage += int(xDamageText)
+        if damageType in self.damageDisablers.keys():
+            hullDamage = self.getElementText('damage') 
+            if len(hullDamage) > 0:
+                totalDamage += int(hullDamage)
             
         isCrewDamage = False
         if damageType == 'persDamage':
             isCrewDamage = True
-            if len(xDamageText) > 0:
-                xDamageText = str(int(xDamageText) * 15)
-        
-        columnText = ''
-        totalXDamage = 0
-    
-        hullDamageText = self.getElementText('damage')
-        if (damageType != 'ion' and len(hullDamageText) > 0
-             and int(hullDamageText) != -1):
-            if isCrewDamage:
-                hullDamageText = str(int(hullDamageText) * 15)
-            totalXDamage += int(hullDamageText)
+            totalDamage *= 15
 
-        if len(xDamageText) > 0:
-            totalXDamage += int(xDamageText)
-
-        totalXDamageText = str(totalXDamage)
-        if (len(totalXDamageText) > 0 and
-            totalXDamageText not in self.invalidSysDamageValues):
+        totalXDamageText = str(totalDamage)
+        if (len(totalXDamageText) > 0):
             damage = float(totalXDamageText)
             totalXDamageText = self.getBoost(totalXDamageText, damageAbbr, damage, isCrewDamage)
 

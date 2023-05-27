@@ -43,9 +43,9 @@ def testGetHullDamage(blueprintName, expected):
     ('BOMB_FIRE', ''), # sysDamage = 0
     ('MISSILES_4', '5'), # sysDamage with damage
     ('MISSILES_ENERGY', ''), # noSysDamage = true
-    ('LASER_LIGHT_CHARGEGUN', ''), # <sysDamage>-1</sysDamage>
+    ('LASER_LIGHT', ''), # <sysDamage>-1</sysDamage>, <damage>1</damage>
     ('BOMB_BREACH_1', '2'), # sysDamage, <damage>0</damage>
-    ('BOMB_HEAL_SYSTEM', '-8'), # (-) sysDamage plus (-) damage
+    ('BOMB_HEAL_SYSTEM', '-10'), # (-) sysDamage plus (-) damage
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
     ('BOMB_LOCK', f'1 {weaponExport.icons["lockdown"]}'),
@@ -61,7 +61,10 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
-    ('BOMB_HEAL', '-60')
+    ('BEAM_REPAIR', '-15'), # <damage>-2</damage> <persDamage>1</persDamage>
+    ('BOMB_HEAL_SYSTEM', ''), # <persDamage>0</persDamage>
+    ('BOMB_HEAL', '-60'), #  <damage>0</damage>, <persDamage>-4</persDamage>
+    ('LASER_LIGHT', ''), # , <damage>1</damage>, <persDamage>-1</persDamage>
 ])
 def testGetCrewDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)
