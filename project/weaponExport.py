@@ -102,7 +102,7 @@ class Weapon:
         self.getCost()
         self.getRarity()
         self.getSpeed()
-        self.getOther()
+        self.getEffects()
 
         return '\n| '.join(self.columnValues)
 
@@ -542,8 +542,8 @@ class Weapon:
         self.columnValues.append(columnText)
         return columnText
 
-    def getOther(self) -> str:
-        if 'Other' not in self.validColumns:
+    def getEffects(self) -> str:
+        if 'Effects' not in self.validColumns:
             return
         columnText = ''
         columnText += self.getSilencedEffect()
