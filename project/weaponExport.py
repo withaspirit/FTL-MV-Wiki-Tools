@@ -202,13 +202,13 @@ class Weapon:
         if damageType in self.damageDisablers and self.getElementText(self.damageDisablers[damageType]) == 'true':
             return columnText
 
-        xDamageText = self.getElementText(damageType)
-        if xDamageText == '0':
+        damageText = self.getElementText(damageType)
+        if damageText == '0':
             return columnText
 
         totalDamage = 0
-        if len(xDamageText) > 0:
-            totalDamage += int(xDamageText)
+        if len(damageText) > 0:
+            totalDamage += int(damageText)
         if damageType in self.damageDisablers.keys():
             hullDamage = self.getElementText('damage') 
             if len(hullDamage) > 0:
@@ -219,13 +219,13 @@ class Weapon:
             isCrewDamage = True
             totalDamage *= 15
 
-        totalXDamageText = str(totalDamage)
-        if (len(totalXDamageText) > 0):
-            damage = float(totalXDamageText)
-            totalXDamageText = self.getBoost(totalXDamageText, damageAbbr, damage, isCrewDamage)
+        totalDamageText = str(totalDamage)
+        if (len(totalDamageText) > 0):
+            damage = float(totalDamageText)
+            totalDamageText = self.getBoost(totalDamageText, damageAbbr, damage, isCrewDamage)
 
-        if len(totalXDamageText) > 0 and totalXDamageText != '0':
-            columnText = totalXDamageText
+        if len(totalDamageText) > 0 and totalDamageText != '0':
+            columnText = totalDamageText
 
         return columnText
 
