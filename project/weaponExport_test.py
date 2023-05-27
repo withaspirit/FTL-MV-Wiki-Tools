@@ -26,7 +26,7 @@ phaserAbbr = weaponExport.phaserAbbr
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', '1'),
     ('LASER_BIO', ''),
-    ('BEAM_REPAIR', '-2'), 
+    ('BEAM_REPAIR', '-2'),
     ('FOCUS_CHAIN', '2'), # make sure getBoost() doesn't eliminate damage output
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
