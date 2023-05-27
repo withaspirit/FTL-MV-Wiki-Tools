@@ -38,23 +38,6 @@ startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
 phaserAbbrText = "Pierces 10 shield layers, ionizing the system it hits, as well as shields"
 phaserAbbr = '<abbr title="Pierces 10 shield layers, ionizing the system it hits, as well as shields.">{0:g}</abbr>'
 
-# TODO: special effects (projector),
-# TODO: silenced effect
-# TODO: negative power -> to right of table
-# TODO: medical bomb effects (crew damage)
-# TODO: faction column? (transport loot table)
-# TODO: chaotic weapon table
-
-# SPECIAL COLUMNS
-# TODO:
-# EVENT_WEAPONS: faction column ?
-# CLONE_CANNON: Table
-#
-# special effects:
-# ZOLTAN_DELETER
-# SALT_LAUNCHER
-# skip clone cannon, separate table?
-
 defaultSpeeds = {
     'MISSILES': '35',
     'LASER': '60',
