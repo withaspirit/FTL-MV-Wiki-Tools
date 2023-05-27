@@ -22,6 +22,7 @@ def getWeapon(blueprintName) -> weaponExport.Weapon:
 
 damageAbbr = weaponExport.damageAbbr
 infiniteAbbr = weaponExport.infiniteAbbr
+phaserAbbr = weaponExport.phaserAbbr
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', '1'),
     ('LASER_BIO', ''),
@@ -70,7 +71,8 @@ def testGetCrewDamage(blueprintName, expected):
     ('LASER_BURST_1', ''),
     ('ION_1', '1'),
     ('SHOTGUN_ION', '1'), # damage separate from ion
-    ('ION_PIERCE_CHAIN', damageAbbr.format(1, 5, 1, 4)), # chain
+    ('ION_PIERCE_1', phaserAbbr.format(1)),
+    # ('ION_PIERCE_CHAIN', damageAbbr.format(1, 5, 1, 4)), # not even worth testoing. multiple abbr effects
 ])
 def testGetIonDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)

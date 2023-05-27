@@ -35,6 +35,8 @@ cooldownAbbr = (
 preemptAbbr = '<abbr title="Can only be fired once per fight.">{0:g}</abbr>'
 fireTimeAbbr = '<abbr title="Fires projectiles {0:g}s apart.">{0:g}</abbr>'
 startChargedAbbr = '<abbr title="Starts charged">0</abbr>'
+phaserAbbrText = "Pierces 10 shield layers, ionizing the system it hits, as well as shields"
+phaserAbbr = '<abbr title="Pierces 10 shield layers, ionizing the system it hits, as well as shields.">{0:g}</abbr>'
 
 # TODO: special effects (projector),
 # TODO: silenced effect
@@ -231,6 +233,10 @@ class Weapon:
         # use the getDamagePlusXDamage but bypass the part where
         # hullDamage is added to the damage total
         columnText = self.getDamagePlusXDamage('ion')
+        if 'ION_PIERCE_CHAIN' in self.blueprintName:
+            columnText = columnText.replace('title="', 'title="' + phaserAbbrText + " ")
+        elif 'ION_PIERCE' in self.blueprintName:
+            columnText = phaserAbbr.format(int(columnText))
         self.columnValues.append(columnText)
         return columnText
 
