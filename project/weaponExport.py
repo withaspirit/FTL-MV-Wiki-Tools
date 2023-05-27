@@ -123,7 +123,8 @@ class Weapon:
             damage = float(columnText)
             columnText = self.getBoost(columnText, damageAbbr, damage)
 
-        if self.getElementText('hullBust') == '1':
+        # MODULAR_ION_HULL treats hullBusting differently
+        if self.getElementText('hullBust') == '1' or 'MODULAR_ION_HULL' in self.blueprintName:
             columnText += f' {icons["hullbust"]}'
 
         self.columnValues.append(columnText)

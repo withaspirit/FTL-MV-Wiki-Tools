@@ -30,6 +30,7 @@ infiniteAbbr = weaponExport.infiniteAbbr
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(1, 3, 0.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(1, 0.75)), # infinite
     ('LASER_HULL_1', f'1 {icons["hullbust"]}'), # hullBust=1
+    ('MODULAR_ION_HULL', f'3 {icons["hullbust"]}') # MODULAR_ION_HULL implements hullBust differently
 ])
 def testGetHullDamage(blueprintName, expected):
     weapon = getWeapon(blueprintName)
