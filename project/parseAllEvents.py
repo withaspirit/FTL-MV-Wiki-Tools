@@ -93,17 +93,13 @@ tagsWithTextChildren = {
     'event',
     'eventList',
     'loadEvent',
+    'loadEventList',
 }
 
 eventTypes = {
     'event',
     'eventList',
 }
-
-loadEventTypes = {
-    'loadEventList',
-}
-
 
 invalidsReqs = {
     'ach_',
@@ -122,10 +118,24 @@ invalidsReqs = {
 # each of the them individually
 # on the wiki, some events have their own page, while other events are only used within other events and are on the same page as those events
 
+# elem.tag: attribute:, attribute: ...
+# if attribute = "load"
+
+# attriutesToSkip = {
+#     'hidden',
+
+# }
+
+# ownpage: 
+# SHIP_NEMESIS?
+
 eventsToSkip = {
     'COMBAT_CHECK',
     'COMBAT_CHECK_FLAGSHIP',
     'STORAGE_CHECK',
+
+    'START_BEACON_REAL',
+    'SYLVAN_NORMAL',
     
     'COMBAT_CHECK_TOGGLE_LOAD',
     'REROUTE_MENU',
@@ -261,8 +271,6 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
     textToAdd = ''
     # print(ET.tostring(element, method='xml'))
     # TODO: revisit
-    if element.tag in loadEventTypes:
-        return ''
 
     if element.tag in eventTypes:
 
@@ -299,8 +307,8 @@ def getChildText(element : ET.Element, reqSet : set, eventSet : set, fileElement
     if element.tag == 'loadEvent':
         # print('loadEvent: ' + element.text)
         loadAttr = element.text
-    # elif element.tag = 'loadEventList':
-    #     loadAttr = element.get('default')
+    elif element.tag == 'loadEventList':
+        loadAttr = element.get('default')
     if loadAttr is not None:
         loadText = createIndent(defaultIndent, indentLevel)
         loadText += f'load {element.tag}: '
