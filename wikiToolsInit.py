@@ -105,13 +105,19 @@ def multiverseFileVersionCheck(config: configparser.ConfigParser):
     path = f'{config[mainPaths][slipstream]}mods\\'
     multiverseFileList = [os.path.basename(x) for x in glob.glob(os.path.join(path, 'Multiverse*Data.zip'))]
 
-    recentVersions = set()
-    for multiverseFile in multiverseFileList:
-        recentVersions.add(multiverseFile.split(' ')[1])
-    recentVersions = sorted(recentVersions)
+    recentVersions = dict()
+    for i, multiverseFile  in enumerate(multiverseFileList):
+        if ' ' in multiverseFile:
+            recentVersions[multiverseFile.split(' ')[1]] = int(i)
+        elif '_' in multiverseFile:
+            recentVersions[multiverseFile.split('_')[1]] = int(i)
+        else:
+            raise OSError(f'Please ensure that the following files contain only spaces or underscores, not both. Files: {multiverseFileList}')
 
-    mostRecentVersion = recentVersions[len(recentVersions) - 1]
-    multiverseFiles = [multiverseFileDefaults[0], f'Multiverse {mostRecentVersion} - Data.zip']
+    recentVersions = dict(sorted(recentVersions.items()))
+
+    mostRecentVersionIndex = list(recentVersions.values())[len(list(recentVersions.values())) - 1]
+    multiverseFiles = [multiverseFileDefaults[0], multiverseFileList[mostRecentVersionIndex]]
     config[initInfo][multiverseFileNames] = json.dumps(multiverseFiles)
 
 def getFilePath(fileName: str) -> str:
