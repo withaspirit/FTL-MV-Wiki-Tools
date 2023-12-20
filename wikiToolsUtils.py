@@ -1,6 +1,7 @@
 import configparser
 import shutil
 import subprocess
+import json
 
 import wikiToolsInit
 
@@ -15,7 +16,7 @@ def zipPatchExtract(fileName: str, directory: str):
     zipMove(config[wikiToolsInit.projectPaths][wikiToolsInit.project], fileName, directory)
     zipName = f'{fileName}.zip'
     validate([zipName])
-    patch(wikiToolsInit.multiverseFiles + [zipName])
+    patch(json.loads(config[wikiToolsInit.initInfo][wikiToolsInit.multiverseFileNames]) + [zipName])
     extractDats(config[wikiToolsInit.zipPaths][wikiToolsInit.ftl])
 
 # Zip a mod folder and move it to SlipstreamModManager/mods

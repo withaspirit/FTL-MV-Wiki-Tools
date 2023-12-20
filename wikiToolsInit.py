@@ -2,6 +2,8 @@ import os
 import pathlib
 import time
 import configparser
+import glob
+import json
 
 # Finds the location of SlipstreamModManager's modman.jar and creates
 # wikiTools.ini to store its location.
@@ -25,8 +27,8 @@ drive  = pathlib.Path.home().drive
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
-# multiverseFiles = ['ASSET ZIP FILE', 'DATA ZIP FILE']
-multiverseFiles = ['', 'Multiverse 5.3 - Data.zip']
+# multiverseFileDefaults = ['ASSET ZIP FILE', 'DATA ZIP FILE']
+multiverseFileDefaults = ['', 'Multiverse 5.3 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
@@ -61,6 +63,7 @@ ftl = 'ftl'
 
 initFinished = 'initFinished'
 locationChanged = 'locationChanged'
+multiverseFileNames = 'multiverseFileNames'
 
 # TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
 
@@ -96,6 +99,20 @@ def slipstreamConfigCheck(config: configparser.ConfigParser):
             fileText = fileText.replace(allowZipFalse, 'allow_zip=true')
             file.write(fileText)
             file.truncate()
+
+# find most recent Multiverse version
+def multiverseFileVersionCheck(config: configparser.ConfigParser):
+    path = f'{config[mainPaths][slipstream]}mods\\'
+    multiverseFileList = [os.path.basename(x) for x in glob.glob(os.path.join(path, 'Multiverse*Data.zip'))]
+
+    recentVersions = set()
+    for multiverseFile in multiverseFileList:
+        recentVersions.add(multiverseFile.split(' ')[1])
+    recentVersions = sorted(recentVersions)
+
+    mostRecentVersion = recentVersions[len(recentVersions) - 1]
+    multiverseFiles = [multiverseFileDefaults[0], f'Multiverse {mostRecentVersion} - Data.zip']
+    config[initInfo][multiverseFileNames] = json.dumps(multiverseFiles)
 
 def getFilePath(fileName: str) -> str:
     print(f'Finding location of {fileName}. Please wait ~3 minutes.')
@@ -160,6 +177,8 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(initInfo)
     config[initInfo][initFinished] = 'true'
     config[initInfo][locationChanged] = 'false'
+    # NOTE: to disable version check, remove the line below
+    multiverseFileVersionCheck(config)
 
     writeToConfigFile(config)
 
