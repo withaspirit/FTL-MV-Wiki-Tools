@@ -47,15 +47,19 @@ def executeSlipstream(args: list[str]):
     try:
         subprocess.check_call(args, cwd=slipstreamPath, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        print(e.returncode)
-        print(e.output)
-        print(e.stderr)
+        print("Exit status: " + str(e.returncode))
+        if e.output is not None:
+            print("Output: " + e.output)
+        if e.stderr is not None:
+            print("Error: " + e.stderr)
 
 def executePythonFile(path: str, fileName: str):
     args = ['python', fileName]
     try:
         subprocess.check_call(args, cwd=path, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        print(e.returncode)
-        print(e.output)
-        print(e.stderr)
+        print("Exit status: " + str(e.returncode))
+        if e.output is not None:
+            print("Output: " + e.output)
+        if e.stderr is not None:
+            print("Error: " + e.stderr)
