@@ -4,22 +4,29 @@ __pycache__
 # FTL DAT
 # \ to preserve space character
 /project/FTL\ DAT/*
-!/project/FTL\ DAT/placeholder.txt
+!/project/FTL\ DAT/.gitkeep
+project/FTL\ DAT\ ZIP/*
+!/project/FTL\ DAT\ ZIP/.gitkeep
 
 # environment
 /project/__pycache__
 # data
 /project/old\ version
 /project/old\ data/
+
 # unreleased stuff
 /project/utils/*
 !/project/utils/tableColumns.yaml
 !/project/utils/vanillaMultiverseMap.json
+!/project/utils/eventNameIndex.json
+
 /project/wikiShips.txt
 /project/wikiWeaponTables.txt
 /project/wikiWeaponTablesAll.txt
 /project/compareVersions.txt
-
+/project/blueOptionNames.json
+/project/events.txt
+/project/blueOptions.txt
 /project/Append\ wikiElements
 
 /misc
