@@ -13,10 +13,16 @@ __pycache__
 /project/old\ data/
 # unreleased stuff
 /project/utils/*
+!/project/utils/tableColumns.yaml
 !/project/utils/vanillaMultiverseMap.json
 /project/wikiShips.txt
+/project/wikiWeaponTables.txt
+/project/wikiWeaponTablesAll.txt
 /project/compareVersions.txt
 
 /project/Append\ wikiElements
 
 /misc
+project/events.txt
+project/blueOptions.txt
+project/blueOptionNames.json

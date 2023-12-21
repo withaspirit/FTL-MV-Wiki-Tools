@@ -1,0 +1,610 @@
+---
+LIST_WEAPONS_LASER_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_MISSILE_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_ION_WIKI:
+  - Weapon
+  - C
+  - I
+  - Pierce
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_BEAM_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_BOMB_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  # - Effects
+LIST_WEAPONS_FLAK_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_CRYSTAL_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_MINELAUNCHERS_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_ENERGY_WIKI:
+  - Weapon
+  - H
+  - I
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_FOCUS_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_KERNEL_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_PARTICLE_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+GIFTLIST_RUSTY:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+SHOP_ITEM_SYLVAN_CONSERVATIVE:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+BLUELIST_WEAPONS_RECYCLER:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+LIST_WEAPONS_INSTANT_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+HEKTAR_MODULAR_LASERS:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+HEKTAR_MODULAR_BEAMS:
+  - Weapon
+  - H
+  - S
+  - C
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+HEKTAR_MODULAR_MISSILES:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+HEKTAR_MODULAR_IONS:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_SENTRY_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+GIFTLIST_SPORE:
+  - Weapon
+  - S
+  - C
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  # - Effects
+LIST_WEAPONS_NEWGEN:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+# LIST_WEAPONS_OBELISK_WIKI:
+#   - Weapon
+#   - H
+#   - S
+#   - C
+#   - I
+#   - Pierce
+#   - Shots
+#   - Length
+#   - Radius
+#   - Power
+#   - Cooldown
+#   - Fire
+#   - Breach
+#   - Stun
+#   - Cost
+#   - '[[Rarity]]'
+#   - Speed
+#   # - Effects
+LIST_WEAPONS_OBELISK_LASER_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_OBELISK_MISSILE_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_OBELISK_BEAM_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_OBELISK_ION_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Pierce
+  - Shots
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_EVENT_LOOT_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Pierce
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_EVENT_LOOT_CLONE_CANNON_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Shots
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_EVENT_LOOT_CHAOS_WIKI:
+  - Weapon
+  - S
+  - C
+  - Pierce
+  - Length
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  - Effects
+LIST_WEAPONS_TRANSPORT_LOOT_WIKI:
+  - Weapon
+  - Faction
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+JUDGELIST_ROCK_MATH_LOOT:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_RENEGADE_LOOT_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Pierce
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_RENEGADE_LOOT_CHAOS_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Free Missile Chance
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  - Effects
+LIST_WEAPONS_CURA_LOOT_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - Pierce
+  - Shots
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
+LIST_WEAPONS_NEXUS_LOOT_WIKI:
+  - Weapon
+  - H
+  - S
+  - C
+  - I
+  - Pierce
+  - Shots
+  - Length
+  - Radius
+  - Power
+  - Cooldown
+  - Fire
+  - Breach
+  - Stun
+  - Cost
+  - '[[Rarity]]'
+  - Speed
+  # - Effects
