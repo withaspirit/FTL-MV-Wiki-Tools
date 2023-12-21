@@ -44,7 +44,7 @@ def extractDats(filePath: str):
 def executeSlipstream(args: list[str]):
     slipstreamPath = config[wikiToolsInit.mainPaths][wikiToolsInit.slipstream]
     args = ['java', '-jar', wikiToolsInit.modman] + args
-    try: 
+    try:
         subprocess.check_call(args, cwd=slipstreamPath, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         print(e.returncode)
@@ -53,7 +53,7 @@ def executeSlipstream(args: list[str]):
 
 def executePythonFile(path: str, fileName: str):
     args = ['python', fileName]
-    try: 
+    try:
         subprocess.check_call(args, cwd=path, shell=True, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         print(e.returncode)
