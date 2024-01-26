@@ -61,7 +61,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
-    ('BEAM_REPAIR', '15'), # <damage>-2</damage> <persDamage>1</persDamage>
+    ('BEAM_REPAIR', '15'), # <damage>2</damage> changed to -2 via Lua, <persDamage>1</persDamage>
     ('BOMB_HEAL_SYSTEM', ''), # <persDamage>0</persDamage>
     ('BOMB_HEAL', '-60'), #  <damage>0</damage>, <persDamage>-4</persDamage>
     ('LASER_LIGHT', ''), # , <damage>1</damage>, <persDamage>-1</persDamage>
@@ -173,7 +173,7 @@ startChargedAbbr = weaponExport.startChargedAbbr
     ('CLONE_CANNON', ''),
     # Chain weapons (Cooldown boost)
     ('LASER_CHAINGUN', cooldownAbbr.format(15, 6, 3, 3)),
-    ('LASER_CHARGE_CHAIN', cooldownAbbr.format(7.5, 3, 1.5, 3)),
+    ('LASER_CHARGE_CHAIN', cooldownAbbr.format(10, 4, 2, 3)),
     # Instant weapons
     ('ION_INSTANT', preemptAbbr.format(1)),
     ('LOOT_MATH_5', preemptAbbr.format(15)),
@@ -207,7 +207,7 @@ def testGetStun(blueprintName, expected):
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', ''),
     ('LASER_HEAVY_PIERCE', '20% (3s)'),
-    ('LASER_STUN', '100% (16s)'),
+    ('LASER_STUN', '100% (8s)'),
     ('MISSILES_FREE', '')
 ])
 def testGetStun(blueprintName, expected):
