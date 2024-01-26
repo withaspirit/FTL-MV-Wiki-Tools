@@ -71,12 +71,6 @@ singleShips = {
     'PLAYER_SHIP_LIMIT_4': 'Unoptimized Cruiser MK IV'
 }
 
-# where wikiHeading != <class>
-misnamedShips = {
-    'CREW_SHIP_SLOT1': "Haynes' Cruiser",
-    'CREW_SHIP_SLOT8_3': "Dessius' Cruiser"
-}
-
 def getShipText():
     blueprints = blueprintUtils.getBlueprints()
 
@@ -201,9 +195,7 @@ def getWikiNameShip(blueprintName: str, shipClass: str, wikiPageName: str, wikiH
 def getWikiHeadingShip(blueprintName: str, shipClass: str, wikiPageName: str) -> str:
     wikiHeading = ''
 
-    if blueprintName in misnamedShips:
-        wikiHeading = misnamedShips[blueprintName]
-    elif wikiPageName[-1] != '#':
+    if wikiPageName[-1] != '#':
         # single-page ships
         wikiHeading = shipClass
     elif ('CREW' in blueprintName) or ('ELITE' in blueprintName):

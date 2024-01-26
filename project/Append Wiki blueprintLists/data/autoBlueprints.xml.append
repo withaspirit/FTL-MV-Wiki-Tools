@@ -240,6 +240,7 @@
                 <name>eldritch_spawn</name>
                 <name>eldritch_thing</name>
                 <name>eldritch_thing_weak</name>
+                <name>eldritch_thing_noclone</name>
                 <name>gnome</name>
             <!-- Morphs -->
             	<name wikiName="Morph" wikiHeading="Morph">blob</name>
@@ -1160,7 +1161,7 @@
                 <name>BEAM_HARDSCIFI</name>
                 <name>CRASH_LASER</name>
                 <name>LASER_BURST_SYLVAN</name>
-                <name wikiName="Uplifted BLII (Desync)" wikiHeading="Uplifted BLII (Desync)">LASER_BURST_SYLVAN_DELAY</name>
+                <name wikiName="Uplifted Burst Laser II (Desync)" wikiHeading="Uplifted Burst Laser II (Desync)">LASER_BURST_SYLVAN_DELAY</name>
                 <name>LASER_BURST_5_SYLVAN</name>
                 <name>SHOTGUN_GOLD_3</name>
                 <name>GATLING_ANCIENT</name>
@@ -1531,8 +1532,9 @@
                 <!-- <name>REBEL_ID</name> --> <!-- removed in 5.4 --> 
                 <name>NO_GHOST</name>
                 <name>CHUNGUS_MAKER</name>
-                <name>SYLVAN_SHIELD_GUARD</name>
                 <name>SYLVAN_SHIELD_PRIME</name>
+                LOCKED_SYLVAN_SHIELD
+                LOCKED_SYLVAN_SHIELD_CONTINUITY
                 <name>FLAGSHIP_SHIELD</name>
                 <name>FLAGSHIP_SHIELD_FULL</name> <!-- hiddenAug -->
                 <name wikiName="No Weapon Option At Equipment Grab" wikiHeading="No Weapons">NO_WEAPON</name>
@@ -1611,6 +1613,7 @@
                 <name>ROCK_ARMOR</name>
                 <name>LOCKED_ROCK_ARMOR</name>
                 <name>PALADIN_ARMOR</name>
+                <name>LOCKED_PALADIN_ARMOR</name>
                 <name>PALADIN_ARMOR_PLAYER</name>
                 <name>SALT_ARMOR</name>
                 <name>REGEN_ARMOR</name>
@@ -1691,7 +1694,9 @@
                 <name>SYLVAN_SHIELD_REWARD</name>
                 <name>SYLVAN_SHIELD_CONTINUITY_PROBE</name>
                 <name>SYLVAN_SHIELD</name>
+                <name>LOCKED_SYLVAN_SHIELD</name>
                 <name wikiName="Merchant's Shield" wikiHeading="Merchant's Shield">SYLVAN_SHIELD_CONTINUITY</name>
+                <name wikiName="Merchant's Shield" wikiHeading="Merchant's Shield">LOCKED_SYLVAN_SHIELD_CONTINUITY</name>
                 <name>NO_SUFFOCATE</name>
                 <name>ZOLTAN_SPAWNER</name>
                 <name>LOCKED_XENOPHOBIA</name>
