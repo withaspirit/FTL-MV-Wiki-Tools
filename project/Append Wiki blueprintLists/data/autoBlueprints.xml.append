@@ -679,31 +679,18 @@
         <!--
             Kernel Weapons
             https://ftlmultiverse.fandom.com/wiki/Kernel_Weapons
-            like both blueprintList name="GIFTLIST_KERNEL" and name="GIFTLIST_KERNEL_ELITE"
         -->
-            <blueprintList wikiPage="Kernel Weapons#" name="LIST_WEAPONS_KERNEL_WIKI">
-            	<name>KERNEL_1</name>
-                <name>KERNEL_2</name>
-                <name>KERNEL_HEAVY</name>
-                <name>KERNEL_CHAIN</name>
-                <name>KERNEL_CHARGE</name>
-                <name>KERNEL_FIRE</name>
-                <name>KERNEL_1_ELITE</name>
-                <name>KERNEL_2_ELITE</name>
-                <name>KERNEL_HEAVY_ELITE</name>
-                <name>KERNEL_CHAIN_ELITE</name>
-                <name>KERNEL_CHARGE_ELITE</name>
-            </blueprintList>
-
-        <!-- FIXME: see if necessary -->
-        <!--
-         <mod:findName name="GIFTLIST_KERNEL" type="blueprintList">
+            <mod:findName name="GIFTLIST_KERNEL" type="blueprintList">
                 <mod:setAttributes wikiPage="Kernel Weapons#"/>
             </mod:findName>
+
             <mod:findName name="GIFTLIST_KERNEL_ELITE" type="blueprintList">
                 <mod:setAttributes wikiPage="Kernel Weapons#"/>
             </mod:findName>
-        -->
+
+            <blueprintList wikiPage="Kernel Weapons#" name="LIST_WEAPONS_KERNEL_WIKI">
+                <name>KERNEL_FIRE_ELITE</name> <!-- not found in GIFTLIST_KERNEL_ELITE -->
+            </blueprintList>
 
         <!--
             Particle Weapons
@@ -761,11 +748,10 @@
             <!--
                 Modular Weapons#Table_of_Modules
                 https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Modules
-                like blueprintList name="SHOP_ITEM_HEKTAR_MODULES" except MODULE_COOLDOWN isn't commented out
             -->
                 <blueprintList wikiPage="Modular Weapons#Table of Modules" name="LIST_WEAPONS_MODULAR_MODULES_WIKI">
                     <name>MODULE_BIO</name>
-                    <name>MODULE_COOLDOWN</name>
+                    <name>MODULE_COOLDOWN</name> <!-- not included in SHOP_ITEM_HEKTAR_MODULES -->
                     <name>MODULE_LOCKDOWN</name>
                     <name>MODULE_PIERCE</name>
                     <name>MODULE_STUN</name>
@@ -1533,8 +1519,6 @@
                 <name>NO_GHOST</name>
                 <name>CHUNGUS_MAKER</name>
                 <name>SYLVAN_SHIELD_PRIME</name>
-                LOCKED_SYLVAN_SHIELD
-                LOCKED_SYLVAN_SHIELD_CONTINUITY
                 <name>FLAGSHIP_SHIELD</name>
                 <name>FLAGSHIP_SHIELD_FULL</name> <!-- hiddenAug -->
                 <name wikiName="No Weapon Option At Equipment Grab" wikiHeading="No Weapons">NO_WEAPON</name>
@@ -1845,11 +1829,11 @@
             <name wikiName="Electrical Insulation" wikiHeading="Electrical Insulation">UPG_SHIELDS_STUN</name>
             <name wikiName="Weapon Performance Upgrade" wikiHeading="Weapon Performance Upgrade">UPG_WEAPONS_PERFORMANCE</name>
             <name wikiName="Weapon Performance Upgrade" wikiHeading="Weapon Performance Upgrade">EX_AUTO_COOLDOWN</name>
-            <name wikiName="Explosive Replicator" wikiHeading="Explosive Replicator">UPG_WEAPONS_REPLICATOR</name>
+            <name>UPG_WEAPONS_REPLICATOR</name>
             <name>EX_EXPLOSIVE_REPLICATOR</name>
             <name>UPG_CLOAK_FIRE</name>
             <name wikiName="Shadow Weaponry" wikiHeading="Shadow Weaponry">EX_CLOAK_FIRE</name>
-            <name wikiName="Reconstructive Teleporter" wikiHeading="Reconstructive Teleporter">UPG_TELEPORTER_HEAL</name>
+            <name>UPG_TELEPORTER_HEAL</name>
             <name wikiName="Reconstructive Teleporter" wikiHeading="Reconstructive Teleporter">EX_TELEPORT_HEAL</name>
             <name wikiName="Med-Bot Dispersal" wikiHeading="Med-Bot Dispersal">UPG_MEDBAY_NANO</name>
             <name wikiName="Med-Bot Dispersal" wikiHeading="Med-Bot Dispersal">EX_MEDBAY_NANO</name>
@@ -1890,7 +1874,7 @@
             <name>MAGNET_ARM</name>
             <name wikiName="Drone Arm" wikiHeading="Drone Arm">UPG_ARM_DRONES</name>
             <name>DRONE_RECOVERY</name>
-            <name wikiName="Repair Arm" wikiHeading="Repair Arm">UPG_ARM_REPAIR</name>
+            <name>UPG_ARM_REPAIR</name>
             <name>REPAIR_ARM</name>
         </blueprintList>
 
