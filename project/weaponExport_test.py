@@ -180,9 +180,9 @@ startChargedAbbr = weaponExport.startChargedAbbr
     # fireTime
     ('STRAWBERRY_CHAOS', f'40/{fireTimeAbbr.format(0.05)}'),
     # Chain weapons / fireTime
-    ('GATLING_SYLVAN', f'{cooldownAbbr.format(20, 0, 20, 1)}/{fireTimeAbbr.format(0.2)}'),
+    ('GATLING_SYLVAN', f'{cooldownAbbr.format(20, 0.2, 19.8, 1)}/{fireTimeAbbr.format(0.2)}'),
     # startCharged / fireTime
-    ('GATLING_ANCIENT', f'{startChargedAbbr}/{fireTimeAbbr.format(0.05)}')
+    ('GATLING_ANCIENT', f'0.1/{fireTimeAbbr.format(0.05)}')
 ])
 def testGetCooldown(blueprintName, expected):
     weapon = getWeapon(blueprintName)

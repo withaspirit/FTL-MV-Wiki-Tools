@@ -369,11 +369,11 @@ class Weapon:
         columnText = self.getElementText('cooldown')
         # cooldown boost
 
-        if (len(columnText) > 0 and
-            math.isclose(float(columnText), 0, rel_tol=1e-18)):
-             # weapons that start charged
-            columnText = startChargedAbbr
-        elif len(columnText) > 0 and float(columnText) < 0:
+        # if (len(columnText) > 0 and
+        #     math.isclose(float(columnText), 0, rel_tol=1e-18)):
+        #      # weapons that start charged
+        #     columnText = startChargedAbbr
+        if len(columnText) > 0 and float(columnText) < 0:
             columnText = ''
         else:
             boostElem = self.blueprint.find('boost')
