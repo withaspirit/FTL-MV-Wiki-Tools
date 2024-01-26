@@ -1,6 +1,7 @@
 import configparser
 import shutil
 import subprocess
+import json
 
 import wikiToolsInit
 
@@ -15,7 +16,7 @@ def zipPatchExtract(fileName: str, directory: str):
     zipMove(config[wikiToolsInit.projectPaths][wikiToolsInit.project], fileName, directory)
     zipName = f'{fileName}.zip'
     validate([zipName])
-    patch(wikiToolsInit.multiverseFiles + [zipName])
+    patch(json.loads(config[wikiToolsInit.initInfo][wikiToolsInit.multiverseFileNames]) + [zipName])
     extractDats(config[wikiToolsInit.zipPaths][wikiToolsInit.ftl])
 
 # Zip a mod folder and move it to SlipstreamModManager/mods
@@ -43,8 +44,22 @@ def extractDats(filePath: str):
 def executeSlipstream(args: list[str]):
     slipstreamPath = config[wikiToolsInit.mainPaths][wikiToolsInit.slipstream]
     args = ['java', '-jar', wikiToolsInit.modman] + args
-    subprocess.check_call(args, cwd=slipstreamPath, shell=True)
+    try:
+        subprocess.check_call(args, cwd=slipstreamPath, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print("Exit status: " + str(e.returncode))
+        if e.output is not None:
+            print("Output: " + e.output)
+        if e.stderr is not None:
+            print("Error: " + e.stderr)
 
 def executePythonFile(path: str, fileName: str):
     args = ['python', fileName]
-    subprocess.check_call(args, cwd=path, shell=True)
+    try:
+        subprocess.check_call(args, cwd=path, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print("Exit status: " + str(e.returncode))
+        if e.output is not None:
+            print("Output: " + e.output)
+        if e.stderr is not None:
+            print("Error: " + e.stderr)

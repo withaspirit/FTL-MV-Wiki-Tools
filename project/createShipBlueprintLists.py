@@ -36,7 +36,7 @@ pageShipClassMismatch = {
     'PLAYER_SHIP_MFK': 'MFK Cruisers#',
     'PLAYER_SHIP_ANGEL': 'Angel Cruisers#',
     'PLAYER_SHIP_SPIDER': 'Spider Hunter Cruisers#',
-    'PLAYER_SHIP_SYLVANTRANS': 'Merchant Transport#',
+    'PLAYER_SHIP_SYLVAN_TRANSPORT': 'Merchant Transport#',
     'PLAYER_SHIP_SYLVAN': 'Sylvan Cruisers#',
     'PLAYER_SHIP_MORPH': 'Morph Spurgle Yurgle#',
     'PLAYER_SHIP_HEKTAR': 'Hektar Cruisers#',
