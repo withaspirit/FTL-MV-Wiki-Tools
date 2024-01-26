@@ -54,6 +54,7 @@ allColumns = [
     "Cost",
     "[[Rarity]]",
     "Speed",
+    "Effects",
     "Other"
 ]
 

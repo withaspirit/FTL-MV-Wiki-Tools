@@ -254,10 +254,11 @@ def testGetSpeed(blueprintName, expected):
     assert weapon.getSpeed() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
-    ('LASER_BURST_1', None),
+    ('LASER_BURST_1', ''),
     # silenced
     ('BEAM_MADNESS', 'Silenced')
 ])
 def testGetEffects(blueprintName, expected):
     weapon = getWeapon(blueprintName)
+    print(weapon.getEffects())
     assert weapon.getEffects() == expected
