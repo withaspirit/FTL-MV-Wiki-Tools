@@ -331,7 +331,7 @@ LIST_WEAPONS_SENTRY_WIKI:
   - '[[Rarity]]'
   - Speed
   # - Effects
-GIFTLIST_SPORE:
+LIST_WEAPONS_SPORE_WIKI:
   - Weapon
   - S
   - C
