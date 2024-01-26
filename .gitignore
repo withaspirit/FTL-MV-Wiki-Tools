@@ -4,7 +4,7 @@ __pycache__
 # FTL DAT
 # \ to preserve space character
 /project/FTL\ DAT/*
-!/project/FTL\ DAT/placeholder.txt
+!/project/FTL\ DAT/.gitkeep
 
 # environment
 /project/__pycache__

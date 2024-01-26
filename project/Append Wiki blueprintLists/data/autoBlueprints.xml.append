@@ -3096,10 +3096,10 @@
             Merchant Transport#
             https://ftlmultiverse.fandom.com/wiki/Merchant_Transport#
         -->
-            <blueprintList wikiPage="Merchant Transport#" name="LIST_SHIPS_SYLVANTRANS_WIKI">
-                <name wikiName="Merchant Transport A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS</name>
-                <name wikiName="Merchant Transport B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVANTRANS_2</name>
-                <name wikiName="Merchant Transport C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_SYLVANTRANS_3</name>
+            <blueprintList wikiPage="Merchant Transport#" name="LIST_SHIPS_SYLVAN_TRANSPORT_WIKI">
+                <name wikiName="Merchant Transport A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_SYLVAN_TRANSPORT</name>
+                <name wikiName="Merchant Transport B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_SYLVAN_TRANSPORT_2</name>
+                <name wikiName="Merchant Transport C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_SYLVAN_TRANSPORT_3</name>
             </blueprintList>
 
        <!--

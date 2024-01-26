@@ -2,6 +2,8 @@ import os
 import pathlib
 import time
 import configparser
+import glob
+import json
 
 # Finds the location of SlipstreamModManager's modman.jar and creates
 # wikiTools.ini to store its location.
@@ -25,8 +27,8 @@ drive  = pathlib.Path.home().drive
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
-# multiverseFiles = ['ASSET ZIP FILE', 'DATA ZIP FILE']
-multiverseFiles = ['', 'Multiverse 5.4 - Data.zip']
+# multiverseFileDefaults = ['ASSET ZIP FILE', 'DATA ZIP FILE']
+multiverseFileDefaults = ['', 'Multiverse 5.4 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
@@ -61,6 +63,7 @@ ftl = 'ftl'
 
 initFinished = 'initFinished'
 locationChanged = 'locationChanged'
+multiverseFileNames = 'multiverseFileNames'
 
 # TODO: get Multiverse ZIP file with highest version number from slipstreamModManager/mods? path?
 
@@ -97,32 +100,60 @@ def slipstreamConfigCheck(config: configparser.ConfigParser):
             file.write(fileText)
             file.truncate()
 
+# find most recent Multiverse version
+def multiverseFileVersionCheck(config: configparser.ConfigParser):
+    path = f'{config[mainPaths][slipstream]}mods\\'
+    multiverseFileList = [os.path.basename(x) for x in glob.glob(os.path.join(path, 'Multiverse*Data.zip'))]
+
+    recentVersions = dict()
+    for i, multiverseFile  in enumerate(multiverseFileList):
+        if ' ' in multiverseFile:
+            recentVersions[multiverseFile.split(' ')[1]] = int(i)
+        elif '_' in multiverseFile:
+            recentVersions[multiverseFile.split('_')[1]] = int(i)
+        else:
+            raise OSError(f'Please ensure that the following files contain only spaces or underscores, not both. Files: {multiverseFileList}')
+
+    recentVersions = dict(sorted(recentVersions.items()))
+
+    mostRecentVersionIndex = list(recentVersions.values())[len(list(recentVersions.values())) - 1]
+    multiverseFiles = [multiverseFileDefaults[0], multiverseFileList[mostRecentVersionIndex]]
+    config[initInfo][multiverseFileNames] = json.dumps(multiverseFiles)
+
 def getFilePath(fileName: str) -> str:
-    print(f'Finding location of {fileName}. Please wait ~3 minutes.')
+    filePath = ''
+    print(f'Finding location of {fileName}')
 
-    # look through hard drive for modman.jar
-    filePathList = []
-    for path, dirs, files in os.walk(f'{drive}\\'):
-        # print(path)
-        # Skip deleted files
-        if f'{drive}\\$Recycle.Bin' in path:
-            continue
-        for file in files:
-            if file == fileName:
-                filePathList.append(path)
+    windowsPath = f'{drive}\\Program Files (x86)\Steam\steamapps\common\FTL Faster Than Light\\'
+    potentialSlipstream = glob.glob(os.path.join(windowsPath, 'SlipstreamModManager_*'))
+    if (len(potentialSlipstream) > 0):
+         filePath = potentialSlipstream[len(potentialSlipstream) - 1]
+    else:
+        # look through hard drive for modman.jar
+        filePathList = []
+        print(f'SlipstreamModManager not in {windowsPath}. Please wait ~3 minutes.')
+        for path, dirs, files in os.walk(f'{drive}\\'):
+            # print(path)
+            # Skip deleted files
+            if f'{drive}\\$Recycle.Bin' in path:
+                continue
+            for file in files:
+                if file == fileName:
+                    filePathList.append(path)
 
-    if len(filePathList) == 0:
-        errorMessage = f'"{fileName}" not found on system. Please ensure all files are on the same hard drive.'
-        raise RuntimeError(errorMessage)
-    elif len(filePathList) > 1:
-        filePaths = '\n'.join(filePathList)
-        errorMessage = '''More than one copy of "{0}" found. Please delete
-        unused copies of "{0}."\n {0} paths:\n{1}'''
-        errorMessage = errorMessage.format(fileName, filePaths)
-        raise RuntimeError(errorMessage)
+        if len(filePathList) == 0:
+            errorMessage = f'"{fileName}" not found on system. Please ensure all files are on the same hard drive.'
+            raise RuntimeError(errorMessage)
+        elif len(filePathList) > 1:
+            filePaths = '\n'.join(filePathList)
+            errorMessage = '''More than one copy of "{0}" found. Please delete
+            unused copies of "{0}."\n {0} paths:\n{1}'''
+            errorMessage = errorMessage.format(fileName, filePaths)
+            raise RuntimeError(errorMessage)
+        filePath = filePathList[0]
 
-    print(f'Found {fileName} location.')
-    return filePathList[0]
+    print(f'Found {fileName} location: {filePath}.')
+    return filePath
 
 def initConfig(config: configparser.ConfigParser):
     print(f'Creating {configFileName}.')
@@ -160,6 +191,8 @@ def initConfig(config: configparser.ConfigParser):
         config.add_section(initInfo)
     config[initInfo][initFinished] = 'true'
     config[initInfo][locationChanged] = 'false'
+    # NOTE: to disable version check, remove the line below
+    multiverseFileVersionCheck(config)
 
     writeToConfigFile(config)
 
