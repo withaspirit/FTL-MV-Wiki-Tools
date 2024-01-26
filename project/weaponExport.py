@@ -46,7 +46,7 @@ defaultSpeeds = {
 }
 
 factionWeapons = {
-    'LOOT_CIVILIAN_1' : 'Civilian',
+    'LOOT_UNION_1' : 'Union',
     'LOOT_MILITIA_1' : 'Militia',
     'LOOT_FEDERATION_1' : 'Federation',
     'LOOT_COALITION_1' : 'Coalition',

@@ -34,14 +34,14 @@ class Ship:
 
     # opening files once and passing instead of opening them many times
     # significantly reduces runtime
-    def __init__(self, blueprint, blueprints, hyperspace, events_boss):
+    def __init__(self, blueprint, blueprints, hyperspace, events_sector_laststand):
         self.blueprint = blueprint
         self.blueprints = blueprints
         self.blueprintName = self.blueprint.get('name')
 
         self.hyperspace = hyperspace
         self.text_blueprints = blueprintUtils.text_blueprints
-        self.events_boss = events_boss
+        self.events_sector_laststand = events_sector_laststand
         customShipPath = f'.//ships/customShip[@name="{self.blueprintName}"]'
         self.customShip = hyperspace.find(customShipPath)
 
@@ -439,8 +439,8 @@ class Ship:
         return lastStandEntryText
 
     def getLastStandText(self, shipType: str) -> str:
-        choicePath = './/event[@name="TRUE_LAST_STAND_START"]/choice[@lvl="-2147483648"]'
-        choiceElement = self.events_boss.find(choicePath)
+        choicePath = './/event[@name="TRUE_LAST_STAND_START"]/choice[@lvl="-999"]'
+        choiceElement = self.events_sector_laststand.find(choicePath)
 
         lastStandTextPath = f'.//event/choice[@req="{shipType}"]/event/text'
         lastStandElement = choiceElement.find(lastStandTextPath)
