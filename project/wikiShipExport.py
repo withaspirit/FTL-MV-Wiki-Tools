@@ -30,7 +30,6 @@ def getWikiShipText() -> str:
             #print(f'Skipped {blueprintName}')
             continue
 
-        print(blueprintName)
         currWikiPage = shipBlueprint.find('wikiPage').text
         if currWikiPage != prevWikiPage:
             prevWikiPage = currWikiPage
