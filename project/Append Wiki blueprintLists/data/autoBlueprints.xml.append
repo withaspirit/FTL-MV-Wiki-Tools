@@ -2648,13 +2648,13 @@
         Misc Ships (page 11)
     -->
         <!--
-            Eargen Cruisers#
-            https://ftlmultiverse.fandom.com/wiki/Eargen_Cruisers#
+            Republican Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Republican_Cruisers#
         -->
-            <blueprintList wikiPage="Eargen Cruisers#" name="LIST_SHIPS_LEECH_WIKI">
-                <name wikiName="Eargen Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_LEECH</name>
-                <name wikiName="Eargen Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_LEECH_2</name>
-                <name wikiName="Eargen Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_LEECH_3</name>
+            <blueprintList wikiPage="Republican Cruisers#" name="LIST_SHIPS_LEECH_WIKI">
+                <name wikiName="Republican Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_LEECH</name>
+                <name wikiName="Republican Cruiser B" wikiHeading="Layout B" teleporterLimit="3">PLAYER_SHIP_LEECH_2</name>
+                <name wikiName="Republican Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_LEECH_3</name>
             </blueprintList>
 
         <!--
@@ -2695,9 +2695,19 @@
             https://ftlmultiverse.fandom.com/wiki/Gathering_Cruisers#
         -->
             <blueprintList wikiPage="Gathering Cruisers#" name="LIST_SHIPS_ORCHID_WIKI">
-                <name wikiName="Gathering Cruiser A" wikiHeading="Layout A" teleporterLimit="?">PLAYER_SHIP_ORCHID</name>
-                <name wikiName="Gathering Cruiser B" wikiHeading="Layout B" teleporterLimit="?">PLAYER_SHIP_ORCHID_2</name>
-                <name wikiName="Gathering Cruiser C" wikiHeading="Layout C" teleporterLimit="?">PLAYER_SHIP_ORCHID_3</name>
+                <name wikiName="Gathering Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_ORCHID</name>
+                <name wikiName="Gathering Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_ORCHID_2</name>
+                <name wikiName="Gathering Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_ORCHID_3</name>
+            </blueprintList>
+
+        <!--
+            Caretaker Cruisers#
+            https://ftlmultiverse.fandom.com/wiki/Caretaker_Cruisers#
+        -->
+            <blueprintList wikiPage="Caretaker Cruisers#" name="LIST_SHIPS_CARETAKER_WIKI">
+                <name wikiName="Caretaker Cruiser A" wikiHeading="Layout A" teleporterLimit="2">PLAYER_SHIP_CARETAKER</name>
+                <name wikiName="Caretaker Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_CARETAKER_2</name>
+                <name wikiName="Caretaker Cruiser C" wikiHeading="Layout C" teleporterLimit="3">PLAYER_SHIP_CARETAKER_3</name>
             </blueprintList>
 
         <!--
@@ -2707,6 +2717,7 @@
             <blueprintList wikiPage="Confederate Cruisers#" name="LIST_SHIPS_VAMPWEED_WIKI">
                 <name wikiName="Confederate Cruiser A" wikiHeading="Layout A" teleporterLimit="3">PLAYER_SHIP_VAMPWEED</name>
                 <name wikiName="Confederate Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_VAMPWEED_2</name>
+                <name wikiName="Confederate Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_VAMPWEED_3</name>
             </blueprintList>
 
         <!--
@@ -2714,30 +2725,20 @@
             https://ftlmultiverse.fandom.com/wiki/Cultivator_Cruisers#
         -->
             <blueprintList wikiPage="Cultivator Cruisers#" name="LIST_SHIPS_CULTIVATOR_WIKI">
-                <name wikiName="Cultivator Cruiser A" wikiHeading="Layout A" teleporterLimit="?">PLAYER_SHIP_CULTIVATOR</name>
-                <name wikiName="Cultivator Cruiser B" wikiHeading="Layout B" teleporterLimit="?">PLAYER_SHIP_CULTIVATOR_2</name>
-                <name wikiName="Cultivator Cruiser C" wikiHeading="Layout C" teleporterLimit="?">PLAYER_SHIP_CULTIVATOR_3</name>
+                <name wikiName="Cultivator Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_CULTIVATOR</name>
+                <name wikiName="Cultivator Cruiser B" wikiHeading="Layout B" teleporterLimit="4">PLAYER_SHIP_CULTIVATOR_2</name>
+                <name wikiName="Cultivator Cruiser C" wikiHeading="Layout C" teleporterLimit="4">PLAYER_SHIP_CULTIVATOR_3</name>
             </blueprintList>
-        
-        <!--
-            Caretaker Cruisers#
-            https://ftlmultiverse.fandom.com/wiki/Caretaker_Cruisers#
-        -->
-            <blueprintList wikiPage="Caretaker Cruisers#" name="LIST_SHIPS_CARETAKER_WIKI">
-                <name wikiName="Caretaker Cruiser A" wikiHeading="Layout A" teleporterLimit="?">PLAYER_SHIP_CARETAKER</name>
-                <name wikiName="Caretaker Cruiser B" wikiHeading="Layout B" teleporterLimit="?">PLAYER_SHIP_CARETAKER_2</name>
-                <name wikiName="Caretaker Cruiser C" wikiHeading="Layout C" teleporterLimit="?">PLAYER_SHIP_CARETAKER_3</name>
-            </blueprintList>        
 
         <!--
             Kadahellian Cruisers#
             https://ftlmultiverse.fandom.com/wiki/Kadahellian_Cruisers#
         -->
             <blueprintList wikiPage="Kadahellian Cruisers#" name="LIST_SHIPS_AMBASSADOR_WIKI">
-                <name wikiName="Kadahellian Cruiser A" wikiHeading="Layout A" teleporterLimit="?">PLAYER_SHIP_AMBASSADOR</name>
-                <name wikiName="Kadahellian Cruiser B" wikiHeading="Layout B" teleporterLimit="?">PLAYER_SHIP_AMBASSADOR_2</name>
-                <name wikiName="Kadahellian Cruiser C" wikiHeading="Layout C" teleporterLimit="?">PLAYER_SHIP_AMBASSADOR_3</name>
-            </blueprintList>  
+                <name wikiName="Kadahellian Cruiser A" wikiHeading="Layout A" teleporterLimit="4">PLAYER_SHIP_AMBASSADOR</name>
+                <name wikiName="Kadahellian Cruiser B" wikiHeading="Layout B" teleporterLimit="2">PLAYER_SHIP_AMBASSADOR_2</name>
+                <name wikiName="Kadahellian Cruiser C" wikiHeading="Layout C" teleporterLimit="2">PLAYER_SHIP_AMBASSADOR_3</name>
+            </blueprintList>
 
     <!--
         Anaerobic Ships (page 13)
@@ -2918,13 +2919,13 @@
         Crewsers 2 (Page 15)
     -->
         <!--
-            Slot 9 Crewsers#
-            https://ftlmultiverse.fandom.com/wiki/Slot_9_Crewsers#
+            Orchid Crewsers#
+            https://ftlmultiverse.fandom.com/wiki/Orchid_Crewsers#
         -->
-            <blueprintList wikiPage="Slot 9 Crewsers#" name="LIST_SHIPS_CREW_SLOT9_WIKI">
-                <name wikiName="???" wikiHeading=" Cruiser" teleporterLimit="?">CREW_SHIP_ORCHID</name>
-                <name wikiName="???" wikiHeading=" Cruiser" teleporterLimit="?">CREW_SHIP_ORCHID_2</name>
-                <name wikiName="???" wikiHeading=" Cruiser" teleporterLimit="?">CREW_SHIP_ORCHID_3</name>
+            <blueprintList wikiPage="Orchid Crewsers#" name="LIST_SHIPS_CREW_ORCHID_WIKI">
+                <name wikiName="Mayeb's Cruiser" wikiHeading="Mayeb's Cruiser" teleporterLimit="3">CREW_SHIP_ORCHID</name>
+                <name wikiName="Ivar's Cruiser" wikiHeading="Ivar's Cruiser" teleporterLimit="4">CREW_SHIP_ORCHID_2</name>
+                <name wikiName="Ty E'Rel's Cruiser" wikiHeading="Ty E'Rel's Cruiser" teleporterLimit="6">CREW_SHIP_ORCHID_3</name>
             </blueprintList>
 
     <!--
@@ -3134,8 +3135,8 @@
             <name wikiName="Radiant Cruiser" wikiHeading="Radiant Cruiser" teleporterLimit="2">ELITE_SHIP_SHELL</name>
             <name wikiName="Ampere Cruiser" wikiHeading="Ampere Cruiser" teleporterLimit="4">ELITE_SHIP_LEECH</name>
             <name wikiName="R.U.E.S. Cruiser" wikiHeading="R.U.E.S. Cruiser" teleporterLimit="4">ELITE_SHIP_COALITION</name>
-            <name wikiName="Praetorian Cruiser" wikiHeading="Praetorian Cruiser" teleporterLimit="?">ELITE_SHIP_ORCHID</name>
-            <name wikiName="Cultivator Cruiser" wikiHeading="Cultivator Cruiser" teleporterLimit="?">ELITE_SHIP_VAMPWEED</name>
+            <name wikiName="Praetorian Cruiser" wikiHeading="Praetorian Cruiser" teleporterLimit="4">ELITE_SHIP_ORCHID</name>
+            <name wikiName="Alt-Cultivator Cruiser" wikiHeading="Alt-Cultivator Cruiser" teleporterLimit="4">ELITE_SHIP_VAMPWEED</name>
             <name wikiName="Swarm Cruiser" wikiHeading="Swarm Cruiser" teleporterLimit="2">ELITE_SHIP_LANIUS</name>
             <name wikiName="Cruising Reaper" wikiHeading="Cruising Reaper" teleporterLimit="4">ELITE_SHIP_GHOST</name>
             <name wikiName="Vagabond Cruiser" wikiHeading="Vagabond Cruiser" teleporterLimit="4">ELITE_SHIP_GHOST_2</name>
