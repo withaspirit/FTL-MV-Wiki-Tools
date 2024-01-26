@@ -26,7 +26,7 @@ drive  = pathlib.Path.home().drive
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
 # multiverseFiles = ['ASSET ZIP FILE', 'DATA ZIP FILE']
-multiverseFiles = ['', 'Multiverse 5.3 - Data.zip']
+multiverseFiles = ['', 'Multiverse 5.4 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
