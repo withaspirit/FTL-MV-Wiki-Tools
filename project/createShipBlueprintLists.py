@@ -54,6 +54,9 @@ pageShipClassMismatch = {
     'CREW_SHIP_SLOTB': 'Slot B Crewsers#',
     'CREW_SHIP_WITHER_2': 'Orchid Children Crewser',
     'CREW_SHIP_WITHER': "Aenwithe's Crewser",
+    'CREW_SHIP_ORCHID': 'Orchid Crewsers#',
+    'CREW_SHIP_ORCHID_2': 'Orchid Crewsers#',
+    'CREW_SHIP_ORCHID_3': 'Orchid Crewsers#',
     'VANILLA_SHIP_FED': 'Vanilla Federation Cruisers#',
     'PLAYER_SHIP_PONY': 'Equinoid Cruisers#',
     'PLAYER_SHIP_VANILLA': 'Alpha Kestrel Cruiser',
@@ -66,12 +69,6 @@ singleShips = {
     'PLAYER_SHIP_VANILLA': 'Alpha Kestrel Cruiser',
     'PLAYER_SHIP_PLEASUREFLAG': 'Pleasure Flagship',
     'PLAYER_SHIP_LIMIT_4': 'Unoptimized Cruiser MK IV'
-}
-
-# where wikiHeading != <class>
-misnamedShips = {
-    'CREW_SHIP_SLOT1': "Haynes' Cruiser",
-    'CREW_SHIP_SLOT8_3': "Dessius' Cruiser"
 }
 
 def getShipText():
@@ -198,9 +195,7 @@ def getWikiNameShip(blueprintName: str, shipClass: str, wikiPageName: str, wikiH
 def getWikiHeadingShip(blueprintName: str, shipClass: str, wikiPageName: str) -> str:
     wikiHeading = ''
 
-    if blueprintName in misnamedShips:
-        wikiHeading = misnamedShips[blueprintName]
-    elif wikiPageName[-1] != '#':
+    if wikiPageName[-1] != '#':
         # single-page ships
         wikiHeading = shipClass
     elif ('CREW' in blueprintName) or ('ELITE' in blueprintName):

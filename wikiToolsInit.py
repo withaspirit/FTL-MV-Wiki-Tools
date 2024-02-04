@@ -28,7 +28,8 @@ drive  = pathlib.Path.home().drive
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
 # formatted like
 # multiverseFileDefaults = ['ASSET ZIP FILE', 'DATA ZIP FILE']
-multiverseFileDefaults = ['', 'Multiverse 5.3 - Data.zip']
+# NOTE: delete the wikiTools.ini file after updating the version
+multiverseFileDefaults = ['', 'Multiverse 5.4 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'

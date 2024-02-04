@@ -8,14 +8,14 @@ import blueprintUtils as blueprintUtils
 
 # omit for 5.3
 errorShips = {
-    'PLAYER_SHIP_VAMPWEED',
-    'PLAYER_SHIP_VAMPWEED_2'
+    # 'PLAYER_SHIP_VAMPWEED',
+    # 'PLAYER_SHIP_VAMPWEED_2'
 }
 
 def getWikiShipText() -> str:
     blueprints = blueprintUtils.getBlueprints()
     hyperspace = ET.parse(blueprintUtils.pathToData + 'hyperspace.xml').getroot()
-    events_boss = ET.parse(blueprintUtils.pathToData + 'events_boss.xml').getroot()
+    events_sector_laststand = ET.parse(blueprintUtils.pathToData + 'events_sector_laststand.xml').getroot()
 
     shipPath = './/shipBlueprint[@name]'
     shipBlueprints = blueprints.findall(shipPath)
@@ -36,7 +36,7 @@ def getWikiShipText() -> str:
             wikiShipText += f'\n{currWikiPage}\n'
 
         #print(blueprintName)
-        ship = Ship(shipBlueprint, blueprints, hyperspace, events_boss)
+        ship = Ship(shipBlueprint, blueprints, hyperspace, events_sector_laststand)
         wikiShipText += ship.toString() + '\n'
     return wikiShipText
 

@@ -61,7 +61,7 @@ def testGetSysDamage(blueprintName, expected):
     ('BEAM_BIO', f'60{weaponExport.icons["rad"]}'), # with "rad"
     ('LASER_CHAINGUN_DAMAGE', damageAbbr.format(15, 45, 7.5, 4)), # chain
     ('BEAM_ADAPT', infiniteAbbr.format(15, 11.25)), # infinite
-    ('BEAM_REPAIR', '15'), # <damage>-2</damage> <persDamage>1</persDamage>
+    ('BEAM_REPAIR', '15'), # <damage>2</damage> changed to -2 via Lua, <persDamage>1</persDamage>
     ('BOMB_HEAL_SYSTEM', ''), # <persDamage>0</persDamage>
     ('BOMB_HEAL', '-60'), #  <damage>0</damage>, <persDamage>-4</persDamage>
     ('LASER_LIGHT', ''), # , <damage>1</damage>, <persDamage>-1</persDamage>
@@ -173,16 +173,16 @@ startChargedAbbr = weaponExport.startChargedAbbr
     ('CLONE_CANNON', ''),
     # Chain weapons (Cooldown boost)
     ('LASER_CHAINGUN', cooldownAbbr.format(15, 6, 3, 3)),
-    ('LASER_CHARGE_CHAIN', cooldownAbbr.format(7.5, 3, 1.5, 3)),
+    ('LASER_CHARGE_CHAIN', cooldownAbbr.format(10, 4, 2, 3)),
     # Instant weapons
     ('ION_INSTANT', preemptAbbr.format(1)),
     ('LOOT_MATH_5', preemptAbbr.format(15)),
     # fireTime
     ('STRAWBERRY_CHAOS', f'40/{fireTimeAbbr.format(0.05)}'),
     # Chain weapons / fireTime
-    ('GATLING_SYLVAN', f'{cooldownAbbr.format(20, 0, 20, 1)}/{fireTimeAbbr.format(0.2)}'),
+    ('GATLING_SYLVAN', f'{cooldownAbbr.format(20, 0.2, 19.8, 1)}/{fireTimeAbbr.format(0.2)}'),
     # startCharged / fireTime
-    ('GATLING_ANCIENT', f'{startChargedAbbr}/{fireTimeAbbr.format(0.05)}')
+    ('GATLING_ANCIENT', f'0.1/{fireTimeAbbr.format(0.05)}')
 ])
 def testGetCooldown(blueprintName, expected):
     weapon = getWeapon(blueprintName)
@@ -207,7 +207,7 @@ def testGetStun(blueprintName, expected):
 @pytest.mark.parametrize('blueprintName, expected', [
     ('LASER_BURST_1', ''),
     ('LASER_HEAVY_PIERCE', '20% (3s)'),
-    ('LASER_STUN', '100% (16s)'),
+    ('LASER_STUN', '100% (8s)'),
     ('MISSILES_FREE', '')
 ])
 def testGetStun(blueprintName, expected):
@@ -254,10 +254,11 @@ def testGetSpeed(blueprintName, expected):
     assert weapon.getSpeed() == expected
 
 @pytest.mark.parametrize('blueprintName, expected', [
-    ('LASER_BURST_1', None),
+    ('LASER_BURST_1', ''),
     # silenced
     ('BEAM_MADNESS', 'Silenced')
 ])
 def testGetEffects(blueprintName, expected):
     weapon = getWeapon(blueprintName)
+    print(weapon.getEffects())
     assert weapon.getEffects() == expected

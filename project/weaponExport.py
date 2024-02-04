@@ -46,7 +46,7 @@ defaultSpeeds = {
 }
 
 factionWeapons = {
-    'LOOT_CIVILIAN_1' : 'Civilian',
+    'LOOT_UNION_1' : 'Union',
     'LOOT_MILITIA_1' : 'Militia',
     'LOOT_FEDERATION_1' : 'Federation',
     'LOOT_COALITION_1' : 'Coalition',
@@ -139,7 +139,10 @@ class Weapon:
             columnText = ''
         elif len(columnText) > 0:
             damage = float(columnText)
-            columnText = self.getBoost(columnText, damageAbbr, damage)
+            if self.blueprintName == 'BEAM_REPAIR': # do lua conversion
+                columnText = str(int(-damage))
+            else:
+                columnText = self.getBoost(columnText, damageAbbr, damage)
 
         # MODULAR_ION_HULL treats hullBusting differently
         if self.getElementText('hullBust') == '1' or 'MODULAR_ION_HULL' in self.blueprintName:
@@ -166,7 +169,11 @@ class Weapon:
         if ('C' not in self.validColumns):
             return
 
-        columnText = self.getDamagePlusXDamage('persDamage')
+        if self.blueprintName == 'BEAM_REPAIR':
+            columnText = str(int(self.getElementText('persDamage')) * 15)
+        else:
+            columnText = self.getDamagePlusXDamage('persDamage')
+
         # get RAD Debuff if necessary
         columnText += self.getRadDebuff()
         self.columnValues.append(columnText)
@@ -362,11 +369,11 @@ class Weapon:
         columnText = self.getElementText('cooldown')
         # cooldown boost
 
-        if (len(columnText) > 0 and
-            math.isclose(float(columnText), 0, rel_tol=1e-18)):
-             # weapons that start charged
-            columnText = startChargedAbbr
-        elif len(columnText) > 0 and float(columnText) < 0:
+        # if (len(columnText) > 0 and
+        #     math.isclose(float(columnText), 0, rel_tol=1e-18)):
+        #      # weapons that start charged
+        #     columnText = startChargedAbbr
+        if len(columnText) > 0 and float(columnText) < 0:
             columnText = ''
         else:
             boostElem = self.blueprint.find('boost')
