@@ -22,7 +22,9 @@ import json
 # To restart initializing wikiTools.ini, delete the file
 
 
-drive  = pathlib.Path.home().drive
+drive = pathlib.Path.home().drive
+if len(drive) == 0:
+    drive = pathlib.Path.home() # workaround for Linux
 
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
@@ -87,7 +89,7 @@ def __init__():
 # Ensure modman.cfg is initialized; change allow_zip=false to allow_zip=true
 def slipstreamConfigCheck(config: configparser.ConfigParser):
     modmanCfg = 'modman.cfg'
-    modmanCfgPath = f'{config[mainPaths][slipstream]}{modmanCfg}'
+    modmanCfgPath = os.path.join(f'{config[mainPaths][slipstream]}', modmanCfg)
 
     if os.path.exists(modmanCfgPath) == False:
         raise RuntimeError(f'Please run "{modman}" at least once.')
@@ -103,7 +105,7 @@ def slipstreamConfigCheck(config: configparser.ConfigParser):
 
 # find most recent Multiverse version
 def multiverseFileVersionCheck(config: configparser.ConfigParser):
-    path = f'{config[mainPaths][slipstream]}mods\\'
+    path = f'{config[mainPaths][slipstream]}mods'
     multiverseFileList = [os.path.basename(x) for x in glob.glob(os.path.join(path, 'Multiverse*Data.zip'))]
 
     recentVersions = dict()
@@ -125,7 +127,7 @@ def getFilePath(fileName: str) -> str:
     filePath = ''
     print(f'Finding location of {fileName}')
 
-    windowsPath = f'{drive}\\Program Files (x86)\Steam\steamapps\common\FTL Faster Than Light\\'
+    windowsPath = f'{drive}\\Program Files (x86)\Steam\steamapps\common\FTL Faster Than Light'
     potentialSlipstream = glob.glob(os.path.join(windowsPath, 'SlipstreamModManager_*'))
     if (len(potentialSlipstream) > 0):
          filePath = potentialSlipstream[len(potentialSlipstream) - 1]
@@ -175,8 +177,8 @@ def initConfig(config: configparser.ConfigParser):
     # only folders that could change are cwd and slipstream
     if config.has_section(projectPaths) == False:
         config.add_section(projectPaths)
-    projectPath = os.path.join(cwdPath,'project\\')
-    config[projectPaths][project] = projectPath
+    projectPath = os.path.join(cwdPath, 'project')
+    config[projectPaths][project] = f'{projectPath}\\'
 
     config[projectPaths][ftlDAT] = os.path.join(projectPath, 'FTL DAT\\data\\')
     config[projectPaths][wikiListsData] = os.path.join(projectPath, f'{wikiListsName}\\data\\')
