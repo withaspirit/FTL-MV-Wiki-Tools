@@ -22,7 +22,9 @@ import json
 # To restart initializing wikiTools.ini, delete the file
 
 
-drive  = pathlib.Path.home().drive
+drive = pathlib.Path.home().drive
+if len(drive) == 0:
+    drive = pathlib.Path.home() # workaround for Linux
 
 # NOTE: CHANGE THIS TO CURRENT MULTIVERSE ASSET + DATA ZIP FILE
 # ASSET ZIP FILE UNNECESSARY IF NOT BEING USED OR ACCESSED FOR YOUR MOD
