@@ -189,7 +189,8 @@ modularWeaponEffects = {
     'FIRE': 'Firestarter',
     'HULL': 'Hullbuster',
     'ACCURACY': 'Accuracy',
-    'POWER': 'Power'
+    'POWER': 'Power',
+    'CHAOS': '(Chaos)'
 }
 
 # modular weapons formatted like:

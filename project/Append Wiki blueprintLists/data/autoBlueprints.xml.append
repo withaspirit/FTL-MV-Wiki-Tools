@@ -1337,7 +1337,7 @@
                     <name>RECON_BOARDER</name>
                     <name>DOCTOR_DEFENSE</name>
                     <name>DOCTOR_BOARDER</name>
-                    <name wikiName="Manner Drone" wikiHeading="Manner Drone">MANNING</name>
+                    <name>MANNING</name>
                     <name>BUTLER_DEFENSE</name>
                     <name>BUTLER_BOARDER</name>
                     <name>DIVREPAIR</name>
@@ -3260,6 +3260,8 @@
                 <blueprintListName wikiRedirect="Militia Cruisers#Militia Crew" wikiName="Milita Crew" wikiHeading="Militia Crew" wikiPage="Militia Cruisers#">LIST_CREW_MILITIA_RANDOM</blueprintListName>
                 <blueprintListName wikiRedirect="Militia Cruisers#Militia Crew" wikiName="Soldier/Peacekeeper" wikiHeading="Militia Crew" wikiPage="Militia Cruisers#">LIST_CREW_MILITIA_ELITE_RANDOM_PLAYER</blueprintListName>
                 <blueprintListName wikiRedirect="PLACEHOLDER#Pirate Crew" wikiName="Pirate Crew" wikiHeading="Pirate Crew" wikiPage="PLACEHOLDER#">LIST_CREW_PIRATE_RANDOM</blueprintListName>
+                <blueprintListName wikiRedirect="PLACEHOLDER#Exotic Elite Crew" wikiName="Exotic Elite Crew" wikiHeading="Exotic Elite Crew" wikiPage="PLACEHOLDER#">LIST_CREW_EXOTIC_ELITE_RANDOM_PLAYER</blueprintListName>
+                <blueprintListName wikiRedirect="PLACEHOLDER#Exotic Crew" wikiName="Exotic Crew" wikiHeading="Exotic Crew" wikiPage="PLACEHOLDER#">LIST_CREW_EXOTIC_RANDOM_PLAYER</blueprintListName>
                 <blueprintListName wikiRedirect="Wrecked Bombers#Unique Crew" wikiName="Random Unique Crew" wikiHeading="Unique Crew" wikiPage="Wrecked Bombers#">LIST_CREW_UNIQUE_CRAPBUCKET</blueprintListName>
                 <blueprintListName wikiRedirect="Wrecked Bombers#Regular Crew" wikiName="Random Crew" wikiHeading="Regular Crew" wikiPage="Wrecked Bombers#">LIST_CREW_ALL_CRAPBUCKET</blueprintListName>
                 <blueprintListName wikiRedirect="Slot 3 Crewsers#Morph List" wikiName="Random Morph" wikiHeading="Morph List" wikiPage="Slot 3 Crewsers#">LIST_CREW_MORPH_RANDOM_ONLY</blueprintListName>
