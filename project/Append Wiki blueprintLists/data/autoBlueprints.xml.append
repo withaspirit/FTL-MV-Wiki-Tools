@@ -803,14 +803,6 @@
                 </mod:findName>
 
             <!--
-                Modular Weapons#Table_Of_Ions
-                https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_of_Ions
-            -->
-                <mod:findName name="HEKTAR_MODULAR_IONS" type="blueprintList">
-                    <mod:setAttributes wikiPage="Modular Weapons#Table of Ions"/>
-                </mod:findName>
-
-            <!--
                 Modular Weapons#Table_Of_Missile_Chargers
                 https://ftlmultiverse.fandom.com/wiki/Modular_Weapons#Table_Of_Missile_Chargers
             -->
@@ -932,15 +924,6 @@
                 <name>ROYAL_ION_2</name>
             </blueprintList>
 
-        <!--
-            Symbiont Drones
-            https://ftlmultiverse.fandom.com/wiki/Symbiont_Weapons
-        -->
-            <blueprintList wikiPage="Symbiont Weapons#" name="LIST_WEAPONS_SYMBIONT_WIKI">
-                
-            </blueprintList>
-
-
     <!-- Special Weapons -->
 
         <!--
@@ -1055,15 +1038,6 @@
                 <name wikiHeading="Clone Cannon">CLONE_CANNON_ZOLTAN</name>
                 <name wikiHeading="Clone Cannon">CLONE_CANNON_LEECH</name>
                 <name wikiHeading="Clone Cannon">CLONE_CANNON_AMPERE</name>
-                CLONE_CANNON_OSMIAN
-                CLONE_CANNON_OSMIAN_HOLOGRAM
-                CLONE_CANNON_ANURAK
-                CLONE_CANNON_ROYAL
-                CLONE_CANNON_KNIGHT
-                CLONE_CANNON_SIREN
-                CLONE_CANNON_HARPY
-                CLONE_CANNON_MFK
-                CLONE_CANNON_ANGEL
             </blueprintList>
 
         <!--
@@ -1286,10 +1260,10 @@
                     <name>COMBAT_BIO_BEAM</name>
                     <!-- Special Drones -->
                     <!-- <name>COMBAT_RANDOM_LASER</name>
-                    <!-- <name>COMBAT_RANDOM</name>
+                    <name>COMBAT_RANDOM</name>
                     <name>COMBAT_RANDOM_MISSILE</name>
                     <name>COMBAT_RANDOM_ION</name>
-                    <name>COMBAT_RANDOM_BEAM</name>  removed 5.5-->
+                    <name>COMBAT_RANDOM_BEAM</name>  removed 5.5 -->
                 </blueprintList>
 
             <!--
@@ -1720,7 +1694,6 @@
                 -->
                 <name>ENERGY_SHIELD</name>
                 <name>LOCKED_ENERGY_SHIELD</name>
-                <name>
                 <name>OSMIAN_BATTERIES</name>
                 <!--
                     No blueprint
@@ -1810,7 +1783,6 @@
                 <name>HAT_FEDORA</name> <!-- FIXME: location -->
                 <name>ADV_SCANNERS_CLOAK</name>
                 <name>ASTROMETRICS</name>
-
         </blueprintList>
 
     <!--
