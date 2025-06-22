@@ -1,3 +1,4 @@
+import os
 import re
 import blueprintUtils as blueprintUtils
 
@@ -254,4 +255,6 @@ def getTeleporterLimit(blueprint) -> int:
 # main section
 if __name__ == '__main__':
     getShipText = getShipText()
-    print(getShipText)
+    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    with open(os.path.join(__location__, 'shipBlueprintLists.txt'), 'w') as f:
+        f.write(getShipText)

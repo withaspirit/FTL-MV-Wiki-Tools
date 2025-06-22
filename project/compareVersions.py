@@ -1,6 +1,7 @@
 import blueprintUtils as blueprintUtils
 import xml.etree.ElementTree as ET
 import time
+import os
 
 # Compare 2 files
 # New version must be in 'FTL Data/data/'
@@ -10,7 +11,7 @@ import time
 # Also get blueprints whose title/class were changed after update
 
 # TODO: look at hyperspace.xml for crew
-oldVersionPath = blueprintUtils.cwd + '/old data/data/'
+oldVersionPath = os.path.join(blueprintUtils.cwd, 'old data', 'data\\')
 
 paths = [
     './crewBlueprint[@name]',

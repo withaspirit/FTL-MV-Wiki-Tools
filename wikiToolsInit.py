@@ -29,7 +29,7 @@ drive  = pathlib.Path.home().drive
 # formatted like
 # multiverseFileDefaults = ['ASSET ZIP FILE', 'DATA ZIP FILE']
 # NOTE: delete the wikiTools.ini file after updating the version
-multiverseFileDefaults = ['', 'Multiverse 5.4 - Data.zip']
+multiverseFileDefaults = ['', 'Multiverse 5.5.1 - Data.zip']
 appendWikiElements = 'appendWikiElements.py'
 wikiShipExport = 'wikiShipExport.py'
 wikiShipsFile = 'wikiShips.txt'
